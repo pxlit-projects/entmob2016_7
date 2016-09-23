@@ -13,7 +13,7 @@ Ook zal het mogelijk zijn om in de Xamarin app een beperkte geschiedenis van de 
 De UWP applicatie biedt een uitgebreidere weergave van alle gegevens. Dit zal gebeuren aan de hand van grafieken.
 
 ##Taak verdeling
-Server side: Bert  Kim
+Server side: Bert  Kim<br/>
 Client side: Daniël Dries
 
 Om de twee weken zal er gewisseld worden tussen server en client side programmeurs.
