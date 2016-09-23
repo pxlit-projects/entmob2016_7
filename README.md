@@ -13,7 +13,15 @@ Ook zal het mogelijk zijn om in de Xamarin app een beperkte geschiedenis van de 
 De UWP applicatie biedt een uitgebreidere weergave van alle gegevens. Dit zal gebeuren aan de hand van grafieken. Wekelijks gemiddelde (health points, verticaal bewegen, horizontaal bewegen), dagelijkse gemiddeldes, grafiek met verschillen ten opzichte van de vorige dag (vooruitgang of achteruitgang is hier zichtbaar)
 
 ##Taak verdeling
-Server side: Bert  Kim  
-Client side: Daniël Dries
+Server side: Bert, Kim  
+Client side: Daniël, Dries
 
 Om de twee weken zal er gewisseld worden tussen server en client side programmeurs.
+
+##Extra
+<ul>
+<li>Running modes. Jog sessie starten en stoppen.</li>
+<li>Je behaalde “Health Points” vergelijken met vrienden.</li>
+</ul>
+
+
