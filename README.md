@@ -15,6 +15,10 @@ Ook zal het mogelijk zijn om in de Xamarin app een beperkte geschiedenis van de 
 ###De UWP applicatie
 De UWP applicatie biedt een uitgebreidere weergave van alle gegevens. Dit zal gebeuren aan de hand van grafieken. Wekelijks gemiddelde (health points, verticaal bewegen, horizontaal bewegen), dagelijkse gemiddeldes, grafiek met verschillen ten opzichte van de vorige dag (vooruitgang of achteruitgang is hier zichtbaar)
 
+##Data
+Temperatuur + Vochtigheid + barometer : We zullen deze gegevens bijhouden om het algemene weer voor de persoon te bepalen gedurende dag en tijdens de oefeningen. Zo kunnen we afleiden of bepaalde handelingen zwaarder waren vanwegen de warmte of lage luchtvochtigheid.
+Accelerometer + Altimeter + gyroscoop : Worden gebruikt voor het bepalen van de beweging van de persoon. Deze data wordt niet "raw" bijgehouden in de database maar worden gebruikt bij het afleiden van andere data die wel bijgehouden zal worden.
+
 ##Taak verdeling
 Server side: Bert, Kim  
 Client side: Daniël, Dries
