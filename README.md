@@ -4,6 +4,15 @@
 ##Probleemstelling
 Bewegen is een belangrijk onderdeel in gezond leven, maar we doen het niet allemaal even regelmatig. Wij willen ze daar mee helpen. Omdat mensen tegenwoordig altijd hun smartphone bij de hand hebben, willen we dit gebruiken om de beweging te monitoren en mensen er regelmatig aan te herinneren dat ze moeten bewegen.
 
+##Stappenplan
+1. Data van de Sensortag naar de mobile app sturen via Bluetooth
+2. Data opslagen in SQLite database op het mobile device met de mobile app
+3. Data lezen van de SQLite database via de mobile app
+4. Data naar de server side (spring) sturen via rest
+5. data naar de database sturen via spring
+6. data lezen uit de database via spring
+7. data opvragen naar de UWP app via een REST call naar spring (server side)
+
 ##Doelstelling
 ###De sensorTag
 De sensor tag zal meten hoeveel de gebruiker gaat bewegen aan de hand van de bewegingssensoren. Hiermee kunnen we bepalen hoeveel de gebruiker nog extra moet bewegen om aan zijn doel te geraken. De sensor zal ook gebruikt worden bij de extra oefeningen om te meten dat deze juist uitgevoerd worden. Een voorbeel van een idee om te oefenen was pong. Hier zouden we dan een linkerafstand en rechterafstand afbakenen. In deze afstand kon je dan bewegen met de sensor om in de app te bewegen en de bal te kaatsen. Hoe realistisch dit is aan de hand van update tijd valt nog te zien. Het idee is dus om beweging te meten met de tag en aan de hand hiervan een score op te maken. De sensor die dus het meeste gebruikt zal worden is de accelometer.
