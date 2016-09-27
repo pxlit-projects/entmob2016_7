@@ -28,6 +28,9 @@ De UWP applicatie biedt een uitgebreidere weergave van alle gegevens. Dit zal ge
 Temperatuur + Vochtigheid + barometer : We zullen deze gegevens bijhouden om de weerscondities bij te houden gedurende de dag en tijdens de oefeningen. Zo kunnen we afleiden of bepaalde handelingen zwaarder waren vanwegen de warmte of lage luchtvochtigheid.
 Accelerometer + Altimeter + gyroscoop : Worden gebruikt voor het bepalen van de beweging van de persoon. Deze data wordt niet "raw" bijgehouden in de database maar worden gebruikt bij het afleiden van de "health points".
 
+##Architectuur
+![alt text](https://github.com/pxlit-projects/entmob2016_7/blob/master/Architecture%20design.PNG "Architectuur")
+
 ##Taak verdeling
 Server side: Bert, Kim  
 Client side: Daniël, Dries
