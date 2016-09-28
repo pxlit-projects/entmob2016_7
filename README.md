@@ -31,6 +31,10 @@ Accelerometer + Altimeter + gyroscoop : Worden gebruikt voor het bepalen van de 
 ##Architectuur
 ![alt text](https://github.com/pxlit-projects/entmob2016_7/blob/master/Architecture%20design.PNG "Architectuur")
 
+We hebben gekozen om de sensorTag te laten communiceren met de Xamarin app, om één grote reden, bereik. De sensorTag kan enkel communiceren via Bluetooth, wat maakt dat het device waarmee gecommuniceerd moet worden nooit ver weg mag zijn. Omdat een smartphone tegenwoordig niet meer weg te denken is in het dagelijks leven, is een app op de smartphone (geschreven in Xamarin) ideaal. 
+Vervolgens is er besloten om de Xamarin app te laten communiceren met de Spring Webhost. Deze keuze werd gemaakt omdat er meerdere applicaties gebruik moeten kunnen maken van de data. Een 'dedicated' webhost die alle communicatie regelt met de database is dus aangewezen. De communicatie van de Xamarin app en de webhost verloopt dubbelzijdig. Dit omdat de Xamarin app zowel data zal aanleveren aan de serverside, als data zal opvragen.
+Als laatste communiceert de serverside nog met de UWP applicatie (desktop) om meer gegevens te kunnen tonen die in de Xamarin app kunnen worden weergegeven. Ook deze communicatie zal dubbelzijdig verlopen.
+
 ##Taak verdeling
 Server side: Bert, Kim  
 Client side: Daniël, Dries
