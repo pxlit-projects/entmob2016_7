@@ -31,9 +31,10 @@ Accelerometer + Altimeter + gyroscoop : Worden gebruikt voor het bepalen van de 
 ##Architectuur
 ![alt text](https://github.com/pxlit-projects/entmob2016_7/blob/master/Architecture%20design.PNG "Architectuur")
 
-1. Data van de bewegingssensoren (accelerometer,...)
-2. Json data met de verwerkte data van de bewegingssensoren (verwerkt in de app)
-3. Json data met de verwerkte data uit de database
+1. Data van de bewegingssensoren (accelerometer,...). Zo weten we hoeveel de gebruiker gaat bewegen
+2. Json data met de verwerkte data van de bewegingssensoren (verwerkt in de app), bijvoorbeeld afgelegde afstand, hoogtemeters...
+3. Json data met de verwerkte data uit de database: de verwerkte data opvragen om dan in een mooier formaat weer te geven
+
 
 We hebben gekozen om de sensorTag te laten communiceren met de Xamarin app, om één grote reden, bereik. De sensorTag kan enkel communiceren via Bluetooth, wat maakt dat het device waarmee gecommuniceerd moet worden nooit ver weg mag zijn. Omdat een smartphone tegenwoordig niet meer weg te denken is in het dagelijks leven, is een app op de smartphone (geschreven in Xamarin) ideaal. 
 Vervolgens is er besloten om de Xamarin app te laten communiceren met de Spring Webhost. Deze keuze werd gemaakt omdat er meerdere applicaties gebruik moeten kunnen maken van de data. Een 'dedicated' webhost die alle communicatie regelt met de database is dus aangewezen. De communicatie van de Xamarin app en de webhost verloopt dubbelzijdig. Dit omdat de Xamarin app zowel data zal aanleveren aan de serverside, als data zal opvragen.
