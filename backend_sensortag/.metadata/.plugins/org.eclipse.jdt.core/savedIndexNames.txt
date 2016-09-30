@@ -1,0 +1,1 @@
+INDEX VERSION 1.129+C:\Users\Bert_\Documents\entmob2016_7\backend_sensortag\.metadata\.plugins\org.eclipse.jdt.core
