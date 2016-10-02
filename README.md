@@ -52,4 +52,9 @@ Om de twee weken zal er gewisseld worden tussen server en client side programmeu
 <li>Je behaalde “Health Points” vergelijken met vrienden.</li>
 </ul>
 
+SQL server settings:
+	ip address: 84.195.1.59
+	user: user		
+	password: pass
+
 
