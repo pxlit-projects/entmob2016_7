@@ -6,7 +6,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-!Website\WebsiteV21.0\stufvwebappv21\stufvwebappv21\Content\OrganisationApp\STUFV.jar
+#!Website\WebsiteV21.0\stufvwebappv21\stufvwebappv21\Content\OrganisationApp\STUFV.jar
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -236,6 +236,8 @@ Application/NicholasJava/.recommenders/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+!FitSenseApp/Components
 
 #bestand daniel
 oude_bestanden/
