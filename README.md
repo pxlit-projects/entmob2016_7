@@ -1,5 +1,5 @@
 # entmob2016_7
-#Project Enterprise & Mobile: Fitness app
+#Project Enterprise & Mobile: Fitsense
 
 ##Probleemstelling
 Bewegen is een belangrijk onderdeel in gezond leven, maar we doen het niet allemaal even regelmatig. Wij willen ze daar mee helpen. Omdat mensen tegenwoordig altijd hun smartphone bij de hand hebben, willen we dit gebruiken om de beweging te monitoren en mensen er regelmatig aan te herinneren dat ze moeten bewegen.
