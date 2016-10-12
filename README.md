@@ -1,5 +1,5 @@
 # entmob2016_7
-#Project Enterprise & Mobile: Fitness app
+#Project Enterprise & Mobile: Fitsense
 
 ##Probleemstelling
 Bewegen is een belangrijk onderdeel in gezond leven, maar we doen het niet allemaal even regelmatig. Wij willen ze daar mee helpen. Omdat mensen tegenwoordig altijd hun smartphone bij de hand hebben, willen we dit gebruiken om de beweging te monitoren en mensen er regelmatig aan te herinneren dat ze moeten bewegen.
@@ -51,5 +51,10 @@ Om de twee weken zal er gewisseld worden tussen server en client side programmeu
 <li>Running modes. Jog sessie starten en stoppen.</li>
 <li>Je behaalde “Health Points” vergelijken met vrienden.</li>
 </ul>
+
+SQL server settings:
+	ip address: 84.195.1.59
+	user: user		
+	password: pass
 
 
