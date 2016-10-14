@@ -10,8 +10,8 @@ INDEX VERSION 1.129+C:\Users\Bert_\Documents\entmob2016_7\backend_sensortag\.met
 3460622134.index
 4075713989.index
 1427613326.index
-785471781.index
 4271394966.index
+785471781.index
 3689455734.index
 195961986.index
 3522916262.index
@@ -21,10 +21,10 @@ INDEX VERSION 1.129+C:\Users\Bert_\Documents\entmob2016_7\backend_sensortag\.met
 480165102.index
 1976196247.index
 3104220404.index
-3791646912.index
 3236185789.index
-1247775906.index
 378445611.index
+1247775906.index
+3791646912.index
 3846718960.index
 2047790420.index
 1253494089.index
@@ -45,10 +45,10 @@ INDEX VERSION 1.129+C:\Users\Bert_\Documents\entmob2016_7\backend_sensortag\.met
 2095834387.index
 1653041068.index
 3102761470.index
-1699710450.index
-1412688604.index
-1027187961.index
 1819331011.index
+1412688604.index
+1699710450.index
+1027187961.index
 88404736.index
 2217980514.index
 3981095117.index
