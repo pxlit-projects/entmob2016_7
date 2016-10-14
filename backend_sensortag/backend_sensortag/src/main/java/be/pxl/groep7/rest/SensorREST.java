@@ -11,7 +11,7 @@ public class SensorREST {
 	@RequestMapping(method = RequestMethod.GET)
 	public String handleGet(){
 		System.out.println("get");
-		return "get";
+		return "hello";
 	}
 
 }
