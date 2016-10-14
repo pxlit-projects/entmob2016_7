@@ -25,11 +25,14 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
+<<<<<<< HEAD
 		</attributes>
 	</classpathentry>
 	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
+=======
+>>>>>>> 4661f0cfc09033c41ae7c12e31d2f0c37909311a
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
