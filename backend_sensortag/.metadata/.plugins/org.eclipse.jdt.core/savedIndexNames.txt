@@ -9,6 +9,7 @@ INDEX VERSION 1.129+C:\Users\Bert_\Documents\entmob2016_7\backend_sensortag\.met
 3522916262.index
 3562824043.index
 88404736.index
+347196312.index
 3905492083.index
 2230637418.index
 829330951.index
