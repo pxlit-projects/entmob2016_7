@@ -21,20 +21,27 @@ namespace FitSenseApp.Pages
             InitializeComponent();
             this.adapter = adapter;
             this.devices = new ObservableCollection<IDevice>();
-            //listView.ItemsSource = devices;
+            listView.ItemsSource = devices;
 
-            //adapter.DeviceDiscovered += (object sender, DeviceDiscoveredEventArgs e) => {
-            //    Device.BeginInvokeOnMainThread(() => {
-            //        devices.Add(e.Device);
-            //    });
-            //};
+            adapter.DeviceDiscovered += (object sender, DeviceDiscoveredEventArgs e) =>
+            {
+                if (!devices.Any(d => d.ID == e.Device.ID))
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        devices.Add(e.Device);
+                    });
+                }
+            };
 
-            //adapter.ScanTimeoutElapsed += (sender, e) => {
-            //    adapter.StopScanningForDevices(); // not sure why it doesn't stop already, if the timeout elapses... or is this a fake timeout we made?
-            //    Device.BeginInvokeOnMainThread(() => {
-            //        DisplayAlert("Timeout", "Bluetooth scan timeout elapsed", "OK");
-            //    });
-            //};
+            adapter.ScanTimeoutElapsed += (sender, e) =>
+            {
+                adapter.StopScanningForDevices(); // not sure why it doesn't stop already, if the timeout elapses... or is this a fake timeout we made?
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    DisplayAlert("Timeout", "Bluetooth scan timeout elapsed", "OK");
+                });
+            };
 
             ScanAllButton.Clicked += (sender, e) => {
                 StartScanning();
@@ -45,26 +52,21 @@ namespace FitSenseApp.Pages
             };
         }
 
-        public void AllButton(object sender, EventArgs args)
-        {
-            StartScanning();
-        }
-
         public void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            //if (((ListView)sender).SelectedItem == null)
-            //{
-            //    return;
-            //}
-            //Debug.WriteLine(" xxxxxxxxxxxx  OnItemSelected " + e.SelectedItem.ToString());
-            //StopScanning();
+            if (((ListView)sender).SelectedItem == null)
+            {
+                return;
+            }
+            Debug.WriteLine(" xxxxxxxxxxxx  OnItemSelected " + e.SelectedItem.ToString());
+            StopScanning();
 
-            //var device = e.SelectedItem as IDevice;
-            //var servicePage = new ServiceList(adapter, device);
-            //// load services on the next page
-            //Navigation.PushAsync(servicePage);
-
-            //((ListView)sender).SelectedItem = null; // clear selection
+            var device = e.SelectedItem as IDevice;
+            var servicePage = new ServiceList(adapter, device);
+            //load services on the next page
+            Navigation.PushAsync(servicePage);
+            Debug.WriteLine($"connected with : {device.Name}");
+            ((ListView)sender).SelectedItem = null; // clear selection
         }
 
         void StartScanning()

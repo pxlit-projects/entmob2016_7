@@ -17,7 +17,7 @@ namespace FitSenseApp
         {
             InitializeComponent();
 
-            MainPage = new DeviceList(adaptor);
+            MainPage = new NavigationPage(new DeviceList(adaptor));
         }
 
         public static void SetAdaptor(IAdapter adaptor)

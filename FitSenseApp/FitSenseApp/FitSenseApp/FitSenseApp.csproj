@@ -38,11 +38,25 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\EmptyStringConverter.cs" />
+    <Compile Include="Extensions\GuidConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CharacteristicDetail_TISensor.xaml.cs">
+      <DependentUpon>CharacteristicDetail_TISensor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CharacteristicDetail_TISwitch.xaml.cs">
+      <DependentUpon>CharacteristicDetail_TISwitch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CharacteristicList.xaml.cs">
+      <DependentUpon>CharacteristicList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\DeviceList.xaml.cs">
       <DependentUpon>DeviceList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ServiceList.xaml.cs">
+      <DependentUpon>ServiceList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -79,6 +93,30 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\DeviceList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ServiceList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\CharacteristicList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\CharacteristicDetail_TISensor.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\CharacteristicDetail_TISwitch.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

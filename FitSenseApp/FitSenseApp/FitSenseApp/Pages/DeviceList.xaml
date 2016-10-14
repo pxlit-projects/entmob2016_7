@@ -1,36 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FitSenseApp.Extensions"
              x:Class="FitSenseApp.Pages.DeviceList">
-  <!--
+ 
   <ContentPage.Resources>
     <ResourceDictionary>
       <local:GuidConverter x:Key="guidConverter"/>
       <local:EmptyStringConverter x:Key="strConverter"/>
     </ResourceDictionary>
   </ContentPage.Resources>
-  -->
-  <ContentPage.ToolbarItems>
-    <ToolbarItem x:Name="ScanHrmButton" Name="Scan" Icon="glyphish_29_heart.png"/>
-    <ToolbarItem x:Name="ScanAllButton" Name="Scan" Icon="bluetooth.png"/>
+ 
+ <ContentPage.ToolbarItems>
+    <ToolbarItem x:Name="ScanHrmButton" Name="Scan HRM" Icon="glyphish_29_heart.png"/>
+    <ToolbarItem x:Name="ScanAllButton" Name="Scan All" Icon="bluetooth.png"/>
   </ContentPage.ToolbarItems>
-
-  <Button Clicked="AllButton" Text="push the button"/>
-
-  <!--
-  <ListView x:Name="listView" ItemSelected="OnItemSelected">
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
-            <StackLayout Padding="5,0,0,0" VerticalOptions="StartAndExpand" Orientation="Vertical">
-              <Label Text="{Binding Name, Converter={StaticResource strConverter}}" YAlign="Center" Font="Medium" />
-              <Label Text="{Binding Path=ID, Converter={StaticResource guidConverter}}" YAlign="Center" Font="Micro" />
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="10" />
+      <RowDefinition Height="10" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+  
+    <ListView x:Name="listView" ItemSelected="OnItemSelected" Grid.Row="2">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
+              <StackLayout Padding="5,0,0,0" VerticalOptions="StartAndExpand" Orientation="Vertical">
+                <Label Text="{Binding Name, Converter={StaticResource strConverter}}" YAlign="Center" Font="Medium" />
+                <Label Text="{Binding Path=ID, Converter={StaticResource guidConverter}}" YAlign="Center" Font="Micro" />
+              </StackLayout>
             </StackLayout>
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-  </ListView>
-  -->
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate> 
+    </ListView>
+  </Grid>
+
+  
 </ContentPage>
