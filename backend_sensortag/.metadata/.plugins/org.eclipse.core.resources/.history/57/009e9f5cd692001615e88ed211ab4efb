@@ -6,8 +6,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.format.datetime.joda.LocalDateParser;
 
 import be.pxl.groep7.models.Distance;
-import be.pxl.groep7.models.DistanceAppConfig;
 import be.pxl.groep7.models.SensorModel;
+import be.pxl.groep7.repository.DistanceAppConfig;
 import be.pxl.groep7.repository.DistanceRepository;
 
 import java.time.LocalDate;

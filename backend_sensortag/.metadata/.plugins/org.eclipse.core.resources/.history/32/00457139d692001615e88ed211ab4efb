@@ -9,7 +9,7 @@ import be.pxl.groep7.models.Distance;
 import be.pxl.groep7.models.SensorModel;
 
 @Repository("distanceRepository")
-public class DistanceRepositoryImpl implements DistanceRepository{
+public class DistanceRepositoryImpl {
 
 	private EntityManagerFactory emf;
 	

@@ -5,7 +5,8 @@ import javax.persistence.Id;
 
 public abstract class SensorModel {
 
-	@Id	
+	@Id
+	@Column(name="ID")
 	private int id;
 	
 	public SensorModel(int id){
