@@ -8,8 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FitSense_UWP.Extensions;
-using System.Windows.Input;
-using FitSense_UWP.Utility;
+using FitSense_UWP.Util;
+using FitSense_UWP.Messages;
+using Windows.UI.Xaml.Controls;
 using FitSense_UWP.View;
 
 namespace FitSense_UWP.ViewModel
@@ -24,8 +25,6 @@ namespace FitSense_UWP.ViewModel
 
         private ObservableCollection<Distance> distances;
         private Distance selectedDistance;
-
-        public ICommand EditCommand { get; set; }
 
         public ObservableCollection<Distance> Distances
         {
@@ -47,25 +46,18 @@ namespace FitSense_UWP.ViewModel
             }
         }
 
-        public MainPageViewModel(IFitDataService dataService, INavigationService dialogService, ILoginService loginService)
+        public MainPageViewModel(IFitDataService fitDataService, INavigationService navigationService, ILoginService loginService)
         {
-            this.fitDataService = dataService;
-            this.navigationService = dialogService;
+            this.navigationService = navigationService;
+            this.fitDataService = fitDataService;
             this.loginService = loginService;
-            distances = fitDataService.GetAllRecords().ToObservableCollection();
 
-            //TODO: commands deftig uitwerken, dit is een placeholder
-            EditCommand = new CustomCommand(NavigateToLogin, YouCanRunIt);
-        }
+            LoadData();
+            Messenger.Default.Register<UpdateListMessage>(this, OnUpdateListMessageReceived);
 
-        public void NavigateToLogin(Object obj)
-        {
-            navigationService.NavigateTo("Login");
-        }
-
-        public bool YouCanRunIt(Object obj)
-        {
-            return true;
+            //Navigate away from here if you are nog logged in correctly
+            if (!loginService.isLoggedIn())
+                navigationService.NavigateTo(typeof(Login));
         }
 
         private void RaisePropertyChanged(string property)
@@ -73,5 +65,20 @@ namespace FitSense_UWP.ViewModel
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
+
+        //The data got updated in another screen, reload it!
+        private void OnUpdateListMessageReceived(UpdateListMessage obj)
+        {
+            LoadData();
+
+        }
+
+        //ask the service for the data and convert it to an observable collection so you can see live changes
+        private void LoadData()
+        {
+            distances = fitDataService.GetAllRecords().ToObservableCollection();
+        }
+
+        
     }
 }

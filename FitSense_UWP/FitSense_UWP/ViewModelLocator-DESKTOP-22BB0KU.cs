@@ -14,6 +14,7 @@ namespace FitSense_UWP
         private static INavigationService navigationService = new NavigationService();
 
         private static MainPageViewModel mainPageViewModel = new MainPageViewModel(dataService, navigationService, LoginService.Instance);
+
         public static MainPageViewModel MainPageViewModel
         {
             get
@@ -22,20 +23,6 @@ namespace FitSense_UWP
             }
         }
 
-        private LoginViewModel loginViewModel = new LoginViewModel(navigationService, LoginService.Instance);
-        public LoginViewModel LoginViewModel
-        {
-            get { return loginViewModel; }
-            set { loginViewModel = value; }
-        }
-
-        private OverViewPageViewModel overviewViewModel = new OverViewPageViewModel(navigationService);
-
-        public OverViewPageViewModel OverViewPageViewModel
-        {
-            get { return overviewViewModel; }
-            set { overviewViewModel = value; }
-        }
 
     }
 }
