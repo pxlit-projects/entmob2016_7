@@ -8,6 +8,10 @@ public abstract class SensorModel {
 	@Id
 	@Column(name="ID")
 	private int id;
+	
+	public SensorModel(int id){
+		this.id = id;
+	}
 
 	public int getId() {
 		return id;

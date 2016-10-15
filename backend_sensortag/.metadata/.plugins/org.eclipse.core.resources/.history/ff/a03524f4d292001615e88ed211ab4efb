@@ -1,0 +1,6 @@
+package be.pxl.groep7.repository;
+
+@SpringBootApplication
+public class DistanceAppConfig {
+
+}

@@ -1,0 +1,10 @@
+package be.pxl.groep7.repository;
+
+
+import javax.persistence.*;
+
+public class DistanceRepositoryImpl {
+
+	private EntityManagerFactory emf;
+	
+}

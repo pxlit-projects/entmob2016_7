@@ -16,6 +16,12 @@ public class Distance extends SensorModel {
 	private int amountOfSteps;
 	private int height;
 	
+	public Distance(int id, LocalDate time, int amountOfSteps, int height) {
+		super(id);
+		this.time = time;
+		this.amountOfSteps = amountOfSteps;
+		this.height = height;
+	}
 	public LocalDate getTime() {
 		return time;
 	}
