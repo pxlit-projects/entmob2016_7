@@ -1,4 +1,4 @@
-﻿using FitSense_UWP.Services;
+﻿using FitSense_UWP.View;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -23,10 +24,17 @@ namespace FitSense_UWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private Frame frame = Window.Current.Content as Frame;
+
         public MainPage()
         {
             this.InitializeComponent();
+            
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Login));
+        }
     }
 }

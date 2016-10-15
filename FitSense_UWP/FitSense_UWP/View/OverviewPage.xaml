@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="FitSense_UWP.View.OverviewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FitSense_UWP.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:trigger="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:media="using:Microsoft.Xaml.Interactions.Media"
+    mc:Ignorable="d"
+    DataContext="{Binding Source={StaticResource mainViewModelLocator},  Path=OverViewPageViewModel}"
+    >
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Frame Grid.Column="1" SourcePageType="{Binding PageType, Mode=TwoWay}" />
+        <ListView ItemsSource="{Binding Pages}"
+                  SelectedItem="{Binding SelectedPage, Mode=TwoWay}"
+                  >
+            <trigger:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="SelectionChanged">
+                    <core:InvokeCommandAction Command="{Binding SwitchPageCommand}" />
+                </core:EventTriggerBehavior>
+            </trigger:Interaction.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="2">
+                        <Grid>
+                            <TextBlock Text="{Binding DisplayText}" Grid.Row="1" Grid.Column="1" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

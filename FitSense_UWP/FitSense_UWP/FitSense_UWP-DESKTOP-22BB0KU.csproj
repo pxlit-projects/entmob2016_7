@@ -97,16 +97,13 @@
     </Compile>
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Messages\UpdateListMessage.cs" />
-    <Compile Include="Services\NavigationService.cs" />
-    <Compile Include="Services\INavigationService.cs" />
     <Compile Include="Services\ILoginService.cs" />
+    <Compile Include="Services\INavigationService.cs" />
     <Compile Include="Services\LoginService.cs" />
-    <Compile Include="Utility\CustomCommand.cs" />
-    <Compile Include="Utility\Messenger.cs" />
+    <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Util\Messenger.cs" />
     <Compile Include="ViewModelLocator.cs" />
-    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
-    <Compile Include="ViewModel\OverViewPageViewModel.cs" />
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -116,9 +113,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FitDataService.cs" />
     <Compile Include="Services\IFitDataService.cs" />
-    <Compile Include="View\OverviewPage.xaml.cs">
-      <DependentUpon>OverviewPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -135,6 +129,7 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Resources\fb_small.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -149,14 +144,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\OverviewPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\FitSense.DAL\FitSense.DAL.csproj">
       <Project>{18F4E0BD-E0F5-4D01-B06D-D86F0DA7A039}</Project>

@@ -8,13 +8,10 @@
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource mainViewModelLocator},  Path=MainPageViewModel}"
     >
-
-    
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Command="{Binding EditCommand}"  IsEnabled="True" Content="Edit coffee"></Button>
-        <TextBlock Text="{Binding SelectedDistance.Time}" />
+        <Button Content="navigate!" VerticalAlignment="Bottom" Click="Button_Click"/>
         <ListView ItemsSource="{Binding Distances}"
-                  SelectedItem="{Binding SelectedDistance, Mode=TwoWay}">
+                  SelectedItem="{Binding SelectedDistance}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="2">
@@ -37,4 +34,6 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackPanel>
+
+    
 </Page>
