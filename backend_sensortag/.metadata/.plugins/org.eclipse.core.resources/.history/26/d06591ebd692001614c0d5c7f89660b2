@@ -1,0 +1,11 @@
+package be.pxl.groep7.models;
+
+import java.time.LocalDate;
+
+public class Distance2 {
+	
+	private LocalDate time;
+	private int amountOfSteps;
+	private int height;
+
+}
