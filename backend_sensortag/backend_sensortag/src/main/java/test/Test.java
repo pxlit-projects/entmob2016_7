@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.format.datetime.joda.LocalDateParser;
 
+import be.pxl.groep7.dao.DistanceRepository;
 //import be.pxl.groep7.models.Distance;
 import be.pxl.groep7.models.Distance2;
 import be.pxl.groep7.models.DistanceAppConfig;
-import be.pxl.groep7.models.DistanceRepository;
 import be.pxl.groep7.models.SensorModel;
 
 import java.sql.Timestamp;

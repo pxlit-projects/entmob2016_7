@@ -1,9 +1,11 @@
-package be.pxl.groep7.models;
+package be.pxl.groep7.dao;
 
 
 import javax.persistence.*;
 
 import org.springframework.stereotype.Repository;
+
+import be.pxl.groep7.models.Distance2;
 
 @Repository("distanceRepository")
 public class DistanceRepositoryImpl implements DistanceRepository{
