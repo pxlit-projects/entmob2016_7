@@ -1,10 +1,15 @@
 package be.pxl.groep7.models;
 
-import java.time.LocalDate;
+
+
+
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 
@@ -15,7 +20,9 @@ public class Distance2 {
 	
 	@Id
 	private int id;
-	private LocalDate time;
+	
+	
+	private long time;
 	private int amountOfSteps;
 	private int height;
 	
@@ -24,7 +31,7 @@ public class Distance2 {
 		
 	}
 	
-	public Distance2(int id, LocalDate time, int amountOfSteps, int height) {
+	public Distance2(int id, long time, int amountOfSteps, int height) {
 		//super();
 		this.id = id;
 		this.time = time;
@@ -37,10 +44,10 @@ public class Distance2 {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public LocalDate getTime() {
+	public long getTime() {
 		return time;
 	}
-	public void setTime(LocalDate time) {
+	public void setTime(long time) {
 		this.time = time;
 	}
 	public int getAmountOfSteps() {
