@@ -1786,3 +1786,36 @@ java.lang.NullPointerException: null
 2016-10-19 16:08:53,907 [Worker-80] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2016-10-19 16:08:53,911 [Worker-80] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2016-10-19 16:08:53,911 [Worker-80] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-10-19 16:36:11,308 [Worker-85] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2016-10-19 16:36:11,685 [Worker-85] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: be.pxl.groep7:backend_sensortag:0.0.1-SNAPSHOT @ C:\Users\Bert_\Documents\entmob2016_7\backend_sensortag\backend_sensortag\pom.xml.
+2016-10-19 16:36:12,168 [Worker-85] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /backend_sensortag/src/main/java
+2016-10-19 16:36:12,168 [Worker-85] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /backend_sensortag/src/main/resources
+2016-10-19 16:36:12,168 [Worker-85] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /backend_sensortag/src/main/resources
+2016-10-19 16:36:12,168 [Worker-85] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /backend_sensortag/src/test/java
+2016-10-19 16:36:12,168 [Worker-85] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /backend_sensortag/src/test/resources
+2016-10-19 16:36:12,335 [Worker-85] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec
+2016-10-19 16:36:12,899 [Worker-86] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-10-19 16:36:12,900 [Worker-86] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-10-19 16:36:12,919 [Worker-86] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-10-19 16:36:12,921 [Worker-86] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-10-19 16:36:12,925 [Worker-86] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-10-19 16:45:10,229 [Worker-87] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-10-19 16:45:10,230 [Worker-87] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-10-19 16:45:10,232 [Worker-87] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-10-19 16:45:10,237 [Worker-87] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-10-19 16:45:10,241 [Worker-87] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-10-19 16:45:32,396 [Worker-95] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-10-19 16:45:32,396 [Worker-95] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-10-19 16:45:32,401 [Worker-95] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-10-19 16:45:32,405 [Worker-95] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-10-19 16:45:32,409 [Worker-95] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-10-19 16:45:42,653 [Worker-95] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-10-19 16:45:42,657 [Worker-95] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-10-19 16:45:42,661 [Worker-95] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-10-19 16:45:42,666 [Worker-95] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-10-19 16:45:42,666 [Worker-95] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-10-19 16:45:45,552 [Worker-92] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-10-19 16:45:45,552 [Worker-92] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-10-19 16:45:45,554 [Worker-92] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-10-19 16:45:45,555 [Worker-92] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-10-19 16:45:45,559 [Worker-92] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
