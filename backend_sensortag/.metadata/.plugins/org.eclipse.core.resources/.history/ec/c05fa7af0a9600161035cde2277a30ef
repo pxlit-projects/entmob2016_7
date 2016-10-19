@@ -47,33 +47,4 @@ public class UserRepositoryImpl implements IUserRepository{
 
 	}
 
-
-	@Override
-	public void updateUser(User user) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		
-		em.persist(user);
-		
-		tx.commit();
-		em.close();
-		emf.close();		
-	}
-
-
-	@Override
-	public void deleteUser(User user) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		
-		em.remove(user);
-		
-		tx.commit();
-		em.close();
-		emf.close();
-		
-	}
-
 }
