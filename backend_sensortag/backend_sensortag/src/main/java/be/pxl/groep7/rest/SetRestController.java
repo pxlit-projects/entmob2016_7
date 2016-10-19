@@ -31,11 +31,11 @@ public class SetRestController {
 	
 	@RequestMapping(value="{id}", method = RequestMethod.PUT)
 	public void editSet(@PathVariable("id") int id, @RequestBody Set set){
-		dao.editSet(id, set);
+		dao.updateSet(set);
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
-	public void deleteSet(@PathVariable("id") int id) {
-		dao.deleteSet(id);
+	@RequestMapping(method = RequestMethod.DELETE)
+	public void deleteSet(@RequestBody Set set) {
+		dao.deleteSet(set);
 	}
 }

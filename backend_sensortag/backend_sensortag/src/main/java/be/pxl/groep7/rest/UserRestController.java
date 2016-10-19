@@ -31,11 +31,11 @@ public class UserRestController {
 	
 	@RequestMapping(value="{id}", method = RequestMethod.PUT)
 	public void editUser(@PathVariable("id") int id, @RequestBody User user){
-		dao.editUser(id, user);
+		dao.updateUser(user);
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
-	public void deleteUser(@PathVariable("id") int id) {
-		dao.deleteUser(id);
+	public void deleteUser(@RequestBody User user) {
+		dao.deleteUser(user);
 	}
 }
