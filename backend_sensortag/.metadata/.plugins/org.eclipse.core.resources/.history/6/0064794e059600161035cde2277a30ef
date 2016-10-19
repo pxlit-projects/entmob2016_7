@@ -7,10 +7,10 @@ import javax.persistence.PersistenceUnit;
 
 import org.springframework.stereotype.Repository;
 
-import be.pxl.groep7.models.Set;
+import be.pxl.groep7.models.Exercise;
 
-@Repository("setRepository")
-public class SetRepositoryImpl implements ISetRepository{
+@Repository("exerciseRepository")
+public class ExerciseRepositoryImpl implements IExerciseRepository{
 
 	private EntityManagerFactory emf;
 
@@ -20,57 +20,29 @@ public class SetRepositoryImpl implements ISetRepository{
 	}
 
 	@Override
-	public Set getSet(int id) {
+	public Exercise getExcercise(int id) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 
-		Set set = em.find(Set.class, id);
+		Exercise exercise = em.find(Exercise.class, id);
 
 		tx.commit();
 		em.close();
-		return set;
+		return exercise;
 	}
 
 	@Override
-	public void addSet(Set set) {
+	public void addExercise(Exercise exercise) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 
-		em.persist(set);
+		em.persist(exercise);
 
 		tx.commit();
 		em.close();
 		emf.close();
-	}
-
-	@Override
-	public void updateSet(Set set) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		
-		em.persist(set);
-		
-		tx.commit();
-		em.close();
-		emf.close();
-		
-	}
-
-	@Override
-	public void deleteSet(Set set) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		
-		em.remove(set);
-		
-		tx.commit();
-		em.close();
-		emf.close();
-		
 	}
 
 }

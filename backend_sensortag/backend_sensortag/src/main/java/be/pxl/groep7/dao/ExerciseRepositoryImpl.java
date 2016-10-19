@@ -45,4 +45,31 @@ public class ExerciseRepositoryImpl implements IExerciseRepository{
 		emf.close();
 	}
 
+	@Override
+	public void updateExercise(Exercise exercise) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		em.persist(exercise);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+		
+	}
+
+	@Override
+	public void deleteExercise(Exercise exercise) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		em.remove(exercise);
+		
+		tx.commit();
+		em.close();
+		emf.close();		
+	}
+
 }

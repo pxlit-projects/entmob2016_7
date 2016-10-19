@@ -6,6 +6,4 @@ public interface IExerciseRepository {
 
 	public Exercise getExcercise(int id);
 	public void addExercise(Exercise exercise);
-	public void updateExercise(Exercise exercise);
-	public void deleteExercise(Exercise exercise);
 }

@@ -45,32 +45,4 @@ public class SetRepositoryImpl implements ISetRepository{
 		emf.close();
 	}
 
-	@Override
-	public void updateSet(Set set) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		
-		em.persist(set);
-		
-		tx.commit();
-		em.close();
-		emf.close();
-		
-	}
-
-	@Override
-	public void deleteSet(Set set) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		
-		em.remove(set);
-		
-		tx.commit();
-		em.close();
-		emf.close();
-		
-	}
-
 }

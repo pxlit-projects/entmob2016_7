@@ -25,11 +25,11 @@ public class CompletedSetRepositoryImpl implements ICompletedSetRepository {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 
-		CompletedSet set = em.find(CompletedSet.class, id);
+		CompletedSet serie = em.find(CompletedSet.class, id);
 
 		tx.commit();
 		em.close();
-		return set;
+		return serie;
 	}
 
 	public void addCompletedSet(CompletedSet set){
@@ -48,28 +48,13 @@ public class CompletedSetRepositoryImpl implements ICompletedSetRepository {
 
 	@Override
 	public void updateCompletedSet(CompletedSet set) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-
-		em.persist(set);
-
-		tx.commit();
-		em.close();
-		emf.close();		
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void deleteCompletedSet(CompletedSet set) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		
-		em.remove(set);
-		
-		tx.commit();
-		em.close();
-		emf.close();
+		// TODO Auto-generated method stub
 		
 	}
 }

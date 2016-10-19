@@ -48,28 +48,13 @@ public class CompletedSetRepositoryImpl implements ICompletedSetRepository {
 
 	@Override
 	public void updateCompletedSet(CompletedSet set) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-
-		em.persist(set);
-
-		tx.commit();
-		em.close();
-		emf.close();		
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void deleteCompletedSet(CompletedSet set) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		
-		em.remove(set);
-		
-		tx.commit();
-		em.close();
-		emf.close();
+		// TODO Auto-generated method stub
 		
 	}
 }

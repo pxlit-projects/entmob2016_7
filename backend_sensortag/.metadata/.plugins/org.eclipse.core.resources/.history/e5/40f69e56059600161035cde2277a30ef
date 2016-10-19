@@ -8,70 +8,60 @@ import javax.persistence.PersistenceUnit;
 import org.springframework.stereotype.Repository;
 
 import be.pxl.groep7.models.Exercise;
-import be.pxl.groep7.models.ExercisePoint;
 
-@Repository("exercisePointRepository")
-public class ExercisePointRepositoryImpl implements IExercisePointRepository{
+@Repository("exerciseRepository")
+public class ExerciseRepositoryImpl implements IExerciseRepository{
 
 	private EntityManagerFactory emf;
 
 	@PersistenceUnit
 	public void setEntityManagerFactory(EntityManagerFactory emf){
 		this.emf = emf;
-	}	
-
-	@Override
-	public ExercisePoint getExercisePoint(int id) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();		
-
-		ExercisePoint ePoint = em.find(ExercisePoint.class, id);
-
-		tx.commit();
-		em.close();		
-		return ePoint;
 	}
 
 	@Override
-	public void addExercisePoint(ExercisePoint ePoint) {
+	public Exercise getExcercise(int id) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+
+		Exercise exercise = em.find(Exercise.class, id);
+
+		tx.commit();
+		em.close();
+		return exercise;
+	}
+
+	@Override
+	public void addExercise(Exercise exercise) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+
+		em.persist(exercise);
+
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+
+	@Override
+	public void updateExercise(Exercise exercise) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		em.persist(exercise);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+		
+	}
+
+	@Override
+	public void deleteExercise(Exercise exercise) {
 		// TODO Auto-generated method stub
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-
-		em.persist(ePoint);
-
-		tx.commit();
-		em.close();
-		emf.close();
-	}
-
-	@Override
-	public void updateExercisePoint(ExercisePoint ePoint) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		
-		em.persist(ePoint);
-		
-		tx.commit();
-		em.close();
-		emf.close();
-		
-	}
-
-	@Override
-	public void deleteExercisePoint(ExercisePoint ePoint) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		
-		em.remove(ePoint);
-		
-		tx.commit();
-		em.close();
-		emf.close();
 		
 	}
 

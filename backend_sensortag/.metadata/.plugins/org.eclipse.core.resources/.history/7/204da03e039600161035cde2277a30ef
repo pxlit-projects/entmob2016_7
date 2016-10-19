@@ -41,31 +41,4 @@ public class CategoryRepositoryImpl implements ICategoryRepository{
 		emf.close();
 	}
 
-	@Override
-	public void updateCategory(Category category) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		
-		em.persist(category);
-		
-		tx.commit();
-		em.close();
-		emf.close();
-	}
-
-	@Override
-	public void deleteCategory(Category category) {
-		// TODO Auto-generated method stub
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		
-		em.remove(category);
-		
-		tx.commit();
-		em.close();
-		emf.close();
-	}
-
 }

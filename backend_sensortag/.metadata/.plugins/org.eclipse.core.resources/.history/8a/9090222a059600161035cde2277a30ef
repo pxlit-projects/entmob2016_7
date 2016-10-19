@@ -67,7 +67,7 @@ public class ExercisePointRepositoryImpl implements IExercisePointRepository{
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
-		em.remove(ePoint);
+		em.remove(category);
 		
 		tx.commit();
 		em.close();

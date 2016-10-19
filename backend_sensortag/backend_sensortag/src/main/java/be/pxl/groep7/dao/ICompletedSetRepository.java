@@ -4,6 +4,8 @@ import be.pxl.groep7.models.CompletedSet;
 
 public interface ICompletedSetRepository {
 
-	public CompletedSet getCompletedSerieById(int id);
-	public void addCompletedSerie(CompletedSet serie);
+	public CompletedSet getCompletedSetById(int id);
+	public void addCompletedSet(CompletedSet set);
+	public void updateCompletedSet(CompletedSet set);
+	public void deleteCompletedSet(CompletedSet set);
 }
