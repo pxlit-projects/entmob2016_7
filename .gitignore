@@ -238,6 +238,6 @@ Application/NicholasJava/.recommenders/
 hs_err_pid*
 
 !FitSenseApp/Components
-
+!backend_sensortag/.metadata
 #bestand daniel
 oude_bestanden/
