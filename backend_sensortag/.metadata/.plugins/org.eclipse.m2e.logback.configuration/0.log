@@ -1297,3 +1297,16 @@ java.lang.NullPointerException: null
 2016-10-19 13:56:31,367 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2016-10-19 13:56:31,372 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2016-10-19 13:56:31,375 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-10-19 13:59:36,708 [Worker-19] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2016-10-19 13:59:38,681 [Worker-19] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: be.pxl.groep7:backend_sensortag:0.0.1-SNAPSHOT @ C:\Users\Bert_\Documents\entmob2016_7\backend_sensortag\backend_sensortag\pom.xml.
+2016-10-19 13:59:39,266 [Worker-19] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /backend_sensortag/src/main/java
+2016-10-19 13:59:39,270 [Worker-19] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /backend_sensortag/src/main/resources
+2016-10-19 13:59:39,274 [Worker-19] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /backend_sensortag/src/main/resources
+2016-10-19 13:59:39,277 [Worker-19] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /backend_sensortag/src/test/java
+2016-10-19 13:59:39,278 [Worker-19] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /backend_sensortag/src/test/resources
+2016-10-19 13:59:39,424 [Worker-19] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 2 sec
+2016-10-19 13:59:39,925 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-10-19 13:59:39,926 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-10-19 13:59:39,936 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-10-19 13:59:39,938 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-10-19 13:59:39,939 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
