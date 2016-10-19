@@ -20,7 +20,7 @@ public class ExerciseRestController {
 
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
 	public Exercise getExerciseById(@PathVariable("id") int id){
-		return dao.getExerciseById(id);
+		return dao.getExcercise(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -30,11 +30,11 @@ public class ExerciseRestController {
 	
 	@RequestMapping(value="{id}", method = RequestMethod.PUT)
 	public void editExercise(@PathVariable("id") int id, @RequestBody Exercise exercise){
-		dao.editExercise(id, exercise);
+		dao.updateExercise(exercise);
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
-	public void deleteExercise(@PathVariable("id") int id) {
-		dao.deleteExercise(id);
+	@RequestMapping(method = RequestMethod.DELETE)
+	public void deleteExercise(@RequestBody Exercise exercise) {
+		dao.deleteExercise(exercise);
 	}
 }

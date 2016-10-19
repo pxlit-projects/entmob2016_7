@@ -30,12 +30,12 @@ public class ExercisePointRestController {
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.PUT)
-	public void editExercisePoint(@PathVariable("id") int id, @RequestBody ExercisePoint exercise){
-		dao.editExercisePoint(id, exercise);
+	public void editExercisePoint(@PathVariable("id") int id, @RequestBody ExercisePoint exercisePoint){
+		dao.updateExercisePoint(exercisePoint);
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
-	public void deleteExercisePoint(@PathVariable("id") int id) {
-		dao.deleteExercisePoint(id);
+	@RequestMapping(method = RequestMethod.DELETE)
+	public void deleteExercisePoint(@RequestBody ExercisePoint exercisePoint) {
+		dao.deleteExercisePoint(exercisePoint);
 	}
 }

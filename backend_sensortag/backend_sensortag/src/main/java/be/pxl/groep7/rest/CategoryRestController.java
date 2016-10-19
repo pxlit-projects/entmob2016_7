@@ -31,11 +31,11 @@ public class CategoryRestController {
 	
 	@RequestMapping(value="{id}", method = RequestMethod.PUT)
 	public void editCategory(@PathVariable("id") int id, @RequestBody Category category){
-		dao.editCategory(id, category);
+		dao.updateCategory(category);
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
-	public void deleteCategory(@PathVariable("id") int id) {
-		dao.deleteCategory(id);
+	@RequestMapping(method = RequestMethod.DELETE)
+	public void deleteCategory(@RequestBody Category category) {
+		dao.deleteCategory(category);
 	}
 }
