@@ -38,5 +38,4 @@ public class ExercisePointRestController {
 	public void deleteExercisePoint(@PathVariable("id") int id) {
 		dao.deleteExercisePoint(id);
 	}
-	
 }
