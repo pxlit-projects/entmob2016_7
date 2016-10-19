@@ -1,0 +1,30 @@
+package be.pxl.groep7.dao;
+
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
+
+import be.pxl.groep7.models.Set;
+
+@Repository("setRepository")
+public class SetRepositoryImpl implements ISetRepository{
+
+private EntityManagerFactory emf;
+	
+	@PersistenceUnit
+	public void setEntityManagerFactory(EntityManagerFactory emf){
+		this.emf = emf;
+	}
+	
+	@Override
+	public Set getSet(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addSet(Set set) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

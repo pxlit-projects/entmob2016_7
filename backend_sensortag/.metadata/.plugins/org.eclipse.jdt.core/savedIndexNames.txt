@@ -34,6 +34,7 @@ INDEX VERSION 1.129+C:\Users\Bert_\Documents\entmob2016_7\backend_sensortag\.met
 3180588417.index
 1133459882.index
 3820278635.index
+347196312.index
 3703370799.index
 4209283950.index
 953067450.index

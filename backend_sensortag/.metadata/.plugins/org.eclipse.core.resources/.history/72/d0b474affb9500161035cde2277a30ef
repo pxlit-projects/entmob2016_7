@@ -1,0 +1,32 @@
+package be.pxl.groep7.dao;
+
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
+
+import org.springframework.stereotype.Repository;
+
+import be.pxl.groep7.models.Exercise;
+
+@Repository("exercisePointRepository")
+public class ExercisePointRepositoryImpl implements IExerciseRepository{
+
+	private EntityManagerFactory emf;
+	
+	@PersistenceUnit
+	public void setEntityManagerFactory(EntityManagerFactory emf){
+		this.emf = emf;
+	}
+	
+	@Override
+	public Exercise getExcercise(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addExercise(Exercise exercise) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

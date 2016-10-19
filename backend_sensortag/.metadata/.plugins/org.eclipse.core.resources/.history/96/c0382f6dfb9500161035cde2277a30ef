@@ -1,0 +1,20 @@
+package be.pxl.groep7.dao;
+
+import be.pxl.groep7.models.Exercise;
+
+@Repository("exercisePointRepository")
+public class ExercisePointRepositoryImpl implements IExerciseRepository{
+
+	@Override
+	public Exercise getExcercise(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addExercise(Exercise exercise) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
