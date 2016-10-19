@@ -1,0 +1,11 @@
+package be.pxl.groep7.models;
+
+public class Serie {
+	
+	int id;
+	int repeats;
+	int exercise_id;
+	int points;
+	int maxTime;
+
+}
