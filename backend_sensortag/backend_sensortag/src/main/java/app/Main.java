@@ -3,15 +3,8 @@ package app;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.format.datetime.joda.LocalDateParser;
-
-//import be.pxl.groep7.models.Distance;
-import be.pxl.groep7.models.Distance2;
 import be.pxl.groep7.models.DistanceAppConfig;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.util.Date;
 
 @SpringBootApplication
 public class Main {
