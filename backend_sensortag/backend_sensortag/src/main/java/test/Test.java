@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.format.datetime.joda.LocalDateParser;
 
-import be.pxl.groep7.dao.DistanceRepository;
+import be.pxl.groep7.dao.IDistanceRepository;
 //import be.pxl.groep7.models.Distance;
 import be.pxl.groep7.models.Distance2;
 import be.pxl.groep7.models.DistanceAppConfig;
@@ -22,7 +22,7 @@ public class Test {
 		// TODO Auto-generated method stub
 		ConfigurableApplicationContext ctx = SpringApplication.run(DistanceAppConfig.class, args);
 		
-		DistanceRepository dr = ctx.getBean("distanceRepository", DistanceRepository.class);
+		IDistanceRepository dr = ctx.getBean("distanceRepository", IDistanceRepository.class);
 		
 		
 		//SensorModel dist = new Distance(1, LocalDate.now(), 5, 1500);

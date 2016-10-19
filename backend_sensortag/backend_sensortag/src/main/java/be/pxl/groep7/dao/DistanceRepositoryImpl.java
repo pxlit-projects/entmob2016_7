@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import be.pxl.groep7.models.Distance2;
 
 @Repository("distanceRepository")
-public class DistanceRepositoryImpl implements DistanceRepository{
+public class DistanceRepositoryImpl implements IDistanceRepository{
 
 	private EntityManagerFactory emf;
 	
