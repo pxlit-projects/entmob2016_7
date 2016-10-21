@@ -3,21 +3,15 @@ using System.Windows.Input;
 
 namespace FitSense_UWP.Utility
 {
-    public class CustomCommand : ICommand
+    public class AlwaysRunCommand : ICommand
     {
         private Action<object> execute;
-        private Predicate<object> canExecute;
+
         public event EventHandler CanExecuteChanged;
 
-        public CustomCommand(Action<object> execute, Predicate<object> canExecute)
+        public AlwaysRunCommand(Action<object> execute)
         {
             this.execute = execute;
-            this.canExecute = canExecute;
-        }
-        public bool CanExecute(object parameter)
-        {
-            bool b = canExecute == null ? true : canExecute(parameter);
-            return b;
         }
 
         public void RaiseCanExecuteChanged()
@@ -28,6 +22,11 @@ namespace FitSense_UWP.Utility
         public void Execute(object parameter)
         {
             execute(parameter);
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
         }
     }
 }

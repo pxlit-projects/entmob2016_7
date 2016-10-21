@@ -20,5 +20,9 @@ namespace FitSense_UWP.Services
         List<Exercise> GetAllExercises();
         Exercise GetExerciseDetail(int id);
         void UpdateExercuse(Exercise exercise);
+        List<Exercise> GetExercisesFromCategory(Category category);
+
+        //Set
+        List<Set> GetSetsFromExercise(Exercise exercise);
     }
 }

@@ -36,6 +36,14 @@ namespace FitSense_UWP.Services
             //return categoryRepository.GetAllRecords();
         }
 
+        public List<Exercise> GetExercisesFromCategory(Category category)
+        {
+            if (category != null)
+                return DummyData.exercises.Where(ex => ex.CategoryID == category.ID).ToList();
+            else
+                return new List<Exercise>();
+        }
+
         public List<Exercise> GetAllExercises()
         {
             return DummyData.exercises;
@@ -65,6 +73,11 @@ namespace FitSense_UWP.Services
         {
             throw new NotImplementedException();
             //exerciseRepository.UpdateRecord(exercise);
+        }
+
+        public List<Set> GetSetsFromExercise(Exercise exercise)
+        {
+            return DummyData.sets.Where(s => s.ExerciseID == exercise.ID).ToList();
         }
     }
 }

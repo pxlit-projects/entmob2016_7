@@ -27,28 +27,46 @@ namespace FitSense.DAL
         {
             new Exercise()
             {
-                ExerciseID = 0,
+                ID = 0,
                 CategoryID = 0,
                 Name = "Halter Lift",
                 Description = "Raise your arm while holding the halter"
             },
             new Exercise()
             {
-                ExerciseID = 1,
+                ID = 1,
                 CategoryID = 0,
                 Name = "Halter Stretch",
                 Description = "Hold the halters in front of you, stretch your arms and move them to the side of your shoulders"
             },
             new Exercise()
             {
-                ExerciseID = 2,
+                ID = 2,
                 CategoryID = 1,
                 Name = "Sit Up",
                 Description = "Lay down on your back, feet stretched towards you. Now move your face towards your knees"
             }
         };
 
-        /*List<Set>
+        public static List<Set> sets = new List<Set>()
+        {
+            new Set()
+            {
+                ExerciseID = 0,
+                ID = 0,
+                MaxTime = 30,
+                Points = 10,
+                Reps = 5
+            },
+            new Set()
+            {
+                ExerciseID = 0,
+                ID = 1,
+                MaxTime = 60,
+                Points = 30,
+                Reps = 12
+            }
+        };
 
         List<CompletedSet> completedSets = new List<CompletedSet>()
         {
@@ -59,7 +77,7 @@ namespace FitSense.DAL
                 SetID = 0,
 
             }
-        }*/
+        };
 
         
         public static void Remove(Category record)

@@ -25,12 +25,9 @@ namespace FitSense_UWP.ViewModel
 
         private void RegisterCommands()
         {
-            LoginCommand = new CustomCommand((Object o) =>
+            LoginCommand = new AlwaysRunCommand((Object o) =>
             {
                 navigationService.NavigateTo("Main");
-            }, (Object o) =>
-            {
-                return !loginService.isLoggedIn();
             });
         }
 
