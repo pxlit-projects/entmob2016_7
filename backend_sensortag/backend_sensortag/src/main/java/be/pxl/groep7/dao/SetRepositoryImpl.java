@@ -29,6 +29,7 @@ public class SetRepositoryImpl implements ISetRepository{
 
 		tx.commit();
 		em.close();
+		emf.close();
 		return set;
 	}
 

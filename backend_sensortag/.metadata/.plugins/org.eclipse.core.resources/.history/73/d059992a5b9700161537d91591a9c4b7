@@ -7,41 +7,38 @@ import javax.persistence.PersistenceUnit;
 
 import org.springframework.stereotype.Repository;
 
-import be.pxl.groep7.models.Exercise;
-import be.pxl.groep7.models.ExercisePoint;
+import be.pxl.groep7.models.Set;
 
-@Repository("exercisePointRepository")
-public class ExercisePointRepositoryImpl implements IExercisePointRepository{
+@Repository("setRepository")
+public class SetRepositoryImpl implements ISetRepository{
 
 	private EntityManagerFactory emf;
 
 	@PersistenceUnit
 	public void setEntityManagerFactory(EntityManagerFactory emf){
 		this.emf = emf;
-	}	
-
-	@Override
-	public ExercisePoint getExercisePoint(int id) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();		
-
-		ExercisePoint ePoint = em.find(ExercisePoint.class, id);
-
-		tx.commit();
-		em.close();	
-		emf.close();
-		return ePoint;
 	}
 
 	@Override
-	public void addExercisePoint(ExercisePoint ePoint) {
-		// TODO Auto-generated method stub
+	public Set getSet(int id) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 
-		em.persist(ePoint);
+		Set set = em.find(Set.class, id);
+
+		tx.commit();
+		em.close();
+		return set;
+	}
+
+	@Override
+	public void addSet(Set set) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+
+		em.persist(set);
 
 		tx.commit();
 		em.close();
@@ -49,12 +46,12 @@ public class ExercisePointRepositoryImpl implements IExercisePointRepository{
 	}
 
 	@Override
-	public void updateExercisePoint(ExercisePoint ePoint) {
+	public void updateSet(Set set) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
-		em.persist(ePoint);
+		em.persist(set);
 		
 		tx.commit();
 		em.close();
@@ -63,12 +60,12 @@ public class ExercisePointRepositoryImpl implements IExercisePointRepository{
 	}
 
 	@Override
-	public void deleteExercisePoint(ExercisePoint ePoint) {
+	public void deleteSet(Set set) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
-		em.remove(ePoint);
+		em.remove(set);
 		
 		tx.commit();
 		em.close();

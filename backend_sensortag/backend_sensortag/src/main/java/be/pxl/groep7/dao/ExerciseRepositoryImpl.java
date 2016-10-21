@@ -29,6 +29,7 @@ public class ExerciseRepositoryImpl implements IExerciseRepository{
 
 		tx.commit();
 		em.close();
+		emf.close();
 		return exercise;
 	}
 

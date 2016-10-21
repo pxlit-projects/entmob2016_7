@@ -26,6 +26,7 @@ public class CategoryRepositoryImpl implements ICategoryRepository{
 
 		tx.commit();
 		em.close();
+		emf.close();
 		return category;
 	}
 

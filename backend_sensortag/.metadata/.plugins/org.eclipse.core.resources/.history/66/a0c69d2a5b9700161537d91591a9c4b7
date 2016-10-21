@@ -29,8 +29,7 @@ public class ExercisePointRepositoryImpl implements IExercisePointRepository{
 		ExercisePoint ePoint = em.find(ExercisePoint.class, id);
 
 		tx.commit();
-		em.close();	
-		emf.close();
+		em.close();		
 		return ePoint;
 	}
 

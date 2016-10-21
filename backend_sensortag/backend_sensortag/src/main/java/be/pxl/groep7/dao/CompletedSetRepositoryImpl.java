@@ -29,6 +29,7 @@ public class CompletedSetRepositoryImpl implements ICompletedSetRepository {
 
 		tx.commit();
 		em.close();
+		emf.close();
 		return set;
 	}
 
