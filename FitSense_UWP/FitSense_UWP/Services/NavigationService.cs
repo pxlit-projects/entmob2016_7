@@ -11,6 +11,8 @@ namespace FitSense_UWP.Services
 {
     class NavigationService : INavigationService
     {
+        public const String EXERCISES = "Exercises";
+
         public void NavigateBack(Page currentPage)
         {
             throw new NotImplementedException();
@@ -22,8 +24,10 @@ namespace FitSense_UWP.Services
             {
                 case "Login":
                     return typeof(Login);
+                case EXERCISES:
+                    return typeof(Oefeningen);
                 default:
-                    return typeof(MainPage);
+                    return typeof(CategoriesPage);
             }
             //((Frame)Window.Current.Content).Navigate(destination);
         }

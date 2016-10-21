@@ -1,17 +1,18 @@
 ﻿<Page
-    x:Class="FitSense_UWP.MainPage"
+    x:Class="FitSense_UWP.View.Oefeningen"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:FitSense_UWP"
+    xmlns:local="using:FitSense_UWP.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    DataContext="{Binding Source={StaticResource mainViewModelLocator},  Path=MainPageViewModel}"
+    DataContext="{Binding Source={StaticResource mainViewModelLocator},  Path=ExercisesViewModel}"
     >
-    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Content="navigate!" VerticalAlignment="Bottom" Click="Button_Click"/>
+    <StackPanel Grid.Column="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Text="I AM ETERNAL" />
+        <TextBlock Text="{Binding SelectedCategory.Name}" />
         <ListView ItemsSource="{Binding Distances}"
-                  SelectedItem="{Binding SelectedDistance}">
+                  SelectedItem="{Binding SelectedDistance, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="2">
@@ -34,6 +35,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackPanel>
-
-    
 </Page>

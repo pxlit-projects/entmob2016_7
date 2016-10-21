@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace FitSense.Model
 {
-    public class Distance : SensorModel
+    public class Category : SensorModel
     {
         public int ID { get; set; }
-        public DateTime Time { get; set; }
-        public int AmountOfSteps { get; set; }
-        public int Height { get; set; }
+        public string Name { get; set; }
     }
 }

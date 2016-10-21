@@ -10,30 +10,61 @@ namespace FitSense_UWP.Services
 {
     class FitDataService : IFitDataService
     {
-        SensorRepository<Distance> repository;
+        SensorRepository<Category> categoryRepository;
+        SensorRepository<Exercise> exerciseRepository;
 
-        public void DeleteRecord(Distance distance)
+        public FitDataService()
         {
-            repository.DeleteRecord(distance);
+            categoryRepository = new SensorRepository<Category>();
+            exerciseRepository = new SensorRepository<Exercise>();
         }
 
-        public List<Distance> GetAllRecords()
+        public void DeleteCategory(Category category)
         {
-            //implementeren wanneer rest werkt!
-            return DummyData.distances;
-            //return repository.GetAllRecords();
+            throw new NotImplementedException();
+            //categoryRepository.DeleteRecord(category);
         }
 
-        public Distance GetRecordDetail(int id)
+        public void DeleteExercise(Exercise exercise)
         {
-            return DummyData.GetRecordDetail(id);
-            //return repository.GetRecordDetail(id);
+            throw new NotImplementedException();
         }
 
-        public void UpdateRecord(Distance distance)
+        public List<Category> GetAllCategories()
         {
-            DummyData.UpdateRecord(distance);
-            //repository.UpdateRecord(distance);
+            return DummyData.categories;
+            //return categoryRepository.GetAllRecords();
+        }
+
+        public List<Exercise> GetAllExercises()
+        {
+            return DummyData.exercises;
+            throw new NotImplementedException();
+            //return exerciseRepository.GetAllRecords();
+        }
+
+        public Category GetCategoryDetail(int id)
+        {
+            throw new NotImplementedException();
+            //return categoryRepository.GetRecordDetail(id);
+        }
+
+        public Exercise GetExerciseDetail(int id)
+        {
+            throw new NotImplementedException();
+            //return exerciseRepository.GetRecordDetail(id);
+        }
+
+        public void UpdateCategory(Category category)
+        {
+            throw new NotImplementedException();
+            //categoryRepository.UpdateRecord(category);
+        }
+
+        public void UpdateExercuse(Exercise exercise)
+        {
+            throw new NotImplementedException();
+            //exerciseRepository.UpdateRecord(exercise);
         }
     }
 }
