@@ -1,0 +1,61 @@
+﻿<Page
+    x:Class="UWPTestApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPTestApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
+    mc:Ignorable="d">
+
+    <Grid>
+        <ScrollViewer>
+            <StackPanel Orientation="Vertical">
+                <Charting:Chart x:Name="PieChart">
+
+                    <Charting:PieSeries Margin="0"  
+                        IndependentValuePath="Name"  
+                        DependentValuePath="Amount"  
+                        IsSelectionEnabled="True"/>
+                </Charting:Chart>
+                
+                <Charting:Chart x:Name="lineChart">
+
+                    <Charting:LineSeries  
+                        IndependentValuePath="Name"  
+                        DependentValuePath="Amount"  
+                        IsSelectionEnabled="True"/>
+                </Charting:Chart>
+
+                <Charting:Chart x:Name="ColumnChart" >
+
+                    <Charting:ColumnSeries  
+                        IndependentValuePath="Name"  
+                        DependentValuePath="Amount" CharacterSpacing="5"  
+                        IsSelectionEnabled="True"/>
+                </Charting:Chart>
+                <Charting:Chart x:Name="BubbleChart" >
+
+                    <Charting:BubbleSeries  
+                        IndependentValuePath="Name"  
+                        DependentValuePath="Amount" CharacterSpacing="5"  
+                        IsSelectionEnabled="True"/>
+                </Charting:Chart>
+                <Charting:Chart x:Name="ScatterChart" >
+
+                    <Charting:ScatterSeries  
+                        IndependentValuePath="Name"  
+                        DependentValuePath="Amount" CharacterSpacing="5"  
+                        IsSelectionEnabled="True"/>
+                </Charting:Chart>
+                <Charting:Chart x:Name="AreaChart" >
+
+                    <Charting:AreaSeries  
+                        IndependentValuePath="Name"  
+                        DependentValuePath="Amount" CharacterSpacing="5"  
+                        IsSelectionEnabled="True"/>
+                </Charting:Chart>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
