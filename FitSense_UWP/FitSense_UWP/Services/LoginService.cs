@@ -22,7 +22,6 @@ namespace FitSense_UWP.Services
 
         private LoginService() { }
 
-
         public bool isLoggedIn()
         {
             return false;

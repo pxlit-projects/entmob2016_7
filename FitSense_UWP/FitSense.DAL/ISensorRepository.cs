@@ -9,10 +9,10 @@ namespace FitSense.DAL
 {
     interface ISensorRepository<T> where T : SensorModel
     {
-        void DeleteRecord(T sensorModel);
+        void DeleteRecord(T record);
         //TODO generisch maken
         List<T> GetAllRecords();
         T GetRecordDetail(int id);
-        void UpdateRecord(T sensorModel);
+        void UpdateRecord(T record);
     }
 }

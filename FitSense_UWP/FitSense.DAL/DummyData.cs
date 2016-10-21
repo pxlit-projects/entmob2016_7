@@ -9,54 +9,73 @@ namespace FitSense.DAL
 {
     public class DummyData
     {
-        public static List<Distance> distances = new List<Distance>()
+        public static List<Category> categories = new List<Category>()
+        {
+            new Category()
             {
-                new Distance()
-                {
-                    AmountOfSteps = 100,
-                    ID = 0
-                },
-                new Distance()
-                {
-                    AmountOfSteps = 200,
-                    ID = 1
-                },
-                new Distance()
-                {
-                    AmountOfSteps = 150,
-                    ID = 2
-                },
-                new Distance()
-                {
-                    AmountOfSteps = 180,
-                    ID = 3
-                },
-                new Distance()
-                {
-                    AmountOfSteps = 120,
-                    ID = 4
-                },
-                new Distance()
-                {
-                    AmountOfSteps = 100,
-                    ID = 5
-                }
-            };
+                ID = 0,
+                Name = "Arms"
+            },
+            new Category()
+            {
+                ID = 1,
+                Name = "Chest"
+            }
+        };
 
-        public static void Remove(Distance record)
+        public static List<Exercise> exercises = new List<Exercise>()
         {
-            distances.Remove(record);
+            new Exercise()
+            {
+                ExerciseID = 0,
+                CategoryID = 0,
+                Name = "Halter Lift",
+                Description = "Raise your arm while holding the halter"
+            },
+            new Exercise()
+            {
+                ExerciseID = 1,
+                CategoryID = 0,
+                Name = "Halter Stretch",
+                Description = "Hold the halters in front of you, stretch your arms and move them to the side of your shoulders"
+            },
+            new Exercise()
+            {
+                ExerciseID = 2,
+                CategoryID = 1,
+                Name = "Sit Up",
+                Description = "Lay down on your back, feet stretched towards you. Now move your face towards your knees"
+            }
+        };
+
+        /*List<Set>
+
+        List<CompletedSet> completedSets = new List<CompletedSet>()
+        {
+            new CompletedSet()
+            {
+                CompletedSetID = 0,
+                Duration = 10,
+                SetID = 0,
+
+            }
+        }*/
+
+        
+        public static void Remove(Category record)
+        {
+            categories.Remove(record);
         }
 
-        public static Distance GetRecordDetail(int id)
+        public static Category GetCategoryDetail(int id)
         {
-            return distances.Where(r => r.ID == id).FirstOrDefault();
+            return categories.Where(r => r.ID == id).FirstOrDefault();
         }
 
-        public static void UpdateRecord(Distance dist)
+        public static void UpdateCategory(Category dist)
         {
             //nogmaals, werkt vooropig enkel op distance (later bij rest volledig implementeren)
-            Distance recordToUpdate = distances.Where(r => r.ID == dist.ID).FirstOrDefault();
+            Category recordToUpdate = categories.Where(r => r.ID == dist.ID).FirstOrDefault();
             recordToUpdate = dist;
         }
 

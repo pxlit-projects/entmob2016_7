@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitSense_UWP.Messages
 {
-    public class UpdateListMessage
+    class UpdateSelectedCategory
     {
     }
 }

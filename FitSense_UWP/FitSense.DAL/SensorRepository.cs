@@ -18,23 +18,16 @@ namespace FitSense.DAL
 
         //private DummyData d = new DummyData<Distance>();
 
-        public List<T> distances = new List<T>();
-
-        private static List<T> records;
+        public List<T> records = new List<T>();
 
         public SensorRepository()
         {
             //distances.Add(DummyData.d);
         }
 
-        public void DeleteRecord(T sensorModel)
-        {
-            // TODO
-        }
-
         public List<T> GetAllRecords()
         {
-            return distances;
+            return records;
         }
 
         public T GetRecordDetail(int id)
@@ -49,6 +42,10 @@ namespace FitSense.DAL
             recordToUpdate = sensorModel;
         }
 
+        public void DeleteRecord(T record)
+        {
+            records.Remove(record);
+        }
     }
 }
 

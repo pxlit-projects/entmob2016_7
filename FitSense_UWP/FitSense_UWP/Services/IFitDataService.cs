@@ -9,10 +9,16 @@ namespace FitSense_UWP.Services
 {
     public interface IFitDataService
     {
-        void DeleteRecord(Distance distance);
-        //TODO generisch maken
-        List<Distance> GetAllRecords();
-        Distance GetRecordDetail(int id);
-        void UpdateRecord(Distance distance);
+        //Category
+        void DeleteCategory(Category category);
+        List<Category> GetAllCategories();
+        Category GetCategoryDetail(int id);
+        void UpdateCategory(Category category);
+
+        //Exercise
+        void DeleteExercise(Exercise exercise);
+        List<Exercise> GetAllExercises();
+        Exercise GetExerciseDetail(int id);
+        void UpdateExercuse(Exercise exercise);
     }
 }
