@@ -21,19 +21,10 @@ public class CategoryRestController {
 	
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
 	public Category getCategoryById(@PathVariable("id") int id){
-	//@RequestMapping(method = RequestMethod.GET, produces = "application/json")
-	//public Category getCategoryById(){
 		System.out.println("were in get");
 		//return "getCategory";
 		return dao.getCategoryById(id);
 	} 
-	
-	/*@RequestMapping(method = RequestMethod.GET)
-	public String getCategory(){
-		return "getgetget";
-	}*/
-	
-	/*
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public void addCategory(@RequestBody Category category){
@@ -48,5 +39,5 @@ public class CategoryRestController {
 	@RequestMapping(method = RequestMethod.DELETE)
 	public void deleteCategory(@RequestBody Category category) {
 		dao.deleteCategory(category);
-	} */
+	} 
 }
