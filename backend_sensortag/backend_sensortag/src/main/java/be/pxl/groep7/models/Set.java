@@ -1,11 +1,29 @@
 package be.pxl.groep7.models;
+// !! DB TABLE: set_table !!
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="set_table")															// why set_table? "set" is a reserved keyword for mysql
 public class Set {
 	
+	@Id
+	@Column(name="id")
 	int id;
+	
+	@Column(name="repeats")
 	int repeats;
+	
+	@Column(name="exercise_id")
 	int exercise_id;
+	
+	@Column(name="points")
 	int points;
+	
+	@Column(name="max_time")
 	int maxTime;
 	
 	public Set(int id, int repeats, int exercise_id, int points, int maxTime) {

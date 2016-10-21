@@ -1,10 +1,25 @@
 package be.pxl.groep7.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="exercise_point")
 public class ExercisePoint {
 	
+	@Id
+	@Column(name="id")
 	int id;
+	
+	@Column(name="x")
 	double x;
+	
+	@Column(name="y")
 	double y;
+	
+	@Column(name="z")
 	double z;
 	
 	public ExercisePoint(int id, double x, double y, double z) {

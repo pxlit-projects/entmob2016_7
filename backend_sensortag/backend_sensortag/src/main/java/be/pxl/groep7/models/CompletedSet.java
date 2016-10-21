@@ -1,11 +1,28 @@
 package be.pxl.groep7.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="completed_set")
 public class CompletedSet {
 	
+	@Id
+	@Column(name="id")
 	int id;
+	
+	@Column(name="exercise_id")
 	int exerciseId;
+	
+	@Column(name="time")
 	long time;
+	
+	@Column(name="duration")
 	int duration;
+	
+	@Column(name="user_id")
 	int user_id;
 	
 	public CompletedSet(int id, int exerciseId, long time, int duration, int user_id) {

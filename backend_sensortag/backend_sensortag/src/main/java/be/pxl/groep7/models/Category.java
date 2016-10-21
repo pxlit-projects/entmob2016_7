@@ -1,8 +1,19 @@
 package be.pxl.groep7.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="category")
 public class Category {
 	
+	@Id
+	@Column(name="id")
 	int id;
+	
+	@Column(name="name")
 	String name;
 	
 	public Category(int id, String name) {

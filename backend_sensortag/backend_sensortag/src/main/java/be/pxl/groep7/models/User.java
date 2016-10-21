@@ -1,12 +1,31 @@
 package be.pxl.groep7.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="user")
 public class User {
 	
+	@Id
+	@Column(name="id")
 	int id;
+	
+	@Column(name="name")
 	String name;
+	
+	@Column(name="password")
 	String password;
+	
+	@Column(name="salt")
 	String salt;
+	
+	@Column(name="height")
 	int height;
+	
+	@Column(name="weight")
 	int weight;
 	
 	
