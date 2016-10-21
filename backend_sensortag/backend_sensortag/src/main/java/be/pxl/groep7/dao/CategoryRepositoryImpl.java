@@ -36,7 +36,6 @@ public class CategoryRepositoryImpl implements ICategoryRepository{
 
 		tx.commit();
 		em.close();
-		emf.close();
 	}
 
 	@Override
@@ -49,7 +48,6 @@ public class CategoryRepositoryImpl implements ICategoryRepository{
 		
 		tx.commit();
 		em.close();
-		emf.close();
 	}
 
 	@Override
@@ -63,7 +61,6 @@ public class CategoryRepositoryImpl implements ICategoryRepository{
 		
 		tx.commit();
 		em.close();
-		emf.close();
 	}
 
 }
