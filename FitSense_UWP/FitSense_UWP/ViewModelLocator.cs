@@ -13,6 +13,13 @@ namespace FitSense_UWP
         private static IFitDataService dataService = new FitDataService();
         private static INavigationService navigationService = new NavigationService();
 
+        private SetsPerExerciseViewModel setsPerExerciseViewModel = new SetsPerExerciseViewModel(dataService, navigationService);
+        public SetsPerExerciseViewModel SetsPerExerciseViewModel
+        {
+            get { return setsPerExerciseViewModel; }
+            set { setsPerExerciseViewModel = value; }
+        }
+
         private LoginViewModel loginViewModel = new LoginViewModel(navigationService, LoginService.Instance);
         public LoginViewModel LoginViewModel
         {

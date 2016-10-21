@@ -13,7 +13,7 @@ namespace FitSense_UWP.Services
     {
         public const String EXERCISES = "Exercises";
         public const String SETSPEREXERCISE = "SetsPerExercise";
-
+        public const String LOGIN = "Login";
 
         public void NavigateBack(Page currentPage)
         {
@@ -24,7 +24,7 @@ namespace FitSense_UWP.Services
         {
             switch(destination)
             {
-                case "Login":
+                case LOGIN:
                     return typeof(Login);
                 case EXERCISES:
                     return typeof(Oefeningen);

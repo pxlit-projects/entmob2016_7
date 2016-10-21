@@ -9,17 +9,18 @@
     xmlns:trigger="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:media="using:Microsoft.Xaml.Interactions.Media"
+    DataContext="{Binding Source={StaticResource mainViewModelLocator},  Path=SetsPerExerciseViewModel}"
     >
 
     <StackPanel Grid.Column="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock FontSize="22" FontWeight="Bold" Text="sets page" />
-        <TextBlock FontSize="22" FontWeight="Bold" Text="{Binding SelectedExercise.Name}" />
-        <TextBlock FontWeight="Bold" Text="{Binding SelectedExercise.Description}" />
+        <TextBlock FontSize="22" FontWeight="Bold" Text="{Binding CurrentExercise.Name}" />
+        <TextBlock FontWeight="Bold" Text="{Binding CurrentExercise.Description}" />
         <ListView ItemsSource="{Binding Sets}"
-                  SelectedItem="{Binding SelecedSet, Mode=TwoWay}">
+                  SelectedItem="{Binding SelectedSet, Mode=TwoWay}">
             <trigger:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="SelectionChanged">
-                    <core:InvokeCommandAction Command="{Binding GoToSetSpecifics}" />
+                <core:EventTriggerBehavior EventName="Tapped">
+                    <core:InvokeCommandAction Command="{Binding ToggleShowCompletedSets}" />
                 </core:EventTriggerBehavior>
             </trigger:Interaction.Behaviors>
             <ListView.ItemTemplate>
@@ -35,6 +36,8 @@
                                 <RowDefinition />
                                 <RowDefinition />
                                 <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
                             <TextBlock Text="Set:" Grid.Row="0" Grid.Column="0" />
                             <TextBlock Text="{Binding ID}" Grid.Row="0" Grid.Column="1"/>
@@ -44,6 +47,25 @@
                             <TextBlock Text="{Binding Points}" Grid.Row="2" Grid.Column="1" />
                             <TextBlock Text="Max Time: " Grid.Row="3" Grid.Column="0" />
                             <TextBlock Text="{Binding MaxTime}" Grid.Row="3" Grid.Column="1" />
+                            <ListView Grid.Row="4" Grid.ColumnSpan="2"
+                                      Visibility="{Binding ShowCompletedSets, Mode=TwoWay}"
+                                ItemsSource="{Binding CompletedSets}"
+                                SelectedItem="{Binding SelecedCompletedSet, Mode=TwoWay}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="Black" BorderThickness="2">
+                                            <Grid HorizontalAlignment="Stretch">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="Time of execution: " />
+                                                <TextBlock Text="{Binding Time, Converter={StaticResource LongToDateConverter}}" Grid.Row="1" />
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </Grid>
                     </Border>
                 </DataTemplate>

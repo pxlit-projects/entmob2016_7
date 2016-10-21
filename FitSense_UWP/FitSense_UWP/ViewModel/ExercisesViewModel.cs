@@ -23,7 +23,7 @@ namespace FitSense_UWP.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ICommand GoToSetPerExercisePageCommand;
+        public ICommand GoToSetPerExercisePageCommand { get; set; }
 
         private Category selectedCategory;
         public Category SelectedCategory
@@ -31,6 +31,7 @@ namespace FitSense_UWP.ViewModel
             get { return selectedCategory; }
             set {
                 selectedCategory = value;
+                LoadData();
                 RaisePropertyChanged("SelectedCategory");
             }
         }
@@ -72,7 +73,6 @@ namespace FitSense_UWP.ViewModel
   
             LoadMessengerListeners();
             LoadData();
-            //Initialise commands
             LoadCommands();
         }
 
@@ -90,7 +90,7 @@ namespace FitSense_UWP.ViewModel
         {
             GoToSetPerExercisePageCommand = new AlwaysRunCommand((object o) =>
             {
-                Messenger.Default.Send<SendExercise>(new SendExercise() { exercise = SelectedExercise });
+                Messenger.Default.Send<SendExercise>(new SendExercise() { Exercise = SelectedExercise });
                 Messenger.Default.Send<ChangePage>(new ChangePage() { Page = navigationService.NavigateTo(NavigationService.SETSPEREXERCISE) });
             });
         }
@@ -98,7 +98,6 @@ namespace FitSense_UWP.ViewModel
         private void OnUpdateSelectedCategoryReceived(UpdateSelectedCategory updateCategory)
         {
             SelectedCategory = updateCategory.Category;
-            LoadData();
         }
     }
 }

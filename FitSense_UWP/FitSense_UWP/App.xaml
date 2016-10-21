@@ -3,11 +3,13 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FitSense_UWP"
-    RequestedTheme="Light">
+    RequestedTheme="Light"
+    xmlns:converter="using:FitSense_UWP.Converter">
 
 
     <Application.Resources>
         <ResourceDictionary>
+            <converter:LongToDateConverter x:Key="LongToDateConverter"></converter:LongToDateConverter>
             <local:ViewModelLocator x:Key="mainViewModelLocator" />
         </ResourceDictionary>
     </Application.Resources>

@@ -68,14 +68,52 @@ namespace FitSense.DAL
             }
         };
 
-        List<CompletedSet> completedSets = new List<CompletedSet>()
+        public static List<CompletedSet> completedSets = new List<CompletedSet>()
         {
             new CompletedSet()
             {
                 CompletedSetID = 0,
-                Duration = 10,
+                Duration = 15,
                 SetID = 0,
-
+                ID = 0,
+                Time = 191016240000,
+                UserID = 0
+            },
+            new CompletedSet()
+            {
+                CompletedSetID = 0,
+                Duration = 12,
+                SetID = 0,
+                ID = 1,
+                Time = 201016120000,
+                UserID = 0
+            },
+            new CompletedSet()
+            {
+                CompletedSetID = 0,
+                Duration = 11,
+                SetID = 0,
+                ID = 2,
+                Time = 211016160000,
+                UserID = 0
+            },
+            new CompletedSet()
+            {
+                CompletedSetID = 1,
+                Duration = 11,
+                SetID = 1,
+                ID = 3,
+                Time = 211016160000,
+                UserID = 0
+            },
+            new CompletedSet()
+            {
+                CompletedSetID = 1,
+                Duration = 12,
+                SetID = 1,
+                ID = 4,
+                Time = 211016170000,
+                UserID = 0
             }
         };
 

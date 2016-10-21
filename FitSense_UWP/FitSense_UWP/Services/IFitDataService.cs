@@ -24,5 +24,10 @@ namespace FitSense_UWP.Services
 
         //Set
         List<Set> GetSetsFromExercise(Exercise exercise);
+
+        //CompletedSets
+        List<CompletedSet> GetCompletedSetsFromSet(Set set);
+
+        Set ToggleSelectedSetVisibility(Set set);
     }
 }

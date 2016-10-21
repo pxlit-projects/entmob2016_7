@@ -1,6 +1,8 @@
 ﻿using FitSense.Model;
 using FitSense_UWP.Extensions;
+using FitSense_UWP.Messages;
 using FitSense_UWP.Services;
+using FitSense_UWP.Util;
 using FitSense_UWP.Utility;
 using System;
 using System.Collections.Generic;
@@ -17,7 +19,7 @@ namespace FitSense_UWP.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ICommand SwitchPageCommand { get; set; }
+        public ICommand ToggleShowCompletedSets { get; set; }
         private IFitDataService fitDataService;
         private INavigationService navigationService;
 
@@ -28,6 +30,8 @@ namespace FitSense_UWP.ViewModel
             set
             {
                 currentExercise = value;
+                if(currentExercise != null)
+                    LoadData();
                 RaisePropertyChanged("CurrentExercise");
             }
         }
@@ -39,7 +43,7 @@ namespace FitSense_UWP.ViewModel
             set
             {
                 sets = value;
-                RaisePropertyChanged("Categories");
+                RaisePropertyChanged("Sets");
             }
         }
 
@@ -50,7 +54,7 @@ namespace FitSense_UWP.ViewModel
             set
             {
                 selectedSet = value;
-                RaisePropertyChanged("SelectedCategory");
+                RaisePropertyChanged("SelectedSet");
             }
         }
 
@@ -58,13 +62,30 @@ namespace FitSense_UWP.ViewModel
         {
             this.fitDataService = dataService;
             this.navigationService = dialogService;
-            sets = fitDataService.GetSetsFromExercise(CurrentExercise).ToObservableCollection();
+               
+            LoadMessengerListeners();
             LoadCommands();
+        }
+
+        private void LoadMessengerListeners()
+        {
+            Messenger.Default.Register<SendExercise>(this, sendExercise =>
+            {
+                CurrentExercise = sendExercise.Exercise;
+            });
+        }
+
+        private void LoadData()
+        {
+            sets = fitDataService.GetSetsFromExercise(CurrentExercise).ToObservableCollection();
         }
 
         private void LoadCommands()
         {
-            
+            ToggleShowCompletedSets = new AlwaysRunCommand((Object o) =>
+            {           
+                SelectedSet = fitDataService.ToggleSelectedSetVisibility(SelectedSet);
+            });
         }
 
         private void RaisePropertyChanged(string property)
@@ -72,6 +93,5 @@ namespace FitSense_UWP.ViewModel
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
-
     }
 }

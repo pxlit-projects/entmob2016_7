@@ -1,4 +1,5 @@
-﻿using FitSense.Model;
+﻿
+using FitSense.Model;
 using FitSense_UWP.Extensions;
 using FitSense_UWP.Messages;
 using FitSense_UWP.Services;
@@ -86,6 +87,5 @@ namespace FitSense_UWP.ViewModel
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
-
     }
 }

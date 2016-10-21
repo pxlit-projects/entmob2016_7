@@ -9,6 +9,6 @@ namespace FitSense_UWP.Messages
 {
     public class SendExercise
     {
-        public Exercise exercise { get; set; }
+        public Exercise Exercise { get; set; }
     }
 }
