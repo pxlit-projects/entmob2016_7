@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @SpringBootApplication
-@ComponentScan("be.pxl.groep7.rest")
+@ComponentScan({"be.pxl.groep7.rest", "be.pxl.groep7.dao"})
 public class Main {
 
 	public static void main(String[] args) {
