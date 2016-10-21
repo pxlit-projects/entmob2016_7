@@ -11,7 +11,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(classes = TestConfig.class)
 @WebAppConfiguration
 @SpringBootTest
-public class ExerciseIntegrationTest {
+public class ExerciseRestIT {
 
 	
 }
