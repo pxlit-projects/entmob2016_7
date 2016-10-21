@@ -18,20 +18,20 @@ public class CategoryRestController {
 
 	@Autowired
 	private ICategoryRepository dao;
-	/*
-	//@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
-	//public Category getCategoryById(@PathVariable("id") int id){
-	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
-	public String getCategoryById(){
-		System.out.println("were in get");
-		return "getCategory";
-		//return dao.getCategoryById(1);
-	} */
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
+	public Category getCategoryById(@PathVariable("id") int id){
+	//@RequestMapping(method = RequestMethod.GET, produces = "application/json")
+	//public Category getCategoryById(){
+		System.out.println("were in get");
+		//return "getCategory";
+		return dao.getCategoryById(id);
+	} 
+	
+	/*@RequestMapping(method = RequestMethod.GET)
 	public String getCategory(){
 		return "getgetget";
-	}
+	}*/
 	
 	/*
 	

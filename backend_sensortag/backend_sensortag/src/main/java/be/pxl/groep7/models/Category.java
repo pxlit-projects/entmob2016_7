@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name="category")
 public class Category {
@@ -15,6 +18,10 @@ public class Category {
 	
 	@Column(name="name")
 	String name;
+	
+	public Category() {
+		
+	}
 	
 	public Category(int id, String name) {
 		this.id = id;

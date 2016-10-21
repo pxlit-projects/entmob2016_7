@@ -5,21 +5,17 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceUnit;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import be.pxl.groep7.models.Category;
 
 @Repository("categoryRepository")
 public class CategoryRepositoryImpl implements ICategoryRepository{
-
+	@Autowired
 	private EntityManagerFactory emf;
 
-	@PersistenceUnit
-	public void setEntityManagerFactory(EntityManagerFactory emf){
-		this.emf = emf;
-	}
-
-	public Category getCategoryById(int id){
+	public Category getCategoryById(int id){ 
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
@@ -28,7 +24,6 @@ public class CategoryRepositoryImpl implements ICategoryRepository{
 
 		tx.commit();
 		em.close();
-		emf.close();
 		return category;
 	}
 
