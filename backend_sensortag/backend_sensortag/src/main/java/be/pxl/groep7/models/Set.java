@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
 @Entity
 @Table(name="set_table")															// why set_table? "set" is a reserved keyword for mysql
 public class Set {
@@ -25,6 +28,10 @@ public class Set {
 	
 	@Column(name="max_time")
 	int maxTime;
+	
+	public Set() {
+		
+	}
 	
 	public Set(int id, int repeats, int exercise_id, int points, int maxTime) {
 		this.id = id;
