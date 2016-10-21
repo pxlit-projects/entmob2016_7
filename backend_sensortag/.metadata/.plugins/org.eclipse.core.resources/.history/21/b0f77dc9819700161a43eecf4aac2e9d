@@ -33,8 +33,6 @@ public class CategoryRestController {
 		return "getgetget";
 	}
 	
-	/*
-	
 	@RequestMapping(method = RequestMethod.POST)
 	public void addCategory(@RequestBody Category category){
 		dao.addCategory(category);
@@ -48,5 +46,5 @@ public class CategoryRestController {
 	@RequestMapping(method = RequestMethod.DELETE)
 	public void deleteCategory(@RequestBody Category category) {
 		dao.deleteCategory(category);
-	} */
+	}
 }
