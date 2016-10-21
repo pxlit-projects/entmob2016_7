@@ -7,16 +7,23 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource mainViewModelLocator},  Path=ExercisesViewModel}"
+    xmlns:trigger="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:media="using:Microsoft.Xaml.Interactions.Media"
     >
     <StackPanel Grid.Column="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="I AM ETERNAL" />
-        <TextBlock Text="{Binding SelectedCategory.Name}" />
-        <ListView ItemsSource="{Binding Distances}"
-                  SelectedItem="{Binding SelectedDistance, Mode=TwoWay}">
+        <TextBlock FontSize="22" FontWeight="Bold" Text="{Binding SelectedCategory.Name}" />
+        <ListView ItemsSource="{Binding Exercises}"
+                  SelectedItem="{Binding SelectedExercise, Mode=TwoWay}">
+            <trigger:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="SelectionChanged">
+                    <core:InvokeCommandAction Command="{Binding GoToSetPerExercisePageCommand}" />
+                </core:EventTriggerBehavior>
+            </trigger:Interaction.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="2">
-                        <Grid>
+                        <Grid HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
@@ -25,10 +32,10 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <TextBlock Text="TimeStamp:" Grid.Row="0" Grid.Column="0" />
-                            <TextBlock Text="{Binding Time}" Grid.Row="0" Grid.Column="1"/>
-                            <TextBlock Text="Steps: " Grid.Row="1" Grid.Column="0" />
-                            <TextBlock Text="{Binding AmountOfSteps}" Grid.Row="1" Grid.Column="1" />
+                            <TextBlock Text="Name:" Grid.Row="0" Grid.Column="0" />
+                            <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="1"/>
+                            <TextBlock Text="Description: " Grid.Row="1" Grid.Column="0" />
+                            <TextBlock Text="{Binding Description}" Grid.Row="1" Grid.Column="1" />
                         </Grid>
                     </Border>
                 </DataTemplate>

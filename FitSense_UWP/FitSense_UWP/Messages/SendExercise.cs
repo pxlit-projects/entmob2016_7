@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FitSense_UWP.Services
+namespace FitSense_UWP.Messages
 {
-    public class MessagingService
+    public class SendExercise
     {
         public Exercise Exercise { get; set; }
-        public Category Category { get; set; }
     }
 }

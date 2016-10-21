@@ -8,7 +8,6 @@ namespace FitSense.Model
 {
     public class Exercise : SensorModel
     {
-        public int ExerciseID { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }
         public int CategoryID { get; set; }

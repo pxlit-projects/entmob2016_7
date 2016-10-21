@@ -1,0 +1,75 @@
+﻿<Page
+    x:Class="FitSense_UWP.View.SetsPerExercisePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FitSense_UWP.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:trigger="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:media="using:Microsoft.Xaml.Interactions.Media"
+    DataContext="{Binding Source={StaticResource mainViewModelLocator},  Path=SetsPerExerciseViewModel}"
+    >
+
+    <StackPanel Grid.Column="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock FontSize="22" FontWeight="Bold" Text="sets page" />
+        <TextBlock FontSize="22" FontWeight="Bold" Text="{Binding CurrentExercise.Name}" />
+        <TextBlock FontWeight="Bold" Text="{Binding CurrentExercise.Description}" />
+        <ListView ItemsSource="{Binding Sets}"
+                  SelectedItem="{Binding SelectedSet, Mode=TwoWay}">
+            <trigger:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="Tapped">
+                    <core:InvokeCommandAction Command="{Binding ToggleShowCompletedSets}" />
+                </core:EventTriggerBehavior>
+            </trigger:Interaction.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="2">
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Set:" Grid.Row="0" Grid.Column="0" />
+                            <TextBlock Text="{Binding ID}" Grid.Row="0" Grid.Column="1"/>
+                            <TextBlock Text="Reps: " Grid.Row="1" Grid.Column="0" />
+                            <TextBlock Text="{Binding Reps}" Grid.Row="1" Grid.Column="1" />
+                            <TextBlock Text="Points: " Grid.Row="2" Grid.Column="0" />
+                            <TextBlock Text="{Binding Points}" Grid.Row="2" Grid.Column="1" />
+                            <TextBlock Text="Max Time: " Grid.Row="3" Grid.Column="0" />
+                            <TextBlock Text="{Binding MaxTime}" Grid.Row="3" Grid.Column="1" />
+                            <ListView Grid.Row="4" Grid.ColumnSpan="2"
+                                      Visibility="{Binding ShowCompletedSets, Mode=TwoWay}"
+                                ItemsSource="{Binding CompletedSets}"
+                                SelectedItem="{Binding SelecedCompletedSet, Mode=TwoWay}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="Black" BorderThickness="2">
+                                            <Grid HorizontalAlignment="Stretch">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="Time of execution: " />
+                                                <TextBlock Text="{Binding Time, Converter={StaticResource LongToDateConverter}}" Grid.Row="1" />
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
+</Page>

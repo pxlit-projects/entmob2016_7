@@ -1,8 +1,10 @@
-﻿using FitSense.Model;
+﻿using FitSense.DAL;
+using FitSense.Model;
 using FitSense_UWP.Extensions;
 using FitSense_UWP.Messages;
 using FitSense_UWP.Services;
 using FitSense_UWP.Util;
+using FitSense_UWP.Utility;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +12,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace FitSense_UWP.ViewModel
 {
@@ -17,17 +20,18 @@ namespace FitSense_UWP.ViewModel
     {
         private INavigationService navigationService;
         private IFitDataService dataService;
-        private MessagingService messagingService;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private Category selectedCategory;
+        public ICommand GoToSetPerExercisePageCommand { get; set; }
 
+        private Category selectedCategory;
         public Category SelectedCategory
         {
             get { return selectedCategory; }
             set {
                 selectedCategory = value;
+                LoadData();
                 RaisePropertyChanged("SelectedCategory");
             }
         }
@@ -40,18 +44,18 @@ namespace FitSense_UWP.ViewModel
             set
             {
                 exercises = value;
-                RaisePropertyChanged("Exercise");
+                RaisePropertyChanged("Exercises");
             }
         }
 
-        public Exercise selectedPage { get; set; }
-        public Exercise SelectedPage
+        public Exercise selectedExercise { get; set; }
+        public Exercise SelectedExercise
         {
-            get { return selectedPage; }
+            get { return selectedExercise; }
             set
             {
-                selectedPage = value;
-                RaisePropertyChanged("SelectedExersice");
+                selectedExercise = value;
+                RaisePropertyChanged("SelectedExercise");
                 navigationService.NavigateTo(NavigationService.EXERCISES);
             }
         }
@@ -62,21 +66,38 @@ namespace FitSense_UWP.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
 
-        public ExercisesViewModel(INavigationService navigationService, IFitDataService dataService, MessagingService messagingService)
+        public ExercisesViewModel(INavigationService navigationService, IFitDataService dataService)
         {
             this.dataService = dataService;
             this.navigationService = navigationService;
-            this.messagingService = messagingService;
-            Exercises = dataService.GetAllExercises().ToObservableCollection();
-
-            Messenger.Default.Register<UpdateSelectedCategory>(this, OnUpdateSelectedCategoryReceived);
-
-            //Initialise commands
+  
+            LoadMessengerListeners();
+            LoadData();
+            LoadCommands();
         }
 
-        private void OnUpdateSelectedCategoryReceived(UpdateSelectedCategory obj)
+        private void LoadMessengerListeners()
         {
-            SelectedCategory = messagingService.Category;
+            Messenger.Default.Register<UpdateSelectedCategory>(this, OnUpdateSelectedCategoryReceived);
+        }
+
+        private void LoadData()
+        {
+            Exercises = dataService.GetExercisesFromCategory(SelectedCategory).ToObservableCollection();
+        }
+
+        private void LoadCommands()
+        {
+            GoToSetPerExercisePageCommand = new AlwaysRunCommand((object o) =>
+            {
+                Messenger.Default.Send<SendExercise>(new SendExercise() { Exercise = SelectedExercise });
+                Messenger.Default.Send<ChangePage>(new ChangePage() { Page = navigationService.NavigateTo(NavigationService.SETSPEREXERCISE) });
+            });
+        }
+
+        private void OnUpdateSelectedCategoryReceived(UpdateSelectedCategory updateCategory)
+        {
+            SelectedCategory = updateCategory.Category;
         }
     }
 }

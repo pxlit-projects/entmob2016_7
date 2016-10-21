@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace FitSense_UWP.Messages
 {
-    public class UpdateSelectedCategory
+    public class SendSet
     {
-        public Category Category { get; set; }
+        public Set Set { get; set; }
     }
 }

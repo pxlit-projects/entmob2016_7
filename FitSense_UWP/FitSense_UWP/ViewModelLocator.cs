@@ -12,7 +12,13 @@ namespace FitSense_UWP
     {
         private static IFitDataService dataService = new FitDataService();
         private static INavigationService navigationService = new NavigationService();
-        private static MessagingService messagingService = new MessagingService();
+
+        private SetsPerExerciseViewModel setsPerExerciseViewModel = new SetsPerExerciseViewModel(dataService, navigationService);
+        public SetsPerExerciseViewModel SetsPerExerciseViewModel
+        {
+            get { return setsPerExerciseViewModel; }
+            set { setsPerExerciseViewModel = value; }
+        }
 
         private LoginViewModel loginViewModel = new LoginViewModel(navigationService, LoginService.Instance);
         public LoginViewModel LoginViewModel
@@ -21,14 +27,14 @@ namespace FitSense_UWP
             set { loginViewModel = value; }
         }
 
-        private CategoriesPageViewModel categoriesPageViewModel = new CategoriesPageViewModel(dataService, navigationService, messagingService);
+        private CategoriesPageViewModel categoriesPageViewModel = new CategoriesPageViewModel(dataService, navigationService);
         public CategoriesPageViewModel CategoriesPageViewModel
         {
             get { return categoriesPageViewModel; }
             set { categoriesPageViewModel = value; }
         }
 
-        private ExercisesViewModel exercisesViewModel = new ExercisesViewModel(navigationService, dataService, messagingService);
+        private ExercisesViewModel exercisesViewModel = new ExercisesViewModel(navigationService, dataService);
         public ExercisesViewModel ExercisesViewModel
         {
             get { return exercisesViewModel; }

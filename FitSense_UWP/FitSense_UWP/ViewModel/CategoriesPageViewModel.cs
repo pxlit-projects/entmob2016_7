@@ -1,4 +1,5 @@
-﻿using FitSense.Model;
+﻿
+using FitSense.Model;
 using FitSense_UWP.Extensions;
 using FitSense_UWP.Messages;
 using FitSense_UWP.Services;
@@ -22,7 +23,6 @@ namespace FitSense_UWP.ViewModel
         public ICommand SwitchPageCommand { get; set; }
         private IFitDataService fitDataService;
         private INavigationService navigationService;
-        private MessagingService messagingService;
 
         private ObservableCollection<Category> categories;
         private Category selectedCategory;
@@ -58,25 +58,27 @@ namespace FitSense_UWP.ViewModel
             }
         }
 
-        public CategoriesPageViewModel(IFitDataService dataService, INavigationService dialogService, MessagingService messagingService)
+        public CategoriesPageViewModel(IFitDataService dataService, INavigationService dialogService)
         {
             this.fitDataService = dataService;
             this.navigationService = dialogService;
-            this.messagingService = messagingService;
             categories = fitDataService.GetAllCategories().ToObservableCollection();
+
+            LoadMessengerListeners();          
             LoadCommands();
+        }
+
+        private void LoadMessengerListeners()
+        {
+            Messenger.Default.Register<ChangePage>(this, changePage => CurrentPage = changePage.Page);
         }
 
         private void LoadCommands()
         {
-            SwitchPageCommand = new CustomCommand((Object o) =>
+            SwitchPageCommand = new AlwaysRunCommand((Object o) =>
             {
-                messagingService.Category = SelectedCategory;
-                Messenger.Default.Send<UpdateSelectedCategory>(new UpdateSelectedCategory());
+                Messenger.Default.Send<UpdateSelectedCategory>(new UpdateSelectedCategory() { Category = SelectedCategory });
                 CurrentPage = navigationService.NavigateTo(NavigationService.EXERCISES);
-            }, (Object o) =>
-            {
-                return true;
             });
         }
 
@@ -85,6 +87,5 @@ namespace FitSense_UWP.ViewModel
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
-
     }
 }

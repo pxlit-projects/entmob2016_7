@@ -95,19 +95,23 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\LongToDateConverter.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Messages\ChangePage.cs" />
+    <Compile Include="Messages\SendExercise.cs" />
+    <Compile Include="Messages\SendSet.cs" />
     <Compile Include="Messages\UpdateSelectedCategory.cs" />
-    <Compile Include="Services\MessagingService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\INavigationService.cs" />
     <Compile Include="Services\ILoginService.cs" />
     <Compile Include="Services\LoginService.cs" />
-    <Compile Include="Utility\CustomCommand.cs" />
+    <Compile Include="Utility\AlwaysRunCommand.cs" />
     <Compile Include="Utility\Messenger.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModel\CategoriesPageViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ExercisesViewModel.cs" />
+    <Compile Include="ViewModel\SetsPerExerciseViewModel.cs" />
     <Compile Include="View\CategoriesPage.xaml.cs">
       <DependentUpon>CategoriesPage.xaml</DependentUpon>
     </Compile>
@@ -119,6 +123,9 @@
     <Compile Include="Services\IFitDataService.cs" />
     <Compile Include="View\Exercises.xaml.cs">
       <DependentUpon>Exercises.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SetsPerExercisePage.xaml.cs">
+      <DependentUpon>SetsPerExercisePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Exercises.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SetsPerExercisePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

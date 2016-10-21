@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 
 namespace FitSense_UWP.Services
 {
@@ -36,6 +37,14 @@ namespace FitSense_UWP.Services
             //return categoryRepository.GetAllRecords();
         }
 
+        public List<Exercise> GetExercisesFromCategory(Category category)
+        {
+            if (category != null)
+                return DummyData.exercises.Where(ex => ex.CategoryID == category.ID).ToList();
+            else
+                return new List<Exercise>();
+        }
+
         public List<Exercise> GetAllExercises()
         {
             return DummyData.exercises;
@@ -65,6 +74,30 @@ namespace FitSense_UWP.Services
         {
             throw new NotImplementedException();
             //exerciseRepository.UpdateRecord(exercise);
+        }
+
+        public List<Set> GetSetsFromExercise(Exercise exercise)
+        {
+            List<Set> sets = DummyData.sets.Where(s => s.ExerciseID == exercise.ID).ToList();
+           foreach(Set s in sets)
+            {
+                s.CompletedSets = GetCompletedSetsFromSet(s);
+            }
+            return sets;
+        }
+
+        public Set ToggleSelectedSetVisibility(Set set)
+        {
+            if (set.ShowCompletedSets == Visibility.Collapsed)
+                set.ShowCompletedSets = Visibility.Visible;
+            else
+                set.ShowCompletedSets = Visibility.Collapsed;
+            return set;
+        }
+
+        public List<CompletedSet> GetCompletedSetsFromSet(Set set)
+        {
+            return DummyData.completedSets.Where(s => s.SetID == set.ID).ToList();
         }
     }
 }
