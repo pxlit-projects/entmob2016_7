@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import be.pxl.groep7.models.Exercise;
 import be.pxl.groep7.models.ExercisePoint;
 
-@Repository("exercisePointRepository")
+/*@Repository("exercisePointRepository")
 public class ExercisePointRepositoryImpl implements IExercisePointRepository{
 
 	private EntityManagerFactory emf;
@@ -75,5 +75,4 @@ public class ExercisePointRepositoryImpl implements IExercisePointRepository{
 		emf.close();
 		
 	}
-
-}
+}*/
