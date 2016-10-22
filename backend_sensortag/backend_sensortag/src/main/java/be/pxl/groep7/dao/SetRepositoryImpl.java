@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import be.pxl.groep7.models.Set;
 
-@Repository("setRepository")
+/*@Repository("setRepository")
 public class SetRepositoryImpl implements ISetRepository{
 
 	private EntityManagerFactory emf;
@@ -73,5 +73,4 @@ public class SetRepositoryImpl implements ISetRepository{
 		emf.close();
 		
 	}
-
-}
+}*/

@@ -21,21 +21,21 @@ public class SetRestController {
 
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
 	public Set getSetById(@PathVariable("id") int id){
-		return dao.getSet(id);
+		return dao.findOne(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public void addSet(@RequestBody Set set){
-		dao.addSet(set);
+		dao.save(set);
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.PUT)
 	public void editSet(@PathVariable("id") int id, @RequestBody Set set){
-		dao.updateSet(set);
+		dao.save(set);
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE)
 	public void deleteSet(@RequestBody Set set) {
-		dao.deleteSet(set);
+		dao.delete(set);
 	}
 }
