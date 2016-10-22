@@ -95,7 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converter\LongToDateConverter.cs" />
+    <Compile Include="Services\Converter\LongToDateConverter.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Messages\ChangePage.cs" />
     <Compile Include="Messages\SendExercise.cs" />

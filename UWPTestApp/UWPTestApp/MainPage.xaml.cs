@@ -24,6 +24,18 @@ namespace UWPTestApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private List<ISeries> serieList;
+        List<ISeries> SerieList
+        {
+            get
+            {
+                return serieList;
+            }
+            set
+            {
+                serieList = value;
+            }
+        }
         public class Records
         {
             public string Name
@@ -41,9 +53,21 @@ namespace UWPTestApp
         public MainPage()
         {
             this.InitializeComponent();
+
             LoadChartContents();
+
+            serieList = new List<ISeries>();
+            ISeries serie = new ISeries()
+            {
+
+            };
+
+        
             
         }
+
+        class testclass : ISeries
+
 
         private void LoadChartContents()
         {
@@ -71,6 +95,7 @@ namespace UWPTestApp
             });
             (PieChart.Series[0] as PieSeries).ItemsSource = records;
             (ColumnChart.Series[0] as ColumnSeries).ItemsSource = records;
+            
             (lineChart.Series[0] as LineSeries).ItemsSource = records;
             (BubbleChart.Series[0] as BubbleSeries).ItemsSource = records;
             (ScatterChart.Series[0] as ScatterSeries).ItemsSource = records;

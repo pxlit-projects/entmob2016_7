@@ -1,7 +1,10 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
-    "Microsoft.Xaml.Behaviors.Uwp.Native": "1.0.2"
+    "Microsoft.Xaml.Behaviors.Uwp.Native": "1.0.2",
+    "WinRTXamlToolkit.Controls.DataVisualization": "2.0.0",
+    "WinRTXamlToolkit.Controls.DataVisualization.UWP": "2.0.0",
+    "WinRTXamlToolkit.UWP": "2.0.0"
   },
   "frameworks": {
     "uap10.0": {}

@@ -94,7 +94,7 @@ namespace FitSense.DAL
                 Duration = 11,
                 SetID = 0,
                 ID = 2,
-                Time = 211016160000,
+                Time = 201016160000,
                 UserID = 0
             },
             new CompletedSet()

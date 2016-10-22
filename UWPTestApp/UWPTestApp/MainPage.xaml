@@ -12,7 +12,6 @@
         <ScrollViewer>
             <StackPanel Orientation="Vertical">
                 <Charting:Chart x:Name="PieChart">
-
                     <Charting:PieSeries Margin="0"  
                         IndependentValuePath="Name"  
                         DependentValuePath="Amount"  
@@ -22,9 +21,14 @@
                 <Charting:Chart x:Name="lineChart">
 
                     <Charting:LineSeries  
+                        
                         IndependentValuePath="Name"  
                         DependentValuePath="Amount"  
                         IsSelectionEnabled="True"/>
+                    
+                    <Charting:SeriesDefinition>
+                        
+                    </Charting:SeriesDefinition>
                 </Charting:Chart>
 
                 <Charting:Chart x:Name="ColumnChart" >
