@@ -34,8 +34,8 @@ public class CategoryRestController {
 		dao.save(category);
 	}
 	
-	@RequestMapping(method = RequestMethod.DELETE)
-	public void deleteCategory(@RequestBody Category category) {
-		dao.delete(category);
+	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
+	public void deleteCategory(@PathVariable int id) {
+		dao.delete(id);
 	} 
 }

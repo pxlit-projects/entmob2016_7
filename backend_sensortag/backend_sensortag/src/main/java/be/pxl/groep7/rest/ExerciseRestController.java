@@ -33,8 +33,8 @@ public class ExerciseRestController {
 		dao.save(exercise);
 	}
 	
-	@RequestMapping(method = RequestMethod.DELETE)
-	public void deleteExercise(@RequestBody Exercise exercise) {
-		dao.delete(exercise);
+	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
+	public void deleteExercise(@PathVariable("id") int id) {
+		dao.delete(id);
 	}
 }

@@ -36,8 +36,8 @@ public class CompletedSetRestController {
 		dao.save(completedSet);
 	}
 	
-	@RequestMapping(method = RequestMethod.DELETE)
-	public void deleteCategory(@RequestBody CompletedSet completedSet) {
-		dao.delete(completedSet);
+	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
+	public void deleteCategory(@PathVariable int id) {
+		dao.delete(id);
 	} 
 }

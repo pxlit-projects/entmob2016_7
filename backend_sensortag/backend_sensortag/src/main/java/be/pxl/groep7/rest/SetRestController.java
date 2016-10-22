@@ -34,8 +34,8 @@ public class SetRestController {
 		dao.save(set);
 	}
 	
-	@RequestMapping(method = RequestMethod.DELETE)
-	public void deleteSet(@RequestBody Set set) {
-		dao.delete(set);
+	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
+	public void deleteSet(@PathVariable int id) {
+		dao.delete(id);
 	}
 }

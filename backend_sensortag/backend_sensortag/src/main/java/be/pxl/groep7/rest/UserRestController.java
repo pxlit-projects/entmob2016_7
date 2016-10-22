@@ -21,21 +21,21 @@ public class UserRestController {
 
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
 	public User getUserById(@PathVariable("id") int id){
-		return dao.getUser(id);
+		return dao.findOne(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public void addUser(@RequestBody User user){
-		dao.addUser(user);
+		dao.save(user);
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.PUT)
 	public void editUser(@PathVariable("id") int id, @RequestBody User user){
-		dao.updateUser(user);
+		dao.save(user);
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
-	public void deleteUser(@RequestBody User user) {
-		dao.deleteUser(user);
+	public void deleteUser(@PathVariable int id) {
+		dao.delete(id);
 	}
 }

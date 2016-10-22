@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import be.pxl.groep7.models.Set;
 
-@Repository
+//@Repository
 public interface ISetRepository extends CrudRepository<Set, Integer> {
 
 	/*public Set getSet(int id);
