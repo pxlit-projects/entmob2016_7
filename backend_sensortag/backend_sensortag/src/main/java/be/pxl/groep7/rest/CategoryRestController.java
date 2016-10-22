@@ -24,12 +24,12 @@ public class CategoryRestController {
 		return dao.findOne(id);
 	} 
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
 	public void addCategory(@RequestBody Category category){
 		dao.save(category);
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT)
+	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
 	public void editCategory(@PathVariable("id") int id, @RequestBody Category category){
 		dao.save(category);
 	}

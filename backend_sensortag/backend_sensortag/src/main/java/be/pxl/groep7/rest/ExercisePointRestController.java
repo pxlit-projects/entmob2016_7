@@ -24,12 +24,12 @@ public class ExercisePointRestController {
 		return dao.findOne(id);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
 	public void addExercisePoint(@RequestBody ExercisePoint exercisePoint){
 		dao.save(exercisePoint);
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT)
+	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
 	public void editExercisePoint(@PathVariable("id") int id, @RequestBody ExercisePoint exercisePoint){
 		dao.save(exercisePoint);
 	}

@@ -23,12 +23,12 @@ public class ExerciseRestController {
 		return dao.findOne(id);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
 	public void addExercise(@RequestBody Exercise exercise){
 		dao.save(exercise);
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT)
+	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
 	public void editExercise(@PathVariable("id") int id, @RequestBody Exercise exercise){
 		dao.save(exercise);
 	}

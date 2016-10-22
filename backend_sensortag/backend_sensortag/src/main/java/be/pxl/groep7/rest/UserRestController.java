@@ -24,12 +24,12 @@ public class UserRestController {
 		return dao.findOne(id);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
 	public void addUser(@RequestBody User user){
 		dao.save(user);
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT)
+	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
 	public void editUser(@PathVariable("id") int id, @RequestBody User user){
 		dao.save(user);
 	}

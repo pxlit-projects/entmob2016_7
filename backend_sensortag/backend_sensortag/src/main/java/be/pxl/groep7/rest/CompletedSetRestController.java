@@ -26,12 +26,12 @@ public class CompletedSetRestController {
 		return dao.findOne(id);
 	} 
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
 	public void addCategory(@RequestBody CompletedSet completedSet){
 		dao.save(completedSet);
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT)
+	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
 	public void editCategory(@PathVariable("id") int id, @RequestBody CompletedSet completedSet){
 		dao.save(completedSet);
 	}

@@ -24,12 +24,12 @@ public class SetRestController {
 		return dao.findOne(id);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
 	public void addSet(@RequestBody Set set){
 		dao.save(set);
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT)
+	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
 	public void editSet(@PathVariable("id") int id, @RequestBody Set set){
 		dao.save(set);
 	}
