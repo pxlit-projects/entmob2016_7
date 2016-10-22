@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import be.pxl.groep7.models.Category;
 
-@Repository("categoryRepository")
+/*@Repository("categoryRepository")
 public class CategoryRepositoryImpl implements ICategoryRepository{
 	@Autowired
 	private EntityManagerFactory emf;
@@ -63,4 +63,4 @@ public class CategoryRepositoryImpl implements ICategoryRepository{
 		em.close();
 	}
 
-}
+}*/
