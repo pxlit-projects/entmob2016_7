@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import be.pxl.groep7.dao.ISetRepository;
 import be.pxl.groep7.dao.IUserRepository;
-import be.pxl.groep7.models.Set;
 import be.pxl.groep7.models.User;
 
 @RestController
@@ -34,17 +32,40 @@ public class UserRestController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
-	public void addUser(@RequestBody User user) {
-		dao.save(user);
+	public ResponseEntity<String> addUser(@RequestBody User user) {
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (!dao.exists(user.getId())){
+			dao.save(user);
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		
+		return new ResponseEntity<>(status);	
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
-	public void editUser(@PathVariable("id") int id, @RequestBody User user){
-		dao.save(user);
+	public ResponseEntity<String> editUser(@PathVariable("id") int id, @RequestBody User user){
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (dao.exists(user.getId())){
+			dao.save(user);
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		
+		return new ResponseEntity<>(status);	
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
-	public void deleteUser(@PathVariable int id) {
-		dao.delete(id);
+	public ResponseEntity<String> deleteUser(@PathVariable int id) {
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (dao.exists(id)){
+			dao.delete(id);
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		return new ResponseEntity<>(status);	
 	}
 }

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import be.pxl.groep7.dao.ICategoryRepository;
 import be.pxl.groep7.models.Category;
 
+//http://stackoverflow.com/questions/3825990/http-response-code-for-post-when-resource-already-exists
+
 @RestController
 @RequestMapping("/category")
 public class CategoryRestController {
@@ -20,7 +22,7 @@ public class CategoryRestController {
 	private ICategoryRepository dao;
 	
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<Category> getCategoryById(@PathVariable("id") int id){
+	public ResponseEntity<Category> getCategoryById(@PathVariable("id") int id) {
 		//System.out.println("were in get");
 		HttpStatus status = HttpStatus.OK;
 		Category category = dao.findOne(id);
@@ -33,17 +35,41 @@ public class CategoryRestController {
 	} 
 	
 	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
-	public void addCategory(@RequestBody Category category){
-		dao.save(category);
+	public ResponseEntity<String> addCategory(@RequestBody Category category) {
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (!dao.exists(category.getId())){
+			dao.save(category);
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		
+		return new ResponseEntity<>(status);
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
-	public void editCategory(@PathVariable("id") int id, @RequestBody Category category){
-		dao.save(category);
+	public ResponseEntity<String> editCategory(@PathVariable("id") int id, @RequestBody Category category){
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (!dao.exists(category.getId())){
+			status = HttpStatus.CONFLICT;
+		} else {
+			dao.save(category);
+		}
+		
+		return new ResponseEntity<>(status);
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
-	public void deleteCategory(@PathVariable int id) {
-		dao.delete(id);
+	public ResponseEntity<String> deleteCategory(@PathVariable int id) {
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (!dao.exists(id)){
+			status = HttpStatus.CONFLICT;
+		} else {
+			dao.delete(id);
+		}
+		
+		return new ResponseEntity<>(status);
 	} 
 }

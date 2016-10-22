@@ -33,17 +33,41 @@ public class ExerciseRestController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
-	public void addExercise(@RequestBody Exercise exercise){
-		dao.save(exercise);
+	public ResponseEntity<String> addExercise(@RequestBody Exercise exercise){
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (!dao.exists(exercise.getId())){
+			dao.save(exercise);
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		
+		return new ResponseEntity<>(status);	
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
-	public void editExercise(@PathVariable("id") int id, @RequestBody Exercise exercise){
-		dao.save(exercise);
+	public ResponseEntity<String> editExercise(@PathVariable("id") int id, @RequestBody Exercise exercise){
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (dao.exists(exercise.getId())){
+			dao.save(exercise);
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		
+		return new ResponseEntity<>(status);	
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
-	public void deleteExercise(@PathVariable("id") int id) {
-		dao.delete(id);
+	public ResponseEntity<String> deleteExercise(@PathVariable("id") int id) {
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (dao.exists(id)){
+			dao.delete(id);
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		
+		return new ResponseEntity<>(status);	
 	}
 }

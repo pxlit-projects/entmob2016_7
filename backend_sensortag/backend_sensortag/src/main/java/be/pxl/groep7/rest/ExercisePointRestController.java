@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import be.pxl.groep7.dao.IExercisePointRepository;
-import be.pxl.groep7.dao.IExerciseRepository;
-import be.pxl.groep7.models.Exercise;
 import be.pxl.groep7.models.ExercisePoint;
 
 @RestController
@@ -34,17 +32,41 @@ public class ExercisePointRestController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
-	public void addExercisePoint(@RequestBody ExercisePoint exercisePoint){
-		dao.save(exercisePoint);
+	public ResponseEntity<String> addExercisePoint(@RequestBody ExercisePoint exercisePoint){
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (!dao.exists(exercisePoint.getId())){
+			dao.save(exercisePoint);
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		
+		return new ResponseEntity<>(status);	
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
-	public void editExercisePoint(@PathVariable("id") int id, @RequestBody ExercisePoint exercisePoint){
-		dao.save(exercisePoint);
+	public ResponseEntity<String> editExercisePoint(@PathVariable("id") int id, @RequestBody ExercisePoint exercisePoint){
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (dao.exists(exercisePoint.getId())){
+			dao.save(exercisePoint);
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		
+		return new ResponseEntity<>(status);	
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
-	public void deleteExercisePoint(@PathVariable int id) {
-		dao.delete(id);
+	public ResponseEntity<String> deleteExercisePoint(@PathVariable int id) {
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (dao.exists(id)){
+			dao.delete(id);
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		
+		return new ResponseEntity<>(status);	
 	}
 }

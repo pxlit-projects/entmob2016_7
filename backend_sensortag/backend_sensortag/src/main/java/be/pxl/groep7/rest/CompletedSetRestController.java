@@ -33,17 +33,41 @@ public class CompletedSetRestController {
 	} 
 	
 	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
-	public void addCategory(@RequestBody CompletedSet completedSet){
-		dao.save(completedSet);
+	public ResponseEntity<String> addCategory(@RequestBody CompletedSet completedSet){
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (!dao.exists(completedSet.getId())){
+			dao.save(completedSet);
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		
+		return new ResponseEntity<>(status);	
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
-	public void editCategory(@PathVariable("id") int id, @RequestBody CompletedSet completedSet){
-		dao.save(completedSet);
+	public ResponseEntity<String> editCategory(@PathVariable("id") int id, @RequestBody CompletedSet completedSet){
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (dao.exists(completedSet.getId())){
+			dao.save(completedSet);
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		
+		return new ResponseEntity<>(status);	
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
-	public void deleteCategory(@PathVariable int id) {
-		dao.delete(id);
+	public ResponseEntity<String> deleteCategory(@PathVariable int id) {
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (dao.exists(id)){
+			dao.delete(id);
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		
+		return new ResponseEntity<>(status);	
 	} 
 }
