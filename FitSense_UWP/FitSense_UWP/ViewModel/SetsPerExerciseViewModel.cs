@@ -17,13 +17,32 @@ namespace FitSense_UWP.ViewModel
 {
     public class SetsPerExerciseViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public class ChartRecord
+        {
+            public int Point { get; set; }
+            public long Date { get; set; }
+        }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        public List<ChartRecord> activeChart;
+        public List<ChartRecord> ActiveChart
+        {
+            get
+            {
+                return activeChart;
+            }
+            set
+            {
+                activeChart = value;
+                RaisePropertyChanged("ActiveChart");
+            }
+        }
         public ICommand ToggleShowCompletedSets { get; set; }
+
         private IFitDataService fitDataService;
         private INavigationService navigationService;
 
-        private Exercise currentExercise { get; set; }
+        private Exercise currentExercise;
         public Exercise CurrentExercise
         {
             get { return currentExercise; }
@@ -36,7 +55,7 @@ namespace FitSense_UWP.ViewModel
             }
         }
 
-        private ObservableCollection<Set> sets { get; set; }
+        private ObservableCollection<Set> sets;
         public ObservableCollection<Set> Sets
         {
             get { return sets; }
@@ -54,6 +73,33 @@ namespace FitSense_UWP.ViewModel
             set
             {
                 selectedSet = value;
+                List<ChartRecord> records = new List<ChartRecord>();
+                foreach(CompletedSet c in selectedSet.CompletedSets.OrderBy(c => c.Time))
+                {
+                    long date = c.Time / 1000000;
+                    if (records.Count > 0)
+                    {
+                        if(records.Last().Date / 1000000 == date)
+                        {
+                            records.Last().Point += selectedSet.Points;
+                        }
+                        else
+                        {
+                            records.Add(new ChartRecord()
+                            {
+                                Date = date * 1000000,
+                                Point = selectedSet.Points
+                            });
+                        }
+                    }
+                    else
+                        records.Add(new ChartRecord()
+                        {
+                            Date = date * 1000000,
+                            Point = selectedSet.Points
+                        });
+                }
+                ActiveChart = records;
                 RaisePropertyChanged("SelectedSet");
             }
         }
