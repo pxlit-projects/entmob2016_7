@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import be.pxl.groep7.models.CompletedSet;
 
-@Repository("completedSerieRepository")
+/*@Repository("completedSerieRepository")
 public class CompletedSetRepositoryImpl implements ICompletedSetRepository {
 
 
@@ -73,4 +73,4 @@ public class CompletedSetRepositoryImpl implements ICompletedSetRepository {
 		emf.close();
 		
 	}
-}
+}*/
