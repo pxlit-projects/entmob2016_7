@@ -1,6 +1,8 @@
 package be.pxl.groep7.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +22,15 @@ public class SetRestController {
 	private ISetRepository dao;
 
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
-	public Set getSetById(@PathVariable("id") int id){
-		return dao.findOne(id);
+	public ResponseEntity<Set> getSetById(@PathVariable("id") int id) {
+		HttpStatus status = HttpStatus.OK;
+		Set set = dao.findOne(id);
+		
+		if (set == null) {
+			status = HttpStatus.NOT_FOUND;
+		}
+		
+		return new ResponseEntity<Set>(set, status);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")

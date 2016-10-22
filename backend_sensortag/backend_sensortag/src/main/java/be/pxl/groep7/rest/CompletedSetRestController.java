@@ -1,6 +1,8 @@
 package be.pxl.groep7.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +22,14 @@ public class CompletedSetRestController {
 	private ICompletedSetRepository dao;
 	
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
-	public CompletedSet getCategoryById(@PathVariable("id") int id){
-		System.out.println("were in get");
-		//return "getCategory";
-		return dao.findOne(id);
+	public ResponseEntity<CompletedSet> getCategoryById(@PathVariable("id") int id){
+		//System.out.println("were in get");
+		HttpStatus status = HttpStatus.OK;
+		CompletedSet set = dao.findOne(id);
+		if (set == null){
+			status = HttpStatus.NOT_FOUND;
+		}
+		return new ResponseEntity<>(set, status);
 	} 
 	
 	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
