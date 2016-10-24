@@ -21,6 +21,10 @@ public class Exercise {
 	
 	@Column(name="category_id")
 	int category_id;
+	
+	public Exercise() {
+		
+	}
 		
 	public Exercise(int id, String name, String description, int category_id) {
 		this.id = id;

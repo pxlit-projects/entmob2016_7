@@ -35,7 +35,7 @@ public class ExerciseRestController {
 	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
 	public ResponseEntity<String> addExercise(@RequestBody Exercise exercise){
 		HttpStatus status = HttpStatus.NO_CONTENT;
-		
+		System.out.println("In post");
 		if (!dao.exists(exercise.getId())){
 			dao.save(exercise);
 		} else {

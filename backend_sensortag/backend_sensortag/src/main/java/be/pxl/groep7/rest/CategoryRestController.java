@@ -38,17 +38,17 @@ public class CategoryRestController {
 	public ResponseEntity<String> addCategory(@RequestBody Category category) {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
-		if (!dao.exists(category.getId())){
+		//if (!dao.exists(category.getId())){
 			dao.save(category);
-		} else {
-			status = HttpStatus.CONFLICT;
-		}
+		//} else {
+			//status = HttpStatus.CONFLICT;
+		//}
 		
 		return new ResponseEntity<>(status);
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
-	public ResponseEntity<String> editCategory(@PathVariable("id") int id, @RequestBody Category category){
+	@RequestMapping(method = RequestMethod.PUT, consumes= "application/json")
+	public ResponseEntity<String> editCategory(@RequestBody Category category){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
 		if (!dao.exists(category.getId())){
