@@ -28,11 +28,9 @@
             </trigger:Interaction.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Black" BorderThickness="2">
-                        <Grid>
-                            <TextBlock Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
-                        </Grid>
-                    </Border>
+                    <Grid>
+                        <TextBlock Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

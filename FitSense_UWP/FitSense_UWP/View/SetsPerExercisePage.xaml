@@ -82,6 +82,7 @@
                         IndependentValuePath="Date"  
                         DependentValuePath="Point"  
                         IsSelectionEnabled="True"
+                        Title="{Binding SelectedSet.ID, Mode=TwoWay, Converter={StaticResource ResourceKey=IDToTitleConverter}}"
                 ItemsSource="{Binding ActiveChart, Mode=TwoWay}">
             </Charting:LineSeries>
             

@@ -10,5 +10,7 @@ namespace FitSense.Model
     {
         public int ID { get; set; }
         public string Name { get; set; }
+
+        public List<Exercise> Exercises { get; set; }
     }
 }
