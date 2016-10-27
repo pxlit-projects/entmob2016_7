@@ -1,12 +1,11 @@
 ﻿<Page
-    x:Class="FitSense_UWP.View.Login"
+    x:Class="FitSense_UWP.View.Relative"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FitSense_UWP.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    DataContext="{Binding Source={StaticResource mainViewModelLocator},  Path=LoginViewModel}" Width="796.453">
+    mc:Ignorable="d">
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock Name="titleTextBlock" Text="FitSense" FontSize="100" Foreground="Green" HorizontalAlignment="Center"  VerticalAlignment="Center" FontFamily="Sans Serif" />
@@ -29,4 +28,3 @@
                 RelativePanel.Below="facebookButton" RelativePanel.RightOf="loginButton"/>
     </RelativePanel>
 </Page>
-
