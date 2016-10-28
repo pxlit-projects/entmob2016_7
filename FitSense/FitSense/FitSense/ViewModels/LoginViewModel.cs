@@ -14,7 +14,7 @@ using Xamarin.Forms;
 
 namespace FitSense.ViewModels
 {
-    class LoginViewModel : ViewModelBase
+    public class LoginViewModel : ViewModelBase
     {
 
         private IUserDataService userDataService;
