@@ -11,5 +11,7 @@ namespace FitSense.Model
         public String Name { get; set; }
         public String Description { get; set; }
         public int CategoryID { get; set; }
+        public bool Selected { get; set; }
+        public List<Set> Sets { get; set; }
     }
 }

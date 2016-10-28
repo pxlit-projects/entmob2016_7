@@ -1,14 +1,8 @@
 package be.pxl.groep7.dao;
 
-import org.springframework.stereotype.Repository;
-
+import org.springframework.data.repository.CrudRepository;
 import be.pxl.groep7.models.CompletedSet;
 
-@Repository
-public interface ICompletedSetRepository {
+public interface ICompletedSetRepository extends CrudRepository<CompletedSet, Integer> {
 
-	public CompletedSet getCompletedSetById(int id);
-	public void addCompletedSet(CompletedSet set);
-	public void updateCompletedSet(CompletedSet set);
-	public void deleteCompletedSet(CompletedSet set);
 }

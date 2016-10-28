@@ -18,12 +18,25 @@ namespace FitSense_UWP.ViewModel
     public class SetsPerExerciseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
+        public List<ChartRecord> activeChart;
+        public List<ChartRecord> ActiveChart
+        {
+            get
+            {
+                return activeChart;
+            }
+            set
+            {
+                activeChart = value;
+                RaisePropertyChanged("ActiveChart");
+            }
+        }
         public ICommand ToggleShowCompletedSets { get; set; }
+
         private IFitDataService fitDataService;
         private INavigationService navigationService;
 
-        private Exercise currentExercise { get; set; }
+        private Exercise currentExercise;
         public Exercise CurrentExercise
         {
             get { return currentExercise; }
@@ -36,7 +49,7 @@ namespace FitSense_UWP.ViewModel
             }
         }
 
-        private ObservableCollection<Set> sets { get; set; }
+        private ObservableCollection<Set> sets;
         public ObservableCollection<Set> Sets
         {
             get { return sets; }
@@ -54,8 +67,45 @@ namespace FitSense_UWP.ViewModel
             set
             {
                 selectedSet = value;
+                UpdateChartData();
                 RaisePropertyChanged("SelectedSet");
             }
+        }
+
+        private void UpdateChartData()
+        {
+            List<ChartRecord> records = new List<ChartRecord>();
+            foreach (CompletedSet c in selectedSet.CompletedSets.OrderBy(c => c.Time))
+            {
+                String date = "" + (c.Time / 1000000);
+                date = String.Format("{0}/{1}/{2}", date.Substring(0, 2), date.Substring(2, 2), date.Substring(4, 2));
+                if (records.Count > 0)
+                {
+                    if (records.Last().Date == date)
+                    {
+                        records.Last().Point += selectedSet.Points;
+                    }
+                    else
+                    {
+                        records.Add(new ChartRecord()
+                        {
+
+                            Date = date,
+                            Point = selectedSet.Points
+                        });
+                    }
+                }
+                else
+                {
+                    records.Add(new ChartRecord()
+                    {
+                        Date = date,
+                        Point = selectedSet.Points
+                    });
+                }
+            }
+            ActiveChart = records;
+
         }
 
         public SetsPerExerciseViewModel(IFitDataService dataService, INavigationService dialogService)

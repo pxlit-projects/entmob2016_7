@@ -39,8 +39,17 @@ namespace FitSense_UWP.Services
 
         public List<Exercise> GetExercisesFromCategory(Category category)
         {
+            
             if (category != null)
-                return DummyData.exercises.Where(ex => ex.CategoryID == category.ID).ToList();
+            {
+                List<Exercise> exercises = DummyData.exercises.Where(ex => ex.CategoryID == category.ID).ToList();
+                foreach(Exercise e in exercises)
+                {
+                    e.Sets = GetSetsFromExercise(e);
+                }
+                return exercises;
+            }
+                
             else
                 return new List<Exercise>();
         }

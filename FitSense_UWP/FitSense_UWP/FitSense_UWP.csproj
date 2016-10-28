@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\IDToTitleConverter.cs" />
     <Compile Include="Converter\LongToDateConverter.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Messages\ChangePage.cs" />
@@ -123,6 +124,9 @@
     <Compile Include="Services\IFitDataService.cs" />
     <Compile Include="View\Exercises.xaml.cs">
       <DependentUpon>Exercises.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Relative.xaml.cs">
+      <DependentUpon>Relative.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SetsPerExercisePage.xaml.cs">
       <DependentUpon>SetsPerExercisePage.xaml</DependentUpon>
@@ -158,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Exercises.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Relative.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

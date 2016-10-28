@@ -1,6 +1,8 @@
 package be.pxl.groep7.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,22 +22,53 @@ public class SetRestController {
 	private ISetRepository dao;
 
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
-	public Set getSetById(@PathVariable("id") int id){
-		return dao.getSet(id);
+	public ResponseEntity<Set> getSetById(@PathVariable("id") int id) {
+		HttpStatus status = HttpStatus.OK;
+		Set set = dao.findOne(id);
+		
+		if (set == null) {
+			status = HttpStatus.NOT_FOUND;
+		}
+		
+		return new ResponseEntity<Set>(set, status);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
-	public void addSet(@RequestBody Set set){
-		dao.addSet(set);
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
+	public ResponseEntity<String> addSet(@RequestBody Set set){
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (!dao.exists(set.getId())){
+			dao.save(set);
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		
+		return new ResponseEntity<>(status);	
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT)
-	public void editSet(@PathVariable("id") int id, @RequestBody Set set){
-		dao.updateSet(set);
+	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
+	public ResponseEntity<String> editSet(@PathVariable("id") int id, @RequestBody Set set){
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (dao.exists(set.getId())){
+			dao.save(set);
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		
+		return new ResponseEntity<>(status);	
 	}
 	
-	@RequestMapping(method = RequestMethod.DELETE)
-	public void deleteSet(@RequestBody Set set) {
-		dao.deleteSet(set);
+	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> deleteSet(@PathVariable int id) {
+		HttpStatus status = HttpStatus.NO_CONTENT;
+		
+		if (dao.exists(id)){
+			dao.delete(id);
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		
+		return new ResponseEntity<>(status);	
 	}
 }

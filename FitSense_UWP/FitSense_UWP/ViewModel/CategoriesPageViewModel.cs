@@ -63,7 +63,10 @@ namespace FitSense_UWP.ViewModel
             this.fitDataService = dataService;
             this.navigationService = dialogService;
             categories = fitDataService.GetAllCategories().ToObservableCollection();
-
+            if (categories.Count > 0)
+            {
+                SelectedCategory = categories.First();
+            }
             LoadMessengerListeners();          
             LoadCommands();
         }

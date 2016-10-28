@@ -56,7 +56,8 @@ namespace FitSense.DAL
                 ID = 0,
                 MaxTime = 30,
                 Points = 10,
-                Reps = 5
+                Reps = 5,
+                ShowCompletedSets = Windows.UI.Xaml.Visibility.Collapsed
             },
             new Set()
             {
@@ -64,7 +65,8 @@ namespace FitSense.DAL
                 ID = 1,
                 MaxTime = 60,
                 Points = 30,
-                Reps = 12
+                Reps = 12,
+                ShowCompletedSets = Windows.UI.Xaml.Visibility.Collapsed
             }
         };
 
@@ -94,7 +96,7 @@ namespace FitSense.DAL
                 Duration = 11,
                 SetID = 0,
                 ID = 2,
-                Time = 211016160000,
+                Time = 201016160000,
                 UserID = 0
             },
             new CompletedSet()

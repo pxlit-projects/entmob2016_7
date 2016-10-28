@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import be.pxl.groep7.models.User;
 
-@Repository("userRepository")
+/*@Repository("userRepository")
 public class UserRepositoryImpl implements IUserRepository{
 
 	private EntityManagerFactory emf;
@@ -75,5 +75,4 @@ public class UserRepositoryImpl implements IUserRepository{
 		emf.close();
 		
 	}
-
-}
+}*/
