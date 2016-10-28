@@ -2,11 +2,31 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FitSense.Views.LoginView">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
   
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="200" />
+      <RowDefinition Height="1*" />
+      <RowDefinition Height="100" />
+    </Grid.RowDefinitions>
+    
+    <Image Source="Resources/Logo.png" />
+    
+    <StackLayout Orientation="Vertical" Grid.Row="1" Spacing="10">
+    
+      <Label Text="Username" />
+      <Entry Text="{Binding Username, Mode=TwoWay}" />
   
+      <Label Text="Password" />
+      <Entry Text="{Binding Password, Mode=TwoWay}" />
   
+      
+      <Label Text="{Binding Feedback}" />
   
-  
+    </StackLayout>
+    
+    <Button Text="Login" Command="{Binding LoginCommand}" Grid.Row="2"/>
+    
+  </Grid>
   
 </ContentPage>

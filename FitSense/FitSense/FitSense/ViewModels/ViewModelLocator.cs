@@ -17,6 +17,7 @@ using FitSense.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using Xamarin.Forms;
 
 namespace FitSense.ViewModels
 {
@@ -46,7 +47,7 @@ namespace FitSense.ViewModels
 
             SimpleIoc.Default.Register<INavigationService, NavigationService>();
             SimpleIoc.Default.Register<IUserDataService, UserDataService>();
-
+            
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
         }

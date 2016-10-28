@@ -27,8 +27,8 @@ namespace FitSense.Views
         {
             base.OnAppearing();
 
-            //if (userDataService.LoggedInUser == null)
-                //viewModel.LoadCommand.Execute(null);
+            if (userDataService.LoggedInUser == null)
+                viewModel.LoginCommand.Execute(null);
         }
     }
 }

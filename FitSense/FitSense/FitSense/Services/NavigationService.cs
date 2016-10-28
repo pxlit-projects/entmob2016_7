@@ -22,6 +22,7 @@ namespace FitSense.Services
             return null;
         }
 
+        //The navigation property of the root page. (MainView)
         public INavigation Navigation { get; set; }
 
         public IReadOnlyList<Page> ModalStack

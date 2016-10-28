@@ -1,4 +1,9 @@
+using FitSense.Constants;
+using FitSense.Dependencies;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using Microsoft.Practices.ServiceLocation;
+using Xamarin.Forms;
 
 namespace FitSense.ViewModels
 {
@@ -16,6 +21,10 @@ namespace FitSense.ViewModels
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        private INavigationService navigation;
+        public RelayCommand LoginCommand;
+        public RelayCommand ConnectCommand;
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -29,6 +38,26 @@ namespace FitSense.ViewModels
             ////{
             ////    // Code runs "for real"
             ////}
+
+            navigation = ServiceLocator.Current.GetInstance<INavigationService>();
+
+            LoginCommand = new RelayCommand(async () =>
+            {
+                await navigation.PushModalAsync(PageUrls.LoginView);
+            });
+
+            ConnectCommand = new RelayCommand(async () =>
+            {
+                await navigation.PushAsync(PageUrls.SensorConnectView);
+            });
+
+            MessengerInstance.Register<LoginViewModel>(this, Messages.LoginSucces, (sender) =>
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await navigation.PopModalAsync();
+                });
+            });
         }
     }
 }
