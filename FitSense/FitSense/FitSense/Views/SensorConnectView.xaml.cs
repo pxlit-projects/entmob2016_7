@@ -10,18 +10,14 @@ using Xamarin.Forms;
 
 namespace FitSense.Views
 {
-    public partial class LoginView : ContentPage
+    public partial class SensorConnectView : NavigationPage
     {
-        //private LoginViewModel viewModel;
+        //private SensorConnectViewModel viewModel;
 
-        public LoginView()
+        public SensorConnectView()
         {
             InitializeComponent();
-            //viewModel = ServiceLocator.Current.GetInstance<LoginViewModel>();
-
-            //this.BindingContext = viewModel;
-
-            
+            //viewModel = ServiceLocator.Current.GetInstance<SensorConnectViewModel>();
         }
     }
 }

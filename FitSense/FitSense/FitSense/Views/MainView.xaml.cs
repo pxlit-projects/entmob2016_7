@@ -13,22 +13,23 @@ namespace FitSense.Views
 {
     public partial class MainView : ContentPage
     {
-        public MainViewModel viewModel { get; private set; }
+        //public MainViewModel viewModel { get; private set; }
         private IUserDataService userDataService;
         public MainView()
         {
             InitializeComponent();
-            viewModel = ServiceLocator.Current.GetInstance<MainViewModel>();
+            //viewModel = ServiceLocator.Current.GetInstance<MainViewModel>();
             userDataService = ServiceLocator.Current.GetInstance<IUserDataService>();
-            BindingContext = viewModel;
+            //BindingContext = viewModel;
+            
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
+        //protected override void OnAppearing()
+        //{
+        //    base.OnAppearing();
 
-            //if (userDataService.LoggedInUser == null)
-                //viewModel.LoadCommand.Execute(null);
-        }
+        //    if (userDataService.LoggedInUser == null)
+        //        viewModel.LoginCommand.Execute(null);
+        //}
     }
 }

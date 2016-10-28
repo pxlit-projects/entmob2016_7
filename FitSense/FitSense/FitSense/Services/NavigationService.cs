@@ -12,16 +12,17 @@ namespace FitSense.Services
 {
     public class NavigationService : INavigationService
     {
-        private ContentPage GetPage(string pageName, object objectToPass = null)
+        private Page GetPage(string pageName, object objectToPass = null)
         {
             switch (pageName)
             {
                 case PageUrls.LoginView: return new LoginView();
-                
+                case PageUrls.SensorConnectView: return new SensorConnectView();
             }
             return null;
         }
 
+        //The navigation property of the root page. (MainView)
         public INavigation Navigation { get; set; }
 
         public IReadOnlyList<Page> ModalStack
@@ -82,7 +83,7 @@ namespace FitSense.Services
 
         public Task PushAsync(string pageName, object objectToPass)
         {
-            ContentPage page = GetPage(pageName);
+            Page page = GetPage(pageName);
             //page.ViewModel.PassedDataContext = objectToPass;
             return Navigation.PushAsync(page);
         }
@@ -94,7 +95,7 @@ namespace FitSense.Services
 
         public Task PushModalAsync(string pageName, object objectToPass)
         {
-            ContentPage page = GetPage(pageName, objectToPass);
+            Page page = GetPage(pageName, objectToPass);
             //page.ViewModel.PassedDataContext = objectToPass;
             return Navigation.PushModalAsync(page);
         }
@@ -116,7 +117,8 @@ namespace FitSense.Services
 
         public Task PushModalAsync(string pageName)
         {
-            return Navigation.PushModalAsync(GetPage(pageName));
+            Page p = GetPage(pageName);
+            return Navigation.PushModalAsync(p);
         }
     }
 }

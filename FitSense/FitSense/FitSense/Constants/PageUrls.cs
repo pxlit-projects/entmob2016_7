@@ -10,6 +10,7 @@ namespace FitSense.Constants
     {
         public const string LoginView = "LoginView";
         public const string MainView = "MainView";
+        public const string SensorConnectView = "SensorConnectView";
         
     }
 }
