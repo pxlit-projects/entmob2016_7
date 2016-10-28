@@ -17,12 +17,6 @@ namespace FitSense_UWP.ViewModel
 {
     public class SetsPerExerciseViewModel : INotifyPropertyChanged
     {
-        public class ChartRecord
-        {
-            public int Point { get; set; }
-            public long Date { get; set; }
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
         public List<ChartRecord> activeChart;
         public List<ChartRecord> ActiveChart
@@ -73,35 +67,45 @@ namespace FitSense_UWP.ViewModel
             set
             {
                 selectedSet = value;
-                List<ChartRecord> records = new List<ChartRecord>();
-                foreach(CompletedSet c in selectedSet.CompletedSets.OrderBy(c => c.Time))
-                {
-                    long date = c.Time / 1000000;
-                    if (records.Count > 0)
-                    {
-                        if(records.Last().Date / 1000000 == date)
-                        {
-                            records.Last().Point += selectedSet.Points;
-                        }
-                        else
-                        {
-                            records.Add(new ChartRecord()
-                            {
-                                Date = date * 1000000,
-                                Point = selectedSet.Points
-                            });
-                        }
-                    }
-                    else
-                        records.Add(new ChartRecord()
-                        {
-                            Date = date * 1000000,
-                            Point = selectedSet.Points
-                        });
-                }
-                ActiveChart = records;
+                UpdateChartData();
                 RaisePropertyChanged("SelectedSet");
             }
+        }
+
+        private void UpdateChartData()
+        {
+            List<ChartRecord> records = new List<ChartRecord>();
+            foreach (CompletedSet c in selectedSet.CompletedSets.OrderBy(c => c.Time))
+            {
+                String date = "" + (c.Time / 1000000);
+                date = String.Format("{0}/{1}/{2}", date.Substring(0, 2), date.Substring(2, 2), date.Substring(4, 2));
+                if (records.Count > 0)
+                {
+                    if (records.Last().Date == date)
+                    {
+                        records.Last().Point += selectedSet.Points;
+                    }
+                    else
+                    {
+                        records.Add(new ChartRecord()
+                        {
+
+                            Date = date,
+                            Point = selectedSet.Points
+                        });
+                    }
+                }
+                else
+                {
+                    records.Add(new ChartRecord()
+                    {
+                        Date = date,
+                        Point = selectedSet.Points
+                    });
+                }
+            }
+            ActiveChart = records;
+
         }
 
         public SetsPerExerciseViewModel(IFitDataService dataService, INavigationService dialogService)

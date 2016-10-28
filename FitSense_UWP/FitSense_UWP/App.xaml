@@ -10,6 +10,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <converter:LongToDateConverter x:Key="LongToDateConverter"></converter:LongToDateConverter>
+            <converter:IDToTitleConverter x:Key="IDToTitleConverter"></converter:IDToTitleConverter>
             <local:ViewModelLocator x:Key="mainViewModelLocator" />
         </ResourceDictionary>
     </Application.Resources>

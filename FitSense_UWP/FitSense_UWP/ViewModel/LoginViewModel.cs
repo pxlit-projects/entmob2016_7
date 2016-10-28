@@ -27,7 +27,7 @@ namespace FitSense_UWP.ViewModel
         {
             LoginCommand = new AlwaysRunCommand((Object o) =>
             {
-                navigationService.NavigateTo("Main");
+                navigationService.NavigateTo(NavigationService.MAIN);
             });
         }
 
