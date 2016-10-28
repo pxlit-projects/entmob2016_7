@@ -1,5 +1,0 @@
-package be.pxl.groep7.dao;
-
-public interface IExerciseRepository {
-
-}
