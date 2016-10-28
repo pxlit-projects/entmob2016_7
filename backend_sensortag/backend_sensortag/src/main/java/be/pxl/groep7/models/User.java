@@ -5,36 +5,45 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+import org.springframework.beans.factory.annotation.Value;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User {
 	
 	@Id
 	@Column(name="id")
-	int id;
+	private int id;
 	
-	@Column(name="name")
-	String name;
+	@Column(name="username")
+	private String name;
 	
 	@Column(name="password")
-	String password;
-	
-	@Column(name="salt")
-	String salt;
+	private String password;
 	
 	@Column(name="height")
-	int height;
+	private int height;
 	
 	@Column(name="weight")
-	int weight;
+	private int weight;
+	
+	@Column(name="role")
+	@Value("ROLE_USER")
+	@JsonIgnore
+	private String role;
+	
+	@Column(name="enabled")
+	@Value("1")
+	private byte enabled;
 	
 	
-	
-	public User(int id, String name, String password, String salt, int height, int weight) {
+	public User(int id, String name, String password, int height, int weight) {
 		this.id = id;
 		this.name = name;
 		this.password = password;
-		this.salt = salt;
 		this.height = height;
 		this.weight = weight;
 	}
@@ -63,14 +72,6 @@ public class User {
 		this.password = password;
 	}
 	
-	public String getSalt() {
-		return salt;
-	}
-	
-	public void setSalt(String salt) {
-		this.salt = salt;
-	}
-	
 	public int getHeight() {
 		return height;
 	}
@@ -86,4 +87,13 @@ public class User {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 }
