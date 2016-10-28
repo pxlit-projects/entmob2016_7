@@ -149,6 +149,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BluetoothService_Android.cs" />
     <Compile Include="Services\Connectivity_Android.cs" />
     <Compile Include="Services\SQLite_Android.cs" />
   </ItemGroup>

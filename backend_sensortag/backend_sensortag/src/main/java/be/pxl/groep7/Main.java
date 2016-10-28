@@ -1,4 +1,4 @@
-package be.pxl.groep7.app;
+package be.pxl.groep7;
 
 import org.springframework.boot.SpringApplication;
 

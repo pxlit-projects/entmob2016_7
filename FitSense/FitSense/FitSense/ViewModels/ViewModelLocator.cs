@@ -17,6 +17,7 @@ using FitSense.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using Robotics.Mobile.Core.Bluetooth.LE;
 using Xamarin.Forms;
 
 namespace FitSense.ViewModels
@@ -50,6 +51,7 @@ namespace FitSense.ViewModels
             
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
+            SimpleIoc.Default.Register<SensorConnectViewModel>();
         }
 
         public MainViewModel Main
@@ -59,7 +61,23 @@ namespace FitSense.ViewModels
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-        
+
+        public LoginViewModel Login
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<LoginViewModel>();
+            }
+        }
+
+        public SensorConnectViewModel Connect
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SensorConnectViewModel>();
+            }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

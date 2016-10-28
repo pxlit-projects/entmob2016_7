@@ -41,10 +41,14 @@
     <Compile Include="Constants\ConnectionStatus.cs" />
     <Compile Include="Constants\Messages.cs" />
     <Compile Include="Constants\PageUrls.cs" />
+    <Compile Include="Converters\DeviceNameConverter.cs" />
+    <Compile Include="Dependencies\IBluetoothService.cs" />
     <Compile Include="Dependencies\IConnectivity.cs" />
     <Compile Include="Dependencies\INavigationService.cs" />
     <Compile Include="Dependencies\ISQLite.cs" />
     <Compile Include="Dependencies\IUserDataService.cs" />
+    <Compile Include="Helpers\BehaviorBase.cs" />
+    <Compile Include="Helpers\OnAppearingBehavior.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -130,9 +134,7 @@
       <Private>True</Private>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Views\LoginView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

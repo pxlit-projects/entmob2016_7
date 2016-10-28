@@ -18,6 +18,7 @@
     <ResourceDictionary>
       <vm:ViewModelLocator x:Key="Locator"
                            xmlns:vm="clr-namespace:FitSense.ViewModels"/>
+        
     </ResourceDictionary>
   </Application.Resources>
 </Application>

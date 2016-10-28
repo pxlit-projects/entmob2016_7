@@ -12,14 +12,16 @@ namespace FitSense.Views
 {
     public partial class LoginView : ContentPage
     {
-        private LoginViewModel viewModel;
+        //private LoginViewModel viewModel;
 
         public LoginView()
         {
             InitializeComponent();
-            viewModel = ServiceLocator.Current.GetInstance<LoginViewModel>();
+            //viewModel = ServiceLocator.Current.GetInstance<LoginViewModel>();
 
-            this.BindingContext = viewModel;
+            //this.BindingContext = viewModel;
+
+            
         }
     }
 }
