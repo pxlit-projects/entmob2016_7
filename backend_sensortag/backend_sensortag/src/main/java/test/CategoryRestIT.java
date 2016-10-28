@@ -22,10 +22,7 @@ import org.springframework.web.client.RestTemplate;
 import be.pxl.groep7.models.Category;
 
 //Test methods first on one class -> junit randomizes :( a better way (framework) wanted
-//Problem 1: Post wants that the id is filled in in the object -> this should not be filled in a post
-//Problem 2: Put gives a 405 httpresponse :( -> delete not even tested
-//I do not like the colour red :( -> pleeeease be green!
-
+//Problem: The code generates 404 with get after delete -> but this is good :(
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfig.class)
 @WebAppConfiguration
@@ -39,14 +36,12 @@ public class CategoryRestIT {
 	@Autowired
 	private RestTemplate template;
 	
-	private int id = 19;
+	private int id = 2;
 	
 	@Test
-	//Help wanted: Id needs to be set for post, else the request generates a HttpClientErrorException 409
 	public void postCategory(){
 		Category category = new Category();
 		category.setName("Category 4");
-		category.setId(id);
 		
 		//--------------------------------------POST-----------------------------------------------------//
 		System.out.println("Post about to happen");
@@ -55,27 +50,29 @@ public class CategoryRestIT {
 		Assert.assertTrue(response.getStatusCode() == HttpStatus.NO_CONTENT);
 		//-----------------------------------------------------------------------------------------------//
 		//--------------------------------------GET------------------------------------------------------//
-		//ResponseEntity<Category> response2 = template.getForEntity(baseURL + "/{0}", Category.class, id);
-		//System.out.println("get");
-		//Assert.assertTrue(response2.getStatusCode() == HttpStatus.OK);
+		ResponseEntity<Category> response2 = template.getForEntity(baseURL + "/{0}", Category.class, id);
+		System.out.println("get");
+		Assert.assertTrue(response2.getStatusCode() == HttpStatus.OK);
 		//---------------------------------------------------------------------------------------------//
 		//-----------------------------------------PUT-------------------------------------------------//
-		//category.setName("Category 5");
-		//System.out.println("put");
-		//template.put(baseURL, category);
+		category.setName("Category 5");
+		category.setId(id);
+		System.out.println("put");
+		template.put(baseURL, category);
 		//----------------------------------------------------------------------------------------------//
 		//-----------------------------------------GET--------------------------------------------------//
-		//ResponseEntity<Category> response3 = template.getForEntity(baseURL + "/{0}", Category.class, id);
-		//System.out.println(response3.getBody().getName());
-		//Assert.assertTrue(response3.getBody().getName().equals("Category 5"));
+		ResponseEntity<Category> response3 = template.getForEntity(baseURL + "/{0}", Category.class, id);
+		System.out.println(response3.getBody().getName());
+		Assert.assertTrue(response3.getBody().getName().equals("Category 5"));
 		//----------------------------------------------------------------------------------------------//
 		//----------------------------------------DELETE------------------------------------------------//
-		//System.out.println("delete");
-		//template.delete(baseURL +"/{0}", id);
+		System.out.println("delete");
+		template.delete(baseURL +"/{0}", id);
 		//----------------------------------------------------------------------------------------------//
-		//ResponseEntity<Category> response4 = template.getForEntity(baseURL + "/{0}", Category.class, id);
-		//System.out.println("get");
-		//Assert.assertTrue(response4.getStatusCode() == HttpStatus.NOT_FOUND);
+		System.out.println("Get getting get");
+		ResponseEntity<Category> response4 = template.getForEntity(baseURL + "/{0}", Category.class, id);
+		System.out.println("get");
+		Assert.assertTrue(response4.getStatusCode() == HttpStatus.NOT_FOUND);				//Generates exception 404 -> not founnd -> but this is exactly what we want!
 	}
 	
 	//@Test
