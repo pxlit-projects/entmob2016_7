@@ -3,7 +3,7 @@ package be.pxl.groep7.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +23,7 @@ public class CategoryRestController {
 	private ICategoryRepository dao;
 	
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
-	//@Secured({"ROLE_USER"})
+	@Secured({"ROLE_USER"})
 	public ResponseEntity<Category> getCategoryById(@PathVariable("id") int id) {
 		//System.out.println("were in get");
 		HttpStatus status = HttpStatus.OK;

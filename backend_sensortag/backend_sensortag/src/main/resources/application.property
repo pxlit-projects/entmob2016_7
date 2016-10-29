@@ -5,3 +5,6 @@ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 
 spring.jpa.hibernate.naming_strategy=org.hibernate.cfg.EJB3NamingStrategy
 server.contextPath=/sensortagapi
+debug=false
+
+spring.activemq.broker-url= http://localhost:8161/

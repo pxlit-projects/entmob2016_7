@@ -1,4 +1,4 @@
-package test;
+package be.pxl.groep7.integrationtests;
 
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
@@ -30,22 +30,24 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import be.pxl.groep7.AppConfig;
 import be.pxl.groep7.models.Category;
 
 //Test methods first on one class -> junit randomizes :( a better way (framework) wanted
 //Problem: The code generates 404 with get after delete -> but this is good :(
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestConfig.class)
+@ContextConfiguration(classes = AppConfig.class)
 @WebAppConfiguration
 @DirtiesContext
 @SpringBootTest
 public class CategoryRestIT {
 
 	@Value("http://localhost:8080/sensortagapi/category")
+	//@Value("http://http://84.195.1.59/sensorTag/category")
 	private String baseURL;
 	
 	private String username = "user";
-	private String password = "user";
+	private String password = "123456";
 	
 	@Autowired
 	private RestTemplate template;
