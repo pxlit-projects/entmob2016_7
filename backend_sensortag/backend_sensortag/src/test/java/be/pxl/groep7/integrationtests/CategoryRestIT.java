@@ -41,7 +41,6 @@ import be.pxl.groep7.models.Category;
 @DirtiesContext
 @SpringBootTest
 public class CategoryRestIT {
-
 	@Value("http://localhost:8080/sensortagapi/category")
 	//@Value("http://http://84.195.1.59/sensorTag/category")
 	private String baseURL;
