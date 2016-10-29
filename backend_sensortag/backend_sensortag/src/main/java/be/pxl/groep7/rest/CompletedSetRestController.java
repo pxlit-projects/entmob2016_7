@@ -45,8 +45,8 @@ public class CompletedSetRestController {
 		return new ResponseEntity<>(status);	
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
-	public ResponseEntity<String> editCategory(@PathVariable("id") int id, @RequestBody CompletedSet completedSet){
+	@RequestMapping(method=RequestMethod.PUT, consumes= "application/json")
+	public ResponseEntity<String> editCategory(@RequestBody CompletedSet completedSet){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
 		if (dao.exists(completedSet.getId())){

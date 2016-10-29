@@ -46,8 +46,8 @@ public class SetRestController {
 		return new ResponseEntity<>(status);	
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
-	public ResponseEntity<String> editSet(@PathVariable("id") int id, @RequestBody Set set){
+	@RequestMapping(method = RequestMethod.PUT, consumes= "application/json")
+	public ResponseEntity<String> editSet(@RequestBody Set set){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
 		if (dao.exists(set.getId())){

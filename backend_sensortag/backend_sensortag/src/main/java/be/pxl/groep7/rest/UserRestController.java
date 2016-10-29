@@ -44,8 +44,8 @@ public class UserRestController {
 		return new ResponseEntity<>(status);	
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
-	public ResponseEntity<String> editUser(@PathVariable("id") int id, @RequestBody User user){
+	@RequestMapping(method = RequestMethod.PUT, consumes= "application/json")
+	public ResponseEntity<String> editUser(@RequestBody User user){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
 		if (dao.exists(user.getId())){

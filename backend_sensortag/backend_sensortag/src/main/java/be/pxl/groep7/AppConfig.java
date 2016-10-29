@@ -24,11 +24,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackages={"be.pxl.groep7.models", "be.pxl.groep7.app", "be.pxl.groep7.rest", "be.pxl.groep7.aspecten"})
+//@ComponentScan(basePackages={"be.pxl.groep7.models", "be.pxl.groep7.app", "be.pxl.groep7.rest", "be.pxl.groep7.aspecten"})
+@ComponentScan("be.pxl.groep7")		//Scans all underlying packages of be.
 @EnableJpaRepositories("be.pxl.groep7.dao")
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @EnableAspectJAutoProxy
-//@EnableWebSecurity
 @EnableWebMvc
 public class AppConfig extends WebSecurityConfigurerAdapter {
 

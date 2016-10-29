@@ -44,8 +44,8 @@ public class ExercisePointRestController {
 		return new ResponseEntity<>(status);	
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
-	public ResponseEntity<String> editExercisePoint(@PathVariable("id") int id, @RequestBody ExercisePoint exercisePoint){
+	@RequestMapping(method = RequestMethod.PUT, consumes= "application/json")
+	public ResponseEntity<String> editExercisePoint(@RequestBody ExercisePoint exercisePoint){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
 		if (dao.exists(exercisePoint.getId())){
