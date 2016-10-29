@@ -66,7 +66,7 @@ SQL server settings:
 	- user
 - Kind of calls: 
 	- get(id), post, put, delete(id)
-- Example calls:
+- Example calls (note if a get does not work, try a different id, 3 for example):
 	- GET:  http://84.195.1.59:8080/sensortagapi/category/1	-> GET FLAG + id
 	- POST:  http://84.195.1.59:8080/sensortagapi/category	-> POST FLAG + requestbody json of category, id should not be filled in
 	- PUT:  http://84.195.1.59:8080/sensortagapi/category   -> PUT FLAG + requestbody json of category, id should be filled in
