@@ -12,7 +12,10 @@ import be.pxl.groep7.models.CompletedSet;
 /*@Repository("completedSerieRepository")
 public class CompletedSetRepositoryImpl implements ICompletedSetRepository {
 
-
+	
+	
+	
+	/*
 	private EntityManagerFactory emf;
 
 	@PersistenceUnit
@@ -72,5 +75,6 @@ public class CompletedSetRepositoryImpl implements ICompletedSetRepository {
 		em.close();
 		emf.close();
 		
-	}
-}*/
+	}*/
+
+

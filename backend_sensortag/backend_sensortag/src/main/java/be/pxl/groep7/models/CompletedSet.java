@@ -3,10 +3,13 @@ package be.pxl.groep7.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="completed_set")
+@NamedQuery(name="CompletedSet.getCompletedSetsByUserId"
+				, query="select cs from CompletedSet cs where cs.user_id=?1")
 public class CompletedSet {
 	
 	@Id

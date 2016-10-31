@@ -1,5 +1,7 @@
 package be.pxl.groep7.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,16 @@ public class CompletedSetRestController {
 
 	@Autowired
 	private ICompletedSetRepository dao;
+	
+	@RequestMapping(value="/user/{id}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<CompletedSet>> getCompletedSetByUserId(@PathVariable("id") int userId){
+		HttpStatus status = HttpStatus.OK;
+		List<CompletedSet> setList = dao.getCompletedSetsByUserId(userId);
+		if(setList == null){
+			status = HttpStatus.NOT_FOUND;
+		}
+		return new ResponseEntity<>(setList, status);
+	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<CompletedSet> getCategoryById(@PathVariable("id") int id){
