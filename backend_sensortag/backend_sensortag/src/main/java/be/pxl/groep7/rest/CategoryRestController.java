@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import be.pxl.groep7.dao.ICategoryRepository;
 import be.pxl.groep7.models.Category;
 
-//http://stackoverflow.com/questions/3825990/http-response-code-for-post-when-resource-already-exists
 
 @RestController
 @RequestMapping("/category")
@@ -36,11 +35,12 @@ public class CategoryRestController {
 		return new ResponseEntity<>(category, status);
 	} 
 	
+	@Secured("ROLE_USER")
 	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
-	//@Secured({"ROLE_USER"})
 	public ResponseEntity<String> addCategory(@RequestBody Category category) {
+		System.out.println("POST!");
 		HttpStatus status = HttpStatus.NO_CONTENT;
-		
+			
 		//if (!dao.exists(category.getId())){
 			dao.save(category);
 		//} else {
@@ -50,19 +50,21 @@ public class CategoryRestController {
 		return new ResponseEntity<>(status);
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping(method = RequestMethod.PUT, consumes= "application/json")
 	public ResponseEntity<String> editCategory(@RequestBody Category category){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
-		if (!dao.exists(category.getId())){
-			status = HttpStatus.CONFLICT;
-		} else {
+		//if (!dao.exists(category.getId())){
+			//status = HttpStatus.CONFLICT;
+		//} else {
 			dao.save(category);
-		}
+		//}
 		
 		return new ResponseEntity<>(status);
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteCategory(@PathVariable int id) {
 		HttpStatus status = HttpStatus.NO_CONTENT;

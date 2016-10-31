@@ -7,4 +7,4 @@ spring.jpa.hibernate.naming_strategy=org.hibernate.cfg.EJB3NamingStrategy
 server.contextPath=/sensortagapi
 debug=false
 
-spring.activemq.broker-url= http://localhost:8161/
+spring.activemq.broker-url= http://localhost:6161/
