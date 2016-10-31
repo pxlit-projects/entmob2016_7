@@ -1,5 +1,7 @@
 package be.pxl.groep7.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,16 @@ public class SetRestController {
 
 	@Autowired
 	private ISetRepository dao;
+	
+	@RequestMapping(value="/setbyexercise/{id}", method=RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<Set>> getSetByExerciseId(@PathVariable("id") int exerciseId){
+		HttpStatus status = HttpStatus.OK;
+		List<Set> setList = dao.getSetByExerciseId(exerciseId);
+		if(setList == null){
+			status = HttpStatus.NOT_FOUND;
+		}
+		return new ResponseEntity<>(setList, status);
+	}
 
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Set> getSetById(@PathVariable("id") int id) {

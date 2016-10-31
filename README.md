@@ -74,10 +74,10 @@ SQL server settings:
 - To do:
  	- Returning lists (planned fix = monday)
 	- Getting on other parameters
-	- All categories
-	- Exercises per category
-	- Sets per exercise
-	- CompletedSets per Set
+	- All categories							//done
+	- Exercises per category					//done
+	- Sets per exercise							//done
+	- CompletedSets per Set						//done
 - Authentication and Authorisation?
 	- Not yet implemented at the version running on the server
 	- Implemented on category get -> works in browser

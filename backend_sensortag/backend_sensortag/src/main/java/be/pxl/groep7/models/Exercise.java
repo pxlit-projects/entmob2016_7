@@ -3,10 +3,13 @@ package be.pxl.groep7.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="exercise")
+@NamedQuery(name="Exercise.getExerciseByCategoryId"
+				, query="select ex from Exercise ex where ex.category_id=?1")
 public class Exercise {
 	
 	@Id
