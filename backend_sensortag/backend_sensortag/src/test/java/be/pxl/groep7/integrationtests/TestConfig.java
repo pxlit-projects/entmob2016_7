@@ -21,6 +21,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;*/
 import org.springframework.web.client.RestTemplate;
 
+/*
+
 @EnableAutoConfiguration
 @ComponentScan(basePackages={"be.pxl.groep7.models", "be.pxl.groep7", "be.pxl.groep7.rest", "be.pxl.groep7.dao"})
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -43,4 +45,4 @@ public class TestConfig   extends WebSecurityConfigurerAdapter {
 		.authoritiesByUsernameQuery(
 			"select username, role from user_roles where username=?");
 	}
-}
+}*/
