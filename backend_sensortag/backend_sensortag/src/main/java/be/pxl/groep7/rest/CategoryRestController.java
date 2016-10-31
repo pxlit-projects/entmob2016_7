@@ -35,10 +35,9 @@ public class CategoryRestController {
 		return new ResponseEntity<>(categoryList, status);
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
-	@Secured({"ROLE_USER"})
 	public ResponseEntity<Category> getCategoryById(@PathVariable("id") int id) {
-		//System.out.println("were in get");
 		HttpStatus status = HttpStatus.OK;
 		Category category = dao.findOne(id);
 		
@@ -55,11 +54,11 @@ public class CategoryRestController {
 		System.out.println("POST!");
 		HttpStatus status = HttpStatus.NO_CONTENT;
 			
-		//if (!dao.exists(category.getId())){
+		if (!dao.exists(category.getId())){
 			dao.save(category);
-		//} else {
-			//status = HttpStatus.CONFLICT;
-		//}
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
 		
 		return new ResponseEntity<>(status);
 	}
@@ -69,11 +68,11 @@ public class CategoryRestController {
 	public ResponseEntity<String> editCategory(@RequestBody Category category){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
-		//if (!dao.exists(category.getId())){
-			//status = HttpStatus.CONFLICT;
-		//} else {
+		if (!dao.exists(category.getId())){
+			status = HttpStatus.CONFLICT;
+		} else {
 			dao.save(category);
-		//}
+		}
 		
 		return new ResponseEntity<>(status);
 	}

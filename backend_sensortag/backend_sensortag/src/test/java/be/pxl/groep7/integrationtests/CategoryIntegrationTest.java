@@ -5,10 +5,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 import org.junit.Assert;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,11 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -49,7 +44,7 @@ public class CategoryIntegrationTest {
 	private RestTemplate template;
 	
 	@Test
-	public void a_postCategoryTest() throws RestClientException, NoSuchAlgorithmException{
+	public void ScenarioIntegrationTest() throws RestClientException, NoSuchAlgorithmException{
 		Category category = new Category();
 		category.setName(nameCategory); 
 		System.out.println("POST integration test");
@@ -86,15 +81,8 @@ public class CategoryIntegrationTest {
 		Assert.assertTrue(response5.getStatusCode() == HttpStatus.NO_CONTENT);
 	}
 	
-	public String securityHeader() throws NoSuchAlgorithmException{
-		HttpHeaders headers = createAuthenticationHeader(1);
-		ResponseEntity<String> response = template.exchange(baseURL, HttpMethod.GET, new HttpEntity<String>(headers), String.class);
-		return response.getBody();
-	}
-	
 	public HttpHeaders createAuthenticationHeader(int status) throws NoSuchAlgorithmException{
 		String auth = username + ":" + password;
-		System.out.println(auth);
 		String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes(Charset.forName("UTF-8")));
 		String authHeader = "Basic " + encodedAuth;
 		HttpHeaders headers = new HttpHeaders();
