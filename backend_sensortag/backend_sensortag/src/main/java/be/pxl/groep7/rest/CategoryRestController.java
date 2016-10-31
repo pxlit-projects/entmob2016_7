@@ -1,5 +1,7 @@
 package be.pxl.groep7.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,18 @@ public class CategoryRestController {
 
 	@Autowired
 	private ICategoryRepository dao;
+	
+	@RequestMapping(value="/all", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<Category>> getAllCategories(){
+		HttpStatus status = HttpStatus.OK;
+		List<Category> categoryList = dao.getAllCategories();
+		
+		if (categoryList == null) {
+			status = HttpStatus.NOT_FOUND;
+		}
+		
+		return new ResponseEntity<>(categoryList, status);
+	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
 	@Secured({"ROLE_USER"})

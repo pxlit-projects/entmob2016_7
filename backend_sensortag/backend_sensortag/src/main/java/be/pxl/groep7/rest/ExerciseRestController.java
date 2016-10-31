@@ -1,5 +1,7 @@
 package be.pxl.groep7.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +21,16 @@ public class ExerciseRestController {
 	
 	@Autowired
 	private IExerciseRepository dao;
+	
+	@RequestMapping(value="/bycategory/{id}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<Exercise>> getExerciseByCategoryId(@PathVariable("id") int categoryId){
+		HttpStatus status = HttpStatus.OK;
+		List<Exercise> exerciseList = dao.getExerciseByCategoryId(categoryId);
+		if(exerciseList == null){
+			status = HttpStatus.NOT_FOUND;
+		}
+		return new ResponseEntity<>(exerciseList, status);
+	}
 
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Exercise> getExerciseById(@PathVariable("id") int id){

@@ -4,12 +4,15 @@ package be.pxl.groep7.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Entity
-@Table(name="set_table")															// why set_table? "set" is a reserved keyword for mysql
+@Table(name="set_table")								// why set_table? "set" is a reserved keyword for mysql
+@NamedQuery(name="Set.getSetByExerciseId" 
+					, query="select s from Set s where s.exercise_id=?1")
 public class Set {
 	
 	@Id

@@ -23,10 +23,10 @@ public class CompletedSetRestController {
 	@Autowired
 	private ICompletedSetRepository dao;
 	
-	@RequestMapping(value="/user/{id}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<CompletedSet>> getCompletedSetByUserId(@PathVariable("id") int userId){
+	@RequestMapping(value="/set/{id}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<CompletedSet>> getCompletedSetBySetId(@PathVariable("id") int setId){
 		HttpStatus status = HttpStatus.OK;
-		List<CompletedSet> setList = dao.getCompletedSetsByUserId(userId);
+		List<CompletedSet> setList = dao.getCompletedSetBySetId(setId);
 		if(setList == null){
 			status = HttpStatus.NOT_FOUND;
 		}
