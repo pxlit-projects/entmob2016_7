@@ -74,6 +74,10 @@ SQL server settings:
 - To do:
  	- Returning lists (planned fix = monday)
 	- Getting on other parameters
+	- All categories
+	- Exercises per category
+	- Sets per exercise
+	- CompletedSets per Set
 - Authentication and Authorisation?
 	- Not yet implemented at the version running on the server
 	- Implemented on category get -> works in browser
@@ -82,6 +86,6 @@ SQL server settings:
 	- Category Put requires no id, while all other put requests require the id in the url (planned fix = monday)
 	- No authentication or authorisation (planned fix = next week -> all methods)
 	
-	
+
 
 
