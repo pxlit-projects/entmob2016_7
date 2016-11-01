@@ -94,6 +94,9 @@ public class CategoryControllerIntegrationTest {
 
 
 	//Nullpointer -> updatePathRequestProperties(MockHttpServletRequest request, String requestUri) -> requestUri is null
+	//Stukje code waar het op faalt
+	/*Assert.isTrue(requestUri.startsWith(this.contextPath),
+	"requestURI [" + requestUri + "] does not start with contextPath [" + this.contextPath + "]");*/
 	@Test
 	public void postOneCategoryAndReturnOne() throws IOException, Exception {
 		Category c = new Category();
