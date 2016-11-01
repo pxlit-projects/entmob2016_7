@@ -20,6 +20,8 @@ import be.pxl.groep7.models.Category;
 @RequestMapping("/category")
 public class CategoryRestController {
 
+	public final static String BASEURL = "localhost:8080/sensortagapi/category";
+	
 	@Autowired
 	private ICategoryRepository dao;
 	
