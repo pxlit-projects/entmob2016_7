@@ -31,7 +31,7 @@ public class CategoryServiceImpl implements ICategoryService {
 	}
 
 	@Override
-	public boolean doesCategoryExists(int id) {
+	public boolean doesCategoryExist(int id) {
 		return rep.exists(id);
 	}
 

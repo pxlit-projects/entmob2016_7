@@ -57,7 +57,7 @@ public class CategoryRestController {
 		System.out.println("POST!");
 		HttpStatus status = HttpStatus.NO_CONTENT;
 			
-		if (!service.doesCategoryExists(category.getId())){
+		if (!service.doesCategoryExist(category.getId())){
 			service.createOrUpdateCategory(category);
 		} else {
 			status = HttpStatus.CONFLICT;
@@ -71,7 +71,7 @@ public class CategoryRestController {
 	public ResponseEntity<String> editCategory(@RequestBody Category category){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
-		if (!service.doesCategoryExists(category.getId())){
+		if (!service.doesCategoryExist(category.getId())){
 			status = HttpStatus.CONFLICT;
 		} else {
 			service.createOrUpdateCategory(category);
@@ -85,7 +85,7 @@ public class CategoryRestController {
 	public ResponseEntity<String> deleteCategory(@PathVariable int id) {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
-		if (!service.doesCategoryExists(id)){
+		if (!service.doesCategoryExist(id)){
 			status = HttpStatus.CONFLICT;
 		} else {
 			service.deleteCategoryById(id);

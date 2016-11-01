@@ -15,18 +15,19 @@ import be.pxl.groep7.dao.ICategoryRepository;
 import be.pxl.groep7.dao.ICompletedSetRepository;
 import be.pxl.groep7.models.Category;
 import be.pxl.groep7.models.CompletedSet;
+import be.pxl.groep7.services.ICompletedSetService;
 
 @RestController
 @RequestMapping("/completedset")
 public class CompletedSetRestController {
 
 	@Autowired
-	private ICompletedSetRepository dao;
+	private ICompletedSetService service;
 	
-	@RequestMapping(value="/set/{id}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<CompletedSet>> getCompletedSetBySetId(@PathVariable("id") int setId){
+	@RequestMapping(value="/set/{exerciseId}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<CompletedSet>> getCompletedSetsBySetId(@PathVariable("id") int exerciseId){
 		HttpStatus status = HttpStatus.OK;
-		List<CompletedSet> setList = dao.getCompletedSetBySetId(setId);
+		List<CompletedSet> setList = service.getAllCompletedSetsByExerciseId(exerciseId);
 		if(setList == null){
 			status = HttpStatus.NOT_FOUND;
 		}
@@ -34,10 +35,9 @@ public class CompletedSetRestController {
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<CompletedSet> getCategoryById(@PathVariable("id") int id){
-		//System.out.println("were in get");
+	public ResponseEntity<CompletedSet> getCompletedSetById(@PathVariable("id") int id){
 		HttpStatus status = HttpStatus.OK;
-		CompletedSet set = dao.findOne(id);
+		CompletedSet set = service.findCompletedSetById(id);
 		if (set == null){
 			status = HttpStatus.NOT_FOUND;
 		}
@@ -45,11 +45,11 @@ public class CompletedSetRestController {
 	} 
 	
 	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
-	public ResponseEntity<String> addCategory(@RequestBody CompletedSet completedSet){
+	public ResponseEntity<String> addCompletedSet(@RequestBody CompletedSet completedSet){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
-		if (!dao.exists(completedSet.getId())){
-			dao.save(completedSet);
+		if (!service.doesCompletedSetExist(completedSet.getId())){
+			service.createOrUpdateCompletedSet(completedSet);
 		} else {
 			status = HttpStatus.CONFLICT;
 		}
@@ -58,11 +58,11 @@ public class CompletedSetRestController {
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes= "application/json")
-	public ResponseEntity<String> editCategory(@RequestBody CompletedSet completedSet){
+	public ResponseEntity<String> editCompletedSet(@RequestBody CompletedSet completedSet){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
-		if (dao.exists(completedSet.getId())){
-			dao.save(completedSet);
+		if (service.doesCompletedSetExist(completedSet.getId())){
+			service.createOrUpdateCompletedSet(completedSet);
 		} else {
 			status = HttpStatus.CONFLICT;
 		}
@@ -71,11 +71,11 @@ public class CompletedSetRestController {
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> deleteCategory(@PathVariable int id) {
+	public ResponseEntity<String> deleteCompletedSet(@PathVariable int id) {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
-		if (dao.exists(id)){
-			dao.delete(id);
+		if (service.doesCompletedSetExist(id)){
+			service.deleteCompletedSetById(id);
 		} else {
 			status = HttpStatus.CONFLICT;
 		}

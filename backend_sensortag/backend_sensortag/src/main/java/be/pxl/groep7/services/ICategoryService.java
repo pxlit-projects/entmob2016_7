@@ -9,6 +9,6 @@ public interface ICategoryService {
 	public Category createOrUpdateCategory(Category category);
 	public Category findCategoryById(int id);
 	public void deleteCategoryById(int id);
-	public boolean doesCategoryExists(int id);
+	public boolean doesCategoryExist(int id);
 	public List<Category> getAllCategories();
 }

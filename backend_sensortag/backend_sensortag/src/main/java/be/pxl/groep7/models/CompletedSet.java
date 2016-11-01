@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="completed_set")
-@NamedQuery(name="CompletedSet.getCompletedSetBySetId"
+@NamedQuery(name="CompletedSet.getCompletedSetByExerciseId"
 				, query="select cs from CompletedSet cs where cs.exerciseId=?1")
 public class CompletedSet {
 	
