@@ -67,6 +67,9 @@ SQL server settings:
 - Kind of calls: 
 	- get(id), post, put, delete(id)
 - Example calls (note if a get does not work, try a different id, 3 for example):
+	- Category Get request is going to change to (due to conflicting get methods) Note: THIS IS NOT YET ON THE SERVER:
+		- http://localhost:8080/sensortagapi/category/all  -> list
+		- http://localhost:8080/sensortagapi/category/getById/3 
 	- GET:  http://84.195.1.59:8080/sensortagapi/category/1	-> GET FLAG + id
 	- POST:  http://84.195.1.59:8080/sensortagapi/category	-> POST FLAG + requestbody json of category, id should not be filled in
 	- PUT:  http://84.195.1.59:8080/sensortagapi/category   -> PUT FLAG + requestbody json of category, id should be filled in
