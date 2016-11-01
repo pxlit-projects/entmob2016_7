@@ -135,11 +135,33 @@ public class CategoryControllerIntegrationTest {
 	}
 	
 	@Test
+	public void putCategoryWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
+		category3.setName("Nieuwe category");
+		
+		mockMvc.perform(put(CategoryRestController.BASEURL + "/" + category3.getId()+1)	
+				.header("host", "localhost:8080")	
+				.content(asJson(category3))
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
+				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
+				.andExpect(status().isNotFound());
+	}
+	
+	@Test
 	public void deleteCategoryAndTestIfItIsNotFoundInDB() throws IOException, Exception {
 		mockMvc.perform(delete(CategoryRestController.BASEURL+"/" + category1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNoContent());
+		
+		assertThat(categoryRepository.exists(category1.getId()) == false);
+	}
+	
+	@Test
+	public void deleteCategoryThatDoesNotExistsAndTestIfNotFoundIsReturned() throws Exception {
+		mockMvc.perform(delete(CategoryRestController.BASEURL+"/" + category3.getId()+1)	
+				.header("host", "localhost:8080")													
+				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
+				.andExpect(status().isNotFound());
 		
 		assertThat(categoryRepository.exists(category1.getId()) == false);
 	}

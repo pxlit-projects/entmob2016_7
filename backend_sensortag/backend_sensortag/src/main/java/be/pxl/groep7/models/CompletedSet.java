@@ -26,15 +26,15 @@ public class CompletedSet {
 	int duration;
 	
 	@Column(name="user_id")
-	int user_id;
+	int userId;
 	
-	public CompletedSet(int id, int exerciseId, long time, int duration, int user_id) {
+	public CompletedSet(int id, int exerciseId, long time, int duration, int userId) {
 		super();
 		this.id = id;
 		this.exerciseId = exerciseId;
 		this.time = time;
 		this.duration = duration;
-		this.user_id = user_id;
+		this.userId = userId;
 	}
 	
 	public CompletedSet() {
@@ -73,12 +73,12 @@ public class CompletedSet {
 		this.duration = duration;
 	}
 	
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
 	
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUser_id(int userId) {
+		this.userId = userId;
 	}
 	
 	

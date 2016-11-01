@@ -89,7 +89,7 @@ public class CategoryRestController {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
 		if (!service.doesCategoryExist(id)){
-			status = HttpStatus.CONFLICT;
+			status = HttpStatus.NOT_FOUND;
 		} else {
 			service.deleteCategoryById(id);
 		}

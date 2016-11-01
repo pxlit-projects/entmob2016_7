@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,22 +20,26 @@ import be.pxl.groep7.services.ICompletedSetService;
 
 @RestController
 @RequestMapping("/completedset")
+@Secured("ROLE_USER")
 public class CompletedSetRestController {
 
+	public final static String BASEURL = "/completedset";
+	
 	@Autowired
 	private ICompletedSetService service;
 	
-	@RequestMapping(value="/set/{exerciseId}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<CompletedSet>> getCompletedSetsBySetId(@PathVariable("id") int exerciseId){
+	@RequestMapping(value="/sets/{exerciseId}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<CompletedSet>> getCompletedSetsBySetId(@PathVariable("exerciseId") int exerciseId){
 		HttpStatus status = HttpStatus.OK;
 		List<CompletedSet> setList = service.getAllCompletedSetsByExerciseId(exerciseId);
+		
 		if(setList == null){
 			status = HttpStatus.NOT_FOUND;
 		}
 		return new ResponseEntity<>(setList, status);
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<CompletedSet> getCompletedSetById(@PathVariable("id") int id){
 		HttpStatus status = HttpStatus.OK;
 		CompletedSet set = service.findCompletedSetById(id);
