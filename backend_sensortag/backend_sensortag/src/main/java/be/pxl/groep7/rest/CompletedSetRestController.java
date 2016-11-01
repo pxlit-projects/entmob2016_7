@@ -50,16 +50,17 @@ public class CompletedSetRestController {
 	} 
 	
 	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
-	public ResponseEntity<String> addCompletedSet(@RequestBody CompletedSet completedSet){
+	public ResponseEntity<CompletedSet> addCompletedSet(@RequestBody CompletedSet completedSet){
 		HttpStatus status = HttpStatus.NO_CONTENT;
+		CompletedSet newSet = null;
 		
 		if (!service.doesCompletedSetExist(completedSet.getId())){
-			service.createOrUpdateCompletedSet(completedSet);
+			newSet = service.createOrUpdateCompletedSet(completedSet);
 		} else {
 			status = HttpStatus.CONFLICT;
 		}
 		
-		return new ResponseEntity<>(status);	
+		return new ResponseEntity<>(newSet, status);	
 	}
 	
 	@RequestMapping(value = "{id}", method=RequestMethod.PUT, consumes= "application/json")
