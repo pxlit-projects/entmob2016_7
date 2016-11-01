@@ -111,7 +111,7 @@ public class CompletedSetControllerIntegrationTest {
 				.with(user("user").password("123456")))
 		.andExpect(status().isOk())
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-		.andExpect(content().json(asJson(asList(completedSet1, completedSet3, completedSet4))));
+		.andExpect(content().json(asJson(asList(completedSet1, completedSet3))));
 	}
 
 	@Test
