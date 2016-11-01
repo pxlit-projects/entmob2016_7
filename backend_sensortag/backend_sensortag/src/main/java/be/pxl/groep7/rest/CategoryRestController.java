@@ -25,6 +25,7 @@ public class CategoryRestController {
 	@Autowired
 	private ICategoryRepository dao;
 	
+	@Secured("ROLE_USER")
 	@RequestMapping(value="/all", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<Category>> getAllCategories(){
 		HttpStatus status = HttpStatus.OK;
@@ -38,7 +39,7 @@ public class CategoryRestController {
 	}
 	
 	@Secured("ROLE_USER")
-	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Category> getCategoryById(@PathVariable("id") int id) {
 		HttpStatus status = HttpStatus.OK;
 		Category category = dao.findOne(id);

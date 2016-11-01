@@ -1,11 +1,7 @@
 package be.pxl.groep7.integrationtests;
 
 import java.io.IOException;
-import java.util.Arrays;
-
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +11,11 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.mock.http.MockHttpOutputMessage;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 
 import be.pxl.groep7.AppConfig;
 import be.pxl.groep7.dao.ICategoryRepository;
@@ -28,7 +24,6 @@ import be.pxl.groep7.rest.CategoryRestController;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static java.util.Arrays.asList;
-import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -44,7 +39,7 @@ public class CategoryControllerIntegrationTest {
 
 	private MockMvc mockMvc;
 
-	private HttpMessageConverter mappingJackson2HttpMessageConverter;			//Eigenlijk een generic type, pas als ik het in actie zie zal ik het type specifiëren; vermoedelijk wel Category
+	private HttpMessageConverter mappingJackson2HttpMessageConverter;
 
 	@Autowired
 	public ICategoryRepository categoryRepository;
@@ -75,7 +70,6 @@ public class CategoryControllerIntegrationTest {
 	}
 
 	@Test
-	@Ignore		//Nog in ignore, omdat ik deze in het algemeen nog niet getest heb -> gaat getest worden als de volgende werkt
 	public void postTwoCategoriesAndReturnAsList() throws IOException, Exception {
 		Category c = new Category();
 		c.setName("Category 1");
@@ -92,24 +86,74 @@ public class CategoryControllerIntegrationTest {
 		.andExpect(content().json(asJson(asList(c, c2))));
 	}
 
-
-	//Nullpointer -> updatePathRequestProperties(MockHttpServletRequest request, String requestUri) -> requestUri is null
-	//Stukje code waar het op faalt
-	/*Assert.isTrue(requestUri.startsWith(this.contextPath),
-	"requestURI [" + requestUri + "] does not start with contextPath [" + this.contextPath + "]");*/
 	@Test
 	public void postOneCategoryAndReturnOne() throws IOException, Exception {
 		Category c = new Category();
 		c.setName("Category 1");
-		categoryRepository.save(c);
+		int id = categoryRepository.save(c).getId();
 
-
-		mockMvc.perform(get(CategoryRestController.BASEURL+"/1")	
-				.header("host", "localhost:8080")													//dit was bij iemand anders de reden voor de nullpointer
-				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))			//dit heb ik ook geprobeerd, maar nullpointer blijft .with(user("user").password("123456")))
+		mockMvc.perform(get(CategoryRestController.BASEURL+"/getById/" + id)	
+				.header("host", "localhost:8080")													
+				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(content().json(asJson(c)));
+	}
+	
+	@Test
+	public void postOneCategoryEditOneAndReturnEditedCategory() throws IOException, Exception {
+		Category c = new Category();
+		c.setName("Category 1");
+		int id = categoryRepository.save(c).getId();
+		c.setId(id);
+		c.setName("Category 2");
+		
+		categoryRepository.save(c);
+		
+		mockMvc.perform(get(CategoryRestController.BASEURL+"/getById/" + id)	
+				.header("host", "localhost:8080")													
+				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(content().json(asJson(c)));
+	}
+	
+	@Test
+	public void postOneCategoryDeleteAndCheckIfNotFound() throws IOException, Exception {
+		Category c = new Category();
+		c.setName("Category 1");
+		int id = categoryRepository.save(c).getId();
+		
+		categoryRepository.delete(c);
+		
+		mockMvc.perform(get(CategoryRestController.BASEURL+"/getById/" + id)	
+				.header("host", "localhost:8080")													
+				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
+				.andExpect(status().isNotFound());
+	}
+	
+	@Test
+	public void postThreeCategoriesDeleteOneAndTestIfTwoReturn() throws IOException, Exception {
+		Category c = new Category();
+		c.setName("Category 1");
+		categoryRepository.save(c);
+
+		Category c2 = new Category();
+		c2.setName("Category 2");
+		int id = categoryRepository.save(c2).getId();
+		c2.setId(id);
+		
+		Category c3 = new Category();
+		c3.setName("Category 3");
+		categoryRepository.save(c3);
+		
+		categoryRepository.delete(c2);
+		
+		mockMvc.perform(get(CategoryRestController.BASEURL+"/all")
+				.with(user("user").password("123456")))
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+		.andExpect(content().json(asJson(asList(c, c3))));
 	}
 
 	protected String asJson(Object o) throws IOException {
