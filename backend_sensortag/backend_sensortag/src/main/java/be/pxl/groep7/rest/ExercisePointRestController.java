@@ -32,29 +32,31 @@ public class ExercisePointRestController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
-	public ResponseEntity<String> addExercisePoint(@RequestBody ExercisePoint exercisePoint){
+	public ResponseEntity<ExercisePoint> addExercisePoint(@RequestBody ExercisePoint exercisePoint){
 		HttpStatus status = HttpStatus.NO_CONTENT;
+		ExercisePoint newExercisePoint = null;
 		
 		if (!dao.exists(exercisePoint.getId())){
-			dao.save(exercisePoint);
+			newExercisePoint = dao.save(exercisePoint);
 		} else {
 			status = HttpStatus.CONFLICT;
 		}
 		
-		return new ResponseEntity<>(status);	
+		return new ResponseEntity<>(newExercisePoint, status);	
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, consumes= "application/json")
-	public ResponseEntity<String> editExercisePoint(@RequestBody ExercisePoint exercisePoint){
+	@RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes= "application/json")
+	public ResponseEntity<ExercisePoint> editExercisePoint(@PathVariable("id") int id, @RequestBody ExercisePoint exercisePoint){
 		HttpStatus status = HttpStatus.NO_CONTENT;
+		ExercisePoint newExercisePoint = null;
 		
-		if (dao.exists(exercisePoint.getId())){
-			dao.save(exercisePoint);
+		if (dao.exists(id)){
+			newExercisePoint = dao.save(exercisePoint);
 		} else {
-			status = HttpStatus.CONFLICT;
+			status = HttpStatus.NOT_FOUND;
 		}
 		
-		return new ResponseEntity<>(status);	
+		return new ResponseEntity<>(newExercisePoint, status);	
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
@@ -64,7 +66,7 @@ public class ExercisePointRestController {
 		if (dao.exists(id)){
 			dao.delete(id);
 		} else {
-			status = HttpStatus.CONFLICT;
+			status = HttpStatus.NOT_FOUND;
 		}
 		
 		return new ResponseEntity<>(status);	

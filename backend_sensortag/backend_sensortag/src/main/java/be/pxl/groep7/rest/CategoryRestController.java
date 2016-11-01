@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -68,13 +69,13 @@ public class CategoryRestController {
 	}
 	
 	@Secured("ROLE_USER")
-	@RequestMapping(method = RequestMethod.PUT, consumes= "application/json", produces="application/json")
-	public ResponseEntity<Category> editCategory(@RequestBody Category category){
+	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json", produces="application/json")
+	public ResponseEntity<Category> editCategory(@PathVariable("id") int id, @RequestBody Category category){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		Category newCategory = null;
 		
-		if (!service.doesCategoryExist(category.getId())){
-			status = HttpStatus.CONFLICT;
+		if (!service.doesCategoryExist(id)){
+			status = HttpStatus.NOT_FOUND;
 		} else {
 			newCategory = service.createOrUpdateCategory(category);
 		}

@@ -124,7 +124,7 @@ public class CategoryControllerIntegrationTest {
 	public void putCategoryAndTestIfEdited() throws IOException, Exception {
 		category2.setName("Nieuwe category");
 		
-		mockMvc.perform(put(CategoryRestController.BASEURL)	
+		mockMvc.perform(put(CategoryRestController.BASEURL + "/" + category2.getId())	
 				.header("host", "localhost:8080")	
 				.content(asJson(category2))
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -156,5 +156,4 @@ public class CategoryControllerIntegrationTest {
 		this.mappingJackson2HttpMessageConverter.write(o, MediaType.APPLICATION_JSON, mockHttpOutputMessage);
 		return mockHttpOutputMessage.getBodyAsString();
 	}
-
 }

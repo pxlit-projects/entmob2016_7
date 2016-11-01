@@ -45,26 +45,27 @@ public class ExerciseRestController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
-	public ResponseEntity<String> addExercise(@RequestBody Exercise exercise){
+	public ResponseEntity<Exercise> addExercise(@RequestBody Exercise exercise){
 		HttpStatus status = HttpStatus.NO_CONTENT;
-		System.out.println("In post");
+		Exercise newExercise = null;
+		
 		if (!dao.exists(exercise.getId())){
-			dao.save(exercise);
+			newExercise = dao.save(exercise);
 		} else {
 			status = HttpStatus.CONFLICT;
 		}
 		
-		return new ResponseEntity<>(status);	
+		return new ResponseEntity<>(newExercise, status);	
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, consumes= "application/json")
-	public ResponseEntity<String> editExercise(@RequestBody Exercise exercise){
+	@RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes= "application/json")
+	public ResponseEntity<String> editExercise(@PathVariable("id") int id, @RequestBody Exercise exercise){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
-		if (dao.exists(exercise.getId())){
+		if (dao.exists(id)){
 			dao.save(exercise);
 		} else {
-			status = HttpStatus.CONFLICT;
+			status = HttpStatus.NOT_FOUND;
 		}
 		
 		return new ResponseEntity<>(status);	
@@ -77,7 +78,7 @@ public class ExerciseRestController {
 		if (dao.exists(id)){
 			dao.delete(id);
 		} else {
-			status = HttpStatus.CONFLICT;
+			status = HttpStatus.NOT_FOUND;
 		}
 		
 		return new ResponseEntity<>(status);	

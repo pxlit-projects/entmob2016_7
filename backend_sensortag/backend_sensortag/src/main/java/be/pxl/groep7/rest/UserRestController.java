@@ -31,30 +31,32 @@ public class UserRestController {
 		return new ResponseEntity<>(user, status);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
-	public ResponseEntity<String> addUser(@RequestBody User user) {
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json", produces= "application/json")
+	public ResponseEntity<User> addUser(@RequestBody User user) {
 		HttpStatus status = HttpStatus.NO_CONTENT;
+		User newUser = null;
 		
 		if (!dao.exists(user.getId())){
-			dao.save(user);
+			newUser = dao.save(user);
 		} else {
 			status = HttpStatus.CONFLICT;
 		}
 		
-		return new ResponseEntity<>(status);	
+		return new ResponseEntity<>(newUser, status);	
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, consumes= "application/json")
-	public ResponseEntity<String> editUser(@RequestBody User user){
+	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json", produces= "application/json")
+	public ResponseEntity<User> editUser(@PathVariable("id") int id, @RequestBody User user){
 		HttpStatus status = HttpStatus.NO_CONTENT;
+		User newUser = null;
 		
 		if (dao.exists(user.getId())){
-			dao.save(user);
+			newUser = dao.save(user);
 		} else {
-			status = HttpStatus.CONFLICT;
+			status = HttpStatus.NOT_FOUND;
 		}
 		
-		return new ResponseEntity<>(status);	
+		return new ResponseEntity<>(newUser, status);	
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
@@ -64,7 +66,7 @@ public class UserRestController {
 		if (dao.exists(id)){
 			dao.delete(id);
 		} else {
-			status = HttpStatus.CONFLICT;
+			status = HttpStatus.NOT_FOUND;
 		}
 		return new ResponseEntity<>(status);	
 	}

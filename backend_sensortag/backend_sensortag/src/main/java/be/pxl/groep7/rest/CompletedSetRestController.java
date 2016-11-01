@@ -57,17 +57,18 @@ public class CompletedSetRestController {
 		return new ResponseEntity<>(status);	
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT, consumes= "application/json")
-	public ResponseEntity<String> editCompletedSet(@RequestBody CompletedSet completedSet){
+	@RequestMapping(value = "{id}", method=RequestMethod.PUT, consumes= "application/json")
+	public ResponseEntity<CompletedSet> editCompletedSet(@PathVariable("id") int id, @RequestBody CompletedSet completedSet){
 		HttpStatus status = HttpStatus.NO_CONTENT;
+		CompletedSet newCompletedSet = null;
 		
-		if (service.doesCompletedSetExist(completedSet.getId())){
-			service.createOrUpdateCompletedSet(completedSet);
+		if (service.doesCompletedSetExist(id)){
+			newCompletedSet = service.createOrUpdateCompletedSet(completedSet);
 		} else {
-			status = HttpStatus.CONFLICT;
+			status = HttpStatus.NOT_FOUND;
 		}
 		
-		return new ResponseEntity<>(status);	
+		return new ResponseEntity<>(newCompletedSet,status);	
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
@@ -77,7 +78,7 @@ public class CompletedSetRestController {
 		if (service.doesCompletedSetExist(id)){
 			service.deleteCompletedSetById(id);
 		} else {
-			status = HttpStatus.CONFLICT;
+			status = HttpStatus.NOT_FOUND;
 		}
 		
 		return new ResponseEntity<>(status);	

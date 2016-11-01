@@ -45,30 +45,32 @@ public class SetRestController {
 		return new ResponseEntity<Set>(set, status);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
-	public ResponseEntity<String> addSet(@RequestBody Set set){
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json", produces= "application/json")
+	public ResponseEntity<Set> addSet(@RequestBody Set set){
 		HttpStatus status = HttpStatus.NO_CONTENT;
+		Set newSet = null;
 		
 		if (!dao.exists(set.getId())){
-			dao.save(set);
+			newSet = dao.save(set);
 		} else {
 			status = HttpStatus.CONFLICT;
 		}
 		
-		return new ResponseEntity<>(status);	
+		return new ResponseEntity<>(newSet, status);	
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, consumes= "application/json")
-	public ResponseEntity<String> editSet(@RequestBody Set set){
+	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json", produces= "application/json")
+	public ResponseEntity<Set> editSet(@PathVariable("id") int id, @RequestBody Set set){
 		HttpStatus status = HttpStatus.NO_CONTENT;
+		Set newSet = null;
 		
-		if (dao.exists(set.getId())){
-			dao.save(set);
+		if (dao.exists(id)){
+			newSet = dao.save(set);
 		} else {
-			status = HttpStatus.CONFLICT;
+			status = HttpStatus.NOT_FOUND;
 		}
 		
-		return new ResponseEntity<>(status);	
+		return new ResponseEntity<>(newSet, status);	
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
@@ -78,7 +80,7 @@ public class SetRestController {
 		if (dao.exists(id)){
 			dao.delete(id);
 		} else {
-			status = HttpStatus.CONFLICT;
+			status = HttpStatus.NOT_FOUND;
 		}
 		
 		return new ResponseEntity<>(status);	
