@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import be.pxl.groep7.dao.ICategoryRepository;
 import be.pxl.groep7.models.Category;
+import be.pxl.groep7.services.ICategoryService;
 
 
 @RestController
@@ -23,13 +23,13 @@ public class CategoryRestController {
 	public final static String BASEURL = "/category";
 	
 	@Autowired
-	private ICategoryRepository dao;
+	private ICategoryService service;
 	
 	@Secured("ROLE_USER")
 	@RequestMapping(value="/all", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<Category>> getAllCategories(){
 		HttpStatus status = HttpStatus.OK;
-		List<Category> categoryList = dao.getAllCategories();
+		List<Category> categoryList = service.getAllCategories();
 		
 		if (categoryList == null) {
 			status = HttpStatus.NOT_FOUND;
@@ -42,7 +42,7 @@ public class CategoryRestController {
 	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Category> getCategoryById(@PathVariable("id") int id) {
 		HttpStatus status = HttpStatus.OK;
-		Category category = dao.findOne(id);
+		Category category = service.findCategoryById(id);
 		
 		if (category == null) {
 			status = HttpStatus.NOT_FOUND;
@@ -57,8 +57,8 @@ public class CategoryRestController {
 		System.out.println("POST!");
 		HttpStatus status = HttpStatus.NO_CONTENT;
 			
-		if (!dao.exists(category.getId())){
-			dao.save(category);
+		if (!service.doesCategoryExists(category.getId())){
+			service.createOrUpdateCategory(category);
 		} else {
 			status = HttpStatus.CONFLICT;
 		}
@@ -71,10 +71,10 @@ public class CategoryRestController {
 	public ResponseEntity<String> editCategory(@RequestBody Category category){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
-		if (!dao.exists(category.getId())){
+		if (!service.doesCategoryExists(category.getId())){
 			status = HttpStatus.CONFLICT;
 		} else {
-			dao.save(category);
+			service.createOrUpdateCategory(category);
 		}
 		
 		return new ResponseEntity<>(status);
@@ -85,10 +85,10 @@ public class CategoryRestController {
 	public ResponseEntity<String> deleteCategory(@PathVariable int id) {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
-		if (!dao.exists(id)){
+		if (!service.doesCategoryExists(id)){
 			status = HttpStatus.CONFLICT;
 		} else {
-			dao.delete(id);
+			service.deleteCategoryById(id);
 		}
 		
 		return new ResponseEntity<>(status);

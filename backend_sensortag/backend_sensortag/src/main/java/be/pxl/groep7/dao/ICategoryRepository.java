@@ -1,7 +1,5 @@
 package be.pxl.groep7.dao;
 
-
-
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
