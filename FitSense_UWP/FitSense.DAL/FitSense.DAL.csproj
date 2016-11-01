@@ -114,9 +114,9 @@
     <EmbeddedResource Include="Properties\FitSense.DAL.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FitSense.Model\FitSense.Model.csproj">
-      <Project>{06FFB32E-37BD-406B-B7AC-0AF71B00009E}</Project>
-      <Name>FitSense.Model</Name>
+    <ProjectReference Include="..\Fitsense.Models\Fitsense.Models.csproj">
+      <Project>{0ED13787-A93C-4AD7-8139-8ACCED490DC5}</Project>
+      <Name>Fitsense.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

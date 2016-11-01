@@ -10,7 +10,7 @@ namespace FitSense_UWP
 {
     public class ViewModelLocator
     {
-        private static IFitDataService dataService = new FitDataService();
+        private static IFitDataService dataService = new FitDataService(new FitSense.DAL.SensorRepository());
         private static INavigationService navigationService = new NavigationService();
 
         private SetsPerExerciseViewModel setsPerExerciseViewModel = new SetsPerExerciseViewModel(dataService, navigationService);

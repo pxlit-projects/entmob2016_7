@@ -1,5 +1,5 @@
 ﻿using FitSense.DAL;
-using FitSense.Model;
+using Fitsense.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,102 +11,38 @@ namespace FitSense_UWP.Services
 {
     class FitDataService : IFitDataService
     {
-        SensorRepository<Category> categoryRepository;
-        SensorRepository<Exercise> exerciseRepository;
+        SensorRepository repository;
 
-        public FitDataService()
+        public FitDataService(SensorRepository repository)
         {
-            categoryRepository = new SensorRepository<Category>();
-            exerciseRepository = new SensorRepository<Exercise>();
-        }
-
-        public void DeleteCategory(Category category)
-        {
-            throw new NotImplementedException();
-            //categoryRepository.DeleteRecord(category);
-        }
-
-        public void DeleteExercise(Exercise exercise)
-        {
-            throw new NotImplementedException();
+            this.repository = repository; 
         }
 
         public List<Category> GetAllCategories()
         {
-            return DummyData.categories;
-            //return categoryRepository.GetAllRecords();
+            return repository.GetAllCategories();
         }
 
         public List<Exercise> GetExercisesFromCategory(Category category)
         {
-            
-            if (category != null)
-            {
-                List<Exercise> exercises = DummyData.exercises.Where(ex => ex.CategoryID == category.ID).ToList();
-                foreach(Exercise e in exercises)
-                {
-                    e.Sets = GetSetsFromExercise(e);
-                }
-                return exercises;
-            }
-                
-            else
-                return new List<Exercise>();
-        }
 
-        public List<Exercise> GetAllExercises()
-        {
-            return DummyData.exercises;
-            throw new NotImplementedException();
-            //return exerciseRepository.GetAllRecords();
-        }
-
-        public Category GetCategoryDetail(int id)
-        {
-            throw new NotImplementedException();
-            //return categoryRepository.GetRecordDetail(id);
-        }
-
-        public Exercise GetExerciseDetail(int id)
-        {
-            throw new NotImplementedException();
-            //return exerciseRepository.GetRecordDetail(id);
-        }
-
-        public void UpdateCategory(Category category)
-        {
-            throw new NotImplementedException();
-            //categoryRepository.UpdateRecord(category);
-        }
-
-        public void UpdateExercuse(Exercise exercise)
-        {
-            throw new NotImplementedException();
-            //exerciseRepository.UpdateRecord(exercise);
+            return repository.GetExercisesFromCategory(category);
         }
 
         public List<Set> GetSetsFromExercise(Exercise exercise)
         {
-            List<Set> sets = DummyData.sets.Where(s => s.ExerciseID == exercise.ID).ToList();
-           foreach(Set s in sets)
-            {
-                s.CompletedSets = GetCompletedSetsFromSet(s);
-            }
-            return sets;
+            return repository.GetSetsFromExercise(exercise);
         }
 
         public Set ToggleSelectedSetVisibility(Set set)
         {
-            if (set.ShowCompletedSets == Visibility.Collapsed)
-                set.ShowCompletedSets = Visibility.Visible;
-            else
-                set.ShowCompletedSets = Visibility.Collapsed;
+            set.ShowCompletedSets = !set.ShowCompletedSets;
             return set;
         }
 
         public List<CompletedSet> GetCompletedSetsFromSet(Set set)
         {
-            return DummyData.completedSets.Where(s => s.SetID == set.ID).ToList();
+            return repository.GetCompletedSetsFromSet(set);
         }
     }
 }

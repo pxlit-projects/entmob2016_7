@@ -1,4 +1,4 @@
-﻿using FitSense.Model;
+﻿using Fitsense.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,7 +57,7 @@ namespace FitSense.DAL
                 MaxTime = 30,
                 Points = 10,
                 Reps = 5,
-                ShowCompletedSets = Windows.UI.Xaml.Visibility.Collapsed
+                ShowCompletedSets = false//Windows.UI.Xaml.Visibility.Collapsed
             },
             new Set()
             {
@@ -66,7 +66,7 @@ namespace FitSense.DAL
                 MaxTime = 60,
                 Points = 30,
                 Reps = 12,
-                ShowCompletedSets = Windows.UI.Xaml.Visibility.Collapsed
+                ShowCompletedSets = false//Windows.UI.Xaml.Visibility.Collapsed
             }
         };
 
@@ -74,68 +74,44 @@ namespace FitSense.DAL
         {
             new CompletedSet()
             {
-                CompletedSetID = 0,
+                ID = 0,
                 Duration = 15,
                 SetID = 0,
-                ID = 0,
                 Time = 191016240000,
                 UserID = 0
             },
             new CompletedSet()
             {
-                CompletedSetID = 0,
+                ID = 0,
                 Duration = 12,
                 SetID = 0,
-                ID = 1,
                 Time = 201016120000,
                 UserID = 0
             },
             new CompletedSet()
             {
-                CompletedSetID = 0,
+                ID = 0,
                 Duration = 11,
                 SetID = 0,
-                ID = 2,
                 Time = 201016160000,
                 UserID = 0
             },
             new CompletedSet()
             {
-                CompletedSetID = 1,
+                ID = 1,
                 Duration = 11,
                 SetID = 1,
-                ID = 3,
                 Time = 211016160000,
                 UserID = 0
             },
             new CompletedSet()
             {
-                CompletedSetID = 1,
+                ID = 1,
                 Duration = 12,
                 SetID = 1,
-                ID = 4,
                 Time = 211016170000,
                 UserID = 0
             }
         };
-
-        
-        public static void Remove(Category record)
-        {
-            categories.Remove(record);
-        }
-
-        public static Category GetCategoryDetail(int id)
-        {
-            return categories.Where(r => r.ID == id).FirstOrDefault();
-        }
-
-        public static void UpdateCategory(Category dist)
-        {
-            //nogmaals, werkt vooropig enkel op distance (later bij rest volledig implementeren)
-            Category recordToUpdate = categories.Where(r => r.ID == dist.ID).FirstOrDefault();
-            recordToUpdate = dist;
-        }
-
     }
 }
