@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import be.pxl.groep7.models.Category;
@@ -52,32 +53,33 @@ public class CategoryRestController {
 	} 
 	
 	@Secured("ROLE_USER")
-	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
-	public ResponseEntity<String> addCategory(@RequestBody Category category) {
-		System.out.println("POST!");
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json", produces="application/json")
+	public ResponseEntity<Category> addCategory(@RequestBody Category category) {
 		HttpStatus status = HttpStatus.NO_CONTENT;
+		Category newCategory = null;
 			
 		if (!service.doesCategoryExist(category.getId())){
-			service.createOrUpdateCategory(category);
+			category =  service.createOrUpdateCategory(category);
 		} else {
 			status = HttpStatus.CONFLICT;
 		}
 		
-		return new ResponseEntity<>(status);
+		return new ResponseEntity<>(newCategory, status);
 	}
 	
 	@Secured("ROLE_USER")
-	@RequestMapping(method = RequestMethod.PUT, consumes= "application/json")
-	public ResponseEntity<String> editCategory(@RequestBody Category category){
+	@RequestMapping(method = RequestMethod.PUT, consumes= "application/json", produces="application/json")
+	public ResponseEntity<Category> editCategory(@RequestBody Category category){
 		HttpStatus status = HttpStatus.NO_CONTENT;
+		Category newCategory = null;
 		
 		if (!service.doesCategoryExist(category.getId())){
 			status = HttpStatus.CONFLICT;
 		} else {
-			service.createOrUpdateCategory(category);
+			newCategory = service.createOrUpdateCategory(category);
 		}
 		
-		return new ResponseEntity<>(status);
+		return new ResponseEntity<>(newCategory, status);
 	}
 	
 	@Secured("ROLE_USER")

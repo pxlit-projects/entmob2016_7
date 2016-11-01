@@ -25,6 +25,9 @@ import be.pxl.groep7.rest.CategoryRestController;
 import static org.assertj.core.api.Assertions.assertThat;
 import static java.util.Arrays.asList;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -46,6 +49,10 @@ public class CategoryControllerIntegrationTest {
 
 	@Autowired
 	private WebApplicationContext webAppContext;
+	
+	private Category category1;
+	private Category category2;
+	private Category category3;
 
 	@Autowired
 	void setConverters(HttpMessageConverter<?>[] converters){
@@ -67,93 +74,81 @@ public class CategoryControllerIntegrationTest {
 				.apply(SecurityMockMvcConfigurers.springSecurity())
 				.build();
 
+		category1 = new Category();
+		category1.setName("Category 1");
+		category1 = categoryRepository.save(category1);
+
+		category2 = new Category();
+		category2.setName("Category 2");
+		category2 = categoryRepository.save(category2);
+		
+		category3 = new Category();
+		category3.setName("Category 3");
+		category3 = categoryRepository.save(category3);
 	}
 
 	@Test
-	public void postTwoCategoriesAndReturnAsList() throws IOException, Exception {
-		Category c = new Category();
-		c.setName("Category 1");
-		categoryRepository.save(c);
-
-		Category c2 = new Category();
-		c2.setName("Category 2");
-		categoryRepository.save(c2);
-
+	public void getCategoriesAsList() throws IOException, Exception {
 		mockMvc.perform(get(CategoryRestController.BASEURL+"/all")
 				.with(user("user").password("123456")))
 		.andExpect(status().isOk())
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-		.andExpect(content().json(asJson(asList(c, c2))));
+		.andExpect(content().json(asJson(asList(category1, category2, category3))));
 	}
 
 	@Test
-	public void postOneCategoryAndReturnOne() throws IOException, Exception {
-		Category c = new Category();
-		c.setName("Category 1");
-		int id = categoryRepository.save(c).getId();
-
-		mockMvc.perform(get(CategoryRestController.BASEURL+"/getById/" + id)	
+	public void getCategoryById() throws IOException, Exception {
+		mockMvc.perform(get(CategoryRestController.BASEURL+"/getById/" + category1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(content().json(asJson(c)));
+				.andExpect(content().json(asJson(category1)));
 	}
 	
 	@Test
-	public void postOneCategoryEditOneAndReturnEditedCategory() throws IOException, Exception {
-		Category c = new Category();
-		c.setName("Category 1");
-		int id = categoryRepository.save(c).getId();
-		c.setId(id);
-		c.setName("Category 2");
+	public void postCategoryAndTestIfCategoryCouldBeFoundInDB() throws IOException, Exception {
+		Category category4 = new Category();
+		category4.setName("Category 4");
 		
-		categoryRepository.save(c);
+		 mockMvc.perform(post(CategoryRestController.BASEURL)
+				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
+	                .content(asJson(category4))
+	                .contentType(MediaType.APPLICATION_JSON_UTF8))
+	                .andExpect(status().isNoContent());
+		 
+		assertThat(categoryRepository.findOne(category3.getId()+1).getName().equals(category4.getName()));
+	}
+	
+	@Test
+	public void putCategoryAndTestIfEdited() throws IOException, Exception {
+		category2.setName("Nieuwe category");
 		
-		mockMvc.perform(get(CategoryRestController.BASEURL+"/getById/" + id)	
-				.header("host", "localhost:8080")													
+		mockMvc.perform(put(CategoryRestController.BASEURL)	
+				.header("host", "localhost:8080")	
+				.content(asJson(category2))
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
-				.andExpect(status().isOk())
+				.andExpect(status().isNoContent())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(content().json(asJson(c)));
+				.andExpect(content().json(asJson(category2)));
 	}
 	
 	@Test
-	public void postOneCategoryDeleteAndCheckIfNotFound() throws IOException, Exception {
-		Category c = new Category();
-		c.setName("Category 1");
-		int id = categoryRepository.save(c).getId();
-		
-		categoryRepository.delete(c);
-		
-		mockMvc.perform(get(CategoryRestController.BASEURL+"/getById/" + id)	
+	public void deleteCategoryAndTestIfItIsNotFoundInDB() throws IOException, Exception {
+		mockMvc.perform(delete(CategoryRestController.BASEURL+"/" + category1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
-				.andExpect(status().isNotFound());
+				.andExpect(status().isNoContent());
+		
+		assertThat(categoryRepository.findOne(category1.getId()) == null);
 	}
 	
 	@Test
-	public void postThreeCategoriesDeleteOneAndTestIfTwoReturn() throws IOException, Exception {
-		Category c = new Category();
-		c.setName("Category 1");
-		categoryRepository.save(c);
-
-		Category c2 = new Category();
-		c2.setName("Category 2");
-		int id = categoryRepository.save(c2).getId();
-		c2.setId(id);
-		
-		Category c3 = new Category();
-		c3.setName("Category 3");
-		categoryRepository.save(c3);
-		
-		categoryRepository.delete(c2);
-		
-		mockMvc.perform(get(CategoryRestController.BASEURL+"/all")
-				.with(user("user").password("123456")))
-		.andExpect(status().isOk())
-		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-		.andExpect(content().json(asJson(asList(c, c3))));
+	public void testIfGetByIdIsAuthorized() throws IOException, Exception {
+		mockMvc.perform(get(CategoryRestController.BASEURL+"/getById/" + category1.getId())	
+				.header("host", "localhost:8080"))													
+				.andExpect(status().is(401));
 	}
 
 	protected String asJson(Object o) throws IOException {

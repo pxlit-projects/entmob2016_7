@@ -37,6 +37,10 @@ public class CompletedSet {
 		this.user_id = user_id;
 	}
 	
+	public CompletedSet() {
+		
+	}
+	
 	public int getId() {
 		return id;
 	}
