@@ -1,4 +1,4 @@
-﻿using FitSense.Model;
+﻿using Fitsense.Models;
 using System;
 using System.Linq;
 using System.Text;
@@ -8,43 +8,64 @@ using FitSense.DAL;
 
 namespace FitSense.DAL
 {
-    public class SensorRepository<T> : ISensorRepository<T> where T : SensorModel
-    {
-        // voorlopig: 1 model (negeer het generische deel)
-        // het generische verhaal gaat maar werken eenmaal we een rest service hebben
-        // Dan kunnen we /call/classname/actie doen en de service gaat de data zo verwerken
-        // statische lijsten kunnen deze calls niet verwerken
-
-
-        //private DummyData d = new DummyData<Distance>();
-
-        public List<T> records = new List<T>();
-
-        public SensorRepository()
+    public class SensorRepository : ISensorRepository
+    { 
+        public void RemoveCategory(Category record)
         {
-            //distances.Add(DummyData.d);
+            DummyData.categories.Remove(record);
         }
 
-        public List<T> GetAllRecords()
+        public Category GetCategoryDetail(int id)
         {
-            return records;
+            return DummyData.categories.Where(r => r.ID == id).FirstOrDefault();
         }
 
-        public T GetRecordDetail(int id)
+        public void UpdateCategory(Category dist)
         {
-            return records.Where(r => r.ID == id).FirstOrDefault();
+            Category recordToUpdate = DummyData.categories.Where(r => r.ID == dist.ID).FirstOrDefault();
+            recordToUpdate = dist;
         }
 
-        public void UpdateRecord(T sensorModel)
+        public List<Category> GetAllCategories()
         {
-            //nogmaals, werkt vooropig enkel op distance (later bij rest volledig implementeren)
-            T recordToUpdate = records.Where(r => r.ID == sensorModel.ID).FirstOrDefault();
-            recordToUpdate = sensorModel;
+            return DummyData.categories;
         }
 
-        public void DeleteRecord(T record)
+        public List<Exercise> GetExercisesFromCategory(Category category)
         {
-            records.Remove(record);
+
+            if (category != null)
+            {
+                List<Exercise> exercises = DummyData.exercises.Where(ex => ex.CategoryID == category.ID).ToList();
+                foreach (Exercise e in exercises)
+                {
+                    e.Sets = GetSetsFromExercise(e);
+                }
+                return exercises;
+            }
+
+            else
+                return new List<Exercise>();
+        }
+
+        public List<Exercise> GetAllExercises()
+        {
+            return DummyData.exercises;
+        }
+
+        public List<Set> GetSetsFromExercise(Exercise exercise)
+        {
+            List<Set> sets = DummyData.sets.Where(s => s.ExerciseID == exercise.ID).ToList();
+            foreach (Set s in sets)
+            {
+                s.CompletedSets = GetCompletedSetsFromSet(s);
+            }
+            return sets;
+        }
+
+        public List<CompletedSet> GetCompletedSetsFromSet(Set set)
+        {
+            return DummyData.completedSets.Where(s => s.SetID == set.ID).ToList();
         }
     }
 }

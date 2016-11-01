@@ -1,4 +1,4 @@
-﻿using FitSense.Model;
+﻿using Fitsense.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace FitSense.DAL
 {
-    interface ISensorRepository<T> where T : SensorModel
+    interface ISensorRepository
     {
-        void DeleteRecord(T record);
-        //TODO generisch maken
-        List<T> GetAllRecords();
-        T GetRecordDetail(int id);
-        void UpdateRecord(T record);
+        void RemoveCategory(Category record);
+        Category GetCategoryDetail(int id);
+        void UpdateCategory(Category dist);
     }
 }

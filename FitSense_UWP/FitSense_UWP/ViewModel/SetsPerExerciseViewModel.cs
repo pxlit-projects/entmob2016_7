@@ -1,4 +1,4 @@
-﻿using FitSense.Model;
+﻿using Fitsense.Models;
 using FitSense_UWP.Extensions;
 using FitSense_UWP.Messages;
 using FitSense_UWP.Services;

@@ -110,7 +110,6 @@
     <Compile Include="Category.cs" />
     <Compile Include="ChartRecord.cs" />
     <Compile Include="CompletedSet.cs" />
-    <Compile Include="Distance.cs" />
     <Compile Include="Exercise.cs" />
     <Compile Include="ExercisePoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

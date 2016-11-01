@@ -92,7 +92,7 @@
                                 <TextBlock Text="Max Time: " Grid.Row="3" Grid.Column="0" />
                                 <TextBlock Text="{Binding MaxTime}" Grid.Row="3" Grid.Column="1" />
                                 <ListView Grid.Row="4" Grid.ColumnSpan="2"
-                                      Visibility="{Binding ShowCompletedSets, Mode=TwoWay}"
+                                      Visibility="{Binding ShowCompletedSets, Converter={StaticResource boolToVisibilityConverter}, Mode=TwoWay}"
                                 ItemsSource="{Binding CompletedSets}"
                                 SelectedItem="{Binding SelecedCompletedSet, Mode=TwoWay}">
                                     <ListView.ItemTemplate>
