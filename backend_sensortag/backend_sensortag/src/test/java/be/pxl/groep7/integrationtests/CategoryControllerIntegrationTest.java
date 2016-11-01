@@ -141,7 +141,7 @@ public class CategoryControllerIntegrationTest {
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNoContent());
 		
-		assertThat(categoryRepository.findOne(category1.getId()) == null);
+		assertThat(categoryRepository.exists(category1.getId()) == false);
 	}
 	
 	@Test
