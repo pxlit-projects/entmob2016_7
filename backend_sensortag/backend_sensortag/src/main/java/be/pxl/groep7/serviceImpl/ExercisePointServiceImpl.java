@@ -1,11 +1,13 @@
 package be.pxl.groep7.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import be.pxl.groep7.dao.IExercisePointRepository;
 import be.pxl.groep7.models.ExercisePoint;
 import be.pxl.groep7.services.IExercisePointService;
 
+@Service
 public class ExercisePointServiceImpl implements IExercisePointService {
 
 	@Autowired

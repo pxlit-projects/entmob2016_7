@@ -3,6 +3,7 @@ package be.pxl.groep7.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import be.pxl.groep7.services.IExercisePointService;
 
 @RestController
 @RequestMapping("/exercisePoint")
+@Secured("ROLE_USER")
 public class ExercisePointRestController {
 
 	public static final String BASEURL = "/exercisePoint";
@@ -22,7 +24,7 @@ public class ExercisePointRestController {
 	@Autowired
 	private IExercisePointService service;
 
-	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<ExercisePoint> getExerciseById(@PathVariable("id") int id){
 		HttpStatus status = HttpStatus.OK;
 		ExercisePoint point = service.findExercisePointById(id);

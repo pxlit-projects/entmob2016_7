@@ -18,8 +18,11 @@ import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfig
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 
 import be.pxl.groep7.AppConfig;
+import be.pxl.groep7.dao.IExercisePointRepository;
 import be.pxl.groep7.dao.IExerciseRepository;
 import be.pxl.groep7.models.Exercise;
+import be.pxl.groep7.models.ExercisePoint;
+import be.pxl.groep7.rest.ExercisePointRestController;
 import be.pxl.groep7.rest.ExerciseRestController;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -38,21 +41,21 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @SpringBootTest
 @ContextConfiguration(classes = AppConfig.class)
 @WebAppConfiguration
-public class ExerciseControllerIntegrationTest {
+public class ExercisePointControllerIntegrationTest {
 
 	private MockMvc mockMvc;
 
 	private HttpMessageConverter mappingJackson2HttpMessageConverter;
 
 	@Autowired
-	public IExerciseRepository exerciseRepository;
+	public IExercisePointRepository exercisePointRepository;
 
 	@Autowired
 	private WebApplicationContext webAppContext;
 	
-	private Exercise exercise1;
-	private Exercise exercise2;
-	private Exercise exercise3;
+	private ExercisePoint exercisePoint1;
+	private ExercisePoint exercisePoint2;
+	private ExercisePoint exercisePoint3;
 
 	@Autowired
 	void setConverters(HttpMessageConverter<?>[] converters){
@@ -69,116 +72,107 @@ public class ExerciseControllerIntegrationTest {
 
 	@Before
 	public void setUp() throws Exception {
-		exerciseRepository.deleteAll();
+		exercisePointRepository.deleteAll();
 		mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext)
 				.apply(SecurityMockMvcConfigurers.springSecurity())
 				.build();
 
-		exercise1 = new Exercise();
-		exercise1.setCategoryId(1);		
-		exercise1.setDescription("Dit is oefening 1");
-		exercise1.setName("Oefening 1");
-		exercise1 = exerciseRepository.save(exercise1);
+		exercisePoint1 = new ExercisePoint();
+		exercisePoint1.setX(1.14);
+		exercisePoint1.setY(2.04);
+		exercisePoint1.setZ(0.25);
+		exercisePoint1 = exercisePointRepository.save(exercisePoint1);
 
-		exercise2 = new Exercise();
-		exercise2.setCategoryId(2);		
-		exercise2.setDescription("Dit is oefening 2");
-		exercise2.setName("Oefening 2");
-		exercise2 = exerciseRepository.save(exercise2);
+		exercisePoint2 = new ExercisePoint();
+		exercisePoint2.setX(1.78);
+		exercisePoint2.setY(1.04);
+		exercisePoint2.setZ(3.25);
+		exercisePoint2 = exercisePointRepository.save(exercisePoint2);
 		
-		exercise3 = new Exercise();
-		exercise3.setCategoryId(1);		
-		exercise3.setDescription("Dit is oefening 3");
-		exercise3.setName("Oefening 3");
-		exercise3 = exerciseRepository.save(exercise3);
+		exercisePoint3 = new ExercisePoint();
+		exercisePoint3.setX(3.08);
+		exercisePoint3.setY(1.35);
+		exercisePoint3.setZ(2.29);
+		exercisePoint3 = exercisePointRepository.save(exercisePoint3);
 	}
 
 	@Test
-	public void getAllExercisesByCategoryId() throws IOException, Exception {
-		mockMvc.perform(get(ExerciseRestController.BASEURL+"/bycategory/" + 1)
-				.with(user("user").password("123456")))
-		.andExpect(status().isOk())
-		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-		.andExpect(content().json(asJson(asList(exercise1, exercise3))));
-	}
-
-	@Test
-	public void getExerciseById() throws IOException, Exception {
-		mockMvc.perform(get(ExerciseRestController.BASEURL+"/getById/" + exercise1.getId())	
+	public void getExercisePointById() throws IOException, Exception {
+		mockMvc.perform(get(ExercisePointRestController.BASEURL+"/getById/" + exercisePoint1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(content().json(asJson(exercise1)));
+				.andExpect(content().json(asJson(exercisePoint1)));
 	}
 	
 	@Test
-	public void postExerciseAndTestIfExerciseCouldBeFoundInDB() throws IOException, Exception {
-		Exercise exercise4 = new Exercise();
-		exercise4.setCategoryId(2);		
-		exercise4.setDescription("Dit is oefening 4");
-		exercise4.setName("Oefening 4");
+	public void postExercisePointAndTestIfExercisePointCouldBeFoundInDB() throws IOException, Exception {
+		ExercisePoint exercisePoint4 = new ExercisePoint();
+		exercisePoint4.setX(0.54);
+		exercisePoint4.setY(3.18);
+		exercisePoint4.setZ(1.66);
 		
-		 mockMvc.perform(post(ExerciseRestController.BASEURL)
+		 mockMvc.perform(post(ExercisePointRestController.BASEURL)
 				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
-	                .content(asJson(exercise4))
+	                .content(asJson(exercisePoint4))
 	                .contentType(MediaType.APPLICATION_JSON_UTF8))
 	                .andExpect(status().isNoContent());
 		 
-		assertThat(exerciseRepository.findOne(exercise3.getId()+1).getCategoryId() == exercise4.getCategoryId());
-		assertThat(exerciseRepository.findOne(exercise3.getId()+1).getDescription().equals(exercise4.getDescription()));
-		assertThat(exerciseRepository.findOne(exercise3.getId()+1).getName().equals(exercise4.getName()));
+		assertThat(exercisePointRepository.findOne(exercisePoint3.getId()+1).getX() == exercisePoint4.getX());
+		assertThat(exercisePointRepository.findOne(exercisePoint3.getId()+1).getY() == exercisePoint4.getY());
+		assertThat(exercisePointRepository.findOne(exercisePoint3.getId()+1).getZ() == exercisePoint4.getZ());
 	}
 	
 	@Test
-	public void putExerciseAndTestIfEdited() throws IOException, Exception {
-		exercise2.setName("New Name");
+	public void putExercisePointAndTestIfEdited() throws IOException, Exception {
+		exercisePoint2.setX(2.37);
 		
-		mockMvc.perform(put(ExerciseRestController.BASEURL + "/" + exercise2.getId())	
+		mockMvc.perform(put(ExercisePointRestController.BASEURL + "/" + exercisePoint2.getId())	
 				.header("host", "localhost:8080")	
-				.content(asJson(exercise2))
+				.content(asJson(exercisePoint2))
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNoContent())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(content().json(asJson(exercise2)));
+				.andExpect(content().json(asJson(exercisePoint2)));
 	}
 	
 	@Test
-	public void putExerciseWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
-		exercise3.setCategoryId(3);
+	public void putExercisePointWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
+		exercisePoint3.setZ(4.0);
 		
-		mockMvc.perform(put(ExerciseRestController.BASEURL + "/" + exercise3.getId()+1)	
+		mockMvc.perform(put(ExercisePointRestController.BASEURL + "/" + exercisePoint3.getId()+1)	
 				.header("host", "localhost:8080")	
-				.content(asJson(exercise3))
+				.content(asJson(exercisePoint3))
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNotFound());
 	}
 	
 	@Test
-	public void deleteExerciseAndTestIfItIsNotFoundInDB() throws IOException, Exception {
-		mockMvc.perform(delete(ExerciseRestController.BASEURL+"/" + exercise1.getId())	
+	public void deleteExercisePointAndTestIfItIsNotFoundInDB() throws IOException, Exception {
+		mockMvc.perform(delete(ExercisePointRestController.BASEURL+"/" + exercisePoint1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNoContent());
 		
-		assertThat(exerciseRepository.exists(exercise1.getId()) == false);
+		assertThat(exercisePointRepository.exists(exercisePoint1.getId()) == false);
 	}
 	
 	@Test
-	public void deleteExerciseThatDoesNotExistsAndTestIfNotFoundIsReturned() throws Exception {
-		mockMvc.perform(delete(ExerciseRestController.BASEURL+"/" + exercise3.getId()+1)	
+	public void deleteExercisePointThatDoesNotExistsAndTestIfNotFoundIsReturned() throws Exception {
+		mockMvc.perform(delete(ExercisePointRestController.BASEURL+"/" + exercisePoint3.getId()+1)	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNotFound());
 		
-		assertThat(exerciseRepository.exists(exercise3.getId()) == false);
+		assertThat(exercisePointRepository.exists(exercisePoint3.getId()) == false);
 	}
 	
 	@Test
 	public void testIfGetByIdIsAuthorized() throws IOException, Exception {
-		mockMvc.perform(get(ExerciseRestController.BASEURL+"/getById/" + exercise1.getId())	
+		mockMvc.perform(get(ExercisePointRestController.BASEURL+"/getById/" + exercisePoint1.getId())	
 				.header("host", "localhost:8080"))													
 				.andExpect(status().is(401));
 	}
@@ -188,4 +182,5 @@ public class ExerciseControllerIntegrationTest {
 		this.mappingJackson2HttpMessageConverter.write(o, MediaType.APPLICATION_JSON, mockHttpOutputMessage);
 		return mockHttpOutputMessage.getBodyAsString();
 	}
+	
 }

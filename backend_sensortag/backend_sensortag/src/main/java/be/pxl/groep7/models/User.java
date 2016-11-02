@@ -30,16 +30,6 @@ public class User {
 	@Column(name="weight")
 	private int weight;
 	
-	@Column(name="role")
-	@Value("ROLE_USER")
-	@JsonIgnore
-	private String role;
-	
-	@Column(name="enabled")
-	@Value("1")
-	private byte enabled;
-	
-	
 	public User(int id, String name, String password, int height, int weight) {
 		this.id = id;
 		this.name = name;
@@ -87,13 +77,4 @@ public class User {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
-	
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
 }
