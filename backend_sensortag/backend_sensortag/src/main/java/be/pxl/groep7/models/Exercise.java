@@ -2,6 +2,8 @@ package be.pxl.groep7.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -9,11 +11,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name="exercise")
 @NamedQuery(name="Exercise.getExercisesByCategoryId"
-				, query="select ex from Exercise ex where ex.category_id=?1")
+				, query="select ex from Exercise ex where ex.categoryId=?1")
 public class Exercise {
 	
 	@Id
 	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	int id;
 	
 	@Column(name="name")

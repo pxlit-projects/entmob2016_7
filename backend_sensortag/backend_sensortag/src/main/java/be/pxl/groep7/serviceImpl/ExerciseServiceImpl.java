@@ -3,11 +3,13 @@ package be.pxl.groep7.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import be.pxl.groep7.dao.IExerciseRepository;
 import be.pxl.groep7.models.Exercise;
 import be.pxl.groep7.services.IExerciseService;
 
+@Service
 public class ExerciseServiceImpl implements IExerciseService {
 
 	@Autowired

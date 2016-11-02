@@ -19,8 +19,11 @@ import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequ
 
 import be.pxl.groep7.AppConfig;
 import be.pxl.groep7.dao.ICompletedSetRepository;
+import be.pxl.groep7.dao.IExerciseRepository;
 import be.pxl.groep7.models.CompletedSet;
+import be.pxl.groep7.models.Exercise;
 import be.pxl.groep7.rest.CompletedSetRestController;
+import be.pxl.groep7.rest.ExerciseRestController;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static java.util.Arrays.asList;
@@ -38,22 +41,21 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @SpringBootTest
 @ContextConfiguration(classes = AppConfig.class)
 @WebAppConfiguration
-public class CompletedSetControllerIntegrationTest {
+public class ExerciseControllerIntegrationTest {
 
 	private MockMvc mockMvc;
 
 	private HttpMessageConverter mappingJackson2HttpMessageConverter;
 
 	@Autowired
-	public ICompletedSetRepository completedSetRepository;
+	public IExerciseRepository exerciseRepository;
 
 	@Autowired
 	private WebApplicationContext webAppContext;
 	
-	private CompletedSet completedSet1;
-	private CompletedSet completedSet2;
-	private CompletedSet completedSet3;
-	private CompletedSet completedSet4;
+	private Exercise exercise1;
+	private Exercise exercise2;
+	private Exercise exercise3;
 
 	@Autowired
 	void setConverters(HttpMessageConverter<?>[] converters){
@@ -70,128 +72,116 @@ public class CompletedSetControllerIntegrationTest {
 
 	@Before
 	public void setUp() throws Exception {
-		completedSetRepository.deleteAll();
+		exerciseRepository.deleteAll();
 		mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext)
 				.apply(SecurityMockMvcConfigurers.springSecurity())
 				.build();
 
-		completedSet1 = new CompletedSet();
-		completedSet1.setDuration(10);				//duration in what? miliseconds, seconds, minutes, hours? -> minutes?
-		completedSet1.setExerciseId(1);
-		completedSet1.setTime(1500L); 				//difference with duration?
-		completedSet1.setUser_id(1);
-		completedSet1 = completedSetRepository.save(completedSet1);
+		exercise1 = new Exercise();
+		exercise1.setCategoryId(1);		
+		exercise1.setDescription("Dit is oefening 1");
+		exercise1.setName("Oefening 1");
+		exercise1 = exerciseRepository.save(exercise1);
 
-		completedSet2 = new CompletedSet();
-		completedSet2.setDuration(10);				//duration in what? miliseconds, seconds, minutes, hours? -> minutes?
-		completedSet2.setExerciseId(2);
-		completedSet2.setTime(1500L); 				//difference with duration?
-		completedSet2.setUser_id(1);
-		completedSet2 = completedSetRepository.save(completedSet2);
+		exercise2 = new Exercise();
+		exercise2.setCategoryId(2);		
+		exercise2.setDescription("Dit is oefening 2");
+		exercise2.setName("Oefening 2");
+		exercise2 = exerciseRepository.save(exercise2);
 		
-		completedSet3 = new CompletedSet();
-		completedSet3.setDuration(10);				//duration in what? miliseconds, seconds, minutes, hours? -> minutes?
-		completedSet3.setExerciseId(1);
-		completedSet3.setTime(1500L); 				//difference with duration?
-		completedSet3.setUser_id(2);
-		completedSet3 = completedSetRepository.save(completedSet3);
-		
-		completedSet4 = new CompletedSet();
-		completedSet4.setDuration(10);				//duration in what? miliseconds, seconds, minutes, hours? -> minutes?
-		completedSet4.setExerciseId(2);
-		completedSet4.setTime(1500L); 				//difference with duration?
-		completedSet4.setUser_id(2);
-		completedSet4 = completedSetRepository.save(completedSet4);
+		exercise3 = new Exercise();
+		exercise3.setCategoryId(1);		
+		exercise3.setDescription("Dit is oefening 3");
+		exercise3.setName("Oefening 3");
+		exercise3 = exerciseRepository.save(exercise3);
 	}
 
 	@Test
-	public void getAllCompletedSetsByExerciseId() throws IOException, Exception {
-		mockMvc.perform(get(CompletedSetRestController.BASEURL+"/sets/" + 1)
+	public void getAllExercisesByCategoryId() throws IOException, Exception {
+		mockMvc.perform(get(ExerciseRestController.BASEURL+"/bycategory/" + 1)
 				.with(user("user").password("123456")))
 		.andExpect(status().isOk())
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-		.andExpect(content().json(asJson(asList(completedSet1, completedSet3))));
+		.andExpect(content().json(asJson(asList(exercise1, exercise3))));
 	}
 
 	@Test
-	public void getCompletedSetById() throws IOException, Exception {
-		mockMvc.perform(get(CompletedSetRestController.BASEURL+"/getById/" + completedSet1.getId())	
+	public void getExerciseById() throws IOException, Exception {
+		mockMvc.perform(get(ExerciseRestController.BASEURL+"/getById/" + exercise1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(content().json(asJson(completedSet1)));
+				.andExpect(content().json(asJson(exercise1)));
 	}
 	
 	@Test
-	public void postCompletedSetAndTestIfCompletedSetCouldBeFoundInDB() throws IOException, Exception {
-		CompletedSet completedSet5 = new CompletedSet();
-		completedSet5.setDuration(20);
-		completedSet5.setExerciseId(2);
-		completedSet5.setTime(50L);
-		completedSet5.setUser_id(1);
+	public void postExerciseAndTestIfExerciseCouldBeFoundInDB() throws IOException, Exception {
+		Exercise exercise4 = new Exercise();
+		exercise4.setCategoryId(2);		
+		exercise4.setDescription("Dit is oefening 4");
+		exercise4.setName("Oefening 4");
 		
-		 mockMvc.perform(post(CompletedSetRestController.BASEURL)
+		 mockMvc.perform(post(ExerciseRestController.BASEURL)
 				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
-	                .content(asJson(completedSet5))
+	                .content(asJson(exercise4))
 	                .contentType(MediaType.APPLICATION_JSON_UTF8))
 	                .andExpect(status().isNoContent());
 		 
-		assertThat(completedSetRepository.findOne(completedSet4.getId()+1).getDuration() == completedSet5.getDuration());
-		assertThat(completedSetRepository.findOne(completedSet4.getId()+1).getExerciseId() == completedSet5.getExerciseId());
-		assertThat(completedSetRepository.findOne(completedSet4.getId()+1).getTime() == completedSet5.getTime());
-		assertThat(completedSetRepository.findOne(completedSet4.getId()+1).getUserId() == completedSet5.getUserId());
+		assertThat(exerciseRepository.findOne(exercise3.getId()+1).getCategoryId() == exercise4.getCategoryId());
+		assertThat(exerciseRepository.findOne(exercise3.getId()+1).getDescription().equals(exercise4.getDescription()));
+		assertThat(exerciseRepository.findOne(exercise3.getId()+1).getName().equals(exercise4.getName()));
 	}
 	
 	@Test
-	public void putCompletedSetAndTestIfEdited() throws IOException, Exception {
-		completedSet2.setDuration(78);
+	public void putExerciseAndTestIfEdited() throws IOException, Exception {
+		exercise2.setName("New Name");
 		
-		mockMvc.perform(put(CompletedSetRestController.BASEURL + "/" + completedSet2.getId())	
+		mockMvc.perform(put(ExerciseRestController.BASEURL + "/" + exercise2.getId())	
 				.header("host", "localhost:8080")	
-				.content(asJson(completedSet2))
+				.content(asJson(exercise2))
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNoContent())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(content().json(asJson(completedSet2)));
+				.andExpect(content().json(asJson(exercise2)));
 	}
 	
 	@Test
-	public void putCompletedSetWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
-		completedSet3.setDuration(55);
+	public void putExerciseWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
+		exercise3.setCategoryId(3);
 		
-		mockMvc.perform(put(CompletedSetRestController.BASEURL + "/" + completedSet3.getId()+1)	
+		mockMvc.perform(put(ExerciseRestController.BASEURL + "/" + exercise3.getId()+1)	
 				.header("host", "localhost:8080")	
-				.content(asJson(completedSet3))
+				.content(asJson(exercise3))
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNotFound());
 	}
 	
 	@Test
-	public void deleteCompletedSetAndTestIfItIsNotFoundInDB() throws IOException, Exception {
-		mockMvc.perform(delete(CompletedSetRestController.BASEURL+"/" + completedSet1.getId())	
+	public void deleteExerciseAndTestIfItIsNotFoundInDB() throws IOException, Exception {
+		mockMvc.perform(delete(ExerciseRestController.BASEURL+"/" + exercise1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNoContent());
 		
-		assertThat(completedSetRepository.exists(completedSet1.getId()) == false);
+		assertThat(exerciseRepository.exists(exercise1.getId()) == false);
 	}
 	
 	@Test
-	public void deleteCompletedSetThatDoesNotExistsAndTestIfNotFoundIsReturned() throws Exception {
-		mockMvc.perform(delete(CompletedSetRestController.BASEURL+"/" + completedSet3.getId()+1)	
+	public void deleteExerciseThatDoesNotExistsAndTestIfNotFoundIsReturned() throws Exception {
+		mockMvc.perform(delete(ExerciseRestController.BASEURL+"/" + exercise3.getId()+1)	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNotFound());
 		
-		assertThat(completedSetRepository.exists(completedSet3.getId()) == false);
+		assertThat(exerciseRepository.exists(exercise3.getId()) == false);
 	}
 	
 	@Test
 	public void testIfGetByIdIsAuthorized() throws IOException, Exception {
-		mockMvc.perform(get(CompletedSetRestController.BASEURL+"/getById/" + completedSet1.getId())	
+		mockMvc.perform(get(ExerciseRestController.BASEURL+"/getById/" + exercise1.getId())	
 				.header("host", "localhost:8080"))													
 				.andExpect(status().is(401));
 	}
