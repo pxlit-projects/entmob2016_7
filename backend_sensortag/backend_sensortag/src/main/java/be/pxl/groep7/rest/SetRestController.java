@@ -15,28 +15,30 @@ import be.pxl.groep7.dao.IExerciseRepository;
 import be.pxl.groep7.dao.ISetRepository;
 import be.pxl.groep7.models.Exercise;
 import be.pxl.groep7.models.Set;
+import be.pxl.groep7.services.ISetService;
 
 @RestController
 @RequestMapping("/set")
 public class SetRestController {
 
 	@Autowired
-	private ISetRepository dao;
+	private ISetService service;
 	
-	@RequestMapping(value="/setbyexercise/{id}", method=RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<Set>> getSetByExerciseId(@PathVariable("id") int exerciseId){
+	@RequestMapping(value="/setbyexercise/{exerciseId}", method=RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<Set>> getSetByExerciseId(@PathVariable("exerciseId") int exerciseId){
 		HttpStatus status = HttpStatus.OK;
-		List<Set> setList = dao.getSetByExerciseId(exerciseId);
+		List<Set> setList = service.getAllSetsByExerciseId(exerciseId);
+		
 		if(setList == null){
 			status = HttpStatus.NOT_FOUND;
 		}
 		return new ResponseEntity<>(setList, status);
 	}
 
-	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Set> getSetById(@PathVariable("id") int id) {
 		HttpStatus status = HttpStatus.OK;
-		Set set = dao.findOne(id);
+		Set set = service.findSetById(id);
 		
 		if (set == null) {
 			status = HttpStatus.NOT_FOUND;
@@ -50,8 +52,8 @@ public class SetRestController {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		Set newSet = null;
 		
-		if (!dao.exists(set.getId())){
-			newSet = dao.save(set);
+		if (!service.doesSetExist(set.getId())){
+			newSet = service.createOrUpdateSet(set);
 		} else {
 			status = HttpStatus.CONFLICT;
 		}
@@ -64,8 +66,8 @@ public class SetRestController {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		Set newSet = null;
 		
-		if (dao.exists(id)){
-			newSet = dao.save(set);
+		if (service.doesSetExist(id)){
+			newSet = service.createOrUpdateSet(set);
 		} else {
 			status = HttpStatus.NOT_FOUND;
 		}
@@ -77,8 +79,8 @@ public class SetRestController {
 	public ResponseEntity<String> deleteSet(@PathVariable int id) {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
-		if (dao.exists(id)){
-			dao.delete(id);
+		if (service.doesSetExist(id)){
+			service.deleteSetById(id);
 		} else {
 			status = HttpStatus.NOT_FOUND;
 		}

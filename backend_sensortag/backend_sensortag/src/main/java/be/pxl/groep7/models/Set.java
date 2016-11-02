@@ -11,8 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Entity
 @Table(name="set_table")								// why set_table? "set" is a reserved keyword for mysql
-@NamedQuery(name="Set.getSetByExerciseId" 
-					, query="select s from Set s where s.exercise_id=?1")
+@NamedQuery(name="Set.getSetsByExerciseId" 
+					, query="select s from Set s where s.exerciseId=?1")
 public class Set {
 	
 	@Id
@@ -23,7 +23,7 @@ public class Set {
 	int repeats;
 	
 	@Column(name="exercise_id")
-	int exercise_id;
+	int exerciseId;
 	
 	@Column(name="points")
 	int points;
@@ -35,10 +35,10 @@ public class Set {
 		
 	}
 	
-	public Set(int id, int repeats, int exercise_id, int points, int maxTime) {
+	public Set(int id, int repeats, int exerciseId, int points, int maxTime) {
 		this.id = id;
 		this.repeats = repeats;
-		this.exercise_id = exercise_id;
+		this.exerciseId = exerciseId;
 		this.points = points;
 		this.maxTime = maxTime;
 	}
@@ -59,12 +59,12 @@ public class Set {
 		this.repeats = repeats;
 	}
 	
-	public int getExercise_id() {
-		return exercise_id;
+	public int getExerciseId() {
+		return exerciseId;
 	}
 	
-	public void setExercise_id(int exercise_id) {
-		this.exercise_id = exercise_id;
+	public void setExercise_id(int exerciseId) {
+		this.exerciseId = exerciseId;
 	}
 	
 	public int getPoints() {
