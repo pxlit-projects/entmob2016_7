@@ -11,18 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import be.pxl.groep7.dao.IExercisePointRepository;
 import be.pxl.groep7.models.ExercisePoint;
+import be.pxl.groep7.services.IExercisePointService;
 
 @RestController
 @RequestMapping("/exercisePoint")
 public class ExercisePointRestController {
 
+	public static final String BASEURL = "/exercisePoint";
+	
 	@Autowired
-	private IExercisePointRepository dao;
+	private IExercisePointService service;
 
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<ExercisePoint> getExerciseById(@PathVariable("id") int id){
 		HttpStatus status = HttpStatus.OK;
-		ExercisePoint point = dao.findOne(id);
+		ExercisePoint point = service.findExercisePointById(id);
 		
 		if (point == null){
 			status = HttpStatus.NOT_FOUND;
@@ -31,13 +34,13 @@ public class ExercisePointRestController {
 		return new ResponseEntity<>(point, status);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json", produces = "application/json")
 	public ResponseEntity<ExercisePoint> addExercisePoint(@RequestBody ExercisePoint exercisePoint){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		ExercisePoint newExercisePoint = null;
 		
-		if (!dao.exists(exercisePoint.getId())){
-			newExercisePoint = dao.save(exercisePoint);
+		if (!service.doesExercisePointExist(exercisePoint.getId())){
+			newExercisePoint = service.createOrUpdateExercisePoint(exercisePoint);
 		} else {
 			status = HttpStatus.CONFLICT;
 		}
@@ -50,8 +53,8 @@ public class ExercisePointRestController {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		ExercisePoint newExercisePoint = null;
 		
-		if (dao.exists(id)){
-			newExercisePoint = dao.save(exercisePoint);
+		if (service.doesExercisePointExist(id)){
+			newExercisePoint = service.createOrUpdateExercisePoint(exercisePoint);
 		} else {
 			status = HttpStatus.NOT_FOUND;
 		}
@@ -63,8 +66,8 @@ public class ExercisePointRestController {
 	public ResponseEntity<String> deleteExercisePoint(@PathVariable int id) {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
-		if (dao.exists(id)){
-			dao.delete(id);
+		if (service.doesExercisePointExist(id)){
+			service.deleteExercisePointById(id);
 		} else {
 			status = HttpStatus.NOT_FOUND;
 		}
