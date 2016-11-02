@@ -3,6 +3,8 @@ package be.pxl.groep7.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -17,6 +19,7 @@ public class Set {
 	
 	@Id
 	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	int id;
 	
 	@Column(name="repeats")
@@ -63,7 +66,7 @@ public class Set {
 		return exerciseId;
 	}
 	
-	public void setExercise_id(int exerciseId) {
+	public void setExerciseId(int exerciseId) {
 		this.exerciseId = exerciseId;
 	}
 	

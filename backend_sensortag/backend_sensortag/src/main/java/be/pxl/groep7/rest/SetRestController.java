@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,10 @@ import be.pxl.groep7.services.ISetService;
 
 @RestController
 @RequestMapping("/set")
+@Secured("ROLE_USER")
 public class SetRestController {
+	
+	public static final String BASEURL = "/set";
 
 	@Autowired
 	private ISetService service;
