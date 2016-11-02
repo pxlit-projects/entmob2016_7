@@ -11,18 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import be.pxl.groep7.dao.IUserRepository;
 import be.pxl.groep7.models.User;
+import be.pxl.groep7.services.IUserService;
 
 @RestController
 @RequestMapping("/user")
 public class UserRestController {
 	
 	@Autowired
-	private IUserRepository dao;
+	private IUserService service;
 
 	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
 		HttpStatus status = HttpStatus.OK;
-		User user = dao.findOne(id);
+		User user = service.findUserById(id);
 		
 		if (user == null){
 			status = HttpStatus.NOT_FOUND;
@@ -36,8 +37,8 @@ public class UserRestController {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		User newUser = null;
 		
-		if (!dao.exists(user.getId())){
-			newUser = dao.save(user);
+		if (!service.doesUserExist(user.getId())){
+			newUser = service.createOrUpdateUser(user);
 		} else {
 			status = HttpStatus.CONFLICT;
 		}
@@ -50,8 +51,8 @@ public class UserRestController {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		User newUser = null;
 		
-		if (dao.exists(user.getId())){
-			newUser = dao.save(user);
+		if (service.doesUserExist(user.getId())){
+			newUser = service.createOrUpdateUser(user);
 		} else {
 			status = HttpStatus.NOT_FOUND;
 		}
@@ -63,8 +64,8 @@ public class UserRestController {
 	public ResponseEntity<String> deleteUser(@PathVariable int id) {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
-		if (dao.exists(id)){
-			dao.delete(id);
+		if (service.doesUserExist(id)){
+			service.deleteUserById(id);
 		} else {
 			status = HttpStatus.NOT_FOUND;
 		}

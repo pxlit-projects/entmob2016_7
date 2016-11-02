@@ -7,12 +7,8 @@ import be.pxl.groep7.models.User;
 @RepositoryDefinition(domainClass=User.class, idClass=Integer.class)
 public interface IUserRepository {
 
-	User findOne(Integer id);
+	User findOne(int id);
     User save(User user);
-    boolean exists(Integer id);
-    void delete(Integer id);
-	/*public User getUser(int id);
-	public void addUser(User user);
-	public void updateUser(User user);
-	public void deleteUser(User user);*/
+    boolean exists(int id);
+    void delete(int id);
 }
