@@ -36,7 +36,7 @@ public class ExerciseServiceImpl implements IExerciseService {
 
 	@Override
 	public List<Exercise> getAllExercisesByCategoryId(int categoryId) {
-		return rep.getExerciseByCategoryId(categoryId);
+		return rep.getExercisesByCategoryId(categoryId);
 	}
 
 }
