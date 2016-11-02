@@ -25,7 +25,7 @@ public class ExerciseRestController {
 	@RequestMapping(value="/bycategory/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<Exercise>> getExerciseByCategoryId(@PathVariable("id") int categoryId){
 		HttpStatus status = HttpStatus.OK;
-		List<Exercise> exerciseList = dao.getExerciseByCategoryId(categoryId);
+		List<Exercise> exerciseList = dao.getExercisesByCategoryId(categoryId);
 		if(exerciseList == null){
 			status = HttpStatus.NOT_FOUND;
 		}
