@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "efConsole", "efConsole\efCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitsense.Models", "Fitsense.Models\Fitsense.Models.csproj", "{0ED13787-A93C-4AD7-8139-8ACCED490DC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitSenseTest", "FitSenseTest\FitSenseTest.csproj", "{EFC98177-DAAD-4A84-9E72-04214E09DDB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{573A13F8-420A-4731-9CE5-863908B7E1BE}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{573A13F8-420A-4731-9CE5-863908B7E1BE}.Debug|Any CPU.Build.0 = Debug|x86
+		{573A13F8-420A-4731-9CE5-863908B7E1BE}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{573A13F8-420A-4731-9CE5-863908B7E1BE}.Debug|ARM.ActiveCfg = Debug|ARM
 		{573A13F8-420A-4731-9CE5-863908B7E1BE}.Debug|ARM.Build.0 = Debug|ARM
 		{573A13F8-420A-4731-9CE5-863908B7E1BE}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -91,6 +95,28 @@ Global
 		{0ED13787-A93C-4AD7-8139-8ACCED490DC5}.Release|x64.Build.0 = Release|Any CPU
 		{0ED13787-A93C-4AD7-8139-8ACCED490DC5}.Release|x86.ActiveCfg = Release|Any CPU
 		{0ED13787-A93C-4AD7-8139-8ACCED490DC5}.Release|x86.Build.0 = Release|Any CPU
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Debug|Any CPU.Build.0 = Debug|x86
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Debug|Any CPU.Deploy.0 = Debug|x86
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Debug|ARM.ActiveCfg = Debug|ARM
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Debug|ARM.Build.0 = Debug|ARM
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Debug|ARM.Deploy.0 = Debug|ARM
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Debug|x64.ActiveCfg = Debug|x64
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Debug|x64.Build.0 = Debug|x64
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Debug|x64.Deploy.0 = Debug|x64
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Debug|x86.ActiveCfg = Debug|x86
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Debug|x86.Build.0 = Debug|x86
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Debug|x86.Deploy.0 = Debug|x86
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Release|Any CPU.ActiveCfg = Release|x86
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Release|ARM.ActiveCfg = Release|ARM
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Release|ARM.Build.0 = Release|ARM
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Release|ARM.Deploy.0 = Release|ARM
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Release|x64.ActiveCfg = Release|x64
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Release|x64.Build.0 = Release|x64
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Release|x64.Deploy.0 = Release|x64
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Release|x86.ActiveCfg = Release|x86
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Release|x86.Build.0 = Release|x86
+		{EFC98177-DAAD-4A84-9E72-04214E09DDB0}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

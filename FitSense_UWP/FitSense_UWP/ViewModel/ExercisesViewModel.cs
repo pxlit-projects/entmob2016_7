@@ -119,7 +119,7 @@ namespace FitSense_UWP.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
 
-        public ExercisesViewModel(INavigationService navigationService, IFitDataService dataService)
+        public ExercisesViewModel(IFitDataService dataService, INavigationService navigationService)
         {
             this.dataService = dataService;
             this.navigationService = navigationService;

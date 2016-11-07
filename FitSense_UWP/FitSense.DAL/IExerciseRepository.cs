@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace FitSense.DAL
 {
-    interface ISensorRepository
+    public interface IExerciseRepository
     {
-        void RemoveCategory(Category record);
-        Category GetCategoryDetail(int id);
-        void UpdateCategory(Category dist);
+        List<Exercise> GetExercisesFromCategory(Category category);
     }
 }
