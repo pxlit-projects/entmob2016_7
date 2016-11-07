@@ -11,27 +11,36 @@ namespace FitSense_UWP.Services
 {
     class FitDataService : IFitDataService
     {
-        SensorRepository repository;
+        ICategoryRepository categoryRepository;
+        IExerciseRepository exerciseRepository;
+        ISetRepository setRepository;
+        ICompletedSetRepository completedSetRepository;
 
-        public FitDataService(SensorRepository repository)
+        public FitDataService(ICategoryRepository categoryRepository, 
+            IExerciseRepository exerciseRepository, 
+            ISetRepository setRepository, 
+            ICompletedSetRepository completedSetRepository)
         {
-            this.repository = repository; 
+            this.categoryRepository = categoryRepository;
+            this.exerciseRepository = exerciseRepository;
+            this.setRepository = setRepository;
+            this.completedSetRepository = completedSetRepository;
         }
 
         public List<Category> GetAllCategories()
         {
-            return repository.GetAllCategories();
+            return categoryRepository.GetCategories();
         }
 
         public List<Exercise> GetExercisesFromCategory(Category category)
         {
 
-            return repository.GetExercisesFromCategory(category);
+            return exerciseRepository.GetExercisesFromCategory(category);
         }
 
         public List<Set> GetSetsFromExercise(Exercise exercise)
         {
-            return repository.GetSetsFromExercise(exercise);
+            return setRepository.GetSetsFromExercise(exercise);
         }
 
         public Set ToggleSelectedSetVisibility(Set set)
@@ -42,7 +51,7 @@ namespace FitSense_UWP.Services
 
         public List<CompletedSet> GetCompletedSetsFromSet(Set set)
         {
-            return repository.GetCompletedSetsFromSet(set);
+            return completedSetRepository.GetCompletedSetsFromSet(set);
         }
     }
 }
