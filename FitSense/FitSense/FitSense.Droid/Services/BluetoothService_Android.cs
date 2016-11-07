@@ -11,7 +11,10 @@ using Android.Views;
 using Android.Widget;
 using FitSense.Dependencies;
 using Robotics.Mobile.Core.Bluetooth.LE;
+using FitSense.Droid.Services;
+using Xamarin.Forms;
 
+[assembly: Dependency(typeof(BluetoothService_Android))]
 namespace FitSense.Droid.Services
 {
     public class BluetoothService_Android : IBluetoothService

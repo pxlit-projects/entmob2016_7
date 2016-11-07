@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<NavigationPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 x:Class="FitSense.Views.SensorConnectView"
                 xmlns:convertors="clr-namespace:FitSense.Converters"
+                xmlns:helpers="clr-namespace:FitSense.Helpers"
                 BindingContext="{Binding Source={StaticResource Locator}, Path=Connect}">
     <NavigationPage.Resources>
         <ResourceDictionary>
@@ -12,10 +13,26 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        
-        
+
+        <ListView ItemsSource="{Binding Devices}">
+            <ListView.Behaviors>
+                <helpers:ItemSelectedBehavior Command="{Binding ItemSelectedCommand}" />
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
+                            <StackLayout Padding="5,0,0,0" VerticalOptions="StartAndExpand" Orientation="Vertical">
+                                <Label Text="{Binding Name, Converter={StaticResource nameConverter}}" YAlign="Center" Font="Medium" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="{Binding ScanButtonText}" Command="{Binding ScanCommand}" Grid.Row="1"/>
     </Grid>
-</NavigationPage>
+</ContentPage>

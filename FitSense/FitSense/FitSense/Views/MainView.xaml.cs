@@ -1,4 +1,5 @@
-﻿using FitSense.Dependencies;
+﻿using FitSense.Constants;
+using FitSense.Dependencies;
 using FitSense.ViewModels;
 using Microsoft.Practices.ServiceLocation;
 using System;

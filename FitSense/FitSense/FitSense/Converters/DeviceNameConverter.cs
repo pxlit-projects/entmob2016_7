@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robotics.Mobile.Core.Bluetooth.LE;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace FitSense.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            String name = (String)value;
+            string name = (string)value;
             return String.IsNullOrWhiteSpace(name) ? "<un-named device>" : name;
         }
 

@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace FitSense.Views
 {
-    public partial class SensorConnectView : NavigationPage
+    public partial class SensorConnectView : ContentPage
     {
         //private SensorConnectViewModel viewModel;
 
@@ -18,6 +18,7 @@ namespace FitSense.Views
         {
             InitializeComponent();
             //viewModel = ServiceLocator.Current.GetInstance<SensorConnectViewModel>();
+            
         }
     }
 }

@@ -13,6 +13,7 @@
 */
 
 using FitSense.Dependencies;
+using FitSense.Models;
 using FitSense.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
@@ -52,6 +53,7 @@ namespace FitSense.ViewModels
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<SensorConnectViewModel>();
+            SimpleIoc.Default.Register<SensorDevice>();
         }
 
         public MainViewModel Main
