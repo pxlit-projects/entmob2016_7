@@ -1,8 +1,11 @@
 package be.pxl.groep7.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,18 +16,33 @@ import be.pxl.groep7.dao.IExerciseRepository;
 import be.pxl.groep7.dao.ISetRepository;
 import be.pxl.groep7.models.Exercise;
 import be.pxl.groep7.models.Set;
+import be.pxl.groep7.services.ISetService;
 
 @RestController
 @RequestMapping("/set")
+@Secured("ROLE_USER")
 public class SetRestController {
+	
+	public static final String BASEURL = "/set";
 
 	@Autowired
-	private ISetRepository dao;
+	private ISetService service;
+	
+	@RequestMapping(value="/setbyexercise/{exerciseId}", method=RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<Set>> getSetByExerciseId(@PathVariable("exerciseId") int exerciseId){
+		HttpStatus status = HttpStatus.OK;
+		List<Set> setList = service.getAllSetsByExerciseId(exerciseId);
+		
+		if(setList == null){
+			status = HttpStatus.NOT_FOUND;
+		}
+		return new ResponseEntity<>(setList, status);
+	}
 
-	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Set> getSetById(@PathVariable("id") int id) {
 		HttpStatus status = HttpStatus.OK;
-		Set set = dao.findOne(id);
+		Set set = service.findSetById(id);
 		
 		if (set == null) {
 			status = HttpStatus.NOT_FOUND;
@@ -33,40 +51,42 @@ public class SetRestController {
 		return new ResponseEntity<Set>(set, status);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
-	public ResponseEntity<String> addSet(@RequestBody Set set){
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json", produces= "application/json")
+	public ResponseEntity<Set> addSet(@RequestBody Set set){
 		HttpStatus status = HttpStatus.NO_CONTENT;
+		Set newSet = null;
 		
-		if (!dao.exists(set.getId())){
-			dao.save(set);
+		if (!service.doesSetExist(set.getId())){
+			newSet = service.createOrUpdateSet(set);
 		} else {
 			status = HttpStatus.CONFLICT;
 		}
 		
-		return new ResponseEntity<>(status);	
+		return new ResponseEntity<>(newSet, status);	
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json")
-	public ResponseEntity<String> editSet(@PathVariable("id") int id, @RequestBody Set set){
+	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json", produces= "application/json")
+	public ResponseEntity<Set> editSet(@PathVariable("id") int id, @RequestBody Set set){
 		HttpStatus status = HttpStatus.NO_CONTENT;
+		Set newSet = null;
 		
-		if (dao.exists(set.getId())){
-			dao.save(set);
+		if (service.doesSetExist(id)){
+			newSet = service.createOrUpdateSet(set);
 		} else {
-			status = HttpStatus.CONFLICT;
+			status = HttpStatus.NOT_FOUND;
 		}
 		
-		return new ResponseEntity<>(status);	
+		return new ResponseEntity<>(newSet, status);	
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteSet(@PathVariable int id) {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		
-		if (dao.exists(id)){
-			dao.delete(id);
+		if (service.doesSetExist(id)){
+			service.deleteSetById(id);
 		} else {
-			status = HttpStatus.CONFLICT;
+			status = HttpStatus.NOT_FOUND;
 		}
 		
 		return new ResponseEntity<>(status);	

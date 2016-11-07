@@ -1,5 +1,5 @@
 ﻿using FitSense.DAL;
-using FitSense.Model;
+using Fitsense.Models;
 using FitSense_UWP.Extensions;
 using FitSense_UWP.Messages;
 using FitSense_UWP.Services;
@@ -119,7 +119,7 @@ namespace FitSense_UWP.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
 
-        public ExercisesViewModel(INavigationService navigationService, IFitDataService dataService)
+        public ExercisesViewModel(IFitDataService dataService, INavigationService navigationService)
         {
             this.dataService = dataService;
             this.navigationService = navigationService;

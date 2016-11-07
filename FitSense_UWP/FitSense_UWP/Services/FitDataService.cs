@@ -1,5 +1,5 @@
 ﻿using FitSense.DAL;
-using FitSense.Model;
+using Fitsense.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,84 +11,41 @@ namespace FitSense_UWP.Services
 {
     class FitDataService : IFitDataService
     {
-        SensorRepository<Category> categoryRepository;
-        SensorRepository<Exercise> exerciseRepository;
+        ICategoryRepository categoryRepository;
+        IExerciseRepository exerciseRepository;
+        ISetRepository setRepository;
+        ICompletedSetRepository completedSetRepository;
 
-        public FitDataService()
+        public FitDataService(ICategoryRepository categoryRepository, 
+            IExerciseRepository exerciseRepository, 
+            ISetRepository setRepository, 
+            ICompletedSetRepository completedSetRepository)
         {
-            categoryRepository = new SensorRepository<Category>();
-            exerciseRepository = new SensorRepository<Exercise>();
-        }
-
-        public void DeleteCategory(Category category)
-        {
-            throw new NotImplementedException();
-            //categoryRepository.DeleteRecord(category);
-        }
-
-        public void DeleteExercise(Exercise exercise)
-        {
-            throw new NotImplementedException();
+            this.categoryRepository = categoryRepository;
+            this.exerciseRepository = exerciseRepository;
+            this.setRepository = setRepository;
+            this.completedSetRepository = completedSetRepository;
         }
 
         public List<Category> GetAllCategories()
         {
-            return DummyData.categories;
-            //return categoryRepository.GetAllRecords();
+            return categoryRepository.GetCategories();
         }
 
         public List<Exercise> GetExercisesFromCategory(Category category)
         {
-            
-            if (category != null)
+            List<Exercise> exercises = exerciseRepository.GetExercisesFromCategory(category);
+            foreach (Exercise e in exercises)
             {
-                List<Exercise> exercises = DummyData.exercises.Where(ex => ex.CategoryID == category.ID).ToList();
-                foreach(Exercise e in exercises)
-                {
-                    e.Sets = GetSetsFromExercise(e);
-                }
-                return exercises;
+                e.Sets = GetSetsFromExercise(e);
             }
-                
-            else
-                return new List<Exercise>();
-        }
-
-        public List<Exercise> GetAllExercises()
-        {
-            return DummyData.exercises;
-            throw new NotImplementedException();
-            //return exerciseRepository.GetAllRecords();
-        }
-
-        public Category GetCategoryDetail(int id)
-        {
-            throw new NotImplementedException();
-            //return categoryRepository.GetRecordDetail(id);
-        }
-
-        public Exercise GetExerciseDetail(int id)
-        {
-            throw new NotImplementedException();
-            //return exerciseRepository.GetRecordDetail(id);
-        }
-
-        public void UpdateCategory(Category category)
-        {
-            throw new NotImplementedException();
-            //categoryRepository.UpdateRecord(category);
-        }
-
-        public void UpdateExercuse(Exercise exercise)
-        {
-            throw new NotImplementedException();
-            //exerciseRepository.UpdateRecord(exercise);
+            return exercises;
         }
 
         public List<Set> GetSetsFromExercise(Exercise exercise)
         {
-            List<Set> sets = DummyData.sets.Where(s => s.ExerciseID == exercise.ID).ToList();
-           foreach(Set s in sets)
+            List<Set> sets = setRepository.GetSetsFromExercise(exercise);
+            foreach (Set s in sets)
             {
                 s.CompletedSets = GetCompletedSetsFromSet(s);
             }
@@ -97,16 +54,14 @@ namespace FitSense_UWP.Services
 
         public Set ToggleSelectedSetVisibility(Set set)
         {
-            if (set.ShowCompletedSets == Visibility.Collapsed)
-                set.ShowCompletedSets = Visibility.Visible;
-            else
-                set.ShowCompletedSets = Visibility.Collapsed;
+            set.ShowCompletedSets = !set.ShowCompletedSets;
             return set;
         }
 
         public List<CompletedSet> GetCompletedSetsFromSet(Set set)
         {
-            return DummyData.completedSets.Where(s => s.SetID == set.ID).ToList();
+
+            return completedSetRepository.GetCompletedSetsFromSet(set);
         }
     }
 }

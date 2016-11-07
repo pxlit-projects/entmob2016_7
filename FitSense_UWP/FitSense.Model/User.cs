@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FitSense.Model
+namespace FitSense.Models
 {
-    public class User : SensorModel
+    public class User
     {
         public int UserID { get; set; }
         public String Name { get; set; }

@@ -2,15 +2,21 @@ package be.pxl.groep7.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="completed_set")
+@NamedQuery(name="CompletedSet.getCompletedSetByExerciseId"
+				, query="select cs from CompletedSet cs where cs.exerciseId=?1")
 public class CompletedSet {
 	
 	@Id
 	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	int id;
 	
 	@Column(name="exercise_id")
@@ -23,15 +29,19 @@ public class CompletedSet {
 	int duration;
 	
 	@Column(name="user_id")
-	int user_id;
+	int userId;
 	
-	public CompletedSet(int id, int exerciseId, long time, int duration, int user_id) {
+	public CompletedSet(int id, int exerciseId, long time, int duration, int userId) {
 		super();
 		this.id = id;
 		this.exerciseId = exerciseId;
 		this.time = time;
 		this.duration = duration;
-		this.user_id = user_id;
+		this.userId = userId;
+	}
+	
+	public CompletedSet() {
+		
 	}
 	
 	public int getId() {
@@ -66,12 +76,12 @@ public class CompletedSet {
 		this.duration = duration;
 	}
 	
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
 	
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUser_id(int userId) {
+		this.userId = userId;
 	}
 	
 	

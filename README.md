@@ -44,8 +44,6 @@ Als laatste communiceert de serverside nog met de UWP applicatie (desktop) om me
 Server side: Bert, Kim  
 Client side: Daniël, Dries
 
-Om de twee weken zal er gewisseld worden tussen server en client side programmeurs.
-
 ##Extra
 <ul>
 <li>Running modes. Jog sessie starten en stoppen.</li>
@@ -56,5 +54,41 @@ SQL server settings:
 	ip address: 84.195.1.59
 	user: user		
 	password: pass
+	
+##REST calls
+- Base url: http://84.195.1.59:8080/sensortagapi
+- Models (append this to the base url):
+	- category
+	- completedset
+	- exercisepoint
+	- exercise
+	- set
+	- user
+- Kind of calls: 
+	- get(id), post, put, delete(id)
+- Example calls (note if a get does not work, try a different id, 3 for example):
+	- Category Get request is going to change to (due to conflicting get methods) Note: THIS IS NOT YET ON THE SERVER:
+		- http://localhost:8080/sensortagapi/category/all  -> list
+		- http://localhost:8080/sensortagapi/category/getById/3 
+	- GET:  http://84.195.1.59:8080/sensortagapi/category/1	-> GET FLAG + id
+	- POST:  http://84.195.1.59:8080/sensortagapi/category	-> POST FLAG + requestbody json of category, id should not be filled in
+	- PUT:  http://84.195.1.59:8080/sensortagapi/category   -> PUT FLAG + requestbody json of category, id should be filled in
+	- DELETE:  http://84.195.1.59:8080/sensortagapi/1	-> DELETE FLAG + id
+- To do:
+ 	- Returning lists (planned fix = monday)
+	- Getting on other parameters
+	- All categories							//done
+	- Exercises per category					//done
+	- Sets per exercise							//done
+	- CompletedSets per Set						//done
+- Authentication and Authorisation?
+	- Not yet implemented at the version running on the server
+	- Implemented on category get -> works in browser
+	- username:password
+- Issue with version on server:
+	- Category Put requires no id, while all other put requests require the id in the url (planned fix = monday)
+	- No authentication or authorisation (planned fix = next week -> all methods)
+	
+
 
 

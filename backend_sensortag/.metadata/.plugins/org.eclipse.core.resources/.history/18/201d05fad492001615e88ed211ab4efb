@@ -1,8 +1,0 @@
-package be.pxl.groep7.repository;
-
-import be.pxl.groep7.models.Distance;
-
-public interface DistanceRepository {
-	public Distance getDistanceById(int id);
-	public void addDistance(Distance distance);
-}

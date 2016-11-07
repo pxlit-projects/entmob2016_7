@@ -2,41 +2,47 @@ package be.pxl.groep7.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+import org.springframework.beans.factory.annotation.Value;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User {
 	
 	@Id
 	@Column(name="id")
-	int id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
 	
-	@Column(name="name")
-	String name;
+	@Column(name="username")
+	private String name;
 	
 	@Column(name="password")
-	String password;
-	
-	@Column(name="salt")
-	String salt;
+	private String password;
 	
 	@Column(name="height")
-	int height;
+	private int height;
 	
 	@Column(name="weight")
-	int weight;
+	private int weight;
 	
-	
-	
-	public User(int id, String name, String password, String salt, int height, int weight) {
+	public User(int id, String name, String password, int height, int weight) {
 		this.id = id;
 		this.name = name;
 		this.password = password;
-		this.salt = salt;
 		this.height = height;
 		this.weight = weight;
+	}
+	
+	public User() {
+		
 	}
 	
 	public int getId() {
@@ -61,14 +67,6 @@ public class User {
 	
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-	public String getSalt() {
-		return salt;
-	}
-	
-	public void setSalt(String salt) {
-		this.salt = salt;
 	}
 	
 	public int getHeight() {

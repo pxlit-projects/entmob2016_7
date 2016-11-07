@@ -1,4 +1,5 @@
-﻿using FitSense_UWP.Services;
+﻿using FitSense.DAL;
+using FitSense_UWP.Services;
 using FitSense_UWP.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,8 @@ namespace FitSense_UWP
 {
     public class ViewModelLocator
     {
-        private static IFitDataService dataService = new FitDataService();
+        private static IFitDataService dataService = new FitDataService(
+            new CategoryRepository(), new ExerciseRepository(), new SetRepository(), new CompletedSetRepository());
         private static INavigationService navigationService = new NavigationService();
 
         private SetsPerExerciseViewModel setsPerExerciseViewModel = new SetsPerExerciseViewModel(dataService, navigationService);
@@ -34,7 +36,7 @@ namespace FitSense_UWP
             set { categoriesPageViewModel = value; }
         }
 
-        private ExercisesViewModel exercisesViewModel = new ExercisesViewModel(navigationService, dataService);
+        private ExercisesViewModel exercisesViewModel = new ExercisesViewModel(dataService, navigationService);
         public ExercisesViewModel ExercisesViewModel
         {
             get { return exercisesViewModel; }

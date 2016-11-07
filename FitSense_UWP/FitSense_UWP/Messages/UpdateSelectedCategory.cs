@@ -1,4 +1,4 @@
-﻿using FitSense.Model;
+﻿using Fitsense.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

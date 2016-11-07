@@ -1,4 +1,4 @@
-﻿using FitSense.Model;
+﻿using Fitsense.Models;
 using FitSense_UWP.Extensions;
 using FitSense_UWP.Messages;
 using FitSense_UWP.Services;
@@ -32,7 +32,6 @@ namespace FitSense_UWP.ViewModel
             }
         }
         public ICommand ToggleShowCompletedSets { get; set; }
-
         private IFitDataService fitDataService;
         private INavigationService navigationService;
 
@@ -89,7 +88,6 @@ namespace FitSense_UWP.ViewModel
                     {
                         records.Add(new ChartRecord()
                         {
-
                             Date = date,
                             Point = selectedSet.Points
                         });

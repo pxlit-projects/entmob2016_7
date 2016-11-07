@@ -12,6 +12,7 @@
             <converter:LongToDateConverter x:Key="LongToDateConverter"></converter:LongToDateConverter>
             <converter:IDToTitleConverter x:Key="IDToTitleConverter"></converter:IDToTitleConverter>
             <local:ViewModelLocator x:Key="mainViewModelLocator" />
+            <converter:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"></converter:BoolToVisibilityConverter>
         </ResourceDictionary>
     </Application.Resources>
     

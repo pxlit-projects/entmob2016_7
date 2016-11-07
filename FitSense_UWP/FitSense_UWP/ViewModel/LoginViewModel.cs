@@ -13,12 +13,12 @@ namespace FitSense_UWP.ViewModel
     {
         public ICommand LoginCommand { get; set; }
         private INavigationService navigationService;
-        private ILoginService loginService;
+        //private ILoginService loginService;
 
-        public LoginViewModel(INavigationService navigationService, ILoginService loginService)
+        public LoginViewModel(INavigationService navigationService)//, ILoginService loginService)
         {
             this.navigationService = navigationService;
-            this.loginService = loginService;
+            //this.loginService = loginService;
 
             RegisterCommands();
         }
@@ -27,7 +27,7 @@ namespace FitSense_UWP.ViewModel
         {
             LoginCommand = new AlwaysRunCommand((Object o) =>
             {
-                navigationService.NavigateTo(NavigationService.MAIN);
+                navigationService.NavigateFromLoginToApplication();
             });
         }
 

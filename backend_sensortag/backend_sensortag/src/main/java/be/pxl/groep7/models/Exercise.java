@@ -2,15 +2,21 @@ package be.pxl.groep7.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="exercise")
+@NamedQuery(name="Exercise.getExercisesByCategoryId"
+				, query="select ex from Exercise ex where ex.categoryId=?1")
 public class Exercise {
 	
 	@Id
 	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	int id;
 	
 	@Column(name="name")
@@ -20,17 +26,17 @@ public class Exercise {
 	String description;
 	
 	@Column(name="category_id")
-	int category_id;
+	int categoryId;
 	
 	public Exercise() {
 		
 	}
 		
-	public Exercise(int id, String name, String description, int category_id) {
+	public Exercise(int id, String name, String description, int categoryId) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.category_id = category_id;
+		this.categoryId = categoryId;
 	}
 
 	public int getId() {
@@ -57,11 +63,11 @@ public class Exercise {
 		this.description = description;
 	}
 	
-	public int getCategory_id() {
-		return category_id;
+	public int getCategoryId() {
+		return categoryId;
 	}
 	
-	public void setCategory_id(int category_id) {
-		this.category_id = category_id;
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 }
