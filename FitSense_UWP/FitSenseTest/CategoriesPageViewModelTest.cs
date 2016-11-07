@@ -26,7 +26,7 @@ namespace FitSenseTest
         [TestInitialize]
         public void Init()
         {
-            fitDataService = new FitDataServiceMock();
+            fitDataService = new MockFitDataService();
             //dialogService = new MockDialogService();
         }
 

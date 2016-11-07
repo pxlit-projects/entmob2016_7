@@ -8,11 +8,12 @@ using FitSense.DAL;
 
 namespace FitSenseTest.mocks
 {
-    class FitDataServiceMock : IFitDataService
+    class MockFitDataService : IFitDataService
     {
         private ICategoryRepository categoryRepository = new MockCategoryRepository();
         private IExerciseRepository exerciseRepository = new MockExerciseRepository();
         private ISetRepository setRepository = new MockSetRepository();
+        private ICompletedSetRepository completedSetRepository = new MockCompletedSetRepository();
 
         public List<Category> GetAllCategories()
         {
@@ -21,7 +22,7 @@ namespace FitSenseTest.mocks
 
         public List<CompletedSet> GetCompletedSetsFromSet(Set set)
         {
-            throw new NotImplementedException();
+            return completedSetRepository.GetCompletedSetsFromSet(set);
         }
 
         public List<Exercise> GetExercisesFromCategory(Category category)

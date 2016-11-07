@@ -11,6 +11,6 @@ namespace FitSense_UWP.Services
     public interface INavigationService
     {
         Type NavigateTo(String destination);
-        void NavigateBack(Page currentPage);
+        void NavigateFromLoginToApplication();
     }
 }

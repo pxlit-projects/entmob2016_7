@@ -1,15 +1,14 @@
-﻿using FitSense_UWP.View;
+﻿using FitSense_UWP.Services;
+using FitSense_UWP.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
-namespace FitSense_UWP.Services
+namespace FitSenseTest.mocks
 {
-    class NavigationService : INavigationService
+    public class MockNavigationService : INavigationService
     {
         public const String EXERCISES = "Exercises";
         public const String SETSPEREXERCISE = "SetsPerExercise";
@@ -17,7 +16,7 @@ namespace FitSense_UWP.Services
 
         public Type NavigateTo(String destination)
         {
-            switch(destination)
+            switch (destination)
             {
                 case LOGIN:
                     return typeof(Login);
@@ -32,7 +31,7 @@ namespace FitSense_UWP.Services
 
         public void NavigateFromLoginToApplication()
         {
-            ((Frame)Window.Current.Content).Navigate(typeof(CategoriesPage));
+            throw new NotImplementedException();
         }
     }
 }
