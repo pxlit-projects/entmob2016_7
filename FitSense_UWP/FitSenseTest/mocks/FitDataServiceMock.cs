@@ -12,6 +12,7 @@ namespace FitSenseTest.mocks
     {
         private ICategoryRepository categoryRepository = new MockCategoryRepository();
         private IExerciseRepository exerciseRepository = new MockExerciseRepository();
+        private ISetRepository setRepository = new MockSetRepository();
 
         public List<Category> GetAllCategories()
         {
@@ -25,17 +26,28 @@ namespace FitSenseTest.mocks
 
         public List<Exercise> GetExercisesFromCategory(Category category)
         {
-            return exerciseRepository.GetExercisesFromCategory(category);
+            List<Exercise> exercises = exerciseRepository.GetExercisesFromCategory(category);
+            foreach (Exercise e in exercises)
+            {
+                e.Sets = GetSetsFromExercise(e);
+            }
+            return exercises;
         }
 
         public List<Set> GetSetsFromExercise(Exercise exercise)
         {
-            throw new NotImplementedException();
+            List<Set> sets = setRepository.GetSetsFromExercise(exercise);
+            foreach (Set s in sets)
+            {
+                s.CompletedSets = GetCompletedSetsFromSet(s);
+            }
+            return sets;
         }
 
         public Set ToggleSelectedSetVisibility(Set set)
         {
-            throw new NotImplementedException();
+            set.ShowCompletedSets = !set.ShowCompletedSets;
+            return set;
         }
     }
 }

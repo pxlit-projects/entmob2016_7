@@ -7,7 +7,7 @@ using Fitsense.Models;
 
 namespace FitSense.DAL
 {
-    class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : ICategoryRepository
     {
         public List<Category> GetCategories()
         {

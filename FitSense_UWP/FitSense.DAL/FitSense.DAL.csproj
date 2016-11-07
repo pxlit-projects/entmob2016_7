@@ -114,10 +114,8 @@
     <Compile Include="ICategoryRepository.cs" />
     <Compile Include="ICompletedSetRepository.cs" />
     <Compile Include="IExerciseRepository.cs" />
-    <Compile Include="ISensorRepository.cs" />
     <Compile Include="ISetRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SensorRepository.cs" />
     <Compile Include="SetRepository.cs" />
     <EmbeddedResource Include="Properties\FitSense.DAL.rd.xml" />
   </ItemGroup>

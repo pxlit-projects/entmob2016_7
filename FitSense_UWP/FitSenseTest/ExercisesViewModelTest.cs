@@ -39,7 +39,7 @@ namespace FitSenseTest
         }
 
         [TestMethod]
-        public void LoadAllCategories()
+        public void LoadAllExercises()
         {
             var viewModel = GetViewModel();
             //Arrange
@@ -49,8 +49,15 @@ namespace FitSenseTest
             //act
             exercises = viewModel.Exercises;
 
+            viewModel.PropertyChanged += ViewModel_PropertyChanged;
+
             //assert
             CollectionAssert.AreEqual(expectedExercises, exercises);
+        }
+
+        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

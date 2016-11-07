@@ -14,7 +14,9 @@ namespace FitSense_UWP.Converter
         {
             bool visible = (bool)value;
             if (visible)
+            {
                 return Visibility.Visible;
+            }
             return Visibility.Collapsed;
         }
 
@@ -22,7 +24,9 @@ namespace FitSense_UWP.Converter
         {
             Visibility visible = (Visibility)value;
             if (visible == Visibility.Visible)
+            {
                 return true;
+            }
             return false;
         }
     }

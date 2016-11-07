@@ -34,13 +34,22 @@ namespace FitSense_UWP.Services
 
         public List<Exercise> GetExercisesFromCategory(Category category)
         {
-
-            return exerciseRepository.GetExercisesFromCategory(category);
+            List<Exercise> exercises = exerciseRepository.GetExercisesFromCategory(category);
+            foreach (Exercise e in exercises)
+            {
+                e.Sets = GetSetsFromExercise(e);
+            }
+            return exercises;
         }
 
         public List<Set> GetSetsFromExercise(Exercise exercise)
         {
-            return setRepository.GetSetsFromExercise(exercise);
+            List<Set> sets = setRepository.GetSetsFromExercise(exercise);
+            foreach (Set s in sets)
+            {
+                s.CompletedSets = GetCompletedSetsFromSet(s);
+            }
+            return sets;
         }
 
         public Set ToggleSelectedSetVisibility(Set set)
@@ -51,6 +60,7 @@ namespace FitSense_UWP.Services
 
         public List<CompletedSet> GetCompletedSetsFromSet(Set set)
         {
+
             return completedSetRepository.GetCompletedSetsFromSet(set);
         }
     }

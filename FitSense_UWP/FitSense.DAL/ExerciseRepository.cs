@@ -11,7 +11,14 @@ namespace FitSense.DAL
     {
         public List<Exercise> GetExercisesFromCategory(Category category)
         {
-            return DummyData.exercises.Where(exercise => exercise.CategoryID == category.ID).ToList();
+            if (category != null)
+            {
+               return DummyData.exercises.Where(ex => ex.CategoryID == category.ID).ToList();
+                
+            }
+
+            else
+                return new List<Exercise>();
         }
     }
 }
