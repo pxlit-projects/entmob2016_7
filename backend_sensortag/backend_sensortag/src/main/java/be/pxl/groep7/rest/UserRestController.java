@@ -3,6 +3,7 @@ package be.pxl.groep7.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,10 @@ import be.pxl.groep7.services.IUserService;
 
 @RestController
 @RequestMapping("/user")
+@Secured("ROLE_USER")
 public class UserRestController {
+	
+	public static final String BASEURL = "/user";
 	
 	@Autowired
 	private IUserService service;

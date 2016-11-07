@@ -11,4 +11,5 @@ public interface IUserRepository {
     User save(User user);
     boolean exists(int id);
     void delete(int id);
+	void deleteAll();
 }

@@ -213,18 +213,16 @@ _Pvt_Extensions/
 ModelManifest.xml
 
 # Java class
-/Application/STUFV_Application/target/
-./Application/.metadata/*
-./Application/.recommenders/*
-./Application/RemoteSystemsTempFiles/*
-/Application/.metadata/
-/Application/.recommenders/
-/Application/RemoteSystemsTempFiles/
-Application/.metadata/
-Application/.recommenders/
-Application/RemoteSystemsTempFiles/
-Application/NicholasJava/.metadata/
-Application/NicholasJava/.recommenders/
+/backend_sensortag/backend_sensortag/target/
+./backend_sensortag/.metadata/*
+./backend_sensortag/.recommenders/*
+./backend_sensortag/RemoteSystemsTempFiles/*
+/backend_sensortag/.metadata/
+/backend_sensortag/.recommenders/
+/backend_sensortag/RemoteSystemsTempFiles/
+backend_sensortag/.metadata/
+backend_sensortag/.recommenders/
+backend_sensortag/RemoteSystemsTempFiles/
 *.class
 
 # Mobile Tools for Java (J2ME)
