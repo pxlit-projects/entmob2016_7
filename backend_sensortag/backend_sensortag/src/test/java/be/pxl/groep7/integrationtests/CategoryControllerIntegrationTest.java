@@ -138,7 +138,7 @@ public class CategoryControllerIntegrationTest {
 	public void putCategoryWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
 		category3.setName("Nieuwe category");
 		
-		mockMvc.perform(put(CategoryRestController.BASEURL + "/" + category3.getId()+1)	
+		mockMvc.perform(put(CategoryRestController.BASEURL + "/" + 0)	
 				.header("host", "localhost:8080")	
 				.content(asJson(category3))
 				.contentType(MediaType.APPLICATION_JSON_UTF8)

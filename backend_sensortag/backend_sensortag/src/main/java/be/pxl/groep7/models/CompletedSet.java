@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+
+//Aparently this model is wrong???
 @Entity
 @Table(name="completed_set")
 @NamedQuery(name="CompletedSet.getCompletedSetByExerciseId"

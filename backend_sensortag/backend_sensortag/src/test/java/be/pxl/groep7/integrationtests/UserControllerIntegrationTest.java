@@ -113,7 +113,6 @@ public class UserControllerIntegrationTest {
 		user4.setName("Purple Minion");
 		user4.setPassword("gru");
 		user4.setWeight(2);
-		user4 = userRepository.save(user4);
 		
 		 mockMvc.perform(post(UserRestController.BASEURL)
 				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
@@ -145,7 +144,7 @@ public class UserControllerIntegrationTest {
 	public void putSetWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
 		user3.setHeight(135);
 		
-		mockMvc.perform(put(UserRestController.BASEURL + "/" + user3.getId()+1)	
+		mockMvc.perform(put(UserRestController.BASEURL + "/" + 0)	
 				.header("host", "localhost:8080")	
 				.content(asJson(user3))
 				.contentType(MediaType.APPLICATION_JSON_UTF8)

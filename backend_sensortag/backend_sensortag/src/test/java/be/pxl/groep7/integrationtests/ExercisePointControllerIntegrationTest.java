@@ -138,7 +138,7 @@ public class ExercisePointControllerIntegrationTest {
 	public void putExercisePointWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
 		exercisePoint3.setZ(4.0);
 		
-		mockMvc.perform(put(ExercisePointRestController.BASEURL + "/" + exercisePoint3.getId()+1)	
+		mockMvc.perform(put(ExercisePointRestController.BASEURL + "/" + 0)	
 				.header("host", "localhost:8080")	
 				.content(asJson(exercisePoint3))
 				.contentType(MediaType.APPLICATION_JSON_UTF8)

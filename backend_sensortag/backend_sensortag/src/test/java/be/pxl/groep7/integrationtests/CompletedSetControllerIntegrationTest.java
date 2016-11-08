@@ -161,7 +161,7 @@ public class CompletedSetControllerIntegrationTest {
 	public void putCompletedSetWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
 		completedSet3.setDuration(55);
 		
-		mockMvc.perform(put(CompletedSetRestController.BASEURL + "/" + completedSet3.getId()+1)	
+		mockMvc.perform(put(CompletedSetRestController.BASEURL + "/" + 0)	
 				.header("host", "localhost:8080")	
 				.content(asJson(completedSet3))
 				.contentType(MediaType.APPLICATION_JSON_UTF8)

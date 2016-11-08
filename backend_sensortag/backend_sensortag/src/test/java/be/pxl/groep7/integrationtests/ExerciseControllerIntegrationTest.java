@@ -148,7 +148,7 @@ public class ExerciseControllerIntegrationTest {
 	public void putExerciseWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
 		exercise3.setCategoryId(3);
 		
-		mockMvc.perform(put(ExerciseRestController.BASEURL + "/" + exercise3.getId()+1)	
+		mockMvc.perform(put(ExerciseRestController.BASEURL + "/" + 0)	
 				.header("host", "localhost:8080")	
 				.content(asJson(exercise3))
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
