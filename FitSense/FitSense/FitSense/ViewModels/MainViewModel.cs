@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.ServiceLocation;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System;
 
 namespace FitSense.ViewModels
 {
@@ -25,26 +26,24 @@ namespace FitSense.ViewModels
         private INavigationService navigation;
         private IUserDataService userDataService;
         //public RelayCommand LoginCommand;
-        public RelayCommand ConnectCommand;
+        public RelayCommand ConnectCommand { get; private set; }
         public RelayCommand LoginCommand { get; private set; }
+        public RelayCommand CarouselCommand { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel()
+        public MainViewModel(INavigationService navigationService, IUserDataService userDataService)
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            this.navigation = navigationService;
+            this.userDataService = userDataService;
 
-            navigation = ServiceLocator.Current.GetInstance<INavigationService>();
-            userDataService = ServiceLocator.Current.GetInstance<IUserDataService>();
+            InitializeCommands();
+            InitializeMessages();
+        }
 
+        private void InitializeCommands()
+        {
             ConnectCommand = new RelayCommand(async () =>
             {
                 await navigation.PushAsync(PageUrls.SensorConnectView);
@@ -55,7 +54,11 @@ namespace FitSense.ViewModels
                 if (userDataService.LoggedInUser == null)
                     await navigation.PushModalAsync(PageUrls.LoginView);
             });
+            
+        }
 
+        private void InitializeMessages()
+        {
             MessengerInstance.Register<LoginViewModel>(this, Messages.LoginSucces, (sender) =>
             {
                 Device.BeginInvokeOnMainThread(async () =>
@@ -63,7 +66,6 @@ namespace FitSense.ViewModels
                     await navigation.PopModalAsync();
                 });
             });
-            //LoginCommand.Execute(null);
         }
     }
 }

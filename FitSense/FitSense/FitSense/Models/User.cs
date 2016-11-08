@@ -8,6 +8,7 @@ namespace FitSense.Models
 {
     public class User
     {
-        public string UserName { get; internal set; }
+        public int ID { get; set; }
+        public string UserName { get; set; }
     }
 }

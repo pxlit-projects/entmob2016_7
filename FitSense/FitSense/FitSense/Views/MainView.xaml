@@ -9,8 +9,8 @@
     </ContentPage.Behaviors>
     <StackLayout Orientation="Vertical" >
 
-        <Button Text="Connect Sensor" HeightRequest="50" />
-
+        <Button Text="Connect Sensor" HeightRequest="50" Command="{Binding ConnectCommand}"/>
+        
 
     </StackLayout>
 </ContentPage>

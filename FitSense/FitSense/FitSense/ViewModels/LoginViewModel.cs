@@ -39,15 +39,21 @@ namespace FitSense.ViewModels
 
                 if (string.IsNullOrEmpty(Password))
                     ValidationErrors += "Please enter a password.";
-                return string.IsNullOrEmpty(ValidationErrors);
+                return true;
+                //return string.IsNullOrEmpty(ValidationErrors);
             }
         }
 
-        public LoginViewModel()
+        public LoginViewModel(INavigationService navigationService, IUserDataService userDataService)
         {
-            userDataService = ServiceLocator.Current.GetInstance<IUserDataService>();
-            navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
+            this.userDataService = userDataService;
+            this.navigationService = navigationService;
 
+            InitializeCommands();
+        }
+
+        private void InitializeCommands()
+        {
             LoginCommand = new RelayCommand(() =>
             {
                 Feedback = string.Empty;
@@ -61,10 +67,9 @@ namespace FitSense.ViewModels
                         else
                             Feedback = "Login attempt failed";
                     });
-                    
+
                 }
             });
         }
-        
     }
 }

@@ -110,11 +110,6 @@ namespace FitSense.Services
             Navigation.RemovePage(GetPage(pageName));
         }
 
-        public void PushAsync(object burgerDetailView)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task PushModalAsync(string pageName)
         {
             Page p = GetPage(pageName);

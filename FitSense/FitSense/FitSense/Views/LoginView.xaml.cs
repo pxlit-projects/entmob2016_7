@@ -20,8 +20,10 @@ namespace FitSense.Views
             //viewModel = ServiceLocator.Current.GetInstance<LoginViewModel>();
 
             //this.BindingContext = viewModel;
-
+            
             
         }
+
+        
     }
 }
