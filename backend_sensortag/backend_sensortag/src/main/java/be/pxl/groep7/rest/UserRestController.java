@@ -24,7 +24,7 @@ public class UserRestController {
 	@Autowired
 	private IUserService service;
 
-	@RequestMapping(value="{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
 		HttpStatus status = HttpStatus.OK;
 		User user = service.findUserById(id);
@@ -55,7 +55,7 @@ public class UserRestController {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		User newUser = null;
 		
-		if (service.doesUserExist(user.getId())){
+		if (service.doesUserExist(id)){
 			newUser = service.createOrUpdateUser(user);
 		} else {
 			status = HttpStatus.NOT_FOUND;

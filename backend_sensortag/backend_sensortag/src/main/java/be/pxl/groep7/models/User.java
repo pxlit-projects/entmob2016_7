@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="users")
+@Table(name="user")
 public class User {
 	
 	@Id

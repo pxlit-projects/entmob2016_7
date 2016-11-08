@@ -157,7 +157,7 @@ public class SetControllerIntegrationTest {
 	public void putSetWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
 		set3.setPoints(35);
 		
-		mockMvc.perform(put(SetRestController.BASEURL + "/" + set3.getId()+1)	
+		mockMvc.perform(put(SetRestController.BASEURL + "/" + 0)	
 				.header("host", "localhost:8080")	
 				.content(asJson(set3))
 				.contentType(MediaType.APPLICATION_JSON_UTF8)

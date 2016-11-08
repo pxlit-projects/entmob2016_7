@@ -28,10 +28,10 @@ public class CompletedSetRestController {
 	@Autowired
 	private ICompletedSetService service;
 	
-	@RequestMapping(value="/sets/{exerciseId}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<CompletedSet>> getCompletedSetsBySetId(@PathVariable("exerciseId") int exerciseId){
+	@RequestMapping(value="/sets/{setId}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<CompletedSet>> getCompletedSetsBySetId(@PathVariable("setId") int setId){
 		HttpStatus status = HttpStatus.OK;
-		List<CompletedSet> setList = service.getAllCompletedSetsByExerciseId(exerciseId);
+		List<CompletedSet> setList = service.getAllCompletedSetsByExerciseId(setId);
 		
 		if(setList == null){
 			status = HttpStatus.NOT_FOUND;
