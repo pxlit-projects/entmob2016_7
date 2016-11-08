@@ -18,7 +18,6 @@ namespace FitSense.Views
         {
             InitializeComponent();
             //viewModel = ServiceLocator.Current.GetInstance<SensorConnectViewModel>();
-            
         }
     }
 }

@@ -53,6 +53,8 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\HumidityService.cs" />
+    <Compile Include="Models\MovementService.cs" />
     <Compile Include="Models\SensorDevice.cs" />
     <Compile Include="Models\TemperatureService.cs" />
     <Compile Include="Models\User.cs" />

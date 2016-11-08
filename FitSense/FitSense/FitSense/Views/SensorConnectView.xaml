@@ -4,7 +4,8 @@
                 x:Class="FitSense.Views.SensorConnectView"
                 xmlns:convertors="clr-namespace:FitSense.Converters"
                 xmlns:helpers="clr-namespace:FitSense.Helpers"
-                BindingContext="{Binding Source={StaticResource Locator}, Path=Connect}">
+                BindingContext="{Binding Source={StaticResource Locator}, Path=Connect}"
+                x:Name="page">
     <NavigationPage.Resources>
         <ResourceDictionary>
             <convertors:DeviceNameConverter x:Key="nameConverter" />
@@ -17,7 +18,8 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <ListView ItemsSource="{Binding Devices}">
+        <ListView ItemsSource="{Binding Devices}" >
+        <!--<ListView ItemsSource="{Binding Devices}" BindingContext="{Reference Name=page}" x:Name="list">-->
             <ListView.Behaviors>
                 <helpers:ItemSelectedBehavior Command="{Binding ItemSelectedCommand}" />
             </ListView.Behaviors>

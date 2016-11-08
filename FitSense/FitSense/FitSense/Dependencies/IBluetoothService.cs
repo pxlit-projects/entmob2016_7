@@ -10,5 +10,6 @@ namespace FitSense.Dependencies
     public interface IBluetoothService
     {
         IAdapter Adapter { get; }
+        void RequestTurnOn();
     }
 }

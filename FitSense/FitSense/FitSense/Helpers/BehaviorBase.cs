@@ -20,6 +20,7 @@ namespace FitSense.Helpers
             {
                 BindingContext = bindable.BindingContext;
             }
+            
 
             bindable.BindingContextChanged += OnBindingContextChanged;
         }
