@@ -28,7 +28,7 @@ namespace fitsense.DAL
             var root = JsonConvert.DeserializeObject<List<Category>>(result);
             return root;
             return DummyData.completedSets.Where(completedSet => completedSet.SetID == set.ID).ToList();*/
-            return null;
+            return DummyData.completedSets.Where(completedSet => completedSet.SetID == set.SetID).ToList();
         }
     }
 }

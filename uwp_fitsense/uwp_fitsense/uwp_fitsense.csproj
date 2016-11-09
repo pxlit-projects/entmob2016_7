@@ -117,6 +117,18 @@
     <Compile Include="viewmodel\ExercisesViewModel.cs" />
     <Compile Include="viewmodel\LoginViewModel.cs" />
     <Compile Include="viewmodel\SetsPerExerciseViewModel.cs" />
+    <Compile Include="view\CategoriesPage.xaml.cs">
+      <DependentUpon>CategoriesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\ExercisesPage.xaml.cs">
+      <DependentUpon>ExercisesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\SetsPerExercisePage.xaml.cs">
+      <DependentUpon>SetsPerExercisePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using uwp_fitsense.dependencies;
+using uwp_fitsense.view;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
