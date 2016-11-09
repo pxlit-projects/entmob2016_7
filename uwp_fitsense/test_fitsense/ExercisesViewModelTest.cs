@@ -1,11 +1,7 @@
 ﻿using fitsense.models;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using test_fitsense.mocks;
 using uwp_fitsense.dependencies;
 using uwp_fitsense.viewmodel;
