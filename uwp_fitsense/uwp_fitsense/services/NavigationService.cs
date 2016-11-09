@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using uwp_fitsense.dependencies;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace uwp_fitsense.services
 {
@@ -20,7 +22,7 @@ namespace uwp_fitsense.services
                 case LOGIN:
                     return typeof(LoginPage);
                 case EXERCISES:
-                    return typeof(Oefeningen);
+                    return typeof(ExercisesPage);
                 case SETSPEREXERCISE:
                     return typeof(SetsPerExercisePage);
                 default:

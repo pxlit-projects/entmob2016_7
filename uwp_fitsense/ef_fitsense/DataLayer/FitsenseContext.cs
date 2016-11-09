@@ -1,6 +1,7 @@
 ﻿using fitsense.models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,12 +23,12 @@ namespace ef_fitsense.DataLayer
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>().HasKey(category => category.ID);
-            modelBuilder.Entity<Exercise>().HasKey(exercise => exercise.ID);
-            modelBuilder.Entity<Set>().HasKey(set => set.ID);
-            modelBuilder.Entity<CompletedSet>().HasKey(completedSet => completedSet.ID);
-            modelBuilder.Entity<ExercisePoint>().HasKey(exercisePoint => exercisePoint.ID);
-            modelBuilder.Entity<User>().HasKey(user => user.ID);
+            modelBuilder.Entity<Category>().HasKey(category => category.CategoryID);
+            modelBuilder.Entity<Exercise>().HasKey(exercise => exercise.ExerciseID);
+            modelBuilder.Entity<Set>().HasKey(set => set.SetID);
+            modelBuilder.Entity<CompletedSet>().HasKey(completedSet => completedSet.CompletedSetID);
+            modelBuilder.Entity<ExercisePoint>().HasKey(exercisePoint => exercisePoint.ExerciseID);
+            modelBuilder.Entity<User>().HasKey(user => user.UserID);
 
             modelBuilder.Entity<Exercise>().HasRequired(category => category.Category);
             modelBuilder.Entity<ExercisePoint>().HasRequired(exercisePoint => exercisePoint.Exercise).WithMany(exercise => exercise.ExercisePoints);

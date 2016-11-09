@@ -12,7 +12,7 @@ namespace fitsense.DAL
     {
         public List<Set> GetSetsFromExercise(Exercise exercise)
         {
-            return DummyData.sets.Where(s => s.ExerciseID == exercise.ID).ToList();
+            return DummyData.sets.Where(s => s.ExerciseID == exercise.ExerciseID).ToList();
         }
     }
 }

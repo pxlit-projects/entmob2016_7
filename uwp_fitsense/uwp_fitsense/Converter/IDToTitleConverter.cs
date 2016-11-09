@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Data;
 
 namespace uwp_fitsense.Converter
 {
-    class IDToTitleConverter : IValueConverter
+    public class IDToTitleConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
