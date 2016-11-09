@@ -5,11 +5,11 @@
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   IgnorableNamespaces="uap mp">
 
-  <Identity Name="39c94b49-f130-41ad-b004-a7bb967782b8"
+  <Identity Name="bd57cca7-5e05-40d8-9885-e36d4c1c8cb1"
             Publisher="CN=Dries"
             Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="39c94b49-f130-41ad-b004-a7bb967782b8" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="bd57cca7-5e05-40d8-9885-e36d4c1c8cb1" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>test_fitsense</DisplayName>

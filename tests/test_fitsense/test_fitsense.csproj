@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{1DCE2741-F081-4CAB-B10C-5D84667A7111}</ProjectGuid>
+    <ProjectGuid>{ED4C55DD-195A-462D-81E5-B01597265698}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>test_fitsense</RootNamespace>
@@ -142,12 +142,9 @@
       <Name>fitsense.models</Name>
     </ProjectReference>
     <ProjectReference Include="..\uwp_fitsense\uwp_fitsense.csproj">
-      <Project>{4166e473-ab35-4315-b46a-f9c893b30af5}</Project>
+      <Project>{4166E473-AB35-4315-B46A-F9C893B30AF5}</Project>
       <Name>uwp_fitsense</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
