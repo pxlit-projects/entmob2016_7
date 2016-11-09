@@ -2,12 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
+
 
 namespace FitSense.Models
 {
-    class MovementService
+    class MovementService : SensorService
     {
         private IService service;
         private ICharacteristic dataCharacteristic;
@@ -16,28 +19,13 @@ namespace FitSense.Models
         
         public MovementService(IService movementService)
         {
-            this.service = movementService;
-            foreach (var character in movementService.Characteristics)
-            {
-                if (character.ID.PartialFromUuid().EndsWith("1"))
-                {
-                    dataCharacteristic = character;
-                }
-                else if (character.ID.PartialFromUuid().EndsWith("2"))
-                {
-                    switchCharacteristic = character;
-                }
-                else if (character.ID.PartialFromUuid().EndsWith("3"))
-                {
-                    periodCharacteristic = character;
-                }
-            }
-
-
-
+            
         }
 
-
+        public Vector3 GetGyroValue()
+        {
+            throw new NotImplementedException();
+        }
 
 
 

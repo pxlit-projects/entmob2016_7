@@ -16,6 +16,8 @@ namespace FitSense.Models
         private IAdapter adapter;
         private List<IService> deviceServices;
 
+        public MovementService MovementService { get; set; }
+
 
         public IDevice ConnectedDevice
         {
@@ -73,13 +75,12 @@ namespace FitSense.Models
             foreach (var service in deviceServices)
             {
                 var characteristic = service.Characteristics;
-                Debug.WriteLine(service.ID.PartialFromUuid());
 
-                foreach(var c in service.Characteristics)
-                {
-                    Debug.WriteLine(" --  " + c.ID.PartialFromUuid() + "   =   " + c.Name);
-                    
-                }
+                //Debug.WriteLine(service.ID.PartialFromUuid());
+                //foreach(var c in service.Characteristics)
+                //{
+                //    Debug.WriteLine(" --  " + c.ID.PartialFromUuid() + "   =   " + c.Name); 
+                //}
 
                 if(service.ID.PartialFromUuid() == "0xaa00")
                 {
@@ -88,6 +89,7 @@ namespace FitSense.Models
                 else if (service.ID.PartialFromUuid() == "0xaa80")
                 {
                     Debug.WriteLine("Found Accelerometer/Gyroscope service.");
+                    MovementService = new MovementService(service);
                 }
                 else if (service.ID.PartialFromUuid() == "0xaa20")
                 {
@@ -97,10 +99,6 @@ namespace FitSense.Models
                 {
                     Debug.WriteLine("Found magneto service.");
                 }
-
-
-
-
 
 
             }
