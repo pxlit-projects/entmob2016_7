@@ -20,6 +20,7 @@ namespace FitSense_UWP.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand SwitchPageCommand { get; set; }
+        public ICommand AddCategoryCommand { get; set; }
         private IFitDataService fitDataService;
         private INavigationService navigationService;
 
@@ -81,6 +82,14 @@ namespace FitSense_UWP.ViewModel
             {
                 Messenger.Default.Send<UpdateSelectedCategory>(new UpdateSelectedCategory() { Category = SelectedCategory });
                 CurrentPage = navigationService.NavigateTo(NavigationService.EXERCISES);
+
+            });
+            AddCategoryCommand = new AlwaysRunCommand((Object o) =>
+            {
+                fitDataService.AddCategory(new Category()
+                {
+                    Name = "Categorie 2"
+                });
             });
         }
 

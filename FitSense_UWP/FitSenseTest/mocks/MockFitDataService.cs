@@ -8,7 +8,7 @@ using FitSense.DAL;
 
 namespace FitSenseTest.mocks
 {
-    class MockFitDataService : IFitDataService
+    public class MockFitDataService : IFitDataService
     {
         private ICategoryRepository categoryRepository = new MockCategoryRepository();
         private IExerciseRepository exerciseRepository = new MockExerciseRepository();

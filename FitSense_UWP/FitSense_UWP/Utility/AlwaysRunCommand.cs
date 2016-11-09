@@ -6,7 +6,6 @@ namespace FitSense_UWP.Utility
     public class AlwaysRunCommand : ICommand
     {
         private Action<object> execute;
-
         public event EventHandler CanExecuteChanged;
 
         public AlwaysRunCommand(Action<object> execute)

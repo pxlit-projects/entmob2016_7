@@ -98,10 +98,11 @@
     <Compile Include="CategoriesPageViewModelTest.cs" />
     <Compile Include="ExercisesViewModelTest.cs" />
     <Compile Include="LoginViewModelTest.cs" />
-    <Compile Include="mocks\FitDataServiceMock.cs" />
     <Compile Include="mocks\MockCategoryRepository.cs" />
     <Compile Include="mocks\MockCompletedSetRepository.cs" />
     <Compile Include="mocks\MockExerciseRepository.cs" />
+    <Compile Include="mocks\MockFitDataService.cs" />
+    <Compile Include="mocks\MockNavigationService.cs" />
     <Compile Include="mocks\MockSetRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTestApp.xaml.cs">

@@ -63,5 +63,10 @@ namespace FitSense_UWP.Services
 
             return completedSetRepository.GetCompletedSetsFromSet(set);
         }
+
+        public void AddCategory(Category category)
+        {
+            categoryRepository.AddCategory(category);
+        }
     }
 }

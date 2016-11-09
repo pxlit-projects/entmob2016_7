@@ -22,7 +22,7 @@ namespace FitSense_UWP
             set { setsPerExerciseViewModel = value; }
         }
 
-        private LoginViewModel loginViewModel = new LoginViewModel(navigationService, LoginService.Instance);
+        private LoginViewModel loginViewModel = new LoginViewModel(navigationService);//, LoginService.Instance);
         public LoginViewModel LoginViewModel
         {
             get { return loginViewModel; }
