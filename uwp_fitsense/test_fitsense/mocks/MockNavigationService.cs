@@ -1,5 +1,6 @@
 ﻿using System;
 using uwp_fitsense.dependencies;
+using uwp_fitsense.view;
 
 namespace test_fitsense.mocks
 {

@@ -1,6 +1,8 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿using fitsense.models;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
