@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="uwp_fitsense.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:uwp_fitsense"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding Source={StaticResource mainViewModelLocator},  Path=LoginViewModel}">
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Name="titleTextBlock" Text="FitSense" FontSize="100" Foreground="Green" HorizontalAlignment="Center"  VerticalAlignment="Center" FontFamily="Sans Serif" />
+        <TextBlock Name="LoginTextBlock" Margin="10" 
+                RelativePanel.Below="titleTextBlock"
+                Text="Login : " Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="30"/>
+        <TextBox Name="loginTextBox" FontSize="30" HorizontalAlignment="Stretch"
+                RelativePanel.RightOf="passwordTextBlock" RelativePanel.AlignVerticalCenterWith="LoginTextBlock"/>
+        <TextBlock Name="passwordTextBlock" Text="Password : " VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="30" Margin="10"
+                RelativePanel.Below="LoginTextBlock"/>
+        <TextBox Name="passwordTextBox" FontSize="30"
+                 RelativePanel.RightOf="passwordTextBlock" RelativePanel.AlignVerticalCenterWith="passwordTextBlock"/>
+        <Button Name="facebookButton" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="10" Background="#FF5173B9" Width="360" Height="50"
+                RelativePanel.Below="passwordTextBlock">
+            <Image Source="/Resources/fb_small.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Button>
+        <Button Name="loginButton" Command="{Binding LoginCommand}" Content="Login" FontSize="30" VerticalAlignment="Stretch" Margin="10" Width="150"
+                RelativePanel.Below="facebookButton"/>
+        <Button Name="registerButton" Content="Register" FontSize="30" Grid.Column="1"  VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="10"
+                RelativePanel.Below="facebookButton" RelativePanel.RightOf="loginButton"/>
+    </RelativePanel>
+</Page>

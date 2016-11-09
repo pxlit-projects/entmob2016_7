@@ -17,23 +17,25 @@
             <ColumnDefinition Width="100"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-
-        <ListView ItemsSource="{Binding Categories}"
+        <StackPanel Orientation="Vertical">
+            <Button Command="{Binding AddCategoryCommand}" Content="add category!"/>
+            <ListView ItemsSource="{Binding Categories}"
                   SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
                   >
-            <trigger:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="Tapped">
-                    <core:InvokeCommandAction Command="{Binding SwitchPageCommand}" />
-                </core:EventTriggerBehavior>
-            </trigger:Interaction.Behaviors>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <TextBlock Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                <trigger:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Tapped">
+                        <core:InvokeCommandAction Command="{Binding SwitchPageCommand}" />
+                    </core:EventTriggerBehavior>
+                </trigger:Interaction.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
         <Frame Grid.Column="1" SourcePageType="{Binding CurrentPage, Mode=TwoWay}" />
     </Grid>
 </Page>

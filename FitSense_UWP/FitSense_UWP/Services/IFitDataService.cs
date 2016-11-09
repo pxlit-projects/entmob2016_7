@@ -10,10 +10,10 @@ namespace FitSense_UWP.Services
     public interface IFitDataService
     {
         List<Category> GetAllCategories();
+        void AddCategory(Category category);
         List<Exercise> GetExercisesFromCategory(Category category);
         List<Set> GetSetsFromExercise(Exercise exercise);
         Set ToggleSelectedSetVisibility(Set set);
         List<CompletedSet> GetCompletedSetsFromSet(Set set);
-
     }
 }
