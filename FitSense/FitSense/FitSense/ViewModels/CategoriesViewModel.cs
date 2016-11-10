@@ -1,10 +1,13 @@
 ﻿using fitsense.models;
 using FitSense.Constants;
 using FitSense.Dependencies;
+using FitSense.Extensions;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,9 +19,18 @@ namespace FitSense.ViewModels
         private IUserDataService userDataService;
         private INavigationService navigationService;
 
-        public List<Category> Categories;
+        public ObservableCollection<Category> Categories { get; private set; }
 
-        public RelayCommand GoToCategoryCommand { get; set; }
+
+        private Category selectedCategory;
+        public Category SelectedCategory
+        {
+            get { return selectedCategory; }
+            set { selectedCategory = value; }
+        }
+
+
+        public RelayCommand<object> ItemSelectedCommand { get; private set; }
 
         public CategoriesViewModel(INavigationService navigationService, IUserDataService userDataService)
         {
@@ -31,14 +43,15 @@ namespace FitSense.ViewModels
 
         private void LoadData()
         {
-            Categories = userDataService.GetAllCategories();
+            Categories = userDataService.GetAllCategories().ToObservableCollection();
+            selectedCategory = Categories.First();
         }
 
         private void InitializeCommands()
         {
-            GoToCategoryCommand = new RelayCommand(() =>
+            ItemSelectedCommand = new RelayCommand<object>(async (item) =>
             {
-                //MessengerInstance.Send<LoginViewModel>(this, Messages.LoginSucces);
+                await navigationService.PopAsync();
             });
         }
     }
