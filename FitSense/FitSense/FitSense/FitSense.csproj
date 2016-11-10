@@ -48,6 +48,7 @@
     <Compile Include="Dependencies\INavigationService.cs" />
     <Compile Include="Dependencies\ISQLite.cs" />
     <Compile Include="Dependencies\IUserDataService.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Helpers\BehaviorBase.cs" />
     <Compile Include="Helpers\ItemSelectedBehavior.cs" />
     <Compile Include="Helpers\OnAppearingBehavior.cs" />
