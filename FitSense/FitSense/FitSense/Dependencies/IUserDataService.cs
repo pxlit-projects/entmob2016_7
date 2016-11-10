@@ -1,4 +1,4 @@
-﻿using FitSense.Models;
+﻿using fitsense.models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +9,10 @@ namespace FitSense.Dependencies
 {
     public interface IUserDataService
     {
-        User SearchUser(string userName);
-
-        Task LoginAsync(string userName, string password);
-
         User LoggedInUser { get; set; }
+
+        User SearchUser(string userName);
+        Task LoginAsync(string userName, string password);
+        List<Category> GetAllCategories();
     }
 }

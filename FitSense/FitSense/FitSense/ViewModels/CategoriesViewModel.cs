@@ -1,4 +1,5 @@
-﻿using FitSense.Constants;
+﻿using fitsense.models;
+using FitSense.Constants;
 using FitSense.Dependencies;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -15,7 +16,7 @@ namespace FitSense.ViewModels
         private IUserDataService userDataService;
         private INavigationService navigationService;
 
-        public List<String> Categories;
+        public List<Category> Categories;
 
         public RelayCommand GoToCategoryCommand { get; set; }
 
@@ -25,6 +26,12 @@ namespace FitSense.ViewModels
             this.navigationService = navigationService;
 
             InitializeCommands();
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            Categories = userDataService.GetAllCategories();
         }
 
         private void InitializeCommands()

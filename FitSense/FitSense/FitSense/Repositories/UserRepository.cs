@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FitSense.Models;
+using fitsense.models;
 
 namespace FitSense.Repositories
 {
@@ -12,7 +13,7 @@ namespace FitSense.Repositories
         public User SearchUser(string userName)
         {
             //TODO
-            return new User { UserName = "Daniel" };
+            return new User { Name = "Daniel" };
         }
     }
 }
