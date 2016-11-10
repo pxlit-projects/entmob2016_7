@@ -14,9 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import be.pxl.groep7.AppConfig;
-import be.pxl.groep7.dao.IExerciseRepository;
 import be.pxl.groep7.dao.ISetRepository;
-import be.pxl.groep7.models.Exercise;
 import be.pxl.groep7.models.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -86,7 +84,4 @@ public class SetRepositoryTest {
 		 
 		 Assert.assertTrue(sets.size() == 1);
 	 }
-	
-	
-	
 }
