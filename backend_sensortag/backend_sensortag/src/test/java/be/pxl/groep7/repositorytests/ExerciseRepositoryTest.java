@@ -83,5 +83,4 @@ public class ExerciseRepositoryTest {
 		 
 		 Assert.assertTrue(exercises.size() == 1);
 	 }
-	
 }
