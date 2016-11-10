@@ -16,6 +16,8 @@ namespace FitSense.Models
         private IAdapter adapter;
         private List<IService> deviceServices;
 
+        public MovementService MovementService { get; set; }
+
 
         public IDevice ConnectedDevice
         {
@@ -60,34 +62,43 @@ namespace FitSense.Models
                     deviceServices = (List<IService>)connectedDevice.Services;
                     InitializeSensors();
                 };
+
+                connectedDevice.DiscoverServices();
             };
         }
 
+        /// <summary>
+        /// http://processors.wiki.ti.com/index.php/CC2650_SensorTag_User's_Guide
+        /// </summary>
         private void InitializeSensors()
         {
             foreach (var service in deviceServices)
             {
                 var characteristic = service.Characteristics;
 
-                if(service.ID == 0xAA00.UuidFromPartial())
+                //Debug.WriteLine(service.ID.PartialFromUuid());
+                //foreach(var c in service.Characteristics)
+                //{
+                //    Debug.WriteLine(" --  " + c.ID.PartialFromUuid() + "   =   " + c.Name); 
+                //}
+
+                if(service.ID.PartialFromUuid() == "0xaa00")
                 {
                     Debug.WriteLine("Found infrared service.");
                 }
-                else if(service.ID == 0xAA10.UuidFromPartial())
+                else if (service.ID.PartialFromUuid() == "0xaa80")
                 {
-                    Debug.WriteLine("Found Accelerometer service.");
+                    Debug.WriteLine("Found Accelerometer/Gyroscope service.");
+                    MovementService = new MovementService(service);
                 }
-                else if(service.ID == 0xAA20.UuidFromPartial())
+                else if (service.ID.PartialFromUuid() == "0xaa20")
                 {
                     Debug.WriteLine("Found humidity service.");
                 }
-                else if (service.ID == 0xAA30.UuidFromPartial())
+                else if (service.ID.PartialFromUuid() == "0xaa30")
                 {
                     Debug.WriteLine("Found magneto service.");
                 }
-
-
-
 
 
             }

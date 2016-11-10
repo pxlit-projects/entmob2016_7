@@ -10,18 +10,20 @@ namespace FitSense.Helpers
 {
     class ItemSelectedBehavior : BehaviorBase<ListView>
     {
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(RelayCommand), typeof(OnAppearingBehavior), null);
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(RelayCommand<object>), typeof(OnAppearingBehavior), null);
 
-        public RelayCommand Command
+        public RelayCommand<object> Command
         {
-            get { return (RelayCommand)GetValue(CommandProperty); }
+            get { return (RelayCommand<object>)GetValue(CommandProperty); }
             set { SetValue(CommandProperty, value); }
         }
 
         protected override void OnAttachedTo(ListView bindable)
         {
+            //BindingContext = bindable.Parent.BindingContext;
             base.OnAttachedTo(bindable);
             bindable.ItemSelected += Bindable_ItemSelected;
+
         }
 
         protected override void OnDetachingFrom(ListView bindable)

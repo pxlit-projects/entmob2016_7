@@ -10,7 +10,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>FitSense.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>FitSense.iOS</AssemblyName>
+    <AssemblyName>FitSenseiOS</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -118,13 +118,13 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\FitSenseApp\Components\Monkey.Robotics-0.5.2\lib\ios\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\Components\Monkey.Robotics-0.5.2\lib\ios\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Robotics.Mobile.Core">
-      <HintPath>..\..\..\FitSenseApp\Components\Monkey.Robotics-0.5.2\lib\ios\Robotics.Mobile.Core.dll</HintPath>
+      <HintPath>..\..\Components\Monkey.Robotics-0.5.2\lib\ios\Robotics.Mobile.Core.dll</HintPath>
     </Reference>
     <Reference Include="Robotics.Mobile.Core.iOS">
-      <HintPath>..\..\..\FitSenseApp\Components\Monkey.Robotics-0.5.2\lib\ios\Robotics.Mobile.Core.iOS.dll</HintPath>
+      <HintPath>..\..\Components\Monkey.Robotics-0.5.2\lib\ios\Robotics.Mobile.Core.iOS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
