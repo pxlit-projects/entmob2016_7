@@ -111,9 +111,28 @@ public class CategoryControllerIntegrationTest {
 		Category category4 = new Category();
 		category4.setName("Category 4");
 		
+		System.out.println("Real post json: " + asJson(category4));
+		
 		 mockMvc.perform(post(CategoryRestController.BASEURL)
 				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
 	                .content(asJson(category4))
+	                .contentType(MediaType.APPLICATION_JSON_UTF8))
+	                .andExpect(status().isNoContent());
+		 
+		assertThat(categoryRepository.findOne(category3.getId()+1).getName().equals(category4.getName()));
+	}
+	
+	@Test
+	public void postCategoryLikeDotNETAndTestIfCategoryCouldBeFoundInDB2() throws IOException, Exception {
+		Category category4 = new Category();
+		category4.setName("Category 4");
+		
+		String json = "{\"CategoryID\": 0, \"Name\": \"Naam\"}";
+		System.out.println(json);
+		
+		 mockMvc.perform(post(CategoryRestController.BASEURL)
+				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
+	                .content(json)
 	                .contentType(MediaType.APPLICATION_JSON_UTF8))
 	                .andExpect(status().isNoContent());
 		 

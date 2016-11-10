@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name="category")
 @NamedQuery(name="Category.getAllCategories"
@@ -16,13 +18,16 @@ public class Category {
 	
 	@Id
 	@Column(name="id")
+	@JsonProperty(value="CategoryID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	int id;
 	
 	
 
 	@Column(name="name")
+	@JsonProperty(value="Name")
 	String name;
+
 	
 	public Category() {
 		
