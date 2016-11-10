@@ -17,9 +17,9 @@ namespace FitSense.Models
         private ICharacteristic switchCharacteristic;
         private ICharacteristic periodCharacteristic;
         
-        public MovementService(IService movementService)
+        public MovementService(IService movementService) : base(movementService)
         {
-            
+
         }
 
         public Vector3 GetGyroValue()
