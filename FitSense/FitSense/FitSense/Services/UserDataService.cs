@@ -14,6 +14,8 @@ namespace FitSense.Services
     {
         private static UserRepository userRepository = new UserRepository();
 
+        private DummyRepository dummyRepository;
+
         public User LoggedInUser { get; set; }
 
         User IUserDataService.LoggedInUser
@@ -29,9 +31,9 @@ namespace FitSense.Services
             }
         }
 
-        public UserDataService()
+        public UserDataService(DummyRepository dummyRepository)
         {
-
+            this.dummyRepository = dummyRepository;
         }
 
         public Task LoginAsync(string userName, string password)
@@ -54,7 +56,7 @@ namespace FitSense.Services
 
         public List<Category> GetAllCategories()
         {
-            throw new NotImplementedException();
+            return dummyRepository.GetAllCategories().ToList();
         }
     }
 }

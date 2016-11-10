@@ -54,6 +54,8 @@ namespace FitSense.ViewModels
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<SensorConnectViewModel>();
             SimpleIoc.Default.Register<SensorDevice>();
+
+            SimpleIoc.Default.Register<CategoriesViewModel>();
         }
 
         public MainViewModel Main
@@ -77,6 +79,14 @@ namespace FitSense.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<SensorConnectViewModel>();
+            }
+        }
+
+        public CategoriesViewModel CategoriesViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<CategoriesViewModel>();
             }
         }
 
