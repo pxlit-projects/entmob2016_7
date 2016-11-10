@@ -78,5 +78,4 @@ public class CategoryRepositoryTest {
 		 
 		 Assert.assertTrue(categories.size() == 3);
 	 }
-
 }
