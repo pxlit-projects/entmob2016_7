@@ -67,6 +67,7 @@
     <Compile Include="Services\UserDataService.cs" />
     <Compile Include="ViewModels\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\ExercisesViewModel.cs" />
+    <Compile Include="ViewModels\ExerciseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SensorConnectViewModel.cs" />
@@ -76,6 +77,9 @@
     </Compile>
     <Compile Include="Views\CategoriesPage.xaml.cs">
       <DependentUpon>CategoriesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExercisePage.xaml.cs">
+      <DependentUpon>ExercisePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExercisesView.xaml.cs">
       <DependentUpon>ExercisesView.xaml</DependentUpon>
@@ -195,6 +199,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ExercisesView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ExercisePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

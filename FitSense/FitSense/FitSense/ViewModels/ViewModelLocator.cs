@@ -58,7 +58,8 @@ namespace FitSense.ViewModels
             SimpleIoc.Default.Register<SensorDevice>();
 
             SimpleIoc.Default.Register<CategoriesViewModel>();
-
+            SimpleIoc.Default.Register<ExercisesViewModel>();
+            SimpleIoc.Default.Register<ExerciseViewModel>();
             //SimpleIoc.Default.Register<IDummyRepository, DummyRepository>();
         }
 
@@ -91,6 +92,22 @@ namespace FitSense.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<CategoriesViewModel>();
+            }
+        }
+
+        public ExercisesViewModel ExercisesViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ExercisesViewModel>();
+            }
+        }
+
+        public ExerciseViewModel ExerciseViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ExerciseViewModel>();
             }
         }
 
