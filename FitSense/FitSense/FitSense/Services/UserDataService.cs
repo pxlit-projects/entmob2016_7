@@ -22,7 +22,7 @@ namespace FitSense.Services
         {
             get
             {
-                return null;
+                return userRepository.SearchUser("Daniël");
             }
 
             set

@@ -1,11 +1,11 @@
 ﻿using fitsense.DAL.dependencies;
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using fitsense.models;
 using System.Net.Http.Headers;
-using System.Text;
 using Newtonsoft.Json;
+using System.Net.Http;
+using System.Text;
 
 namespace fitsense.DAL
 {
@@ -16,16 +16,18 @@ namespace fitsense.DAL
             using (var client = new HttpClient())
             {
                 // troubles for the kim kim
-                /*client.BaseAddress = new Uri("http://localhost:8081/sensortagapi/category");
+                client.BaseAddress = new Uri("http://localhost:8081/sensortagapi/category");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
-                    Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(string.Format("{0}:{1}", "user", "123456"))));
+                    string.Format("{0}:{1}", "user", "123456"));
 
                 var myContent = JsonConvert.SerializeObject(categorie);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                var result = client.PostAsync("", byteContent).Result;
-                string resultContent = result.Content.ReadAsStringAsync().Result;*/
+                var test = JsonConvert.SerializeObject(categorie);
+                StringContent postBody = new StringContent(test);
+                var result = client.PostAsync("", postBody).Result;
+                string resultContent = result.Content.ReadAsStringAsync().Result;
             }
         }
 

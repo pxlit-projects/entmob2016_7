@@ -2,7 +2,30 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FitSense.Views.CategoriesPage"
-              BindingContext="{Binding Source={StaticResource Locator}, Path=CategoriesViewModel}" >
+              BindingContext="{Binding Source={StaticResource Locator}, Path=CategoriesViewModel}" 
+            xmlns:helpers="clr-namespace:FitSense.Helpers">
   
-  <Label Text="I am text! Fear me" VerticalOptions="Center" HorizontalOptions="Center" />
+  <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <ListView ItemsSource="{Binding Categories}" SelectedItem="{Binding Path=SelectedCategory, Mode=TwoWay}">
+            <ListView.Behaviors>
+                <helpers:ItemSelectedBehavior Command="{Binding CategorySelectedCommand}" />
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
+                            <StackLayout Padding="5,0,0,0" VerticalOptions="StartAndExpand" Orientation="Vertical">
+                                <Label Text="{Binding Name}" YAlign="Center" Font="Medium" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </ContentPage>

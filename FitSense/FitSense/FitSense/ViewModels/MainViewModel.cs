@@ -29,6 +29,7 @@ namespace FitSense.ViewModels
         public RelayCommand ConnectCommand { get; private set; }
         public RelayCommand LoginCommand { get; private set; }
         public RelayCommand CarouselCommand { get; private set; }
+        public RelayCommand GoToCategoriesCommand { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -46,13 +47,18 @@ namespace FitSense.ViewModels
         {
             ConnectCommand = new RelayCommand(async () =>
             {
-                await navigation.PushAsync(PageUrls.SensorConnectView);
+                await navigation.PushAsync(PageUrls.SENSORCONNECTVIEW);
+            });
+
+            GoToCategoriesCommand = new RelayCommand(async () =>
+            {
+                await navigation.PushAsync(PageUrls.CATEGORIESVIEW);
             });
 
             LoginCommand = new RelayCommand(async () =>
             {
                 if (userDataService.LoggedInUser == null)
-                    await navigation.PushModalAsync(PageUrls.LoginView);
+                    await navigation.PushModalAsync(PageUrls.LOGINVIEW);
             });
             
         }
