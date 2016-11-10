@@ -13,7 +13,7 @@
 
         <ListView ItemsSource="{Binding Categories}" SelectedItem="{Binding Path=SelectedCategory, Mode=TwoWay}">
             <ListView.Behaviors>
-                <helpers:ItemSelectedBehavior Command="{Binding ItemSelectedCommand}" />
+                <helpers:ItemSelectedBehavior Command="{Binding CategorySelectedCommand}" />
             </ListView.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>

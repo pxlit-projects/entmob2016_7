@@ -21,16 +21,7 @@ namespace FitSense.ViewModels
 
         public ObservableCollection<Category> Categories { get; private set; }
 
-
-        private Category selectedCategory;
-        public Category SelectedCategory
-        {
-            get { return selectedCategory; }
-            set { selectedCategory = value; }
-        }
-
-
-        public RelayCommand<object> ItemSelectedCommand { get; private set; }
+        public RelayCommand<object> CategorySelectedCommand { get; private set; }
 
         public CategoriesViewModel(INavigationService navigationService, IUserDataService userDataService)
         {
@@ -44,14 +35,13 @@ namespace FitSense.ViewModels
         private void LoadData()
         {
             Categories = userDataService.GetAllCategories().ToObservableCollection();
-            selectedCategory = Categories.First();
         }
 
         private void InitializeCommands()
         {
-            ItemSelectedCommand = new RelayCommand<object>(async (item) =>
+            CategorySelectedCommand = new RelayCommand<object>(async (item) =>
             {
-                await navigationService.PopAsync();
+                await navigationService.PushModalAsync(PageUrls.EXERCISESVIEW);
             });
         }
     }
