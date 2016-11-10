@@ -8,11 +8,11 @@ namespace FitSense.Constants
 {
     public class PageUrls
     {
-        public const string LoginView = "LoginView";
-        public const string MainView = "MainView";
-        public const string SensorConnectView = "SensorConnectView";
-        public const string Carousel = "Carousel";
-
+        public const string LOGINVIEW = "LoginView";
+        public const string MAINVIEW = "MainView";
+        public const string SENSORCONNECTVIEW = "SensorConnectView";
+        public const string CAROUSEL = "Carousel";
+        public const string CATEGORIES = "Categories";
 
     }
 }

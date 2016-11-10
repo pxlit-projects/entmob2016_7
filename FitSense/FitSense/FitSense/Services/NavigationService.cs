@@ -16,8 +16,8 @@ namespace FitSense.Services
         {
             switch (pageName)
             {
-                case PageUrls.LoginView: return new LoginView();
-                case PageUrls.SensorConnectView: return new SensorConnectView();
+                case PageUrls.LOGINVIEW: return new LoginView();
+                case PageUrls.SENSORCONNECTVIEW: return new SensorConnectView();
             }
             return null;
         }
