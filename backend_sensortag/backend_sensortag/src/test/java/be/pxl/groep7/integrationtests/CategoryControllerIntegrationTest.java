@@ -123,10 +123,7 @@ public class CategoryControllerIntegrationTest {
 	}
 	
 	@Test
-	public void postCategoryLikeDotNETAndTestIfCategoryCouldBeFoundInDB2() throws IOException, Exception {
-		Category category4 = new Category();
-		category4.setName("Category 4");
-		
+	public void postCategoryLikeDotNETAndTestIfCategoryCouldInserted() throws IOException, Exception {
 		String json = "{\"CategoryID\": 0, \"Name\": \"Naam\"}";
 		System.out.println(json);
 		
@@ -135,8 +132,6 @@ public class CategoryControllerIntegrationTest {
 	                .content(json)
 	                .contentType(MediaType.APPLICATION_JSON_UTF8))
 	                .andExpect(status().isNoContent());
-		 
-		assertThat(categoryRepository.findOne(category3.getId()+1).getName().equals(category4.getName()));
 	}
 	
 	@Test

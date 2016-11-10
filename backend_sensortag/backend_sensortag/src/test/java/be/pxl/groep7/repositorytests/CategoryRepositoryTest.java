@@ -1,5 +1,7 @@
 package be.pxl.groep7.repositorytests;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,16 +28,55 @@ public class CategoryRepositoryTest {
 	@Autowired
 	public ICategoryRepository categoryRepository;
 	
+	private int id1;
+	private int id2;
+	private int id3;
+	
+	
+	@Before
+	public void initialSetupTest() {
+		categoryRepository.deleteAll();
+		
+		id1 = categoryRepository.save(new Category(1, "Category 1")).getId();
+		id2 = categoryRepository.save(new Category(2, "Category 2")).getId();
+		id3 = categoryRepository.save(new Category(3, "Category 3")).getId();
+	}
+	
 	 @Test
-	 public void testCategoryRepository() throws Exception{
-		 Category inputCat = new Category(1, "testCat");
+	 public void postCategoryRepositoryTest() {
+		 Category inputCat = new Category(4, "testCat");
 		 
-		 int id = categoryRepository.save(inputCat).getId();
-		 
-		 Category outputCat = categoryRepository.findOne(id);
-		 
+		 Category outputCat = categoryRepository.save(inputCat);
 		 Assert.assertNotNull(outputCat);
-		 Assert.assertEquals("testCat", outputCat.getName());
+	 }
+	 
+	 @Test
+	 public void getCategoryRepositoryTest(){
+		 Category outputCat = categoryRepository.findOne(id1);
+		 Assert.assertEquals("Category 1", outputCat.getName());
+	 }
+	 
+	 @Test
+	 public void putCategoryRepositoryTest() {
+		 Category inputCat = new Category(id2,"newCategory");
+		 Category outputCat = categoryRepository.save(inputCat);
+		 
+		 Assert.assertTrue(inputCat.getName().equals(outputCat.getName()));
+	 }
+	 
+	 @Test
+	 public void deleteCategoryRespositoryTest(){
+		 categoryRepository.delete(id3);
+		 Category outputCategory = categoryRepository.findOne(3);
+		 
+		 Assert.assertTrue(outputCategory == null);
+	 }
+	 
+	 @Test
+	 public void getListOfCategoriesTest() {
+		 List<Category> categories = categoryRepository.getAllCategories();
+		 
+		 Assert.assertTrue(categories.size() == 3);
 	 }
 
 }
