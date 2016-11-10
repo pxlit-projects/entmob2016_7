@@ -10,5 +10,5 @@ public interface ICompletedSetService {
 	public CompletedSet findCompletedSetById(int id);
 	public void deleteCompletedSetById(int id);
 	public boolean doesCompletedSetExist(int id);
-	public List<CompletedSet> getAllCompletedSetsByExerciseId(int exerciseId);
+	public List<CompletedSet> getAllCompletedSetsBySetId(int exerciseId);
 }

@@ -8,12 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-
-//Aparently this model is wrong???
 @Entity
 @Table(name="completed_set")
-@NamedQuery(name="CompletedSet.getCompletedSetByExerciseId"
-				, query="select cs from CompletedSet cs where cs.exerciseId=?1")
+@NamedQuery(name="CompletedSet.getCompletedSetsBySetId"
+				, query="select cs from CompletedSet cs where cs.setId=?1")
 public class CompletedSet {
 	
 	@Id
@@ -21,8 +19,8 @@ public class CompletedSet {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	int id;
 	
-	@Column(name="exercise_id")
-	int exerciseId;
+	@Column(name="set_id")
+	int setId;
 	
 	@Column(name="time")
 	long time;
@@ -33,10 +31,10 @@ public class CompletedSet {
 	@Column(name="user_id")
 	int userId;
 	
-	public CompletedSet(int id, int exerciseId, long time, int duration, int userId) {
+	public CompletedSet(int id, int setId, long time, int duration, int userId) {
 		super();
 		this.id = id;
-		this.exerciseId = exerciseId;
+		this.setId = setId;
 		this.time = time;
 		this.duration = duration;
 		this.userId = userId;
@@ -54,12 +52,12 @@ public class CompletedSet {
 		this.id = id;
 	}
 	
-	public int getExerciseId() {
-		return exerciseId;
+	public int getSetId() {
+		return setId;
 	}
 	
-	public void setExerciseId(int exerciseId) {
-		this.exerciseId = exerciseId;
+	public void setSetId(int setId) {
+		this.setId = setId;
 	}
 	
 	public long getTime() {

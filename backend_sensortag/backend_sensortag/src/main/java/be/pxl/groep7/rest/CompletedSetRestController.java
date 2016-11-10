@@ -31,7 +31,7 @@ public class CompletedSetRestController {
 	@RequestMapping(value="/sets/{setId}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<CompletedSet>> getCompletedSetsBySetId(@PathVariable("setId") int setId){
 		HttpStatus status = HttpStatus.OK;
-		List<CompletedSet> setList = service.getAllCompletedSetsByExerciseId(setId);
+		List<CompletedSet> setList = service.getAllCompletedSetsBySetId(setId);
 		
 		if(setList == null){
 			status = HttpStatus.NOT_FOUND;

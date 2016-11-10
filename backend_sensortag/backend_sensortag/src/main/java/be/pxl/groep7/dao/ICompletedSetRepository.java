@@ -7,5 +7,5 @@ import be.pxl.groep7.models.CompletedSet;
 
 public interface ICompletedSetRepository extends CrudRepository<CompletedSet, Integer> {
 	
-	public List<CompletedSet> getCompletedSetByExerciseId(int exerciseId);
+	public List<CompletedSet> getCompletedSetsBySetId(int exerciseId);
 }

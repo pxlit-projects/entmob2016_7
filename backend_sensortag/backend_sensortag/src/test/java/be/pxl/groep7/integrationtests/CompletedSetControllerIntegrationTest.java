@@ -77,28 +77,28 @@ public class CompletedSetControllerIntegrationTest {
 
 		completedSet1 = new CompletedSet();
 		completedSet1.setDuration(10);				//duration in what? miliseconds, seconds, minutes, hours? -> minutes?
-		completedSet1.setExerciseId(1);
+		completedSet1.setSetId(1);
 		completedSet1.setTime(1500L); 				//difference with duration?
 		completedSet1.setUser_id(1);
 		completedSet1 = completedSetRepository.save(completedSet1);
 
 		completedSet2 = new CompletedSet();
 		completedSet2.setDuration(10);				//duration in what? miliseconds, seconds, minutes, hours? -> minutes?
-		completedSet2.setExerciseId(2);
+		completedSet2.setSetId(2);
 		completedSet2.setTime(1500L); 				//difference with duration?
 		completedSet2.setUser_id(1);
 		completedSet2 = completedSetRepository.save(completedSet2);
 		
 		completedSet3 = new CompletedSet();
 		completedSet3.setDuration(10);				//duration in what? miliseconds, seconds, minutes, hours? -> minutes?
-		completedSet3.setExerciseId(1);
+		completedSet3.setSetId(1);
 		completedSet3.setTime(1500L); 				//difference with duration?
 		completedSet3.setUser_id(2);
 		completedSet3 = completedSetRepository.save(completedSet3);
 		
 		completedSet4 = new CompletedSet();
 		completedSet4.setDuration(10);				//duration in what? miliseconds, seconds, minutes, hours? -> minutes?
-		completedSet4.setExerciseId(2);
+		completedSet4.setSetId(2);
 		completedSet4.setTime(1500L); 				//difference with duration?
 		completedSet4.setUser_id(2);
 		completedSet4 = completedSetRepository.save(completedSet4);
@@ -127,7 +127,7 @@ public class CompletedSetControllerIntegrationTest {
 	public void postCompletedSetAndTestIfCompletedSetCouldBeFoundInDB() throws IOException, Exception {
 		CompletedSet completedSet5 = new CompletedSet();
 		completedSet5.setDuration(20);
-		completedSet5.setExerciseId(2);
+		completedSet5.setSetId(2);
 		completedSet5.setTime(50L);
 		completedSet5.setUser_id(1);
 		
@@ -138,7 +138,7 @@ public class CompletedSetControllerIntegrationTest {
 	                .andExpect(status().isNoContent());
 		 
 		assertThat(completedSetRepository.findOne(completedSet4.getId()+1).getDuration() == completedSet5.getDuration());
-		assertThat(completedSetRepository.findOne(completedSet4.getId()+1).getExerciseId() == completedSet5.getExerciseId());
+		assertThat(completedSetRepository.findOne(completedSet4.getId()+1).getSetId() == completedSet5.getSetId());
 		assertThat(completedSetRepository.findOne(completedSet4.getId()+1).getTime() == completedSet5.getTime());
 		assertThat(completedSetRepository.findOne(completedSet4.getId()+1).getUserId() == completedSet5.getUserId());
 	}

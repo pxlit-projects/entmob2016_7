@@ -36,8 +36,8 @@ public class CompletedSetServiceImpl implements ICompletedSetService {
 	}
 
 	@Override
-	public List<CompletedSet> getAllCompletedSetsByExerciseId(int exerciseId) {
-		return rep.getCompletedSetByExerciseId(exerciseId);
+	public List<CompletedSet> getAllCompletedSetsBySetId(int setId) {
+		return rep.getCompletedSetsBySetId(setId);
 	}
 
 }

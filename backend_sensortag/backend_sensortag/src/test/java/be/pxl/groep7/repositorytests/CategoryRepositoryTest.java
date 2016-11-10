@@ -1,7 +1,5 @@
 package be.pxl.groep7.repositorytests;
 
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,24 +23,19 @@ import be.pxl.groep7.models.Category;
 @SpringBootTest
 public class CategoryRepositoryTest {
 	
-	
-	
 	@Autowired
 	public ICategoryRepository categoryRepository;
 	
-	
-	
-	 
 	 @Test
 	 public void testCategoryRepository() throws Exception{
 		 Category inputCat = new Category(1, "testCat");
 		 
-		 categoryRepository.save(inputCat);
+		 int id = categoryRepository.save(inputCat).getId();
 		 
-		 Category outputCat = categoryRepository.findOne(1);
+		 Category outputCat = categoryRepository.findOne(id);
 		 
 		 Assert.assertNotNull(outputCat);
-		 //Assert.assertEquals("testCat", outputCat.getName());
+		 Assert.assertEquals("testCat", outputCat.getName());
 	 }
 
 }
