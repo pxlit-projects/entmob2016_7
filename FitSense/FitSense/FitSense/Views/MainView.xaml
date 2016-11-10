@@ -8,9 +8,7 @@
         <helpers:OnAppearingBehavior Command="{Binding LoginCommand}" />
     </ContentPage.Behaviors>
     <StackLayout Orientation="Vertical" >
-
       <Button Text="Connect Sensor" HeightRequest="50" Command="{Binding ConnectCommand}"/>
       <Button Text="Categories" HeightRequest="50" Command="{Binding GoToCategories}" />
-
     </StackLayout>
 </ContentPage>

@@ -14,6 +14,7 @@
 
 using FitSense.Dependencies;
 using FitSense.Models;
+using FitSense.Repositories;
 using FitSense.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
@@ -48,14 +49,17 @@ namespace FitSense.ViewModels
             ////}
 
             SimpleIoc.Default.Register<INavigationService, NavigationService>();
-            SimpleIoc.Default.Register<IUserDataService, UserDataService>();
-            
+            // DANIEL: ik denk dat ge zo constructor injection moet doen
+            SimpleIoc.Default.Register<IUserDataService>(() => new UserDataService(new DummyRepository()));
+
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<SensorConnectViewModel>();
             SimpleIoc.Default.Register<SensorDevice>();
 
             SimpleIoc.Default.Register<CategoriesViewModel>();
+
+            //SimpleIoc.Default.Register<IDummyRepository, DummyRepository>();
         }
 
         public MainViewModel Main

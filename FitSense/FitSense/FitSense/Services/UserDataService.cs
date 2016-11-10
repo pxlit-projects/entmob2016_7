@@ -13,7 +13,7 @@ namespace FitSense.Services
     public class UserDataService : IUserDataService
     {
         private static UserRepository userRepository = new UserRepository();
-
+        //private static DummyRepository dummyRepository = new Dumm
         private DummyRepository dummyRepository;
 
         public User LoggedInUser { get; set; }
@@ -22,12 +22,12 @@ namespace FitSense.Services
         {
             get
             {
-                throw new NotImplementedException();
+                return null;
             }
 
             set
             {
-                throw new NotImplementedException();
+                
             }
         }
 
