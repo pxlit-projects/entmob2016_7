@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FitSense.Views.ExercisePage">
+
+  
+  <ContentPage.Content>
+    <StackLayout Spacing="10" x:Name="layout">
+      <Label Text="{Binding Exercise.Name}" VerticalOptions="Start" HorizontalOptions="Center" />
+      <Label Text="{Binding Exercise.Description}" VerticalOptions="FillAndExpand" HorizontalOptions="Center" />
+      <Label Text="Test 123" VerticalOptions="FillAndExpand" HorizontalOptions="Center" />
+      <Label Text="Test 456" VerticalOptions="FillAndExpand" HorizontalOptions="Center" />
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
