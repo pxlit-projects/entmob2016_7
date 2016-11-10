@@ -12,7 +12,7 @@ namespace FitSense.Constants
         public const string MAINVIEW = "MainView";
         public const string SENSORCONNECTVIEW = "SensorConnectView";
         public const string CAROUSEL = "Carousel";
-        public const string CATEGORIES = "Categories";
+        public const string CATEGORIESVIEW = "Categories";
 
     }
 }

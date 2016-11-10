@@ -52,7 +52,7 @@ namespace FitSense.ViewModels
 
             GoToCategoriesCommand = new RelayCommand(async () =>
             {
-                await navigation.PushAsync(PageUrls.SENSORCONNECTVIEW);
+                await navigation.PushAsync(PageUrls.CATEGORIESVIEW);
             });
 
             LoginCommand = new RelayCommand(async () =>
