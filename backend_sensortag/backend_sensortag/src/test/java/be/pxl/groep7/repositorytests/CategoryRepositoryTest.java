@@ -67,7 +67,7 @@ public class CategoryRepositoryTest {
 	 @Test
 	 public void deleteCategoryRespositoryTest(){
 		 categoryRepository.delete(id3);
-		 Category outputCategory = categoryRepository.findOne(3);
+		 Category outputCategory = categoryRepository.findOne(id3);
 		 
 		 Assert.assertTrue(outputCategory == null);
 	 }
