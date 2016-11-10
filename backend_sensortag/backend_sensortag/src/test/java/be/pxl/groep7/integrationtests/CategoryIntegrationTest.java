@@ -23,9 +23,10 @@ import org.springframework.web.client.RestTemplate;
 
 import be.pxl.groep7.AppConfig;
 import be.pxl.groep7.models.Category;
+import be.pxl.groep7.test.config.TestConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = AppConfig.class)
+@ContextConfiguration(classes = TestConfig.class)
 @SpringBootTest
 public class CategoryIntegrationTest {
 

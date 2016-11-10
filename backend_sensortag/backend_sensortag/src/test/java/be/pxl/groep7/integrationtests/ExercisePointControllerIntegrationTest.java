@@ -21,6 +21,7 @@ import be.pxl.groep7.AppConfig;
 import be.pxl.groep7.dao.IExercisePointRepository;
 import be.pxl.groep7.models.ExercisePoint;
 import be.pxl.groep7.rest.ExercisePointRestController;
+import be.pxl.groep7.test.config.TestConfig;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static java.util.Arrays.asList;
@@ -35,7 +36,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(classes = AppConfig.class)
+@ContextConfiguration(classes = TestConfig.class)
 @WebAppConfiguration
 public class ExercisePointControllerIntegrationTest {
 

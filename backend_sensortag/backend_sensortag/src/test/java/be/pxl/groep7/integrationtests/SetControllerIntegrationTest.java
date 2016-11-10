@@ -25,6 +25,7 @@ import be.pxl.groep7.models.Set;
 import be.pxl.groep7.rest.ExercisePointRestController;
 import be.pxl.groep7.rest.ExerciseRestController;
 import be.pxl.groep7.rest.SetRestController;
+import be.pxl.groep7.test.config.TestConfig;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static java.util.Arrays.asList;
@@ -40,8 +41,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(classes = AppConfig.class)
-@WebAppConfiguration
+@ContextConfiguration(classes = TestConfig.class)
 public class SetControllerIntegrationTest {
 
 	private MockMvc mockMvc;

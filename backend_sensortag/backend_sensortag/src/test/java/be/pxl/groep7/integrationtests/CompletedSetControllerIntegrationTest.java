@@ -21,6 +21,7 @@ import be.pxl.groep7.AppConfig;
 import be.pxl.groep7.dao.ICompletedSetRepository;
 import be.pxl.groep7.models.CompletedSet;
 import be.pxl.groep7.rest.CompletedSetRestController;
+import be.pxl.groep7.test.config.TestConfig;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static java.util.Arrays.asList;
@@ -36,8 +37,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(classes = AppConfig.class)
-@WebAppConfiguration
+@ContextConfiguration(classes = TestConfig.class)
 public class CompletedSetControllerIntegrationTest {
 
 	private MockMvc mockMvc;

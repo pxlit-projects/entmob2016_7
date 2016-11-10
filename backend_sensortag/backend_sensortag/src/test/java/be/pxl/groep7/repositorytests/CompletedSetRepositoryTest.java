@@ -14,14 +14,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import be.pxl.groep7.AppConfig;
-import be.pxl.groep7.dao.ICategoryRepository;
 import be.pxl.groep7.dao.ICompletedSetRepository;
-import be.pxl.groep7.models.Category;
 import be.pxl.groep7.models.CompletedSet;
+import be.pxl.groep7.test.config.TestConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = AppConfig.class)
-@WebAppConfiguration
+@ContextConfiguration(classes = TestConfig.class)
 @DirtiesContext
 @SpringBootTest
 public class CompletedSetRepositoryTest {
