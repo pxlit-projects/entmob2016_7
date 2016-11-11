@@ -37,7 +37,6 @@ import be.pxl.groep7.models.CompletedSet;
 import be.pxl.groep7.rest.CategoryRestController;
 import be.pxl.groep7.rest.CompletedSetRestController;
 import be.pxl.groep7.services.ICompletedSetService;
-import be.pxl.groep7.services.ICompletedSetService;
 import be.pxl.groep7.test.config.TestConfig;
 
 @RunWith(SpringRunner.class)
@@ -54,9 +53,6 @@ public class CompletedSetRestTest {
 	
 	@Mock
 	ICompletedSetService serviceMock;
-	
-	@Mock
-	ICompletedSetRepository repMock;
 	
 	public CompletedSetRestController completedSetController;
 	
@@ -75,7 +71,7 @@ public class CompletedSetRestTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		completedSetController = new CompletedSetRestController(serviceMock, repMock);
+		completedSetController = new CompletedSetRestController(serviceMock);
 		mockMvc = MockMvcBuilders.standaloneSetup(completedSetController)
 				.build();
 	}
@@ -92,7 +88,6 @@ public class CompletedSetRestTest {
 		completedSets.add(completedSet3);
 		
 		Mockito.when(serviceMock.getAllCompletedSetsBySetId(1)).thenReturn(completedSets);
-		Mockito.when(repMock.getCompletedSetsBySetId(1)).thenReturn(completedSets);
 		
 		mockMvc.perform(get(CompletedSetRestController.BASEURL+"/sets/" + 1)
 		.with(user("user").password("123456")))
@@ -106,7 +101,6 @@ public class CompletedSetRestTest {
 		CompletedSet completedSet1 = new CompletedSet(1, 1, 10, 210, 1);
 		
 		Mockito.when(serviceMock.findCompletedSetById(1)).thenReturn(completedSet1);
-		Mockito.when(repMock.findOne(1)).thenReturn(completedSet1);
 		
 		mockMvc.perform(get(CompletedSetRestController.BASEURL+"/getById/" + completedSet1.getId())													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -120,7 +114,6 @@ public class CompletedSetRestTest {
 		CompletedSet completedSet1 = new CompletedSet(1, 1, 10, 210, 1);
 		
 		Mockito.when(serviceMock.findCompletedSetById(1)).thenReturn(null);
-		Mockito.when(repMock.findOne(1)).thenReturn(null);
 		
 		mockMvc.perform(get(CompletedSetRestController.BASEURL+"/getById/" + completedSet1.getId())													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -133,7 +126,6 @@ public class CompletedSetRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateCompletedSet(completedSet1)).thenReturn(completedSet1);
 		Mockito.when(serviceMock.doesCompletedSetExist(1)).thenReturn(false);
-		Mockito.when(repMock.save(completedSet1)).thenReturn(completedSet1);
 		
 		 mockMvc.perform(post(CompletedSetRestController.BASEURL)
 				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
@@ -148,7 +140,6 @@ public class CompletedSetRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateCompletedSet(completedSet1)).thenReturn(completedSet1);
 		Mockito.when(serviceMock.doesCompletedSetExist(1)).thenReturn(true);
-		Mockito.when(repMock.save(completedSet1)).thenReturn(completedSet1);
 		
 		 mockMvc.perform(post(CompletedSetRestController.BASEURL)
 				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
@@ -163,7 +154,6 @@ public class CompletedSetRestTest {
 		
 		Mockito.when(serviceMock.doesCompletedSetExist(1)).thenReturn(true);
 		Mockito.when(serviceMock.createOrUpdateCompletedSet(completedSet1)).thenReturn(completedSet1);
-		Mockito.when(repMock.save(completedSet1)).thenReturn(completedSet1);
 		
 		mockMvc.perform(put(CompletedSetRestController.BASEURL + "/" + completedSet1.getId())	
 				.header("host", "localhost:8080")	
@@ -181,7 +171,6 @@ public class CompletedSetRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateCompletedSet(completedSet1)).thenReturn(completedSet1);
 		Mockito.when(serviceMock.doesCompletedSetExist(1)).thenReturn(false);
-		Mockito.when(repMock.save(completedSet1)).thenReturn(completedSet1);
 		
 		mockMvc.perform(put(CompletedSetRestController.BASEURL + "/" + completedSet1.getId())	
 				.header("host", "localhost:8080")	
@@ -197,7 +186,6 @@ public class CompletedSetRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateCompletedSet(completedSet1)).thenReturn(completedSet1);
 		Mockito.when(serviceMock.doesCompletedSetExist(1)).thenReturn(true);
-		Mockito.when(repMock.save(completedSet1)).thenReturn(completedSet1);
 		
 		mockMvc.perform(delete(CompletedSetRestController.BASEURL+"/" + completedSet1.getId())	
 				.header("host", "localhost:8080")													
@@ -211,7 +199,6 @@ public class CompletedSetRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateCompletedSet(completedSet1)).thenReturn(completedSet1);
 		Mockito.when(serviceMock.doesCompletedSetExist(1)).thenReturn(false);
-		Mockito.when(repMock.save(completedSet1)).thenReturn(completedSet1);
 		
 		mockMvc.perform(delete(CompletedSetRestController.BASEURL+"/" + completedSet1.getId())														
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))

@@ -24,12 +24,11 @@ public class ExercisePointRestController {
 	@Autowired
 	private IExercisePointService service;
 	
-	public ExercisePointRestController(IExercisePointService service, IExercisePointRepository rep) {
+	public ExercisePointRestController(IExercisePointService service) {
 		this.service = service;
-		this.service.setIExercisePointRepository(rep);
 	}
 
-	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public ResponseEntity<ExercisePoint> getExerciseById(@PathVariable("id") int id){
 		HttpStatus status = HttpStatus.OK;
 		ExercisePoint point = service.findExercisePointById(id);
@@ -41,7 +40,7 @@ public class ExercisePointRestController {
 		return new ResponseEntity<>(point, status);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, consumes= "application/json", produces = "application/json")
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json; charset=utf-8", produces = "application/json; charset=utf-8")
 	public ResponseEntity<ExercisePoint> addExercisePoint(@RequestBody ExercisePoint exercisePoint){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		ExercisePoint newExercisePoint = null;
@@ -55,7 +54,7 @@ public class ExercisePointRestController {
 		return new ResponseEntity<>(newExercisePoint, status);	
 	}
 	
-	@RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes= "application/json")
+	@RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes= "application/json; charset=utf-8")
 	public ResponseEntity<ExercisePoint> editExercisePoint(@PathVariable("id") int id, @RequestBody ExercisePoint exercisePoint){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		ExercisePoint newExercisePoint = null;

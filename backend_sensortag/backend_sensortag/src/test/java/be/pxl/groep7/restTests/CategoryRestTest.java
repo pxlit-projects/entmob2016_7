@@ -56,9 +56,6 @@ public class CategoryRestTest {
 	@Mock
 	ICategoryService serviceMock;
 	
-	@Mock
-	ICategoryRepository repMock;
-	
 	public CategoryRestController categoryController;
 	
 	@Autowired
@@ -76,7 +73,7 @@ public class CategoryRestTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		categoryController = new CategoryRestController(serviceMock, repMock);
+		categoryController = new CategoryRestController(serviceMock);
 		mockMvc = MockMvcBuilders.standaloneSetup(categoryController)
 				.build();
 	}
@@ -93,7 +90,6 @@ public class CategoryRestTest {
 		categories.add(category3);
 		
 		Mockito.when(serviceMock.getAllCategories()).thenReturn(categories);
-		Mockito.when(repMock.getAllCategories()).thenReturn(categories);
 		
 		mockMvc.perform(get(CategoryRestController.BASEURL+"/all")
 		.with(user("user").password("123456")))
@@ -107,7 +103,6 @@ public class CategoryRestTest {
 		Category category1 = new Category(1, "Category 1");
 		
 		Mockito.when(serviceMock.findCategoryById(1)).thenReturn(category1);
-		Mockito.when(repMock.findOne(1)).thenReturn(category1);
 		
 		mockMvc.perform(get(CategoryRestController.BASEURL+"/getById/" + category1.getId())													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -121,7 +116,6 @@ public class CategoryRestTest {
 		Category category1 = new Category(1, "Category 1");
 		
 		Mockito.when(serviceMock.findCategoryById(1)).thenReturn(null);
-		Mockito.when(repMock.findOne(1)).thenReturn(null);
 		
 		mockMvc.perform(get(CategoryRestController.BASEURL+"/getById/" + category1.getId())													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -134,7 +128,6 @@ public class CategoryRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateCategory(category1)).thenReturn(category1);
 		Mockito.when(serviceMock.doesCategoryExist(1)).thenReturn(false);
-		Mockito.when(repMock.save(category1)).thenReturn(category1);
 		
 		 mockMvc.perform(post(CategoryRestController.BASEURL)
 				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
@@ -149,7 +142,6 @@ public class CategoryRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateCategory(category1)).thenReturn(category1);
 		Mockito.when(serviceMock.doesCategoryExist(1)).thenReturn(true);
-		Mockito.when(repMock.save(category1)).thenReturn(category1);
 		
 		 mockMvc.perform(post(CategoryRestController.BASEURL)
 				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
@@ -164,7 +156,6 @@ public class CategoryRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateCategory(category1)).thenReturn(category1);
 		Mockito.when(serviceMock.doesCategoryExist(1)).thenReturn(true);
-		Mockito.when(repMock.save(category1)).thenReturn(category1);
 		
 		mockMvc.perform(put(CategoryRestController.BASEURL + "/" + category1.getId())	
 				.header("host", "localhost:8080")	
@@ -182,7 +173,6 @@ public class CategoryRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateCategory(category1)).thenReturn(category1);
 		Mockito.when(serviceMock.doesCategoryExist(1)).thenReturn(false);
-		Mockito.when(repMock.save(category1)).thenReturn(category1);
 		
 		mockMvc.perform(put(CategoryRestController.BASEURL + "/" + category1.getId())	
 				.header("host", "localhost:8080")	
@@ -198,7 +188,6 @@ public class CategoryRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateCategory(category1)).thenReturn(category1);
 		Mockito.when(serviceMock.doesCategoryExist(1)).thenReturn(true);
-		Mockito.when(repMock.save(category1)).thenReturn(category1);
 		
 		mockMvc.perform(delete(CategoryRestController.BASEURL+"/" + category1.getId())	
 				.header("host", "localhost:8080")													
@@ -212,7 +201,6 @@ public class CategoryRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateCategory(category1)).thenReturn(category1);
 		Mockito.when(serviceMock.doesCategoryExist(1)).thenReturn(false);
-		Mockito.when(repMock.save(category1)).thenReturn(category1);
 		
 		mockMvc.perform(delete(CategoryRestController.BASEURL+"/" + category1.getId())	
 				.header("host", "localhost:8080")													

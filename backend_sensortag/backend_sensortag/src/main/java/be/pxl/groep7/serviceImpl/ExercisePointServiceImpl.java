@@ -32,10 +32,4 @@ public class ExercisePointServiceImpl implements IExercisePointService {
 	public boolean doesExercisePointExist(int id) {
 		return rep.exists(id);
 	}
-
-	@Override
-	public void setIExercisePointRepository(IExercisePointRepository rep) {
-		this.rep = rep;
-	}
-
 }

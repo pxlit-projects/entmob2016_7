@@ -27,12 +27,11 @@ public class ExerciseRestController {
 	@Autowired
 	private IExerciseService service;
 	
-	public ExerciseRestController(IExerciseService service, IExerciseRepository rep){
+	public ExerciseRestController(IExerciseService service){
 		this.service = service;
-		
 	}
 	
-	@RequestMapping(value="/bycategory/{categoryId}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value="/bycategory/{categoryId}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public ResponseEntity<List<Exercise>> getExerciseByCategoryId(@PathVariable("categoryId") int categoryId){
 		HttpStatus status = HttpStatus.OK;
 		List<Exercise> exerciseList = service.getAllExercisesByCategoryId(categoryId);
@@ -42,7 +41,7 @@ public class ExerciseRestController {
 		return new ResponseEntity<>(exerciseList, status);
 	}
 
-	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public ResponseEntity<Exercise> getExerciseById(@PathVariable("id") int id){
 		HttpStatus status = HttpStatus.OK;
 		Exercise exercise = service.findExerciseById(id);
@@ -54,7 +53,7 @@ public class ExerciseRestController {
 		return new ResponseEntity<>(exercise, status);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json; charset=utf-8", produces = "application/json; charset=utf-8")
 	public ResponseEntity<Exercise> addExercise(@RequestBody Exercise exercise){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		Exercise newExercise = null;
@@ -68,7 +67,7 @@ public class ExerciseRestController {
 		return new ResponseEntity<>(newExercise, status);	
 	}
 	
-	@RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes= "application/json")
+	@RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes= "application/json; charset=utf-8", produces = "application/json; charset=utf-8")
 	public ResponseEntity<Exercise> editExercise(@PathVariable("id") int id, @RequestBody Exercise exercise){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		Exercise newExercise = null;

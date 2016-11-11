@@ -53,9 +53,6 @@ private MockMvc mockMvc;
 	@Mock
 	IExerciseService serviceMock;
 	
-	@Mock
-	IExerciseRepository repMock;
-	
 	public ExerciseRestController exerciseController;
 	
 	@Autowired
@@ -73,7 +70,7 @@ private MockMvc mockMvc;
 	
 	@Before
 	public void setUp() throws Exception {
-		exerciseController = new ExerciseRestController(serviceMock, repMock);
+		exerciseController = new ExerciseRestController(serviceMock);
 		mockMvc = MockMvcBuilders.standaloneSetup(exerciseController)
 				.build();
 	}
@@ -90,7 +87,6 @@ private MockMvc mockMvc;
 		exercises.add(exercise3);
 		
 		Mockito.when(serviceMock.getAllExercisesByCategoryId(1)).thenReturn(exercises);
-		Mockito.when(repMock.getExercisesByCategoryId(1)).thenReturn(exercises);
 		
 		mockMvc.perform(get(ExerciseRestController.BASEURL+"/bycategory/" + 1)
 		.with(user("user").password("123456")))
@@ -104,7 +100,6 @@ private MockMvc mockMvc;
 		Exercise exercise1 = new Exercise(1, "Oefening 1", "Dit is een oefening", 1);
 		
 		Mockito.when(serviceMock.findExerciseById(1)).thenReturn(exercise1);
-		Mockito.when(repMock.findOne(1)).thenReturn(exercise1);
 		
 		mockMvc.perform(get(ExerciseRestController.BASEURL+"/getById/" + exercise1.getId())													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -118,7 +113,6 @@ private MockMvc mockMvc;
 		Exercise exercise1 = new Exercise(1, "Oefening 1", "Dit is een oefening", 1);
 		
 		Mockito.when(serviceMock.findExerciseById(1)).thenReturn(null);
-		Mockito.when(repMock.findOne(1)).thenReturn(null);
 		
 		mockMvc.perform(get(ExerciseRestController.BASEURL+"/getById/" + exercise1.getId())													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -131,7 +125,6 @@ private MockMvc mockMvc;
 		
 		Mockito.when(serviceMock.createOrUpdateExercise(exercise1)).thenReturn(exercise1);
 		Mockito.when(serviceMock.doesExerciseExist(1)).thenReturn(false);
-		Mockito.when(repMock.save(exercise1)).thenReturn(exercise1);
 		
 		 mockMvc.perform(post(ExerciseRestController.BASEURL)
 				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
@@ -146,7 +139,6 @@ private MockMvc mockMvc;
 		
 		Mockito.when(serviceMock.createOrUpdateExercise(exercise1)).thenReturn(exercise1);
 		Mockito.when(serviceMock.doesExerciseExist(1)).thenReturn(true);
-		Mockito.when(repMock.save(exercise1)).thenReturn(exercise1);
 		
 		 mockMvc.perform(post(ExerciseRestController.BASEURL)
 				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
@@ -161,7 +153,6 @@ private MockMvc mockMvc;
 		
 		Mockito.when(serviceMock.doesExerciseExist(1)).thenReturn(true);
 		Mockito.when(serviceMock.createOrUpdateExercise(exercise1)).thenReturn(exercise1);
-		Mockito.when(repMock.save(exercise1)).thenReturn(exercise1);
 		
 		mockMvc.perform(put(ExerciseRestController.BASEURL + "/" + exercise1.getId())	
 				.header("host", "localhost:8080")	
@@ -179,7 +170,6 @@ private MockMvc mockMvc;
 		
 		Mockito.when(serviceMock.createOrUpdateExercise(exercise1)).thenReturn(exercise1);
 		Mockito.when(serviceMock.doesExerciseExist(1)).thenReturn(false);
-		Mockito.when(repMock.save(exercise1)).thenReturn(exercise1);
 		
 		mockMvc.perform(put(ExerciseRestController.BASEURL + "/" + exercise1.getId())	
 				.header("host", "localhost:8080")	
@@ -195,7 +185,6 @@ private MockMvc mockMvc;
 		
 		Mockito.when(serviceMock.createOrUpdateExercise(exercise1)).thenReturn(exercise1);
 		Mockito.when(serviceMock.doesExerciseExist(1)).thenReturn(true);
-		Mockito.when(repMock.save(exercise1)).thenReturn(exercise1);
 		
 		mockMvc.perform(delete(ExerciseRestController.BASEURL+"/" + exercise1.getId())	
 				.header("host", "localhost:8080")													
@@ -209,7 +198,6 @@ private MockMvc mockMvc;
 		
 		Mockito.when(serviceMock.createOrUpdateExercise(exercise1)).thenReturn(exercise1);
 		Mockito.when(serviceMock.doesExerciseExist(1)).thenReturn(false);
-		Mockito.when(repMock.save(exercise1)).thenReturn(exercise1);
 		
 		mockMvc.perform(delete(ExerciseRestController.BASEURL+"/" + exercise1.getId())														
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))

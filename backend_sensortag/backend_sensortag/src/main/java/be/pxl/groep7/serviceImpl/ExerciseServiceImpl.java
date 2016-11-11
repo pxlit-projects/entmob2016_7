@@ -40,10 +40,4 @@ public class ExerciseServiceImpl implements IExerciseService {
 	public List<Exercise> getAllExercisesByCategoryId(int categoryId) {
 		return rep.getExercisesByCategoryId(categoryId);
 	}
-
-	@Override
-	public void setIExerciseRepoistory(IExerciseRepository rep) {
-		this.rep = rep;
-	}
-
 }

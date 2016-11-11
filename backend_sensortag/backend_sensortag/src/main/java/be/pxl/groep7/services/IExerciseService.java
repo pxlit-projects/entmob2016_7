@@ -2,8 +2,7 @@ package be.pxl.groep7.services;
 
 import java.util.List;
 
-import be.pxl.groep7.dao.IExerciseRepository;
-import be.pxl.groep7.models.Exercise;;
+import be.pxl.groep7.models.Exercise;
 
 public interface IExerciseService {
 
@@ -12,5 +11,4 @@ public interface IExerciseService {
 	public void deleteExerciseById(int id);
 	public boolean doesExerciseExist(int id);
 	public List<Exercise> getAllExercisesByCategoryId(int categoryId);
-	public void setIExerciseRepoistory(IExerciseRepository rep);
 }

@@ -39,10 +39,4 @@ public class CompletedSetServiceImpl implements ICompletedSetService {
 	public List<CompletedSet> getAllCompletedSetsBySetId(int setId) {
 		return rep.getCompletedSetsBySetId(setId);
 	}
-
-	@Override
-	public void setCompletedSetRepository(ICompletedSetRepository rep) {
-		this.rep = rep;
-	}
-
 }

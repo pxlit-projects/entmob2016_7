@@ -28,13 +28,12 @@ public class CategoryRestController {
 	@Autowired
 	private ICategoryService service;
 	
-	public CategoryRestController(ICategoryService service, ICategoryRepository rep) {
+	public CategoryRestController(ICategoryService service) {
 		this.service = service;
-		this.service.setCategoryRepository(rep);
 	}
 	
 	@Secured("ROLE_USER")
-	@RequestMapping(value="/all", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value="/all", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public ResponseEntity<List<Category>> getAllCategories(){
 		HttpStatus status = HttpStatus.OK;
 		List<Category> categoryList = service.getAllCategories();
@@ -47,7 +46,7 @@ public class CategoryRestController {
 	}
 	
 	@Secured("ROLE_USER")
-	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public ResponseEntity<Category> getCategoryById(@PathVariable("id") int id) {
 		HttpStatus status = HttpStatus.OK;
 		Category category = service.findCategoryById(id);
@@ -60,7 +59,7 @@ public class CategoryRestController {
 	} 
 	
 	@Secured("ROLE_USER")
-	@RequestMapping(method = RequestMethod.POST, consumes= "application/json", produces="application/json")
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json; charset=utf-8", produces="application/json; charset=utf-8")
 	public ResponseEntity<Category> addCategory(@RequestBody Category category) {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		Category newCategory = null;
@@ -75,7 +74,7 @@ public class CategoryRestController {
 	}
 	
 	@Secured("ROLE_USER")
-	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json", produces="application/json")
+	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json; charset=utf-8", produces="application/json; charset=utf-8")
 	public ResponseEntity<Category> editCategory(@PathVariable("id") int id, @RequestBody Category category){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		Category newCategory = null;

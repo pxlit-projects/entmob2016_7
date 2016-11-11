@@ -28,7 +28,7 @@ public class SetRestController {
 	@Autowired
 	private ISetService service;
 	
-	@RequestMapping(value="/setbyexercise/{exerciseId}", method=RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value="/setbyexercise/{exerciseId}", method=RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public ResponseEntity<List<Set>> getSetByExerciseId(@PathVariable("exerciseId") int exerciseId){
 		HttpStatus status = HttpStatus.OK;
 		List<Set> setList = service.getAllSetsByExerciseId(exerciseId);
@@ -39,7 +39,7 @@ public class SetRestController {
 		return new ResponseEntity<>(setList, status);
 	}
 
-	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public ResponseEntity<Set> getSetById(@PathVariable("id") int id) {
 		HttpStatus status = HttpStatus.OK;
 		Set set = service.findSetById(id);
@@ -51,7 +51,7 @@ public class SetRestController {
 		return new ResponseEntity<Set>(set, status);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, consumes= "application/json", produces= "application/json")
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json; charset=utf-8", produces= "application/json; charset=utf-8")
 	public ResponseEntity<Set> addSet(@RequestBody Set set){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		Set newSet = null;
@@ -65,7 +65,7 @@ public class SetRestController {
 		return new ResponseEntity<>(newSet, status);	
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json", produces= "application/json")
+	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json; charset=utf-8", produces= "application/json; charset=utf-8")
 	public ResponseEntity<Set> editSet(@PathVariable("id") int id, @RequestBody Set set){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		Set newSet = null;

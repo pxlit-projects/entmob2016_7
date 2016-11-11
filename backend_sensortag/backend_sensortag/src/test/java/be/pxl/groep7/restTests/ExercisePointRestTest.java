@@ -51,9 +51,6 @@ public class ExercisePointRestTest {
 	@Mock
 	IExercisePointService serviceMock;
 	
-	@Mock
-	IExercisePointRepository repMock;
-	
 	public ExercisePointRestController exercisePointController;
 	
 	@Autowired
@@ -71,8 +68,8 @@ public class ExercisePointRestTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		exercisePointController = new ExercisePointRestController(serviceMock, repMock);
-		mockMvc = MockMvcBuilders.standaloneSetup(new ExercisePointRestController(serviceMock, repMock))
+		exercisePointController = new ExercisePointRestController(serviceMock);
+		mockMvc = MockMvcBuilders.standaloneSetup(exercisePointController)
 				.build();
 	}
 	
@@ -82,7 +79,6 @@ public class ExercisePointRestTest {
 		ExercisePoint exercisePoint1 = new ExercisePoint(1, 1.0, 2.3, 1.5);
 		
 		Mockito.when(serviceMock.findExercisePointById(1)).thenReturn(exercisePoint1);
-		Mockito.when(repMock.findOne(1)).thenReturn(exercisePoint1);
 		
 		mockMvc.perform(get(ExercisePointRestController.BASEURL+"/getById/" + exercisePoint1.getId())													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -96,7 +92,6 @@ public class ExercisePointRestTest {
 		ExercisePoint exercisePoint1 = new ExercisePoint(1, 1.0, 2.3, 1.5);
 		
 		Mockito.when(serviceMock.findExercisePointById(1)).thenReturn(null);
-		Mockito.when(repMock.findOne(1)).thenReturn(null);
 		
 		mockMvc.perform(get(ExercisePointRestController.BASEURL+"/getById/" + exercisePoint1.getId())													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -109,7 +104,6 @@ public class ExercisePointRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateExercisePoint(exercisePoint1)).thenReturn(exercisePoint1);
 		Mockito.when(serviceMock.doesExercisePointExist(1)).thenReturn(false);
-		Mockito.when(repMock.save(exercisePoint1)).thenReturn(exercisePoint1);
 		
 		 mockMvc.perform(post(ExercisePointRestController.BASEURL)
 				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
@@ -124,7 +118,6 @@ public class ExercisePointRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateExercisePoint(exercisePoint1)).thenReturn(exercisePoint1);
 		Mockito.when(serviceMock.doesExercisePointExist(1)).thenReturn(true);
-		Mockito.when(repMock.save(exercisePoint1)).thenReturn(exercisePoint1);
 		
 		 mockMvc.perform(post(ExercisePointRestController.BASEURL)
 				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
@@ -139,7 +132,6 @@ public class ExercisePointRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateExercisePoint(exercisePoint1)).thenReturn(exercisePoint1);
 		Mockito.when(serviceMock.doesExercisePointExist(1)).thenReturn(true);
-		Mockito.when(repMock.save(exercisePoint1)).thenReturn(exercisePoint1);
 		
 		mockMvc.perform(put(ExercisePointRestController.BASEURL + "/" + exercisePoint1.getId())	
 				.header("host", "localhost:8080")	
@@ -157,7 +149,6 @@ public class ExercisePointRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateExercisePoint(exercisePoint1)).thenReturn(exercisePoint1);
 		Mockito.when(serviceMock.doesExercisePointExist(1)).thenReturn(false);
-		Mockito.when(repMock.save(exercisePoint1)).thenReturn(exercisePoint1);
 		
 		mockMvc.perform(put(ExercisePointRestController.BASEURL + "/" + exercisePoint1.getId())	
 				.header("host", "localhost:8080")	
@@ -173,7 +164,6 @@ public class ExercisePointRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateExercisePoint(exercisePoint1)).thenReturn(exercisePoint1);
 		Mockito.when(serviceMock.doesExercisePointExist(1)).thenReturn(true);
-		Mockito.when(repMock.save(exercisePoint1)).thenReturn(exercisePoint1);
 		
 		mockMvc.perform(delete(ExercisePointRestController.BASEURL+"/" + exercisePoint1.getId())	
 				.header("host", "localhost:8080")													
@@ -187,7 +177,6 @@ public class ExercisePointRestTest {
 		
 		Mockito.when(serviceMock.createOrUpdateExercisePoint(exercisePoint1)).thenReturn(exercisePoint1);
 		Mockito.when(serviceMock.doesExercisePointExist(1)).thenReturn(false);
-		Mockito.when(repMock.save(exercisePoint1)).thenReturn(exercisePoint1);
 		
 		mockMvc.perform(delete(ExercisePointRestController.BASEURL+"/" + exercisePoint1.getId())	
 				.header("host", "localhost:8080")													

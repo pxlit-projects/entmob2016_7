@@ -24,7 +24,7 @@ public class UserRestController {
 	@Autowired
 	private IUserService service;
 
-	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
 		HttpStatus status = HttpStatus.OK;
 		User user = service.findUserById(id);
@@ -36,7 +36,7 @@ public class UserRestController {
 		return new ResponseEntity<>(user, status);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, consumes= "application/json", produces= "application/json")
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json; charset=utf-8", produces= "application/json; charset=utf-8")
 	public ResponseEntity<User> addUser(@RequestBody User user) {
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		User newUser = null;
@@ -50,7 +50,7 @@ public class UserRestController {
 		return new ResponseEntity<>(newUser, status);	
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json", produces= "application/json")
+	@RequestMapping(value="{id}", method = RequestMethod.PUT, consumes= "application/json; charset=utf-8", produces= "application/json; charset=utf-8")
 	public ResponseEntity<User> editUser(@PathVariable("id") int id, @RequestBody User user){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		User newUser = null;
