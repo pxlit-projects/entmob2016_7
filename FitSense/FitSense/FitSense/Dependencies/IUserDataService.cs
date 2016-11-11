@@ -15,5 +15,6 @@ namespace FitSense.Dependencies
         Task LoginAsync(string userName, string password);
         List<Category> GetAllCategories();
         List<Exercise> GetExercisesFromCategory(Category category);
+        List<Set> GetSetsFromExercise(Exercise exercise);
     }
 }

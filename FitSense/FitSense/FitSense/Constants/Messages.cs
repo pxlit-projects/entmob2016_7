@@ -9,5 +9,7 @@ namespace FitSense.Constants
     public class Messages
     {
         public const string LoginSucces = "LoginSucces";
+        public const string CategoryUpdated = "UpdatedSelectedCategory";
+        public const string ExerciseUpdated = "UpdatedSelectedExercise";
     }
 }

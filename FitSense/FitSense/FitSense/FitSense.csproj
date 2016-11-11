@@ -42,6 +42,9 @@
     <Compile Include="Constants\Messages.cs" />
     <Compile Include="Constants\PageUrls.cs" />
     <Compile Include="Converters\DeviceNameConverter.cs" />
+    <Compile Include="Converters\MaxTimeConverter.cs" />
+    <Compile Include="Converters\PointsConverter.cs" />
+    <Compile Include="Converters\RepsConverter.cs" />
     <Compile Include="Dependencies\IBluetoothService.cs" />
     <Compile Include="Dependencies\IConnectivity.cs" />
     <Compile Include="Dependencies\IDummyRepository.cs" />
@@ -55,7 +58,6 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Messages\CategoryUpdated.cs" />
     <Compile Include="Models\HumidityService.cs" />
     <Compile Include="Models\MovementService.cs" />
     <Compile Include="Models\SensorDevice.cs" />
@@ -71,6 +73,8 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SensorConnectViewModel.cs" />
+    <Compile Include="ViewModels\SetsCarouselViewModel.cs" />
+    <Compile Include="ViewModels\SetViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\CarouselView.xaml.cs">
       <DependentUpon>CarouselView.xaml</DependentUpon>
@@ -92,6 +96,12 @@
     </Compile>
     <Compile Include="Views\SensorConnectView.xaml.cs">
       <DependentUpon>SensorConnectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SetPage.xaml.cs">
+      <DependentUpon>SetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SetsCarousel.xaml.cs">
+      <DependentUpon>SetsCarousel.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +218,21 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ExercisePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Messages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SetsCarousel.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SetPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

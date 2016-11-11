@@ -17,6 +17,7 @@ namespace FitSense.Services
         //private static DummyRepository dummyRepository = new Dumm
         private CategoryRepository categoryRepository;
         private ExerciseRepository exerciseRepository;
+        private SetRepository setRepository;
 
         public User LoggedInUser { get; set; }
 
@@ -33,10 +34,11 @@ namespace FitSense.Services
             }
         }
 
-        public UserDataService(CategoryRepository categoryRepository, ExerciseRepository exerciseRepository)
+        public UserDataService(CategoryRepository categoryRepository, ExerciseRepository exerciseRepository, SetRepository setRepository)
         {
             this.categoryRepository = categoryRepository;
             this.exerciseRepository = exerciseRepository;
+            this.setRepository = setRepository;
         }
 
         public Task LoginAsync(string userName, string password)
@@ -65,6 +67,11 @@ namespace FitSense.Services
         public List<Exercise> GetExercisesFromCategory(Category category)
         {
             return exerciseRepository.GetExercisesFromCategory(category);
+        }
+
+        public List<Set> GetSetsFromExercise(Exercise exercise)
+        {
+            return setRepository.GetSetsFromExercise(exercise);
         }
     }
 }

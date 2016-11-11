@@ -8,9 +8,9 @@ using Xamarin.Forms;
 
 namespace FitSense.Views
 {
-    public partial class CarouselView : CarouselPage
+    public partial class SetsCarousel : CarouselPage
     {
-        public CarouselView()
+        public SetsCarousel()
         {
             InitializeComponent();
         }

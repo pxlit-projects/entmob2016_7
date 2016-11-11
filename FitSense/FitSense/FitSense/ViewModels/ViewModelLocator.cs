@@ -53,7 +53,8 @@ namespace FitSense.ViewModels
             // DANIEL: ik denk dat ge zo constructor injection moet doen
             SimpleIoc.Default.Register<IUserDataService>(() => new UserDataService(
                 new CategoryRepository(),
-                new ExerciseRepository()));
+                new ExerciseRepository(),
+                new SetRepository()));
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
@@ -63,6 +64,7 @@ namespace FitSense.ViewModels
             SimpleIoc.Default.Register<CategoriesViewModel>();
             SimpleIoc.Default.Register<ExercisesViewModel>();
             SimpleIoc.Default.Register<ExerciseViewModel>();
+            SimpleIoc.Default.Register <SetsCarouselViewModel>();
             //SimpleIoc.Default.Register<IDummyRepository, DummyRepository>();
         }
 
@@ -106,11 +108,11 @@ namespace FitSense.ViewModels
             }
         }
 
-        public ExerciseViewModel ExerciseViewModel
+        public SetsCarouselViewModel SetsCarouselViewModel
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<ExerciseViewModel>();
+                return ServiceLocator.Current.GetInstance<SetsCarouselViewModel>();
             }
         }
 

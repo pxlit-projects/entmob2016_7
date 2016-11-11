@@ -6,10 +6,10 @@
   
   <ContentPage.Content>
     <StackLayout Spacing="10" x:Name="layout">
+      <Label Text="{Binding Category.Name}" HorizontalOptions="Center" FontSize="Large" />
       <Label Text="{Binding Exercise.Name}" VerticalOptions="Start" HorizontalOptions="Center" />
       <Label Text="{Binding Exercise.Description}" VerticalOptions="FillAndExpand" HorizontalOptions="Center" />
-      <Label Text="Test 123" VerticalOptions="FillAndExpand" HorizontalOptions="Center" />
-      <Label Text="Test 456" VerticalOptions="FillAndExpand" HorizontalOptions="Center" />
+      <Button Text="Sets" Command="{Binding GoToSetCarouselCommand}" VerticalOptions="FillAndExpand" HorizontalOptions="Center"/>
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>
