@@ -63,7 +63,7 @@ namespace FitSense.ViewModels
                     userDataService.LoginAsync(Username, Password).ContinueWith((a) =>
                     {
                         if (userDataService.LoggedInUser != null)
-                            MessengerInstance.Send<LoginViewModel>(this, Messages.LoginSucces);
+                            MessengerInstance.Send<LoginViewModel>(this, Constants.Messages.LoginSucces);
                         else
                             Feedback = "Login attempt failed";
                     });

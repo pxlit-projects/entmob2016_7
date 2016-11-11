@@ -2,6 +2,7 @@
 using FitSense.Constants;
 using FitSense.Dependencies;
 using FitSense.Extensions;
+using FitSense.Messages;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -42,6 +43,9 @@ namespace FitSense.ViewModels
             CategorySelectedCommand = new RelayCommand<object>(async (item) =>
             {
                 await navigationService.PushModalAsync(PageUrls.EXERCISESVIEW);
+                MessengerInstance.Send(new CategoryUpdated(){
+                        Category = (item is Category ? (Category)item : null)
+                });
             });
         }
     }

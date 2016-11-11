@@ -20,6 +20,11 @@ namespace fitsense.DAL
             {
                 CategoryID = 1,
                 Name = "Chest"
+            },
+            new Category()
+            {
+                CategoryID = 2,
+                Name = "Leg"
             }
         };
 
