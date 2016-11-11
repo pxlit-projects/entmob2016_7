@@ -12,6 +12,7 @@
   See http://www.galasoft.ch/mvvm
 */
 
+using fitsense.DAL;
 using FitSense.Dependencies;
 using FitSense.Models;
 using FitSense.Repositories;
@@ -50,7 +51,9 @@ namespace FitSense.ViewModels
 
             SimpleIoc.Default.Register<INavigationService, NavigationService>();
             // DANIEL: ik denk dat ge zo constructor injection moet doen
-            SimpleIoc.Default.Register<IUserDataService>(() => new UserDataService(new DummyRepository()));
+            SimpleIoc.Default.Register<IUserDataService>(() => new UserDataService(
+                new CategoryRepository(),
+                new ExerciseRepository()));
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();

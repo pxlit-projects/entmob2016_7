@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using fitsense.models;
+using fitsense.DAL;
 
 namespace FitSense.Services
 {
@@ -14,7 +15,8 @@ namespace FitSense.Services
     {
         private static UserRepository userRepository = new UserRepository();
         //private static DummyRepository dummyRepository = new Dumm
-        private DummyRepository dummyRepository;
+        private CategoryRepository categoryRepository;
+        private ExerciseRepository exerciseRepository;
 
         public User LoggedInUser { get; set; }
 
@@ -31,9 +33,10 @@ namespace FitSense.Services
             }
         }
 
-        public UserDataService(DummyRepository dummyRepository)
+        public UserDataService(CategoryRepository categoryRepository, ExerciseRepository exerciseRepository)
         {
-            this.dummyRepository = dummyRepository;
+            this.categoryRepository = categoryRepository;
+            this.exerciseRepository = exerciseRepository;
         }
 
         public Task LoginAsync(string userName, string password)
@@ -44,7 +47,7 @@ namespace FitSense.Services
             });
         }
 
-        public fitsense.models.User SearchUser(string userName)
+        public User SearchUser(string userName)
         {
             return userRepository.SearchUser(userName);
         }
@@ -56,7 +59,12 @@ namespace FitSense.Services
 
         public List<Category> GetAllCategories()
         {
-            return dummyRepository.GetAllCategories().ToList();
+            return categoryRepository.GetCategories().ToList();
+        }
+
+        public List<Exercise> GetExercisesFromCategory(Category category)
+        {
+            return exerciseRepository.GetExercisesFromCategory(category);
         }
     }
 }

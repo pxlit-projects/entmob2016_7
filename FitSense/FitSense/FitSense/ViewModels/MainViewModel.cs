@@ -65,7 +65,7 @@ namespace FitSense.ViewModels
 
         private void InitializeMessages()
         {
-            MessengerInstance.Register<LoginViewModel>(this, Messages.LoginSucces, (sender) =>
+            MessengerInstance.Register<LoginViewModel>(this, Constants.Messages.LoginSucces, (sender) =>
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {

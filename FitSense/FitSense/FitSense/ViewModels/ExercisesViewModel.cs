@@ -1,5 +1,7 @@
 ﻿using fitsense.models;
 using FitSense.Dependencies;
+using FitSense.Extensions;
+using FitSense.Messages;
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
@@ -15,54 +17,45 @@ namespace FitSense.ViewModels
         private IUserDataService userDataService;
         private INavigationService navigationService;
 
-        public ObservableCollection<ExerciseViewModel> Exercises { get; private set; }
+        public ObservableCollection<ExerciseViewModel> ExercisesViews { get; private set; }
         public int Index { get; private set; }
-
+        public Category Category { get; private set; }
 
         public ExercisesViewModel(INavigationService navigationService, IUserDataService userDataService)
         {
             this.userDataService = userDataService;
             this.navigationService = navigationService;
-            Index = 5;
 
             InitializeCommands();
+            InitializeMessages();
             LoadData();
         }
 
         private void LoadData()
         {
             //Exercises = userDataService.GetAllCategories().ToObservableCollection();
-            Exercises = new ObservableCollection<ExerciseViewModel>()
+            ExercisesViews = new ObservableCollection<ExerciseViewModel>();
+            List<Exercise> exercises = userDataService.GetExercisesFromCategory(Category);
+            foreach(Exercise e in exercises)
             {
-                new ExerciseViewModel(navigationService, userDataService)
+                ExercisesViews.Add(new ExerciseViewModel(navigationService, userDataService)
                 {
-                    Exercise = new Exercise()
-                    {
-                        ExerciseID = 0,
-                        Name = "Exercise 0"
-                    }
-                },
-                new ExerciseViewModel(navigationService, userDataService)
-                {
-                    Exercise = new Exercise()
-                    {
-                        ExerciseID = 1,
-                        Name = "Exercise 1"
-                    }
-                },
-                new ExerciseViewModel(navigationService, userDataService)
-                {
-                    Exercise = new Exercise()
-                    {
-                        ExerciseID = 2,
-                        Name = "Exercise 2"
-                    }
-                }
-            };
+                    Exercise = e
+                });
+            }
         }
 
         private void InitializeCommands()
         {
+        }
+
+        private void InitializeMessages()
+        {
+            MessengerInstance.Register<CategoryUpdated>(this, (sender) =>
+            {
+                Category = sender.Category;
+                LoadData();
+            });
         }
     }
 }
