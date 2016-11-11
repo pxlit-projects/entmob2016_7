@@ -1,7 +1,8 @@
 package be.pxl.groep7.serviceTests;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.List;import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -56,31 +57,33 @@ public class CompletedSetServiceTest {
 	public void getAllCompletedSetsBySetIdTest() {
 		List<CompletedSet> completedSets = new ArrayList<>();
 		completedSets.add(new CompletedSet(1, 1, 50, 200, 1));
-		completedSets.add(new CompletedSet(2, 2, 60, 150, 2));
 		completedSets.add(new CompletedSet(3, 1, 40, 210, 1));
 		
-		Mockito.when(repMock.getCompletedSetsBySetId(1)).thenReturn(completedSets.stream().filter(cs -> cs.getSetId() == 1));
+		Mockito.when(repMock.getCompletedSetsBySetId(1)).thenReturn(completedSets);
 		
 		List<CompletedSet> completedSets2 = completedSetService.getAllCompletedSetsBySetId(1);
 		
-		Assert.assertEquals(completedSets.size(), completedSets.size());
+		Assert.assertEquals(completedSets.size(), completedSets2.size());
 		
 		for (int i=0; i<completedSets.size(); i++){
-			Assert.assertEquals(categories.get(i).getName(), categories2.get(i).getName());
-			Assert.assertEquals(categories.get(i).getId(), categories2.get(i).getId());
+			Assert.assertEquals(completedSets.get(i).getTime(), completedSets2.get(i).getTime());
+			Assert.assertEquals(completedSets.get(i).getDuration(), completedSets2.get(i).getDuration());
+			Assert.assertEquals(completedSets.get(i).getId(), completedSets2.get(i).getId());
+			Assert.assertEquals(completedSets.get(i).getSetId(), completedSets2.get(i).getSetId());
+			Assert.assertEquals(completedSets.get(i).getUserId(), completedSets2.get(i).getUserId());
 		}
 	}
 	
 	@Test(expected=Exception.class)
-	public void deleteCategoryTest() {
+	public void deleteCompletedSetTest() {
 		Mockito.doThrow(Exception.class).when(repMock).delete(1);
-		categoryService.deleteCategoryById(1);
+		completedSetService.deleteCompletedSetById(1);
 	}
 	
 	@Test
-	public void doesCategoryExistTest() {
+	public void doesCompletedSetExistTest() {
 		Mockito.when(repMock.exists(1)).thenReturn(true);
-		boolean exists = categoryService.doesCategoryExist(1);
+		boolean exists = completedSetService.doesCompletedSetExist(1);
 		
 		Assert.assertTrue(exists);
 	}

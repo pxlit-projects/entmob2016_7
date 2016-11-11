@@ -40,7 +40,7 @@ namespace FitSense.ViewModels
         {
             CategorySelectedCommand = new RelayCommand<object>(async (item) =>
             {
-                await navigationService.PushModalAsync(PageUrls.EXERCISESVIEW).ContinueWith((antecedent) =>
+                await navigationService.PushAsync(PageUrls.EXERCISESVIEW).ContinueWith((antecedent) =>
                 {
                     MessengerInstance.Send((item is Category ? (Category)item : null), Messages.CategoryUpdated);
                 });
