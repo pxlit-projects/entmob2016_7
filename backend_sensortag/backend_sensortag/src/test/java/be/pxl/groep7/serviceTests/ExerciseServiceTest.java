@@ -15,7 +15,6 @@ import org.springframework.test.context.ContextConfiguration;
 
 import be.pxl.groep7.dao.IExerciseRepository;
 import be.pxl.groep7.models.Exercise;
-import be.pxl.groep7.models.Exercise;
 import be.pxl.groep7.serviceImpl.ExerciseServiceImpl;
 import be.pxl.groep7.test.config.TestConfigLite;
 
@@ -84,5 +83,4 @@ public class ExerciseServiceTest {
 		
 		Assert.assertTrue(exists);
 	}
-	
 }
