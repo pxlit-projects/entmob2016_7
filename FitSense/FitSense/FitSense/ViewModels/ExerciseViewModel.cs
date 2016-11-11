@@ -33,7 +33,7 @@ namespace FitSense.ViewModels
         {
             GoToSetCarouselCommand = new RelayCommand(async () =>
             {
-                await navigationService.PushModalAsync(PageUrls.SETSCAROUSEL).ContinueWith((antecedent) =>
+                await navigationService.PushAsync(PageUrls.SETSCAROUSEL).ContinueWith((antecedent) =>
                 {
                     MessengerInstance.Send(Exercise, Constants.Messages.ExerciseUpdated);
                 });
