@@ -64,7 +64,8 @@ namespace FitSense.ViewModels
             SimpleIoc.Default.Register<CategoriesViewModel>();
             SimpleIoc.Default.Register<ExercisesViewModel>();
             SimpleIoc.Default.Register<ExerciseViewModel>();
-            SimpleIoc.Default.Register <SetsCarouselViewModel>();
+            SimpleIoc.Default.Register<SetsCarouselViewModel>();
+            SimpleIoc.Default.Register<ActiveSetViewModel>();
             //SimpleIoc.Default.Register<IDummyRepository, DummyRepository>();
         }
 
@@ -113,6 +114,14 @@ namespace FitSense.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<SetsCarouselViewModel>();
+            }
+        }
+
+        public ActiveSetViewModel ActiveSetViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ActiveSetViewModel>();
             }
         }
 

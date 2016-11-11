@@ -67,6 +67,7 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\UserDataService.cs" />
+    <Compile Include="ViewModels\ActiveSetViewModel.cs" />
     <Compile Include="ViewModels\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\ExercisesViewModel.cs" />
     <Compile Include="ViewModels\ExerciseViewModel.cs" />
@@ -76,8 +77,8 @@
     <Compile Include="ViewModels\SetsCarouselViewModel.cs" />
     <Compile Include="ViewModels\SetViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="Views\CarouselView.xaml.cs">
-      <DependentUpon>CarouselView.xaml</DependentUpon>
+    <Compile Include="Views\ActiveSetView.xaml.cs">
+      <DependentUpon>ActiveSetView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CategoriesPage.xaml.cs">
       <DependentUpon>CategoriesPage.xaml</DependentUpon>
@@ -178,12 +179,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\CarouselView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Views\LoginView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
@@ -236,6 +231,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+      <SubType>Designer</SubType>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

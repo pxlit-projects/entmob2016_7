@@ -1,6 +1,8 @@
 ﻿using fitsense.models;
+using FitSense.Constants;
 using FitSense.Dependencies;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +19,8 @@ namespace FitSense.ViewModels
         public Exercise Exercise { get; set; }
         public Set Set { get; set; }
 
+        public RelayCommand StartSet { get; private set; }
+
         public SetViewModel(INavigationService navigationService, IUserDataService userDataService)
         {
             this.userDataService = userDataService;
@@ -27,6 +31,13 @@ namespace FitSense.ViewModels
 
         private void InitializeCommands()
         {
+            StartSet = new RelayCommand(async () =>
+            {
+                await navigationService.PushAsync(PageUrls.ACTIVESET).ContinueWith((antecedent) =>
+                {
+                    MessengerInstance.Send(Set, Constants.Messages.SetUpdated);
+                });
+            });
         }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using fitsense.models;
 using FitSense.Dependencies;
 using GalaSoft.MvvmLight;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using GalaSoft.MvvmLight.Command;
+using FitSense.Constants;
 using System.Threading.Tasks;
+using System;
 
 namespace FitSense.ViewModels
 {
@@ -14,19 +13,91 @@ namespace FitSense.ViewModels
         private IUserDataService userDataService;
         private INavigationService navigationService;
 
-        public Exercise Exercise { get; set; }
-        public Set Set { get; set; }
+        public RelayCommand CancelSet { get; private set; }
+        public RelayCommand StartSet { get; private set; }
+
+        //private Timer timer;
+
+        private int timeLeft;
+        public int TimeLeft
+        {
+            get { return timeLeft; }
+            private set
+            {
+                int oldValue = timeLeft;
+                timeLeft = value;
+                RaisePropertyChanged("TimeLeft");
+            }
+        }
+        private int repsLeft;
+        public int RepsLeft
+        {
+            get { return repsLeft; }
+            private set
+            {
+                int oldValue = repsLeft;
+                repsLeft = value;
+                RaisePropertyChanged("RepsLeft");
+            }
+        }
 
         public ActiveSetViewModel(INavigationService navigationService, IUserDataService userDataService)
         {
             this.userDataService = userDataService;
             this.navigationService = navigationService;
 
+            InitializeMessages();
             InitializeCommands();
         }
 
+        
+
         private void InitializeCommands()
         {
+            CancelSet = new RelayCommand(() =>
+            {
+                FinishedSet();
+            });
+
+            StartSet = new RelayCommand(async () =>
+            {
+                while(TimeLeft > 0)
+                {
+                    // wait 1000 miliseconds in a different thread
+                    await CountDown(1000).ContinueWith((antecedent) =>
+                    {
+                        // we are on the main thread again, time to update te ui!
+                        TimeLeft--;
+                        //quick check to see if we have to stop the timer
+                        if(TimeLeft <= 0)
+                        {
+                            FinishedSet();
+                        }
+                    });
+                }
+            });
+        }
+
+        private async Task CountDown(int milisec)
+        {
+            await Task.Delay(milisec);
+        }
+
+        private void InitializeMessages()
+        {
+            MessengerInstance.Register<Set>(this, Constants.Messages.SetUpdated, (sender) =>
+            {
+                TimeLeft = sender.MaxTime;
+                RepsLeft = sender.Reps;
+            });
+        }
+    
+        private async void FinishedSet()
+        {
+            await navigationService.PushAsync(PageUrls.MAINVIEW).ContinueWith((antecedent) =>
+            {
+                //MessengerInstance.Send(Set, Messages.SetUpdated);
+            });
         }
     }
 }
