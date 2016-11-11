@@ -5,8 +5,8 @@
              Title="Exercises"
               BindingContext="{Binding Source={StaticResource Locator}, Path=ExercisesViewModel}"
               xmlns:common="clr-namespace:FitSense.Views;assembly=FitSense"
-              ItemsSource="{Binding ExercisesViews}">
-
+              ItemsSource="{Binding ExercisesViews}"
+              >
   <CarouselPage.ItemTemplate>
     <DataTemplate>
       <common:ExercisePage Title="test" />

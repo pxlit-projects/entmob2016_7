@@ -20,6 +20,7 @@ namespace FitSense.Services
                 case PageUrls.SENSORCONNECTVIEW: return new SensorConnectView();
                 case PageUrls.CATEGORIESVIEW: return new CategoriesPage();
                 case PageUrls.EXERCISESVIEW: return new ExercisesView();
+                case PageUrls.SETSCAROUSEL: return new SetsCarousel();
             }
             return null;
         }

@@ -2,7 +2,6 @@
 using FitSense.Constants;
 using FitSense.Dependencies;
 using FitSense.Extensions;
-using FitSense.Messages;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -21,7 +20,6 @@ namespace FitSense.ViewModels
         private INavigationService navigationService;
 
         public ObservableCollection<Category> Categories { get; private set; }
-
         public RelayCommand<object> CategorySelectedCommand { get; private set; }
 
         public CategoriesViewModel(INavigationService navigationService, IUserDataService userDataService)
@@ -42,10 +40,11 @@ namespace FitSense.ViewModels
         {
             CategorySelectedCommand = new RelayCommand<object>(async (item) =>
             {
-                await navigationService.PushModalAsync(PageUrls.EXERCISESVIEW);
-                MessengerInstance.Send(new CategoryUpdated(){
-                        Category = (item is Category ? (Category)item : null)
+                await navigationService.PushModalAsync(PageUrls.EXERCISESVIEW).ContinueWith((antecedent) =>
+                {
+                    MessengerInstance.Send((item is Category ? (Category)item : null), Messages.CategoryUpdated);
                 });
+                
             });
         }
     }
