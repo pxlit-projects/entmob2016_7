@@ -13,4 +13,5 @@ public interface ICategoryService {
 	public void deleteCategoryById(int id);
 	public boolean doesCategoryExist(int id);
 	public List<Category> getAllCategories();
+	public void setCategoryRepository(ICategoryRepository rep);
 }
