@@ -3,7 +3,6 @@ package be.pxl.groep7.serviceTests;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.aspectj.lang.annotation.Before;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,19 +10,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.util.ReflectionTestUtils;
 
 import be.pxl.groep7.dao.ICategoryRepository;
 import be.pxl.groep7.models.Category;
 import be.pxl.groep7.serviceImpl.CategoryServiceImpl;
-import be.pxl.groep7.services.ICategoryService;
 import be.pxl.groep7.test.config.TestConfigLite;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -88,6 +80,5 @@ public class CategoryServiceTest {
 		boolean exists = categoryService.doesCategoryExist(1);
 		
 		Assert.assertTrue(exists);
-	}
-	
+	}	
 }

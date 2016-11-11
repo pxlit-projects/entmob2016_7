@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name="completed_set")
 @NamedQuery(name="CompletedSet.getCompletedSetsBySetId"
@@ -17,6 +19,7 @@ public class CompletedSet {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@JsonProperty(value="CompletedSetID")
 	int id;
 	
 	@Column(name="set_id")
