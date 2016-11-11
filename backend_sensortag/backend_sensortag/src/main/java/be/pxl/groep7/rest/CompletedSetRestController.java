@@ -28,6 +28,11 @@ public class CompletedSetRestController {
 	@Autowired
 	private ICompletedSetService service;
 	
+	public CompletedSetRestController(ICompletedSetService service, ICompletedSetRepository rep) {
+		this.service = service;
+		this.service.setCompletedSetRepository(rep);
+	}
+	
 	@RequestMapping(value="/sets/{setId}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<CompletedSet>> getCompletedSetsBySetId(@PathVariable("setId") int setId){
 		HttpStatus status = HttpStatus.OK;
@@ -49,7 +54,7 @@ public class CompletedSetRestController {
 		return new ResponseEntity<>(set, status);
 	} 
 	
-	@RequestMapping(method = RequestMethod.POST, consumes= "application/json")
+	@RequestMapping(method = RequestMethod.POST, consumes= "application/json", produces="application/json")
 	public ResponseEntity<CompletedSet> addCompletedSet(@RequestBody CompletedSet completedSet){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		CompletedSet newSet = null;
@@ -63,7 +68,7 @@ public class CompletedSetRestController {
 		return new ResponseEntity<>(newSet, status);	
 	}
 	
-	@RequestMapping(value = "{id}", method=RequestMethod.PUT, consumes= "application/json")
+	@RequestMapping(value = "{id}", method=RequestMethod.PUT, consumes= "application/json", produces="application/json")
 	public ResponseEntity<CompletedSet> editCompletedSet(@PathVariable("id") int id, @RequestBody CompletedSet completedSet){
 		HttpStatus status = HttpStatus.NO_CONTENT;
 		CompletedSet newCompletedSet = null;

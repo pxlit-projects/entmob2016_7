@@ -225,5 +225,4 @@ public class CategoryRestTest {
 		this.mappingJackson2HttpMessageConverter.write(o, MediaType.APPLICATION_JSON, mockHttpOutputMessage);
 		return mockHttpOutputMessage.getBodyAsString();
 	}
-	
 }

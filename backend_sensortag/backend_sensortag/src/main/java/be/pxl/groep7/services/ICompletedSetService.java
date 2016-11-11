@@ -2,6 +2,7 @@ package be.pxl.groep7.services;
 
 import java.util.List;
 
+import be.pxl.groep7.dao.ICompletedSetRepository;
 import be.pxl.groep7.models.CompletedSet;
 
 public interface ICompletedSetService {
@@ -11,4 +12,5 @@ public interface ICompletedSetService {
 	public void deleteCompletedSetById(int id);
 	public boolean doesCompletedSetExist(int id);
 	public List<CompletedSet> getAllCompletedSetsBySetId(int setId);
+	public void setCompletedSetRepository(ICompletedSetRepository rep);
 }
