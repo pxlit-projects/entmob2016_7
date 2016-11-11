@@ -33,4 +33,9 @@ public class ExercisePointServiceImpl implements IExercisePointService {
 		return rep.exists(id);
 	}
 
+	@Override
+	public void setIExercisePointRepository(IExercisePointRepository rep) {
+		this.rep = rep;
+	}
+
 }

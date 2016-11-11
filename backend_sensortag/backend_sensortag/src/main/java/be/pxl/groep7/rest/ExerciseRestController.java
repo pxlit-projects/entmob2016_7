@@ -27,6 +27,11 @@ public class ExerciseRestController {
 	@Autowired
 	private IExerciseService service;
 	
+	public ExerciseRestController(IExerciseService service, IExerciseRepository rep){
+		this.service = service;
+		
+	}
+	
 	@RequestMapping(value="/bycategory/{categoryId}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<Exercise>> getExerciseByCategoryId(@PathVariable("categoryId") int categoryId){
 		HttpStatus status = HttpStatus.OK;

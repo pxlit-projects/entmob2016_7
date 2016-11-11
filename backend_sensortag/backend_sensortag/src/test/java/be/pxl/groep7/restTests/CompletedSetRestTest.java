@@ -1,4 +1,4 @@
-package be.pxl.groep7.restTest;
+package be.pxl.groep7.restTests;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,7 +45,7 @@ import be.pxl.groep7.test.config.TestConfig;
 @SpringBootTest
 public class CompletedSetRestTest {
 
-private MockMvc mockMvc;
+	private MockMvc mockMvc;
 	
 	private HttpMessageConverter mappingJackson2HttpMessageConverter;
 	
@@ -76,7 +76,7 @@ private MockMvc mockMvc;
 	@Before
 	public void setUp() throws Exception {
 		completedSetController = new CompletedSetRestController(serviceMock, repMock);
-		mockMvc = MockMvcBuilders.standaloneSetup(new CompletedSetRestController(serviceMock, repMock))
+		mockMvc = MockMvcBuilders.standaloneSetup(completedSetController)
 				.build();
 	}
 	
@@ -161,8 +161,8 @@ private MockMvc mockMvc;
 	public void putExistingCompletedSet() throws IOException, Exception {
 		CompletedSet completedSet1 = new CompletedSet(1, 1, 10, 210, 1);
 		
-		Mockito.when(serviceMock.createOrUpdateCompletedSet(completedSet1)).thenReturn(completedSet1);
 		Mockito.when(serviceMock.doesCompletedSetExist(1)).thenReturn(true);
+		Mockito.when(serviceMock.createOrUpdateCompletedSet(completedSet1)).thenReturn(completedSet1);
 		Mockito.when(repMock.save(completedSet1)).thenReturn(completedSet1);
 		
 		mockMvc.perform(put(CompletedSetRestController.BASEURL + "/" + completedSet1.getId())	

@@ -21,7 +21,7 @@ public class CompletedSet {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@JsonProperty(value="CompletedSetID")
 	int id;
-	
+
 	@Column(name="set_id")
 	int setId;
 	
@@ -87,6 +87,26 @@ public class CompletedSet {
 		this.userId = userId;
 	}
 	
-	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CompletedSet other = (CompletedSet) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 
 }

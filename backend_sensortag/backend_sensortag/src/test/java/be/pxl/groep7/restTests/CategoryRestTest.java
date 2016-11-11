@@ -1,4 +1,4 @@
-package be.pxl.groep7.restTest;
+package be.pxl.groep7.restTests;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -77,7 +77,7 @@ public class CategoryRestTest {
 	@Before
 	public void setUp() throws Exception {
 		categoryController = new CategoryRestController(serviceMock, repMock);
-		mockMvc = MockMvcBuilders.standaloneSetup(new CategoryRestController(serviceMock, repMock))
+		mockMvc = MockMvcBuilders.standaloneSetup(categoryController)
 				.build();
 	}
 	

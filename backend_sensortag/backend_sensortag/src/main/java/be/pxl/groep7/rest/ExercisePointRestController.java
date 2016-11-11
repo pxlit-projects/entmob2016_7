@@ -23,6 +23,11 @@ public class ExercisePointRestController {
 	
 	@Autowired
 	private IExercisePointService service;
+	
+	public ExercisePointRestController(IExercisePointService service, IExercisePointRepository rep) {
+		this.service = service;
+		this.service.setIExercisePointRepository(rep);
+	}
 
 	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<ExercisePoint> getExerciseById(@PathVariable("id") int id){
