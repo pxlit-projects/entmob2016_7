@@ -1,8 +1,5 @@
 package be.pxl.groep7.serviceTests;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,9 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
 import be.pxl.groep7.dao.IExercisePointRepository;
-import be.pxl.groep7.models.CompletedSet;
 import be.pxl.groep7.models.ExercisePoint;
-import be.pxl.groep7.serviceImpl.CompletedSetServiceImpl;
 import be.pxl.groep7.serviceImpl.ExercisePointServiceImpl;
 import be.pxl.groep7.test.config.TestConfigLite;
 
@@ -65,6 +60,4 @@ public class ExercisePointServiceTest {
 		
 		Assert.assertTrue(exists);
 	}
-	
-	
 }
