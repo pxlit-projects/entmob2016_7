@@ -1,4 +1,4 @@
-package be.pxl.groep7.integrationtests;
+package be.pxl.groep7.integrationTests;
 
 import java.io.IOException;
 import org.junit.Before;
@@ -18,9 +18,9 @@ import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfig
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 
 import be.pxl.groep7.AppConfig;
-import be.pxl.groep7.dao.ICategoryRepository;
-import be.pxl.groep7.models.Category;
-import be.pxl.groep7.rest.CategoryRestController;
+import be.pxl.groep7.dao.ICompletedSetRepository;
+import be.pxl.groep7.models.CompletedSet;
+import be.pxl.groep7.rest.CompletedSetRestController;
 import be.pxl.groep7.test.config.TestConfig;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -38,21 +38,22 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = TestConfig.class)
-public class CategoryControllerIntegrationTest {
+public class CompletedSetControllerIntegrationTest {
 
 	private MockMvc mockMvc;
 
 	private HttpMessageConverter mappingJackson2HttpMessageConverter;
 
 	@Autowired
-	public ICategoryRepository categoryRepository;
+	public ICompletedSetRepository completedSetRepository;
 
 	@Autowired
 	private WebApplicationContext webAppContext;
 	
-	private Category category1;
-	private Category category2;
-	private Category category3;
+	private CompletedSet completedSet1;
+	private CompletedSet completedSet2;
+	private CompletedSet completedSet3;
+	private CompletedSet completedSet4;
 
 	@Autowired
 	void setConverters(HttpMessageConverter<?>[] converters){
@@ -69,120 +70,128 @@ public class CategoryControllerIntegrationTest {
 
 	@Before
 	public void setUp() throws Exception {
-		categoryRepository.deleteAll();
+		completedSetRepository.deleteAll();
 		mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext)
 				.apply(SecurityMockMvcConfigurers.springSecurity())
 				.build();
 
-		category1 = new Category();
-		category1.setName("Category 1");
-		category1 = categoryRepository.save(category1);
+		completedSet1 = new CompletedSet();
+		completedSet1.setDuration(10);				//duration in what? miliseconds, seconds, minutes, hours? -> minutes?
+		completedSet1.setSetId(1);
+		completedSet1.setTime(1500L); 				//difference with duration?
+		completedSet1.setUser_id(1);
+		completedSet1 = completedSetRepository.save(completedSet1);
 
-		category2 = new Category();
-		category2.setName("Category 2");
-		category2 = categoryRepository.save(category2);
+		completedSet2 = new CompletedSet();
+		completedSet2.setDuration(10);				//duration in what? miliseconds, seconds, minutes, hours? -> minutes?
+		completedSet2.setSetId(2);
+		completedSet2.setTime(1500L); 				//difference with duration?
+		completedSet2.setUser_id(1);
+		completedSet2 = completedSetRepository.save(completedSet2);
 		
-		category3 = new Category();
-		category3.setName("Category 3");
-		category3 = categoryRepository.save(category3);
+		completedSet3 = new CompletedSet();
+		completedSet3.setDuration(10);				//duration in what? miliseconds, seconds, minutes, hours? -> minutes?
+		completedSet3.setSetId(1);
+		completedSet3.setTime(1500L); 				//difference with duration?
+		completedSet3.setUser_id(2);
+		completedSet3 = completedSetRepository.save(completedSet3);
+		
+		completedSet4 = new CompletedSet();
+		completedSet4.setDuration(10);				//duration in what? miliseconds, seconds, minutes, hours? -> minutes?
+		completedSet4.setSetId(2);
+		completedSet4.setTime(1500L); 				//difference with duration?
+		completedSet4.setUser_id(2);
+		completedSet4 = completedSetRepository.save(completedSet4);
 	}
 
 	@Test
-	public void getCategoriesAsList() throws IOException, Exception {
-		mockMvc.perform(get(CategoryRestController.BASEURL+"/all")
+	public void getAllCompletedSetsByExerciseId() throws IOException, Exception {
+		mockMvc.perform(get(CompletedSetRestController.BASEURL+"/sets/" + 1)
 				.with(user("user").password("123456")))
 		.andExpect(status().isOk())
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-		.andExpect(content().json(asJson(asList(category1, category2, category3))));
+		.andExpect(content().json(asJson(asList(completedSet1, completedSet3))));
 	}
 
 	@Test
-	public void getCategoryById() throws IOException, Exception {
-		mockMvc.perform(get(CategoryRestController.BASEURL+"/getById/" + category1.getId())	
+	public void getCompletedSetById() throws IOException, Exception {
+		mockMvc.perform(get(CompletedSetRestController.BASEURL+"/getById/" + completedSet1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(content().json(asJson(category1)));
+				.andExpect(content().json(asJson(completedSet1)));
 	}
 	
 	@Test
-	public void postCategoryAndTestIfCategoryCouldBeFoundInDB() throws IOException, Exception {
-		Category category4 = new Category();
-		category4.setName("Category 4");
+	public void postCompletedSetAndTestIfCompletedSetCouldBeFoundInDB() throws IOException, Exception {
+		CompletedSet completedSet5 = new CompletedSet();
+		completedSet5.setDuration(20);
+		completedSet5.setSetId(2);
+		completedSet5.setTime(50L);
+		completedSet5.setUser_id(1);
 		
-		System.out.println("Real post json: " + asJson(category4));
-		
-		 mockMvc.perform(post(CategoryRestController.BASEURL)
+		 mockMvc.perform(post(CompletedSetRestController.BASEURL)
 				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
-	                .content(asJson(category4))
+	                .content(asJson(completedSet5))
 	                .contentType(MediaType.APPLICATION_JSON_UTF8))
 	                .andExpect(status().isNoContent());
 		 
-		assertThat(categoryRepository.findOne(category3.getId()+1).getName().equals(category4.getName()));
+		assertThat(completedSetRepository.findOne(completedSet4.getId()+1).getDuration() == completedSet5.getDuration());
+		assertThat(completedSetRepository.findOne(completedSet4.getId()+1).getSetId() == completedSet5.getSetId());
+		assertThat(completedSetRepository.findOne(completedSet4.getId()+1).getTime() == completedSet5.getTime());
+		assertThat(completedSetRepository.findOne(completedSet4.getId()+1).getUserId() == completedSet5.getUserId());
 	}
 	
 	@Test
-	public void postCategoryLikeDotNETAndTestIfCategoryCouldInserted() throws IOException, Exception {
-		String json = "{\"CategoryID\": 0, \"Name\": \"Naam\"}";
-		System.out.println(json);
+	public void putCompletedSetAndTestIfEdited() throws IOException, Exception {
+		completedSet2.setDuration(78);
 		
-		 mockMvc.perform(post(CategoryRestController.BASEURL)
-				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
-	                .content(json)
-	                .contentType(MediaType.APPLICATION_JSON_UTF8))
-	                .andExpect(status().isNoContent());
-	}
-	
-	@Test
-	public void putCategoryAndTestIfEdited() throws IOException, Exception {
-		category2.setName("Nieuwe category");
-		
-		mockMvc.perform(put(CategoryRestController.BASEURL + "/" + category2.getId())	
+		mockMvc.perform(put(CompletedSetRestController.BASEURL + "/" + completedSet2.getId())	
 				.header("host", "localhost:8080")	
-				.content(asJson(category2))
+				.content(asJson(completedSet2))
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNoContent())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(content().json(asJson(category2)));
+				.andExpect(content().json(asJson(completedSet2)));
 	}
 	
 	@Test
-	public void putCategoryWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
-		category3.setName("Nieuwe category");
+	public void putCompletedSetWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
+		completedSet3.setDuration(55);
 		
-		mockMvc.perform(put(CategoryRestController.BASEURL + "/" + 0)	
+		mockMvc.perform(put(CompletedSetRestController.BASEURL + "/" + 0)	
 				.header("host", "localhost:8080")	
-				.content(asJson(category3))
+				.content(asJson(completedSet3))
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNotFound());
 	}
 	
 	@Test
-	public void deleteCategoryAndTestIfItIsNotFoundInDB() throws IOException, Exception {
-		mockMvc.perform(delete(CategoryRestController.BASEURL+"/" + category1.getId())	
+	public void deleteCompletedSetAndTestIfItIsNotFoundInDB() throws IOException, Exception {
+		mockMvc.perform(delete(CompletedSetRestController.BASEURL+"/" + completedSet1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNoContent());
 		
-		assertThat(categoryRepository.exists(category1.getId()) == false);
+		assertThat(completedSetRepository.exists(completedSet1.getId()) == false);
 	}
 	
 	@Test
-	public void deleteCategoryThatDoesNotExistsAndTestIfNotFoundIsReturned() throws Exception {
-		mockMvc.perform(delete(CategoryRestController.BASEURL+"/" + category3.getId()+1)	
+	public void deleteCompletedSetThatDoesNotExistsAndTestIfNotFoundIsReturned() throws Exception {
+		mockMvc.perform(delete(CompletedSetRestController.BASEURL+"/" + completedSet3.getId()+1)	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNotFound());
 		
-		assertThat(categoryRepository.exists(category1.getId()) == false);
+		assertThat(completedSetRepository.exists(completedSet3.getId()) == false);
 	}
 	
 	@Test
 	public void testIfGetByIdIsAuthorized() throws IOException, Exception {
-		mockMvc.perform(get(CategoryRestController.BASEURL+"/getById/" + category1.getId())	
+		mockMvc.perform(get(CompletedSetRestController.BASEURL+"/getById/" + completedSet1.getId())	
 				.header("host", "localhost:8080"))													
 				.andExpect(status().is(401));
 	}

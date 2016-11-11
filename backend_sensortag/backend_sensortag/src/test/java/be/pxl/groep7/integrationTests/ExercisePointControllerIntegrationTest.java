@@ -1,4 +1,4 @@
-package be.pxl.groep7.integrationtests;
+package be.pxl.groep7.integrationTests;
 
 import java.io.IOException;
 import org.junit.Before;
@@ -19,12 +19,8 @@ import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequ
 
 import be.pxl.groep7.AppConfig;
 import be.pxl.groep7.dao.IExercisePointRepository;
-import be.pxl.groep7.dao.ISetRepository;
 import be.pxl.groep7.models.ExercisePoint;
-import be.pxl.groep7.models.Set;
 import be.pxl.groep7.rest.ExercisePointRestController;
-import be.pxl.groep7.rest.ExerciseRestController;
-import be.pxl.groep7.rest.SetRestController;
 import be.pxl.groep7.test.config.TestConfig;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -32,7 +28,6 @@ import static java.util.Arrays.asList;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -42,21 +37,22 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = TestConfig.class)
-public class SetControllerIntegrationTest {
+@WebAppConfiguration
+public class ExercisePointControllerIntegrationTest {
 
 	private MockMvc mockMvc;
 
 	private HttpMessageConverter mappingJackson2HttpMessageConverter;
 
 	@Autowired
-	public ISetRepository setRepository;
+	public IExercisePointRepository exercisePointRepository;
 
 	@Autowired
 	private WebApplicationContext webAppContext;
 	
-	private Set set1;
-	private Set set2;
-	private Set set3;
+	private ExercisePoint exercisePoint1;
+	private ExercisePoint exercisePoint2;
+	private ExercisePoint exercisePoint3;
 
 	@Autowired
 	void setConverters(HttpMessageConverter<?>[] converters){
@@ -73,121 +69,107 @@ public class SetControllerIntegrationTest {
 
 	@Before
 	public void setUp() throws Exception {
-		setRepository.deleteAll();
+		exercisePointRepository.deleteAll();
 		mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext)
 				.apply(SecurityMockMvcConfigurers.springSecurity())
 				.build();
 
-		set1 = new Set();
-		set1.setExerciseId(1);
-		set1.setMaxTime(500);
-		set1.setPoints(5);
-		set1.setRepeats(20);
-		set1 = setRepository.save(set1);
+		exercisePoint1 = new ExercisePoint();
+		exercisePoint1.setX(1.14);
+		exercisePoint1.setY(2.04);
+		exercisePoint1.setZ(0.25);
+		exercisePoint1 = exercisePointRepository.save(exercisePoint1);
 
-		set2 = new Set();
-		set2.setExerciseId(2);
-		set2.setMaxTime(100);
-		set2.setPoints(15);
-		set2.setRepeats(5);
-		set2 = setRepository.save(set2);
+		exercisePoint2 = new ExercisePoint();
+		exercisePoint2.setX(1.78);
+		exercisePoint2.setY(1.04);
+		exercisePoint2.setZ(3.25);
+		exercisePoint2 = exercisePointRepository.save(exercisePoint2);
 		
-		set3 = new Set();
-		set3.setExerciseId(1);
-		set3.setMaxTime(350);
-		set3.setPoints(5);
-		set3.setRepeats(5);
-		set3 = setRepository.save(set3);
-	}
-	
-	@Test
-	public void getAllSetsByExerciseId() throws IOException, Exception {
-		mockMvc.perform(get(SetRestController.BASEURL+"/setbyexercise/" + 1)
-				.with(user("user").password("123456")))
-		.andExpect(status().isOk())
-		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-		.andExpect(content().json(asJson(asList(set1, set3))));
+		exercisePoint3 = new ExercisePoint();
+		exercisePoint3.setX(3.08);
+		exercisePoint3.setY(1.35);
+		exercisePoint3.setZ(2.29);
+		exercisePoint3 = exercisePointRepository.save(exercisePoint3);
 	}
 
 	@Test
-	public void getSetById() throws IOException, Exception {
-		mockMvc.perform(get(SetRestController.BASEURL+"/getById/" + set1.getId())	
+	public void getExercisePointById() throws IOException, Exception {
+		mockMvc.perform(get(ExercisePointRestController.BASEURL+"/getById/" + exercisePoint1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(content().json(asJson(set1)));
+				.andExpect(content().json(asJson(exercisePoint1)));
 	}
 	
 	@Test
-	public void postSetAndTestIfSetCouldBeFoundInDB() throws IOException, Exception {
-		Set set4 = new Set();
-		set4.setExerciseId(2);
-		set4.setMaxTime(255);
-		set4.setPoints(15);
-		set4.setRepeats(25);
+	public void postExercisePointAndTestIfExercisePointCouldBeFoundInDB() throws IOException, Exception {
+		ExercisePoint exercisePoint4 = new ExercisePoint();
+		exercisePoint4.setX(0.54);
+		exercisePoint4.setY(3.18);
+		exercisePoint4.setZ(1.66);
 		
-		 mockMvc.perform(post(SetRestController.BASEURL)
+		 mockMvc.perform(post(ExercisePointRestController.BASEURL)
 				 	.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456"))
-	                .content(asJson(set4))
+	                .content(asJson(exercisePoint4))
 	                .contentType(MediaType.APPLICATION_JSON_UTF8))
 	                .andExpect(status().isNoContent());
 		 
-		assertThat(setRepository.findOne(set3.getId()+1).getExerciseId() == set4.getExerciseId());
-		assertThat(setRepository.findOne(set3.getId()+1).getMaxTime() == set4.getMaxTime());
-		assertThat(setRepository.findOne(set3.getId()+1).getPoints() == set4.getPoints());
-		assertThat(setRepository.findOne(set3.getId()+1).getRepeats() == set4.getRepeats());
+		assertThat(exercisePointRepository.findOne(exercisePoint3.getId()+1).getX() == exercisePoint4.getX());
+		assertThat(exercisePointRepository.findOne(exercisePoint3.getId()+1).getY() == exercisePoint4.getY());
+		assertThat(exercisePointRepository.findOne(exercisePoint3.getId()+1).getZ() == exercisePoint4.getZ());
 	}
 	
 	@Test
-	public void putSetAndTestIfEdited() throws IOException, Exception {
-		set2.setMaxTime(44);
+	public void putExercisePointAndTestIfEdited() throws IOException, Exception {
+		exercisePoint2.setX(2.37);
 		
-		mockMvc.perform(put(SetRestController.BASEURL + "/" + set2.getId())	
+		mockMvc.perform(put(ExercisePointRestController.BASEURL + "/" + exercisePoint2.getId())	
 				.header("host", "localhost:8080")	
-				.content(asJson(set2))
+				.content(asJson(exercisePoint2))
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNoContent())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(content().json(asJson(set2)));
+				.andExpect(content().json(asJson(exercisePoint2)));
 	}
 	
 	@Test
-	public void putSetWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
-		set3.setPoints(35);
+	public void putExercisePointWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
+		exercisePoint3.setZ(4.0);
 		
-		mockMvc.perform(put(SetRestController.BASEURL + "/" + 0)	
+		mockMvc.perform(put(ExercisePointRestController.BASEURL + "/" + 0)	
 				.header("host", "localhost:8080")	
-				.content(asJson(set3))
+				.content(asJson(exercisePoint3))
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNotFound());
 	}
 	
 	@Test
-	public void deleteSetAndTestIfItIsNotFoundInDB() throws IOException, Exception {
-		mockMvc.perform(delete(SetRestController.BASEURL+"/" + set1.getId())	
+	public void deleteExercisePointAndTestIfItIsNotFoundInDB() throws IOException, Exception {
+		mockMvc.perform(delete(ExercisePointRestController.BASEURL+"/" + exercisePoint1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNoContent());
 		
-		assertThat(setRepository.exists(set1.getId()) == false);
+		assertThat(exercisePointRepository.exists(exercisePoint1.getId()) == false);
 	}
 	
 	@Test
-	public void deleteSetThatDoesNotExistsAndTestIfNotFoundIsReturned() throws Exception {
-		mockMvc.perform(delete(SetRestController.BASEURL+"/" + set3.getId()+1)	
+	public void deleteExercisePointThatDoesNotExistsAndTestIfNotFoundIsReturned() throws Exception {
+		mockMvc.perform(delete(ExercisePointRestController.BASEURL+"/" + exercisePoint3.getId()+1)	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
 				.andExpect(status().isNotFound());
 		
-		assertThat(setRepository.exists(set3.getId()) == false);
+		assertThat(exercisePointRepository.exists(exercisePoint3.getId()) == false);
 	}
 	
 	@Test
 	public void testIfGetByIdIsAuthorized() throws IOException, Exception {
-		mockMvc.perform(get(SetRestController.BASEURL+"/getById/" + set1.getId())	
+		mockMvc.perform(get(ExercisePointRestController.BASEURL+"/getById/" + exercisePoint1.getId())	
 				.header("host", "localhost:8080"))													
 				.andExpect(status().is(401));
 	}

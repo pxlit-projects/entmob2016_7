@@ -1,4 +1,4 @@
-package be.pxl.groep7.integrationtests;
+package be.pxl.groep7.integrationTests;
 
 import java.io.IOException;
 import org.junit.Before;

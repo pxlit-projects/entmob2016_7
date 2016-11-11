@@ -3,6 +3,8 @@ package be.pxl.groep7.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import be.pxl.groep7.dao.ICategoryRepository;
@@ -10,6 +12,7 @@ import be.pxl.groep7.models.Category;
 import be.pxl.groep7.services.ICategoryService;
 
 @Service
+@Qualifier("test")
 public class CategoryServiceImpl implements ICategoryService {
 
 	@Autowired
@@ -39,5 +42,4 @@ public class CategoryServiceImpl implements ICategoryService {
 	public List<Category> getAllCategories() {
 		return rep.getAllCategories();
 	}
-
 }

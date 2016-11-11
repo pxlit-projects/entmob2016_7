@@ -1,6 +1,4 @@
-package be.pxl.groep7.repositorytests;
-
-import java.util.List;
+package be.pxl.groep7.repositoryTests;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,12 +11,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import be.pxl.groep7.AppConfig;
 import be.pxl.groep7.dao.IExercisePointRepository;
 import be.pxl.groep7.models.ExercisePoint;
+import be.pxl.groep7.test.config.TestConfigLite;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = AppConfig.class)
+@ContextConfiguration(classes = TestConfigLite.class)
 @WebAppConfiguration
 @DirtiesContext
 @SpringBootTest

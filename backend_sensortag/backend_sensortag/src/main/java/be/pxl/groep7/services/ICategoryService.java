@@ -2,7 +2,9 @@ package be.pxl.groep7.services;
 
 import java.util.List;
 
+import be.pxl.groep7.dao.ICategoryRepository;
 import be.pxl.groep7.models.Category;
+
 
 public interface ICategoryService {
 
