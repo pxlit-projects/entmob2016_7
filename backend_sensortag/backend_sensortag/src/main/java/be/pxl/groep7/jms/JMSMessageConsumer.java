@@ -20,7 +20,11 @@ public class JMSMessageConsumer {
     	try {
 			if (message instanceof TextMessage) {
 				String text = ((TextMessage) message).getText();
-				logger.info(text);
+				if (text.contains("httpResponse: 404")) {
+					logger.warn(text);
+				} else {
+					logger.info(text);
+				}
 			}
 		} catch (JMSException e) {
 			e.printStackTrace();

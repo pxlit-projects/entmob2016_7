@@ -22,7 +22,6 @@ public class Category {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	int id;
 	
-	
 
 	@Column(name="name")
 	@JsonProperty(value="Name")
