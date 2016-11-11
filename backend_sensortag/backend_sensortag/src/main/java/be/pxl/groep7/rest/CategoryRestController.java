@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import be.pxl.groep7.dao.ICategoryRepository;
 import be.pxl.groep7.models.Category;
 import be.pxl.groep7.services.ICategoryService;
 
@@ -26,6 +27,11 @@ public class CategoryRestController {
 	
 	@Autowired
 	private ICategoryService service;
+	
+	public CategoryRestController(ICategoryService service, ICategoryRepository rep) {
+		this.service = service;
+		this.service.setCategoryRepository(rep);
+	}
 	
 	@Secured("ROLE_USER")
 	@RequestMapping(value="/all", method = RequestMethod.GET, produces = "application/json")

@@ -42,4 +42,9 @@ public class CategoryServiceImpl implements ICategoryService {
 	public List<Category> getAllCategories() {
 		return rep.getAllCategories();
 	}
+
+	@Override
+	public void setCategoryRepository(ICategoryRepository rep) {
+		this.rep = rep;
+	}
 }
