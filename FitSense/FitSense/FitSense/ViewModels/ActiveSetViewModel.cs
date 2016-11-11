@@ -16,6 +16,29 @@ namespace FitSense.ViewModels
         public RelayCommand CancelSet { get; private set; }
         public RelayCommand StartSet { get; private set; }
 
+        private string startButtonText;
+        public string StartButtonText
+        {
+            get { return startButtonText; }
+            private set
+            {
+                startButtonText = value;
+                RaisePropertyChanged("StartButtonText");
+            }
+        }
+
+        private bool startButtonEnabled;
+        public bool StartButtonEnabled
+        {
+            get { return startButtonEnabled; }
+            private set
+            {
+                startButtonEnabled = value;
+                RaisePropertyChanged("StartButtonEnabled");
+            }
+        }
+
+
         //private Timer timer;
 
         private int timeLeft;
@@ -48,6 +71,7 @@ namespace FitSense.ViewModels
 
             InitializeMessages();
             InitializeCommands();
+            StartButtonText = "Start";
         }
 
         
@@ -61,19 +85,27 @@ namespace FitSense.ViewModels
 
             StartSet = new RelayCommand(async () =>
             {
-                while(TimeLeft > 0)
+                if(TimeLeft > 0)
                 {
-                    // wait 1000 miliseconds in a different thread
-                    await CountDown(1000).ContinueWith((antecedent) =>
+                    StartButtonEnabled = false;
+                    while (TimeLeft > 0)
                     {
-                        // we are on the main thread again, time to update te ui!
-                        TimeLeft--;
-                        //quick check to see if we have to stop the timer
-                        if(TimeLeft <= 0)
+                        // wait 1000 miliseconds in a different thread
+                        await CountDown(1000).ContinueWith((antecedent) =>
                         {
-                            FinishedSet();
-                        }
-                    });
+                            // we are on the main thread again, time to update te ui!
+                            TimeLeft--;
+                            if (TimeLeft <= 0)
+                            {
+                                StartButtonText = "Finished! Continue";
+                                StartButtonEnabled = true;
+                            }
+                        });
+                    }
+                }
+                else
+                {
+                    FinishedSet();
                 }
             });
         }
@@ -94,7 +126,7 @@ namespace FitSense.ViewModels
     
         private async void FinishedSet()
         {
-            await navigationService.PushAsync(PageUrls.MAINVIEW).ContinueWith((antecedent) =>
+            await navigationService.PushAsync(PageUrls.CATEGORIESVIEW).ContinueWith((antecedent) =>
             {
                 //MessengerInstance.Send(Set, Messages.SetUpdated);
             });

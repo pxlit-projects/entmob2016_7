@@ -12,7 +12,7 @@
     </ResourceDictionary>
   </NavigationPage.Resources>
     <StackLayout Spacing="10" x:Name="layout">
-      <Button Text="Start" Command="{Binding StartSet}" VerticalOptions="FillAndExpand" HorizontalOptions="Center"/>
+      <Button IsEnabled="{Binding StartButtonEnabled}" Text="{Binding StartButtonText}" Command="{Binding StartSet}" VerticalOptions="FillAndExpand" HorizontalOptions="Center"/>
       <Label Text="{Binding TimeLeft, Converter={StaticResource maxTimeConverter}}" VerticalOptions="Start" HorizontalOptions="Center" />
       <Label Text="Reps Left" VerticalOptions="FillAndExpand" HorizontalOptions="Center" />
       <Label Text="{Binding RepsLeft}" VerticalOptions="FillAndExpand" HorizontalOptions="Center" />
