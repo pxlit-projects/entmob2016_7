@@ -126,7 +126,7 @@ namespace FitSense.ViewModels
     
         private async void FinishedSet()
         {
-            await navigationService.PushAsync(PageUrls.CATEGORIESVIEW).ContinueWith((antecedent) =>
+            await navigationService.PopToRootAsync().ContinueWith((antecedent) =>
             {
                 //MessengerInstance.Send(Set, Messages.SetUpdated);
             });
