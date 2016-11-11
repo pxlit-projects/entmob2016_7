@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FitSense.Views.ActiveSetView"
-             BindingContext="{Binding Source={StaticResource Locator}, Path=Connect}"
+             BindingContext="{Binding Source={StaticResource Locator}, Path=ActiveSetViewModel}"
              xmlns:convertors="clr-namespace:FitSense.Converters">
   <NavigationPage.Resources>
     <ResourceDictionary>
@@ -11,12 +11,11 @@
       <convertors:PointsConverter x:Key="pointsConverter" />
     </ResourceDictionary>
   </NavigationPage.Resources>
-  
-  <ContentPage.Content>
     <StackLayout Spacing="10" x:Name="layout">
+      <Button IsEnabled="{Binding StartButtonEnabled}" Text="{Binding StartButtonText}" Command="{Binding StartSet}" VerticalOptions="FillAndExpand" HorizontalOptions="Center"/>
       <Label Text="{Binding TimeLeft, Converter={StaticResource maxTimeConverter}}" VerticalOptions="Start" HorizontalOptions="Center" />
-      <Label Text="{Binding RepsLeft, Converter={StaticResource repsConverter}}" VerticalOptions="FillAndExpand" HorizontalOptions="Center" />
-      <Button Text="Start Set" Command="{Binding StartSet}" VerticalOptions="FillAndExpand" HorizontalOptions="Center"/>
+      <Label Text="Reps Left" VerticalOptions="FillAndExpand" HorizontalOptions="Center" />
+      <Label Text="{Binding RepsLeft}" VerticalOptions="FillAndExpand" HorizontalOptions="Center" />
+      <Button Text="Cancel" Command="{Binding CancelSet}" VerticalOptions="FillAndExpand" HorizontalOptions="Center"/>
     </StackLayout>
-  </ContentPage.Content>
 </ContentPage>

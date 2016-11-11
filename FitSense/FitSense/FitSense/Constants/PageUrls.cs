@@ -15,5 +15,6 @@ namespace FitSense.Constants
         public const string CATEGORIESVIEW = "CategoriesView";
         public const string EXERCISESVIEW = "ExercisesView";
         public const string SETSCAROUSEL = "SetsCarousel";
+        public const string ACTIVESET = "ActiveSet";
     }
 }

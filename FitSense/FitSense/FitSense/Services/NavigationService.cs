@@ -27,6 +27,7 @@ namespace FitSense.Services
                 case PageUrls.CATEGORIESVIEW: return new CategoriesPage();
                 case PageUrls.EXERCISESVIEW: return new ExercisesView();
                 case PageUrls.SETSCAROUSEL: return new SetsCarousel();
+                case PageUrls.ACTIVESET: return new ActiveSetView();
             }
             return null;
         }

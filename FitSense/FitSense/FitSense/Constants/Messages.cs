@@ -11,5 +11,6 @@ namespace FitSense.Constants
         public const string LoginSucces = "LoginSucces";
         public const string CategoryUpdated = "UpdatedSelectedCategory";
         public const string ExerciseUpdated = "UpdatedSelectedExercise";
+        public const string SetUpdated = "UpdatedSelectedSet";
     }
 }
