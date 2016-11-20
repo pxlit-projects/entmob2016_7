@@ -20,7 +20,7 @@ namespace fitsense.DAL
                 //troubles were solved by the kim kim XD
                 client.BaseAddress = new Uri("http://localhost:8081/sensortagapi/category");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
-                Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", "user", "123456"))));
+                    Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", "user", "123456"))));
 
 
             var myContent = JsonConvert.SerializeObject(categorie);
