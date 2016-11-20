@@ -1,12 +1,9 @@
 ﻿using fitsense.DAL.dependencies;
 using fitsense.models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace test_fitsense.mocks
+namespace test.fitsense.dal.mocks
 {
     public class MockCompletedSetRepository : ICompletedSetRepository
     {
