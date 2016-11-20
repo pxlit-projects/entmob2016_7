@@ -11,6 +11,8 @@ namespace uwp_fitsense.extensions
     {
         public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> coll)
         {
+            if (coll == null)
+                return null;
             var collection = new ObservableCollection<T>();
             foreach (var element in coll)
                 collection.Add(element);

@@ -102,7 +102,6 @@ namespace uwp_fitsense.viewmodel
                 }
             }
             ActiveChart = records;
-
         }
 
         public SetsPerExerciseViewModel(IFitDataService dataService, INavigationService dialogService)
@@ -122,7 +121,7 @@ namespace uwp_fitsense.viewmodel
             });
         }
 
-        private void LoadData()
+        public void LoadData()
         {
             sets = fitDataService.GetSetsFromExercise(CurrentExercise).ToObservableCollection();
         }

@@ -12,7 +12,9 @@ namespace test_fitsense.mocks
     {
         public List<Exercise> GetExercisesFromCategory(Category category)
         {
-            return TestData.exercises.Where(exercise => exercise.CategoryID == category.CategoryID).ToList();
+            if(category != null)
+                return TestData.exercises.Where(exercise => exercise.CategoryID == category.CategoryID).ToList();
+            return null;
         }
     }
 }
