@@ -102,7 +102,6 @@ namespace uwp_fitsense.viewmodel
                 }
             }
             ActiveChart = records;
-
         }
 
         public SetsPerExerciseViewModel(IFitDataService dataService, INavigationService dialogService)
