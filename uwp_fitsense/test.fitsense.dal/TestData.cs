@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace test_fitsense
+namespace test.fitsense.dal
 {
-    class TestData
+    public class TestData
     {
         public static List<Category> categories = new List<Category>()
         {
