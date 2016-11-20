@@ -11,6 +11,8 @@ import javax.persistence.Table;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name="set_table")								// why set_table? "set" is a reserved keyword for mysql
 @NamedQuery(name="Set.getSetsByExerciseId" 
@@ -20,6 +22,7 @@ public class Set {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@JsonProperty(value="SetID")
 	int id;
 	
 	@Column(name="repeats")
