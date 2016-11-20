@@ -130,10 +130,6 @@
       <Project>{b98c980f-6a91-412c-a9b7-eb8e69afaa51}</Project>
       <Name>fitsense.models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\test.fitsense.dal\test.fitsense.dal.csproj">
-      <Project>{A0E99DAC-29FC-401C-A873-CD670E4FF652}</Project>
-      <Name>test.fitsense.dal</Name>
-    </ProjectReference>
     <ProjectReference Include="..\uwp_fitsense\uwp_fitsense.csproj">
       <Project>{4166e473-ab35-4315-b46a-f9c893b30af5}</Project>
       <Name>uwp_fitsense</Name>
