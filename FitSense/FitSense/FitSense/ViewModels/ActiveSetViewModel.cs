@@ -98,7 +98,7 @@ namespace FitSense.ViewModels
                                 StartButtonText = "Finished! Continue";
                                 StartButtonEnabled = true;
                             }
-                        });
+                        });//add stuff to go to ui thread);
                     }
                 }
                 else

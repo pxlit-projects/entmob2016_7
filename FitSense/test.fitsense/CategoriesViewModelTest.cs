@@ -2,6 +2,7 @@
 using FitSense.Dependencies;
 using FitSense.ViewModels;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using System;
 using System.Collections.ObjectModel;
 using test.fitsense.mocks;
 
@@ -36,20 +37,6 @@ namespace test.fitsense
 
             //assert
             CollectionAssert.AreEqual(expectedCategories, categories);
-        }
-
-        [TestMethod]
-        public void CategorySelectedCommandNotNull()
-        {
-            var viewModel = GetViewModel();
-            Assert.IsNotNull(viewModel.CategorySelectedCommand);
-        }
-
-        [TestMethod]
-        public void CategorySelectedCommandRuns()
-        {
-            var viewModel = GetViewModel();
-            viewModel.CategorySelectedCommand.Execute(null);
         }
     }
 }

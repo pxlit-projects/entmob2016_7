@@ -120,7 +120,6 @@
     <Compile Include="mocks\SetViewModelMock.cs" />
     <Compile Include="mocks\UserDataServiceMock.cs" />
     <Compile Include="mocks\UserRepositoryMock.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
