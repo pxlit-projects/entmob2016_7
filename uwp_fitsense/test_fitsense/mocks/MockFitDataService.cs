@@ -2,9 +2,7 @@
 using fitsense.models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using test.fitsense.dal.mocks;
 using uwp_fitsense.dependencies;
 
 namespace test_fitsense.mocks
