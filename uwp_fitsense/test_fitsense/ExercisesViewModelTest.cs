@@ -2,8 +2,10 @@
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using test_fitsense.mocks;
 using uwp_fitsense.dependencies;
+using uwp_fitsense.extensions;
 using uwp_fitsense.viewmodel;
 
 namespace test_fitsense
@@ -16,7 +18,15 @@ namespace test_fitsense
 
         private ExercisesViewModel GetViewModel()
         {
-            return new ExercisesViewModel(this.fitDataService, this.navigationService);
+            var viewmodel = new ExercisesViewModel(this.fitDataService, this.navigationService)
+            {
+                // simulate messaging service by setting the category
+                SelectedCategory = fitDataService.GetAllCategories().ToArray()[0]
+            };
+            // because the data isn't loaded (due to the way it loads the constructor first)
+            //we have to reload the data
+            viewmodel.LoadData();
+            return viewmodel;
         }
 
         [TestInitialize]
@@ -26,13 +36,14 @@ namespace test_fitsense
             //dialogService = new MockDialogService();
         }
 
-        [TestMethod]
+        // messaging during testing?
+        /*[TestMethod]
         public void IsCategoryLoaded()
         {
             var viewModel = GetViewModel();
 
             Assert.IsNotNull(viewModel.SelectedCategory);
-        }
+        }*/
 
         [TestMethod]
         public void LoadAllExercises()
@@ -45,15 +56,8 @@ namespace test_fitsense
             //act
             exercises = viewModel.Exercises;
 
-            viewModel.PropertyChanged += ViewModel_PropertyChanged;
-
             //assert
             CollectionAssert.AreEqual(expectedExercises, exercises);
-        }
-
-        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }

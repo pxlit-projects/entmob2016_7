@@ -65,7 +65,7 @@ namespace uwp_fitsense.viewmodel
             LoadCommands();
         }
 
-        private void LoadData()
+        public void LoadData()
         {
             categories = fitDataService.GetAllCategories().ToObservableCollection();
             if (categories.Count > 0)

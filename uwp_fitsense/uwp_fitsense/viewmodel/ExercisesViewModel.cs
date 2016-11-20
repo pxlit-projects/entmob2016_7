@@ -134,7 +134,7 @@ namespace uwp_fitsense.viewmodel
             Messenger.Default.Register<UpdateSelectedCategory>(this, OnUpdateSelectedCategoryReceived);
         }
 
-        private void LoadData()
+        public void LoadData()
         {
             Exercises = dataService.GetExercisesFromCategory(SelectedCategory).ToObservableCollection();
         }

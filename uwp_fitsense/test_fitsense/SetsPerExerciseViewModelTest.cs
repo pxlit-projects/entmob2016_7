@@ -20,7 +20,14 @@ namespace test_fitsense
 
         private SetsPerExerciseViewModel GetViewModel()
         {
-            return new SetsPerExerciseViewModel(this.fitDataService, this.navigationService);
+            var category = fitDataService.GetAllCategories().ToList().FirstOrDefault();
+            var exercise = fitDataService.GetExercisesFromCategory(category).FirstOrDefault();
+            var viewmodel = new SetsPerExerciseViewModel(this.fitDataService, this.navigationService)
+            {
+                CurrentExercise = exercise
+            };
+            viewmodel.LoadData();
+            return viewmodel;
         }
 
         [TestInitialize]

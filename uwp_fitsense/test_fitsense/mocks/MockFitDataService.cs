@@ -28,6 +28,8 @@ namespace test_fitsense.mocks
 
         public List<Exercise> GetExercisesFromCategory(Category category)
         {
+            if (category == null)
+                return null;
             List<Exercise> exercises = exerciseRepository.GetExercisesFromCategory(category);
             foreach (Exercise e in exercises)
             {
