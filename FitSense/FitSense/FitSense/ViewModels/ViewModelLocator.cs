@@ -15,13 +15,9 @@
 using fitsense.DAL;
 using FitSense.Dependencies;
 using FitSense.Models;
-using FitSense.Repositories;
 using FitSense.Services;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using Robotics.Mobile.Core.Bluetooth.LE;
-using Xamarin.Forms;
 
 namespace FitSense.ViewModels
 {
