@@ -74,8 +74,6 @@ namespace FitSense.ViewModels
             StartButtonText = "Start";
         }
 
-        
-
         private void InitializeCommands()
         {
             CancelSet = new RelayCommand(() =>

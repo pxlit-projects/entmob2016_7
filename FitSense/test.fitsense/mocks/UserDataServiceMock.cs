@@ -1,24 +1,21 @@
-﻿using FitSense.Dependencies;
-using FitSense.Models;
-using FitSense.Repositories;
+﻿using fitsense.DAL.dependencies;
+using fitsense.models;
+using FitSense.Dependencies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using fitsense.models;
-using fitsense.DAL;
-using fitsense.DAL.dependencies;
+using test.fitsense.dal.mocks;
 
-namespace FitSense.Services
+namespace test.fitsense.mocks
 {
-    public class UserDataService : IUserDataService
+    class UserDataServiceMock : IUserDataService
     {
-        private static UserRepository userRepository = new UserRepository();
-        private ICategoryRepository categoryRepository;
-        private IExerciseRepository exerciseRepository;
-        private ISetRepository setRepository;
-
+        private static UserRepositoryMock userRepository = new UserRepositoryMock();
+        private ICategoryRepository categoryRepository = new MockCategoryRepository();
+        private IExerciseRepository exerciseRepository = new MockExerciseRepository();
+        private ISetRepository setRepository = new MockSetRepository();
         public User LoggedInUser { get; set; }
 
         User IUserDataService.LoggedInUser
@@ -27,18 +24,7 @@ namespace FitSense.Services
             {
                 return userRepository.SearchUser("Daniël");
             }
-
-            set
-            {
-                
-            }
-        }
-
-        public UserDataService(ICategoryRepository categoryRepository, IExerciseRepository exerciseRepository, ISetRepository setRepository)
-        {
-            this.categoryRepository = categoryRepository;
-            this.exerciseRepository = exerciseRepository;
-            this.setRepository = setRepository;
+            set { }
         }
 
         public Task LoginAsync(string userName, string password)
