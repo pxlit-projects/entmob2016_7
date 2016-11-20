@@ -40,6 +40,16 @@ public class ExerciseRestController {
 		}
 		return new ResponseEntity<>(exerciseList, status);
 	}
+	
+	@RequestMapping(value="/all", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	public ResponseEntity<List<Exercise>> getAllExercises(){
+		HttpStatus status = HttpStatus.OK;
+		List<Exercise> exerciseList = service.getAllExercises();
+		if(exerciseList == null){
+			status = HttpStatus.NOT_FOUND;
+		}
+		return new ResponseEntity<>(exerciseList, status);
+	}
 
 	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public ResponseEntity<Exercise> getExerciseById(@PathVariable("id") int id){

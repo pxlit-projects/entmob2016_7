@@ -2,6 +2,7 @@ package be.pxl.groep7.serviceImpl;
 
 import java.util.List;
 
+import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -47,5 +48,11 @@ public class ExerciseServiceImpl implements IExerciseService {
 	@Transactional(readOnly = true)
 	public List<Exercise> getAllExercisesByCategoryId(int categoryId) {
 		return rep.getExercisesByCategoryId(categoryId);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Exercise> getAllExercises() {
+		return Lists.newArrayList(rep.findAll());
 	}
 }

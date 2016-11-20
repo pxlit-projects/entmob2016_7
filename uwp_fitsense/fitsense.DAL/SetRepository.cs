@@ -16,8 +16,8 @@ namespace fitsense.DAL
 
         public List<Set> GetSetsFromExercise(Exercise exercise)
         {
-            string apiCompletedSet = string.Format("http://localhost:8081/sensortagapi/set/setbyexercise/{0}", exercise.ExerciseID);
-            var uri = new Uri(String.Format("{0}?format=json", apiCompletedSet));
+            string apiSet = string.Format("http://localhost:8081/sensortagapi/set/setbyexercise/{0}", exercise.ExerciseID);
+            var uri = new Uri(String.Format("{0}?format=json", apiSet));
             var client = new HttpClient();
             var response = Task.Run(() =>
             {

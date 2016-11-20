@@ -11,4 +11,5 @@ public interface IExerciseService {
 	public void deleteExerciseById(int id);
 	public boolean doesExerciseExist(int id);
 	public List<Exercise> getAllExercisesByCategoryId(int categoryId);
+	public List<Exercise> getAllExercises();
 }
