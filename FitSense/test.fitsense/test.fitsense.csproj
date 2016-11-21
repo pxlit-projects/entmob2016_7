@@ -118,10 +118,13 @@
     <Compile Include="ActiveSetViewModelTest.cs" />
     <Compile Include="CategoriesViewModelTest.cs" />
     <Compile Include="ExercisesViewModelTest.cs" />
+    <Compile Include="ExerciseViewModelTest.cs" />
     <Compile Include="mocks\SetViewModelMock.cs" />
     <Compile Include="mocks\UserDataServiceMock.cs" />
     <Compile Include="mocks\UserRepositoryMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetsCarouselViewModelTest.cs" />
+    <Compile Include="SetViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
