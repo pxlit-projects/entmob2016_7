@@ -48,6 +48,7 @@
     <Compile Include="dependencies\ICompletedSetRepository.cs" />
     <Compile Include="dependencies\IExerciseRepository.cs" />
     <Compile Include="dependencies\ISetRepository.cs" />
+    <Compile Include="dependencies\IUserRepository.cs" />
     <Compile Include="DummyData.cs" />
     <Compile Include="ExerciseRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
