@@ -10,6 +10,7 @@ using fitsense.models;
 using fitsense.DAL;
 using fitsense.DAL.dependencies;
 using FitSense.ViewModels;
+using fitsense.DAL.Constants;
 
 namespace FitSense.Services
 {
@@ -60,19 +61,20 @@ namespace FitSense.Services
             throw new NotImplementedException();
         }
 
-        public List<Category> GetAllCategories()
+        public async Task<List<Category>> GetAllCategoriesAsync()
         {
-            return categoryRepository.GetCategories().ToList();
+            var result = await categoryRepository.GetCategoriesAsync(ApiUrl.BASEURL);
+            return result.ToList();
         }
 
-        public List<Exercise> GetExercisesFromCategory(Category category)
+        public async Task<List<Exercise>> GetExercisesFromCategoryAsync(Category category)
         {
-            return exerciseRepository.GetExercisesFromCategory(category);
+            return await exerciseRepository.GetExercisesFromCategoryAsync(category, ApiUrl.BASEURL);
         }
 
-        public List<Set> GetSetsFromExercise(Exercise exercise)
+        public async Task<List<Set>> GetSetsFromExerciseAsync(Exercise exercise)
         {
-            return setRepository.GetSetsFromExercise(exercise);
+            return await setRepository.GetSetsFromExerciseAsync(exercise, ApiUrl.BASEURL);
         }
 
         public async Task<List<SetViewModel>> GetSetViewModelsFromExerciseAsync(Exercise exercise, INavigationService navigationService)
@@ -80,7 +82,8 @@ namespace FitSense.Services
             var setViews = new List<SetViewModel>();
             if (exercise != null)
             {
-                List<Set> sets = await new Repositories.SetRepository().GetSetsFromExerciseAsync(exercise);
+               
+                List<Set> sets = await setRepository.GetSetsFromExerciseAsync(exercise, ApiUrl.BASEURL);
                 //List<Set> sets = GetSetsFromExercise(exercise);
                 foreach (Set set in sets)
                 {

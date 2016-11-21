@@ -43,12 +43,17 @@ namespace FitSense.ViewModels
             this.navigationService = navigationService;
 
             InitializeCommands();
-            LoadDataAsync();
+            PreparingLoadAsync();
+        }
+
+        private async void PreparingLoadAsync()
+        {
+            await LoadDataAsync();
         }
        
-        private async void LoadDataAsync()
+        private async Task LoadDataAsync()
         {
-            var result = await new CategoryRepository().GetCategoriesAsync();
+            var result = await userDataService.GetAllCategoriesAsync();
             Categories = result.ToObservableCollection();
         }
 

@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace FitSense.Repositories
 {
-    public class SetRepository
+   /* public class SetRepository
     {
-        public async Task<List<Set>> GetSetsFromExerciseAsync(Exercise exercise)
+        /*public async Task<List<Set>> GetSetsFromExerciseAsync(Exercise exercise)
         {
             string apiSet = string.Format(Constants.ApiUrl.BASEURL + "set/setbyexercise/{0}", exercise.ExerciseID);
             var uri = new Uri(String.Format("{0}?format=json", apiSet));
@@ -32,5 +32,5 @@ namespace FitSense.Repositories
             return null;
             //return DummyData.sets.Where(s => s.ExerciseID == exercise.ExerciseID).ToList();
         }
-    }
+    }*/
 }

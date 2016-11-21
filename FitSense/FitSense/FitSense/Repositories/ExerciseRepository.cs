@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace FitSense.Repositories
 {
-    public class ExerciseRepository
+   /* public class ExerciseRepository
     {
-        public async Task<List<Exercise>> GetExercisesFromCategorAsync(Category category)
+        /*public async Task<List<Exercise>> GetExercisesFromCategorAsync(Category category)
         {
             if (category != null)
             {
@@ -52,5 +52,5 @@ namespace FitSense.Repositories
                 return null;
             }
         }
-    }
+    }*/
 }

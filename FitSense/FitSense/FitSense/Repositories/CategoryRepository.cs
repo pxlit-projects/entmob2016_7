@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FitSense.Repositories
 {
-    public class CategoryRepository
+    /*public class CategoryRepository
     {
         public async Task<List<Category>> GetCategoriesAsync()
         {
@@ -34,5 +34,5 @@ namespace FitSense.Repositories
             return null;
             //return DummyData.categories;
         }
-    }
+    }*/
 }
