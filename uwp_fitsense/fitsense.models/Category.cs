@@ -14,5 +14,7 @@ namespace fitsense.models
         //dit is NIET voor de db, maar voor de JSON!
         [JsonIgnore]
         public List<Exercise> Exercises { get; set; }
+
+        public string description { get; set; }
     }
 }
