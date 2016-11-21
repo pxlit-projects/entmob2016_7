@@ -15,6 +15,7 @@ namespace fitsense.models
         [JsonIgnore]
         public List<Exercise> Exercises { get; set; }
 
-        public string description { get; set; }
+        //first migration
+        //public string description { get; set; }
     }
 }
