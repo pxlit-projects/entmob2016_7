@@ -10,7 +10,7 @@ using uwp_fitsense.dependencies;
 
 namespace uwp_fitsense.services
 {
-    class FitDataService : IFitDataService
+    public class FitDataService : IFitDataService
     {
         ICategoryRepository categoryRepository;
         IExerciseRepository exerciseRepository;
@@ -36,6 +36,10 @@ namespace uwp_fitsense.services
         public async Task<List<Exercise>> GetExercisesFromCategoryAsync(Category category)
         {
             List<Exercise> exercises = await exerciseRepository.GetExercisesFromCategoryAsync(category, ApiUrl.BASEURL);
+            if (exercises == null)
+            {
+                return null;
+            }
             foreach (Exercise e in exercises)
             {
                 e.Sets = await GetSetsFromExerciseAsync(e);

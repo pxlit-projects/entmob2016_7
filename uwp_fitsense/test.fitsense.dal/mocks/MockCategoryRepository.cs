@@ -15,7 +15,7 @@ namespace test.fitsense.dal.mocks
 
         public async Task AddCategoryAsync(Category categorie, string baseUrl)
         {
-            throw new NotImplementedException();
+            await Task.Run(() => TestData.categories.Add(categorie));
         }
     }
 }
