@@ -20,7 +20,8 @@ namespace ef_fitsense.DataLayer
         public FitsenseContext() : base("FitsenseDB")
         {
 
-        }
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>().HasKey(category => category.CategoryID);

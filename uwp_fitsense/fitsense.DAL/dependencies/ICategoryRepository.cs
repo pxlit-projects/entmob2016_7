@@ -8,5 +8,7 @@ namespace fitsense.DAL.dependencies
     {
         Task<List<Category>> GetCategoriesAsync();
         Task AddCategoryAsync(Category categorie);
+        //Task<List<Category>> GetCategoriesAsync(string baseUrl);
+        //Task AddCategoryAsync(Category categorie, string baseUrl);
     }
 }
