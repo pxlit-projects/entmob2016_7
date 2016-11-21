@@ -1,5 +1,6 @@
 ﻿using fitsense.models;
 using FitSense.Dependencies;
+using FitSense.Extensions;
 using GalaSoft.MvvmLight;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,31 +33,12 @@ namespace FitSense.ViewModels
             this.userDataService = userDataService;
             this.navigationService = navigationService;
 
-            InitializeCommands();
             InitializeMessages();
         }
 
         private void LoadData()
         {
-            
-            //Exercises = userDataService.GetAllCategories().ToObservableCollection();
-            SetViews = new ObservableCollection<SetViewModel>();
-            if (Exercise != null)
-            {
-                List<Set> sets = userDataService.GetSetsFromExercise(Exercise);
-                foreach (Set set in sets)
-                {
-                    SetViews.Add(new SetViewModel(navigationService, userDataService)
-                    {
-                        Exercise = Exercise,
-                        Set = set
-                    });
-                }
-            }
-        }
-
-        private void InitializeCommands()
-        {
+            SetViews = (userDataService.GetSetViewModelsFromExercise(Exercise, navigationService)).ToObservableCollection();
         }
 
         private void InitializeMessages()
