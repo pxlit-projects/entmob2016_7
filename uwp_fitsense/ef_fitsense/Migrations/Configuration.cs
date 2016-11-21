@@ -9,7 +9,8 @@ namespace ef_fitsense.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(ef_fitsense.DataLayer.FitsenseContext context)
