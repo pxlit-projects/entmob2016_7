@@ -15,7 +15,7 @@ namespace FitSense.Repositories
 
         public async Task<List<Category>> GetCategories()
         {
-            string categories = "http://192.168.1.52:8081/sensortagapi/category/all";
+            string categories = Constants.ApiUrl.BASEURL +"category/all";
             var uri = new Uri(String.Format("{0}?format=json", categories));
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",

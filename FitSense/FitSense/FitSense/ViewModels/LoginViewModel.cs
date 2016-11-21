@@ -3,7 +3,7 @@ using FitSense.Dependencies;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.ServiceLocation;
-using Plugin.Connectivity;
+//using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
