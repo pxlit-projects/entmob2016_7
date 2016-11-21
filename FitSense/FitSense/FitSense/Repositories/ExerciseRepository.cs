@@ -12,7 +12,7 @@ namespace FitSense.Repositories
 {
     public class ExerciseRepository
     {
-        public async Task<List<Exercise>> GetExercisesFromCategory(Category category)
+        public async Task<List<Exercise>> GetExercisesFromCategorAsync(Category category)
         {
             if (category != null)
             {

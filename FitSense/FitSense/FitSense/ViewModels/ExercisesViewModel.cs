@@ -48,7 +48,7 @@ namespace FitSense.ViewModels
         {
             //Exercises = userDataService.GetAllCategories().ToObservableCollection();
             ExercisesViews = new ObservableCollection<ExerciseViewModel>();
-            List<Exercise> exercises = await new ExerciseRepository().GetExercisesFromCategory(Category);
+            List<Exercise> exercises = await new ExerciseRepository().GetExercisesFromCategorAsync(Category);
              
             foreach(Exercise e in exercises)
             {

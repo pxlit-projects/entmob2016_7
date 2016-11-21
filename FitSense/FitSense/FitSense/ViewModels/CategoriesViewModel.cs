@@ -45,10 +45,10 @@ namespace FitSense.ViewModels
             InitializeCommands();
             LoadDataAsync();
         }
-
+       
         private async void LoadDataAsync()
         {
-            var result = await new CategoryRepository().GetCategories();
+            var result = await new CategoryRepository().GetCategoriesAsync();
             Categories = result.ToObservableCollection();
         }
 

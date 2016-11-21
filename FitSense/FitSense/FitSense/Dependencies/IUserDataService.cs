@@ -17,6 +17,6 @@ namespace FitSense.Dependencies
         List<Category> GetAllCategories();
         List<Exercise> GetExercisesFromCategory(Category category);
         List<Set> GetSetsFromExercise(Exercise exercise);
-        List<SetViewModel> GetSetViewModelsFromExercise(Exercise exercise, INavigationService navigationService);
+        Task<List<SetViewModel>> GetSetViewModelsFromExerciseAsync(Exercise exercise, INavigationService navigationService);
     }
 }

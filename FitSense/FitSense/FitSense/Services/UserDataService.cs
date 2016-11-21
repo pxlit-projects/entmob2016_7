@@ -75,12 +75,13 @@ namespace FitSense.Services
             return setRepository.GetSetsFromExercise(exercise);
         }
 
-        public List<SetViewModel> GetSetViewModelsFromExercise(Exercise exercise, INavigationService navigationService)
+        public async Task<List<SetViewModel>> GetSetViewModelsFromExerciseAsync(Exercise exercise, INavigationService navigationService)
         {
             var setViews = new List<SetViewModel>();
             if (exercise != null)
             {
-                List<Set> sets = GetSetsFromExercise(exercise);
+                List<Set> sets = await new Repositories.SetRepository().GetSetsFromExerciseAsync(exercise);
+                //List<Set> sets = GetSetsFromExercise(exercise);
                 foreach (Set set in sets)
                 {
                     setViews.Add(new SetViewModel(navigationService, this)

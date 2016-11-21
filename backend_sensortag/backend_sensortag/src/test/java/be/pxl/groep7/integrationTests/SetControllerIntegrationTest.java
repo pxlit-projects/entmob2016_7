@@ -108,6 +108,13 @@ public class SetControllerIntegrationTest {
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 		.andExpect(content().json(asJson(asList(set1, set3))));
 	}
+	
+	@Test
+	public void getAllSetsByExerciseIdReturnsNotFoundWhenNonExistingExerciseId() throws IOException, Exception {
+		mockMvc.perform(get(SetRestController.BASEURL+"/setbyexercise/" + 0)
+				.with(user("user").password("123456")))
+		.andExpect(status().isNotFound());
+	}
 
 	@Test
 	public void getSetById() throws IOException, Exception {
