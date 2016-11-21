@@ -30,6 +30,7 @@ namespace FitSense.ViewModels
                 RaisePropertyChanged("ExercisesViews", old, value, true);
             }
         }
+
         public int Index { get; private set; }
         public Category Category { get; private set; }
 
@@ -38,7 +39,6 @@ namespace FitSense.ViewModels
             this.userDataService = userDataService;
             this.navigationService = navigationService;
 
-            InitializeCommands();
             InitializeMessages();
             LoadData();
         }
@@ -56,10 +56,6 @@ namespace FitSense.ViewModels
                     Category = Category
                 });
             }
-        }
-
-        private void InitializeCommands()
-        {
         }
 
         private void InitializeMessages()
