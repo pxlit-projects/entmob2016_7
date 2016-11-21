@@ -56,8 +56,8 @@ namespace FitSense.ViewModels
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<SensorConnectViewModel>();
             SimpleIoc.Default.Register<SensorDevice>();
-
             SimpleIoc.Default.Register<CategoriesViewModel>();
+
             SimpleIoc.Default.Register<ExercisesViewModel>();
             SimpleIoc.Default.Register<ExerciseViewModel>();
             SimpleIoc.Default.Register<SetsCarouselViewModel>();

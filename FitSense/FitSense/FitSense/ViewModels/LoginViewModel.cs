@@ -39,8 +39,8 @@ namespace FitSense.ViewModels
 
                 if (string.IsNullOrEmpty(Password))
                     ValidationErrors += "Please enter a password.";
-                return true;
-                //return string.IsNullOrEmpty(ValidationErrors);
+                //return true;
+                return string.IsNullOrEmpty(ValidationErrors);
             }
         }
 
@@ -56,7 +56,7 @@ namespace FitSense.ViewModels
         {
             LoginCommand = new RelayCommand(() =>
             {
-                Feedback = string.Empty;
+                //Feedback = string.Empty;
                 if (CanLogin)
                 {
                     ConnectionStatus st = DependencyService.Get<IConnectivity>().CheckNetworkStatus();
