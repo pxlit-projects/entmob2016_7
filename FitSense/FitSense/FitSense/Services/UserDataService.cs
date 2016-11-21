@@ -16,7 +16,8 @@ namespace FitSense.Services
 {
     public class UserDataService : IUserDataService
     {
-        private static UserRepository userRepository = new UserRepository();
+        //private static UserRepository userRepository = new UserRepository();
+        private IUserRepository userRepository;
         private ICategoryRepository categoryRepository;
         private IExerciseRepository exerciseRepository;
         private ISetRepository setRepository;
@@ -36,8 +37,9 @@ namespace FitSense.Services
         //    }
         //}
 
-        public UserDataService(ICategoryRepository categoryRepository, IExerciseRepository exerciseRepository, ISetRepository setRepository)
+        public UserDataService(IUserRepository userRepository, ICategoryRepository categoryRepository, IExerciseRepository exerciseRepository, ISetRepository setRepository)
         {
+            this.userRepository = userRepository;
             this.categoryRepository = categoryRepository;
             this.exerciseRepository = exerciseRepository;
             this.setRepository = setRepository;
@@ -55,12 +57,7 @@ namespace FitSense.Services
         {
             return userRepository.SearchUser(userName);
         }
-
-        //User IUserDataService.SearchUser(string userName)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
+        
         public async Task<List<Category>> GetAllCategoriesAsync()
         {
             var result = await categoryRepository.GetCategoriesAsync(ApiUrl.BASEURL);

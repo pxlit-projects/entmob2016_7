@@ -13,8 +13,10 @@
 */
 
 using fitsense.DAL;
+using fitsense.DAL.dependencies;
 using FitSense.Dependencies;
 using FitSense.Models;
+using FitSense.Repositories;
 using FitSense.Services;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
@@ -48,10 +50,15 @@ namespace FitSense.ViewModels
 
             SimpleIoc.Default.Register<INavigationService, NavigationService>();
             // DANIEL: ik denk dat ge zo constructor injection moet doen
-            SimpleIoc.Default.Register<IUserDataService>(() => new UserDataService(
-                new CategoryRepository(),
-                new ExerciseRepository(),
-                new SetRepository()));
+            SimpleIoc.Default.Register<IUserRepository, UserRepository>();
+            SimpleIoc.Default.Register<ICategoryRepository, CategoryRepository>();
+            SimpleIoc.Default.Register<IExerciseRepository, ExerciseRepository>();
+            SimpleIoc.Default.Register<ISetRepository, SetRepository>();
+            SimpleIoc.Default.Register<I>
+            //SimpleIoc.Default.Register<IUserDataService>(() => new UserDataService(
+            //    new CategoryRepository(),
+            //    new ExerciseRepository(),
+            //    new SetRepository()));
 
             SimpleIoc.Default.Register<IConnectivity>(() => DependencyService.Get<IConnectivity>());
             SimpleIoc.Default.Register<IBluetoothService>(() => DependencyService.Get<IBluetoothService>());
