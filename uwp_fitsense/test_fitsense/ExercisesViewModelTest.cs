@@ -1,12 +1,16 @@
 ﻿using fitsense.models;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using test_fitsense.mocks;
 using uwp_fitsense.dependencies;
 using uwp_fitsense.extensions;
+using uwp_fitsense.messages;
+using uwp_fitsense.utility;
 using uwp_fitsense.viewmodel;
 
 namespace test_fitsense
@@ -15,42 +19,58 @@ namespace test_fitsense
     public class ExercisesViewModelTest
     {
         private IFitDataService fitDataService;
-        private INavigationService navigationService;
 
-        private async Task<ExercisesViewModel> GetViewModelAsync()
+        private ExercisesViewModel GetViewModel()
         {
-            var result = await fitDataService.GetAllCategoriesAsync();
-            var viewmodel = new ExercisesViewModel(this.fitDataService, this.navigationService)
-            {
-                // simulate messaging service by setting the category
-                SelectedCategory = result.ToArray()[0]
-            };
-            // because the data isn't loaded (due to the way it loads the constructor first)
-            //we have to reload the data
-            await viewmodel.LoadDataAsync();
-            return viewmodel;
+            return new ExercisesViewModel(this.fitDataService, null);
         }
 
         [TestInitialize]
         public void Init()
         {
             fitDataService = new MockFitDataService();
-            //dialogService = new MockDialogService();
         }
 
-        // messaging during testing?
-        /*[TestMethod]
-        public void IsCategoryLoaded()
+        [TestMethod]
+        public void IsMessageReceived()
         {
-            var viewModel = GetViewModel();
+            //arrange
+            var viewmodel = GetViewModel();
+            var initialValue = viewmodel.SelectedCategory;
+            var expectedCategory = new Category() { Name = "TestCategory" };
 
-            Assert.IsNotNull(viewModel.SelectedCategory);
-        }*/
+            //act
+            Messenger.Default.Send<UpdateSelectedCategory>(new UpdateSelectedCategory() { Category = expectedCategory});
+
+            //assert
+            Assert.AreEqual(expectedCategory, viewmodel.SelectedCategory);
+        }
+
+        [TestMethod]
+        public void IsPropertyChangedFired()
+        {
+            var viewmodel = GetViewModel();
+            List<string> receivedEvents = new List<string>();
+
+            viewmodel.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
+            {
+                receivedEvents.Add(e.PropertyName);
+            };
+            viewmodel.SelectedCategory = new Category();
+            viewmodel.Exercises = new ObservableCollection<Exercise>();
+            viewmodel.SelectedExercise = new Exercise();
+            viewmodel.ActiveChart = new List<ChartRecord>();
+            Assert.AreEqual(3, receivedEvents.Count);
+            Assert.AreEqual("SelectedCategory", receivedEvents[0]);
+            Assert.AreEqual("Exercises", receivedEvents[1]);
+            Assert.AreEqual("SelectedExercise", receivedEvents[2]);
+            Assert.AreEqual("ActiveChart", receivedEvents[3]);
+        }
 
         [TestMethod]
         public void LoadAllExercises()
         {
-            var viewModel = GetViewModelAsync().Result;
+            var viewModel = GetViewModel();
             //Arrange
             ObservableCollection<Exercise> exercises;
             var expectedExercises = fitDataService.GetExercisesFromCategoryAsync(viewModel.SelectedCategory).Result;
@@ -60,6 +80,14 @@ namespace test_fitsense
 
             //assert
             CollectionAssert.AreEqual(expectedExercises, exercises);
+        }
+
+        [TestMethod]
+        public void AreCommandsSet()
+        {
+            var viewmodel = GetViewModel();
+            Assert.IsNotNull(viewmodel.GoToSetPerExercisePageCommand);
+            Assert.IsNotNull(viewmodel.ActivateChartCommand);
         }
     }
 }

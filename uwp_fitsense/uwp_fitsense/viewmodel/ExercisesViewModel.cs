@@ -23,7 +23,7 @@ namespace uwp_fitsense.viewmodel
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand GoToSetPerExercisePageCommand { get; set; }
-        public ICommand ActivateChart { get; set; }
+        public ICommand ActivateChartCommand { get; set; }
 
         private Category selectedCategory;
         public Category SelectedCategory
@@ -38,7 +38,7 @@ namespace uwp_fitsense.viewmodel
         }
 
 
-        private ObservableCollection<Exercise> exercises { get; set; }
+        private ObservableCollection<Exercise> exercises;
         public ObservableCollection<Exercise> Exercises
         {
             get { return exercises; }
@@ -49,7 +49,7 @@ namespace uwp_fitsense.viewmodel
             }
         }
 
-        public Exercise selectedExercise { get; set; }
+        public Exercise selectedExercise;
         public Exercise SelectedExercise
         {
             get { return selectedExercise; }
@@ -61,7 +61,7 @@ namespace uwp_fitsense.viewmodel
             }
         }
 
-        public List<ChartRecord> activeChart;
+        private List<ChartRecord> activeChart;
         public List<ChartRecord> ActiveChart
         {
             get
@@ -153,7 +153,7 @@ namespace uwp_fitsense.viewmodel
                 Messenger.Default.Send<ChangePage>(new ChangePage() { Page = navigationService.NavigateTo(NavigationService.SETSPEREXERCISE) });
             });
 
-            ActivateChart = new AlwaysRunCommand((object o) =>
+            ActivateChartCommand = new AlwaysRunCommand((object o) =>
             {
                 UpdateChartData();
             });

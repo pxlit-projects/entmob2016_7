@@ -1,12 +1,8 @@
 ﻿using fitsense.models;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using test_fitsense.mocks;
 using uwp_fitsense.dependencies;
 using uwp_fitsense.messages;
@@ -67,7 +63,7 @@ namespace test_fitsense
             var viewmodel = GetViewModel();
 
             var initialValue = viewmodel.CurrentPage;
-            Type expectedType = typeof(MockViewModel);
+            var expectedType = typeof(MockViewModel);
 
             //send over a message
             Messenger.Default.Send<ChangePage>(new ChangePage() { Page = expectedType });
@@ -91,7 +87,7 @@ namespace test_fitsense
             Assert.AreEqual(3, receivedEvents.Count);
             Assert.AreEqual("Categories", receivedEvents[0]);
             Assert.AreEqual("CurrentPage", receivedEvents[1]);
-            Assert.AreEqual("SelectedCategory", receivedEvents[1]);
+            Assert.AreEqual("SelectedCategory", receivedEvents[2]);
         }
     }
 }
