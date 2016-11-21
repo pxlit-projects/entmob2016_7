@@ -1,4 +1,5 @@
 ﻿using fitsense.models;
+using FitSense.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,6 @@ namespace FitSense.Dependencies
         List<Category> GetAllCategories();
         List<Exercise> GetExercisesFromCategory(Category category);
         List<Set> GetSetsFromExercise(Exercise exercise);
+        List<SetViewModel> GetSetViewModelsFromExercise(Exercise exercise, INavigationService navigationService);
     }
 }

@@ -64,6 +64,7 @@ namespace FitSense.ViewModels
                     {
                         if (userDataService.LoggedInUser != null)
                             MessengerInstance.Send<LoginViewModel>(this, Constants.Messages.LoginSucces);
+                            
                         else
                             Feedback = "Login attempt failed";
                     });

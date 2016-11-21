@@ -4,18 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace FitSense.Models
 {
     class SensorService
     {
 
-        private IService service;
+        protected IService service;
         protected ICharacteristic dataCharacteristic;
         protected ICharacteristic switchCharacteristic;
         protected ICharacteristic periodCharacteristic;
 
-        public bool IsOn { get; private set; }
+        public bool IsOn { get; protected set; }
+        public bool IsUpdating { get; protected set; }
 
         public SensorService(IService service)
         {
@@ -35,6 +37,23 @@ namespace FitSense.Models
                     periodCharacteristic = character;
                 }
             }
+            
+        }
+
+        public void StartReadData(int interval)
+        {
+            TimeSpan time = new TimeSpan(0, 0, 0, 0, interval);
+            IsUpdating = true;
+            Device.StartTimer(time, () =>
+            {
+                dataCharacteristic.ReadAsync();
+                return IsUpdating;
+            });
+        }
+
+        public void stopReadData()
+        {
+            IsUpdating = false;
         }
 
         public void SetEnabled(bool value)
@@ -44,7 +63,8 @@ namespace FitSense.Models
                 if (!IsOn)
                 {
                     //Enable sensor
-                    //switchCharacteristic.Write()
+                    switchCharacteristic.Write(new byte[] { 0x01 });
+                    IsOn = true;
                 }
             }
             else
@@ -53,8 +73,11 @@ namespace FitSense.Models
                 {
                     //Disable sensor
                     switchCharacteristic.Write(new byte[] { 0x00 });
+                    IsOn = false;
                 }
             }
+
+            
             
         }
         

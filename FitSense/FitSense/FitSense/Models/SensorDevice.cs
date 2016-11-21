@@ -17,6 +17,7 @@ namespace FitSense.Models
         private List<IService> deviceServices;
 
         public MovementService MovementService { get; set; }
+        public HumidityService HumidityService { get; set; }
 
 
         public IDevice ConnectedDevice
@@ -76,13 +77,14 @@ namespace FitSense.Models
             {
                 var characteristic = service.Characteristics;
 
-                //Debug.WriteLine(service.ID.PartialFromUuid());
-                //foreach(var c in service.Characteristics)
-                //{
-                //    Debug.WriteLine(" --  " + c.ID.PartialFromUuid() + "   =   " + c.Name); 
-                //}
+                Debug.WriteLine(service.ID.PartialFromUuid());
+                foreach (var c in service.Characteristics)
+                {
+                    Debug.WriteLine(" --  " + c.ID.PartialFromUuid() + "   =   " + c.Name);
+                    
+                }
 
-                if(service.ID.PartialFromUuid() == "0xaa00")
+                if (service.ID.PartialFromUuid() == "0xaa00")
                 {
                     Debug.WriteLine("Found infrared service.");
                 }
@@ -94,6 +96,7 @@ namespace FitSense.Models
                 else if (service.ID.PartialFromUuid() == "0xaa20")
                 {
                     Debug.WriteLine("Found humidity service.");
+                    HumidityService = new HumidityService(service);
                 }
                 else if (service.ID.PartialFromUuid() == "0xaa30")
                 {

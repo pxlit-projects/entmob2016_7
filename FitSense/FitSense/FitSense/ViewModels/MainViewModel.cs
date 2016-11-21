@@ -6,6 +6,10 @@ using Microsoft.Practices.ServiceLocation;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System;
+using FitSense.Models;
+using System.Diagnostics;
+using System.Numerics;
+using System.Collections.Generic;
 
 namespace FitSense.ViewModels
 {
@@ -30,6 +34,8 @@ namespace FitSense.ViewModels
         public RelayCommand LoginCommand { get; private set; }
         public RelayCommand CarouselCommand { get; private set; }
         public RelayCommand GoToCategoriesCommand { get; private set; }
+
+        public RelayCommand TestCommand { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -60,7 +66,46 @@ namespace FitSense.ViewModels
                 if (userDataService.LoggedInUser == null)
                     await navigation.PushModalAsync(PageUrls.LOGINVIEW);
             });
+
+            TestCommand = new RelayCommand(() =>
+            {
+                SensorDevice sensor = ServiceLocator.Current.GetInstance<SensorDevice>();
+                if (sensor.MovementService != null)
+                {
+                    if (!sensor.MovementService.IsOn)
+                    {
+                        sensor.MovementService.SetEnabled(true);
+                    }
+                    if (!sensor.MovementService.IsUpdating)
+                    {
+                        sensor.MovementService.StartReadData(100);
+                        sensor.MovementService.OnValueChanged += MovementService_OnValueChanged;
+                    }
+                    else
+                    {
+                        sensor.MovementService.stopReadData();
+                        sensor.MovementService.OnValueChanged -= MovementService_OnValueChanged;
+                        foreach (var vect in vectList)
+                        {
+                            Debug.WriteLine(vect.X + "," + vect.Y + "," + vect.Z);
+                        }
+                    }
+                    
+                }
+                else
+                {
+                    Debug.WriteLine("Movementsensor not found.");
+                }
+            });
             
+        }
+
+        private List<Vector3> vectList = new List<Vector3>();
+
+        private void MovementService_OnValueChanged(object sender, Helpers.ValueChangedEventArgs<System.Numerics.Vector3> args)
+        {
+            Debug.WriteLine("Data Retrieved.");
+            vectList.Add(args.NewValue);
         }
 
         private void InitializeMessages()
