@@ -1,29 +1,25 @@
-﻿using fitsense.models;
-using FitSense.Constants;
+﻿using FitSense.Constants;
 using FitSense.Dependencies;
 using FitSense.ViewModels;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using test.fitsense.mocks;
 
 namespace test.fitsense
 {
     [TestClass]
-    public class ExercisesViewModelTest
+    class SetsCarouselViewModelTest
     {
         private IUserDataService userDataService;
 
-        private ExercisesViewModel GetViewModel()
+        private SetsCarouselViewModel GetViewModel()
         {
-            var viewmodel = new ExercisesViewModel(null, this.userDataService);
+            var viewmodel = new SetsCarouselViewModel(null, this.userDataService);
             IMessenger messenger = Messenger.Default;
             var category = userDataService.GetAllCategories().FirstOrDefault();
-            messenger.Send(category, Messages.CategoryUpdated);
+            var exercise = userDataService.GetExercisesFromCategory(category);
+            messenger.Send(exercise, Messages.ExerciseUpdated);
             return viewmodel;
         }
 
@@ -34,17 +30,17 @@ namespace test.fitsense
         }
 
         [TestMethod]
-        public void AreExercisesSet()
+        public void IsMessageReceived()
         {
             var viewmodel = GetViewModel();
-            Assert.IsNotNull(viewmodel.ExercisesViews);
+            Assert.IsNotNull(viewmodel.Exercise);
         }
 
         [TestMethod]
-        public void IsCategorySet()
+        public void IsDataNotNull()
         {
-            var viewmodel = GetViewModel();
-            Assert.IsNotNull(viewmodel.Category);
+            var viewModel = GetViewModel();
+            Assert.IsNotNull(viewModel.SetViews);
         }
     }
 }

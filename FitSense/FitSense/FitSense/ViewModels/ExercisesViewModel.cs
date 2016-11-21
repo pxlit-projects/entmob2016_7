@@ -1,6 +1,7 @@
 ﻿using fitsense.models;
 using FitSense.Dependencies;
 using FitSense.Extensions;
+using FitSense.Repositories;
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
@@ -40,14 +41,15 @@ namespace FitSense.ViewModels
             this.navigationService = navigationService;
 
             InitializeMessages();
-            LoadData();
+            LoadDataAsync();
         }
 
-        private void LoadData()
+        private async void LoadDataAsync()
         {
             //Exercises = userDataService.GetAllCategories().ToObservableCollection();
             ExercisesViews = new ObservableCollection<ExerciseViewModel>();
-            List<Exercise> exercises = userDataService.GetExercisesFromCategory(Category);
+            List<Exercise> exercises = await new ExerciseRepository().GetExercisesFromCategorAsync(Category);
+             
             foreach(Exercise e in exercises)
             {
                 ExercisesViews.Add(new ExerciseViewModel(navigationService, userDataService)
@@ -63,7 +65,7 @@ namespace FitSense.ViewModels
             MessengerInstance.Register<Category>(this, Constants.Messages.CategoryUpdated, (sender) =>
             {
                 Category = sender;
-                LoadData();
+                LoadDataAsync();
             });
         }
     }

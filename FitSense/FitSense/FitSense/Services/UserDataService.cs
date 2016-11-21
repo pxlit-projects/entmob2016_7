@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using fitsense.models;
 using fitsense.DAL;
 using fitsense.DAL.dependencies;
+using FitSense.ViewModels;
 
 namespace FitSense.Services
 {
@@ -72,6 +73,25 @@ namespace FitSense.Services
         public List<Set> GetSetsFromExercise(Exercise exercise)
         {
             return setRepository.GetSetsFromExercise(exercise);
+        }
+
+        public async Task<List<SetViewModel>> GetSetViewModelsFromExerciseAsync(Exercise exercise, INavigationService navigationService)
+        {
+            var setViews = new List<SetViewModel>();
+            if (exercise != null)
+            {
+                List<Set> sets = await new Repositories.SetRepository().GetSetsFromExerciseAsync(exercise);
+                //List<Set> sets = GetSetsFromExercise(exercise);
+                foreach (Set set in sets)
+                {
+                    setViews.Add(new SetViewModel(navigationService, this)
+                    {
+                        Exercise = exercise,
+                        Set = set
+                    });
+                }
+            }
+            return setViews;
         }
     }
 }

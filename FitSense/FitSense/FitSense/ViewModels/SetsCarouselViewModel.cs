@@ -1,8 +1,11 @@
 ﻿using fitsense.models;
 using FitSense.Dependencies;
+using FitSense.Extensions;
+using FitSense.Repositories;
 using GalaSoft.MvvmLight;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace FitSense.ViewModels
 {
@@ -32,39 +35,21 @@ namespace FitSense.ViewModels
             this.userDataService = userDataService;
             this.navigationService = navigationService;
 
-            InitializeCommands();
             InitializeMessages();
         }
 
-        private void LoadData()
+        private async Task LoadDataAsync()
         {
-            
-            //Exercises = userDataService.GetAllCategories().ToObservableCollection();
-            SetViews = new ObservableCollection<SetViewModel>();
-            if (Exercise != null)
-            {
-                List<Set> sets = userDataService.GetSetsFromExercise(Exercise);
-                foreach (Set set in sets)
-                {
-                    SetViews.Add(new SetViewModel(navigationService, userDataService)
-                    {
-                        Exercise = Exercise,
-                        Set = set
-                    });
-                }
-            }
+            var result = await (userDataService.GetSetViewModelsFromExerciseAsync(Exercise, navigationService));
+            SetViews = result.ToObservableCollection();
         }
 
-        private void InitializeCommands()
+        private void  InitializeMessages()
         {
-        }
-
-        private void InitializeMessages()
-        {
-            MessengerInstance.Register<Exercise>(this, Constants.Messages.ExerciseUpdated, (sender) =>
+            MessengerInstance.Register<Exercise>(this, Constants.Messages.ExerciseUpdated, async (sender) => 
             {
                 Exercise = sender;
-                LoadData();
+                await LoadDataAsync();
             });
         }
     }

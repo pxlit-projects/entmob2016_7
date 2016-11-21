@@ -33,7 +33,7 @@ public class SetRestController {
 		HttpStatus status = HttpStatus.OK;
 		List<Set> setList = service.getAllSetsByExerciseId(exerciseId);
 		
-		if(setList == null){
+		if(setList.size() == 0){
 			status = HttpStatus.NOT_FOUND;
 		}
 		return new ResponseEntity<>(setList, status);

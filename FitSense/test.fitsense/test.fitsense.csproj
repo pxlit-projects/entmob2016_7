@@ -124,11 +124,14 @@
     <Compile Include="MainViewModelTest.cs" />
     <Compile Include="mocks\ConnectivityMock.cs" />
     <Compile Include="mocks\NavigationServiceMock.cs" />
+    <Compile Include="ExerciseViewModelTest.cs" />
     <Compile Include="mocks\SetViewModelMock.cs" />
     <Compile Include="mocks\UserDataServiceMock.cs" />
     <Compile Include="mocks\UserRepositoryMock.cs" />
     <Compile Include="mocks\ViewModelLocatorMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetsCarouselViewModelTest.cs" />
+    <Compile Include="SetViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
