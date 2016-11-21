@@ -2,14 +2,15 @@
 using fitsense.models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace test.fitsense.dal.mocks
 {
     public class MockSetRepository : ISetRepository
     {
-        public List<Set> GetSetsFromExercise(Exercise exercise)
+        public async Task<List<Set>> GetSetsFromExerciseAsync(Exercise exercise, string baseUrl)
         {
-            return TestData.sets.Where(set => set.ExerciseID == exercise.ExerciseID).ToList();
+            return await Task.Run(() =>TestData.sets.Where(set => set.ExerciseID == exercise.ExerciseID).ToList());
         }
     }
 }

@@ -9,11 +9,11 @@ namespace uwp_fitsense.dependencies
 {
     public interface IFitDataService
     {
-        List<Category> GetAllCategories();
-        void AddCategory(Category category);
-        List<Exercise> GetExercisesFromCategory(Category category);
-        List<Set> GetSetsFromExercise(Exercise exercise);
+        Task<List<Category>> GetAllCategoriesAsync();
+        Task AddCategoryAsync(Category category);
+        Task<List<Exercise>> GetExercisesFromCategoryAsync(Category category);
+        Task<List<Set>> GetSetsFromExerciseAsync(Exercise exercise);
         Set ToggleSelectedSetVisibility(Set set);
-        List<CompletedSet> GetCompletedSetsFromSet(Set set);
+        Task<List<CompletedSet>> GetCompletedSetsFromSetAsync(Set set);
     }
 }

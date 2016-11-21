@@ -60,14 +60,20 @@ namespace uwp_fitsense.viewmodel
         {
             this.fitDataService = dataService;
             this.navigationService = dialogService;
-            LoadData();        
+            PrepareLoadingAsync(); 
             LoadMessengerListeners();
             LoadCommands();
         }
 
-        public void LoadData()
+        private async void PrepareLoadingAsync()
         {
-            categories = fitDataService.GetAllCategories().ToObservableCollection();
+            await LoadDataAsync();
+        }
+
+        public async Task LoadDataAsync()
+        {
+            var result = await fitDataService.GetAllCategoriesAsync();
+            categories = result.ToObservableCollection();
             if (categories.Count > 0)
             {
                 SelectedCategory = categories.First();
@@ -87,9 +93,9 @@ namespace uwp_fitsense.viewmodel
                 CurrentPage = navigationService.NavigateTo(NavigationService.EXERCISES);
 
             });
-            AddCategoryCommand = new AlwaysRunCommand((Object o) =>
+            AddCategoryCommand = new AlwaysRunCommand(async (Object o) =>
             {
-                fitDataService.AddCategory(new Category()
+                await fitDataService.AddCategoryAsync(new Category()
                 {
                     Name = "Categorie 2"
                 });

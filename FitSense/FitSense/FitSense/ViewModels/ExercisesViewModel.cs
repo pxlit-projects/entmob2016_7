@@ -41,14 +41,18 @@ namespace FitSense.ViewModels
             this.navigationService = navigationService;
 
             InitializeMessages();
-            LoadDataAsync();
+            PrepareLoadingDataAsync();
         }
 
-        private async void LoadDataAsync()
+        private async void PrepareLoadingDataAsync()
         {
-            //Exercises = userDataService.GetAllCategories().ToObservableCollection();
+            await LoadDataAsync();
+        }
+
+        private async Task LoadDataAsync()
+        {
             ExercisesViews = new ObservableCollection<ExerciseViewModel>();
-            List<Exercise> exercises = await new ExerciseRepository().GetExercisesFromCategorAsync(Category);
+            List<Exercise> exercises = await userDataService.GetExercisesFromCategoryAsync(Category);
              
             foreach(Exercise e in exercises)
             {

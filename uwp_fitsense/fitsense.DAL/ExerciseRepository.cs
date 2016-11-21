@@ -13,44 +13,33 @@ namespace fitsense.DAL
 {
     public class ExerciseRepository : IExerciseRepository
     {
-        public List<Exercise> GetExercisesFromCategory(Category category)
+        public async Task<List<Exercise>> GetExercisesFromCategoryAsync(Category category, string baseUrl)
         {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
+                       Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", "user", "123456"))));
+            Uri uri = null;
+            string apiExercise = null;
+
             if (category != null)
             {
-                string apiExercise = string.Format("http://localhost:8081/sensortagapi/exercise/bycategory/{0}", category.CategoryID);
-                var uri = new Uri(String.Format("{0}?format=json", apiExercise));
-                var client = new HttpClient();
-                var response = Task.Run(() =>
-                {
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
-                        Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", "user", "123456"))));
-                    return client.GetAsync(uri);
-                }).Result;
-
-                response.EnsureSuccessStatusCode();
-
-                var result = Task.Run(() => response.Content.ReadAsStringAsync()).Result;
-                var root = JsonConvert.DeserializeObject<List<Exercise>>(result);
-                return root;
+                apiExercise = string.Format(baseUrl + "exercise/bycategory/{0}", category.CategoryID);  
             } 
             else
             {
-                string apiExercise = "http://localhost:8081/sensortagapi/exercise/all";
-                var uri = new Uri(String.Format("{0}?format=json", apiExercise));
-                var client = new HttpClient();
-                var response = Task.Run(() =>
-                {
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
-                        Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", "user", "123456"))));
-                    return client.GetAsync(uri);
-                }).Result;
+               apiExercise = baseUrl + "exercise/all";
+            }
 
-                response.EnsureSuccessStatusCode();
+            uri = new Uri(String.Format("{0}?format=json", apiExercise));
+            var response = await client.GetAsync(uri);
 
-                var result = Task.Run(() => response.Content.ReadAsStringAsync()).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
                 var root = JsonConvert.DeserializeObject<List<Exercise>>(result);
                 return root;
             }
+            return null;
         }
     }
 }

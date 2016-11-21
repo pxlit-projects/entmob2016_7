@@ -35,7 +35,7 @@ namespace test_fitsense
         {
             //Arrange
             ObservableCollection<Category> categories;
-            var expectedCategories = fitDataService.GetAllCategories();
+            var expectedCategories = fitDataService.GetAllCategoriesAsync().Result;
 
             //act
             var viewModel = GetViewModel();

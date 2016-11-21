@@ -1,10 +1,11 @@
 ﻿using fitsense.models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace fitsense.DAL.dependencies
 {
     public interface ISetRepository
     {
-        List<Set> GetSetsFromExercise(Exercise exercise);
+        Task<List<Set>> GetSetsFromExerciseAsync(Exercise exercise, string baseUrl);
     }
 }

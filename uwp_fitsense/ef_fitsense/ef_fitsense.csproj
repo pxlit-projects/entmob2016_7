@@ -57,6 +57,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataLayer\FitsenseContext.cs" />
+    <Compile Include="Migrations\201611211312389_Initial.cs" />
+    <Compile Include="Migrations\201611211312389_Initial.Designer.cs">
+      <DependentUpon>201611211312389_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611211425429_CategoryDescription.cs" />
+    <Compile Include="Migrations\201611211425429_CategoryDescription.Designer.cs">
+      <DependentUpon>201611211425429_CategoryDescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611211428000_ExerciseReview.cs" />
+    <Compile Include="Migrations\201611211428000_ExerciseReview.Designer.cs">
+      <DependentUpon>201611211428000_ExerciseReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,6 +86,17 @@
       <Project>{b98c980f-6a91-412c-a9b7-eb8e69afaa51}</Project>
       <Name>fitsense.models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611211312389_Initial.resx">
+      <DependentUpon>201611211312389_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611211425429_CategoryDescription.resx">
+      <DependentUpon>201611211425429_CategoryDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611211428000_ExerciseReview.resx">
+      <DependentUpon>201611211428000_ExerciseReview.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
