@@ -117,10 +117,10 @@
   <ItemGroup>
     <Compile Include="ActiveSetViewModelTest.cs" />
     <Compile Include="CategoriesViewModelTest.cs" />
+    <Compile Include="ExercisesViewModelTest.cs" />
     <Compile Include="mocks\SetViewModelMock.cs" />
     <Compile Include="mocks\UserDataServiceMock.cs" />
     <Compile Include="mocks\UserRepositoryMock.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

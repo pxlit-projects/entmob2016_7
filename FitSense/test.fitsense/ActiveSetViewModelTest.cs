@@ -4,6 +4,7 @@ using FitSense.Dependencies;
 using FitSense.ViewModels;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using System;
 using test.fitsense.mocks;
 
 namespace test.fitsense
@@ -50,20 +51,6 @@ namespace test.fitsense
         {
             var viewModel = GetViewModel();
             Assert.IsNotNull(viewModel.StartSet);
-        }
-
-        [TestMethod]
-        public void CanExecuteStartSet()
-        {
-            var viewModel = GetViewModel();
-            viewModel.StartSet.Execute(null);
-        }
-
-        [TestMethod]
-        public void CanExecuteCancelSet()
-        {
-            var viewModel = GetViewModel();
-            viewModel.CancelSet.Execute(null);
         }
     }
 }
