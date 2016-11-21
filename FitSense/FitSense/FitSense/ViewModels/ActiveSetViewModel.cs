@@ -10,7 +10,7 @@ namespace FitSense.ViewModels
 {
     public class ActiveSetViewModel : ViewModelBase
     {
-        private IUserDataService userDataService;
+        private IDataService userDataService;
         private INavigationService navigationService;
 
         public RelayCommand CancelSet { get; private set; }
@@ -64,7 +64,7 @@ namespace FitSense.ViewModels
             }
         }
 
-        public ActiveSetViewModel(INavigationService navigationService, IUserDataService userDataService)
+        public ActiveSetViewModel(INavigationService navigationService, IDataService userDataService)
         {
             this.userDataService = userDataService;
             this.navigationService = navigationService;

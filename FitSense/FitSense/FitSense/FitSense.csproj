@@ -52,7 +52,7 @@
     <Compile Include="Dependencies\IDummyRepository.cs" />
     <Compile Include="Dependencies\INavigationService.cs" />
     <Compile Include="Dependencies\ISQLite.cs" />
-    <Compile Include="Dependencies\IUserDataService.cs" />
+    <Compile Include="Dependencies\IDataService.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Helpers\BehaviorBase.cs" />
     <Compile Include="Helpers\ItemSelectedBehavior.cs" />
@@ -69,7 +69,7 @@
     <Compile Include="Models\TemperatureService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\NavigationService.cs" />
-    <Compile Include="Services\UserDataService.cs" />
+    <Compile Include="Services\DataService.cs" />
     <Compile Include="ViewModels\ActiveSetViewModel.cs" />
     <Compile Include="ViewModels\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\ExercisesViewModel.cs" />

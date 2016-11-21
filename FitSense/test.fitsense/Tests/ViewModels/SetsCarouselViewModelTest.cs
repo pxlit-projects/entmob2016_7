@@ -28,7 +28,7 @@ namespace test.fitsense
         private async void sendMessage()
         {
             IMessenger messenger = Messenger.Default;
-            var userDataService = ServiceLocator.Current.GetInstance<IUserDataService>();
+            var userDataService = ServiceLocator.Current.GetInstance<IDataService>();
             var categories = await userDataService.GetAllCategoriesAsync();
             var category = categories.FirstOrDefault();
             var exercise = userDataService.GetExercisesFromCategoryAsync(category);

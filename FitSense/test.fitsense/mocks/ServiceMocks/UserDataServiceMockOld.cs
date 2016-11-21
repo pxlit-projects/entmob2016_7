@@ -11,7 +11,7 @@ using FitSense.ViewModels;
 
 namespace test.fitsense.mocks
 {
-    class UserDataServiceMockOld : IUserDataService
+    class UserDataServiceMockOld : IDataService
     {
         private static UserRepositoryMock userRepository = new UserRepositoryMock();
         private ICategoryRepository categoryRepository = new MockCategoryRepository();
@@ -41,7 +41,7 @@ namespace test.fitsense.mocks
             return userRepository.SearchUser(userName);
         }
 
-        User IUserDataService.SearchUser(string userName)
+        User IDataService.SearchUser(string userName)
         {
             throw new NotImplementedException();
         }

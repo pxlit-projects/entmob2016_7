@@ -9,7 +9,7 @@ using FitSense.ViewModels;
 
 namespace test.fitsense.mocks.ServiceMocks
 {
-    class UserDataServiceMock : IUserDataService
+    class DataServiceMock : IDataService
     {
         public User LoggedInUser { get; set; }
 

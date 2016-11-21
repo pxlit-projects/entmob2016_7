@@ -1,6 +1,5 @@
 ﻿using FitSense.Dependencies;
 using FitSense.Models;
-using FitSense.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +13,7 @@ using fitsense.DAL.Constants;
 
 namespace FitSense.Services
 {
-    public class UserDataService : IUserDataService
+    public class DataService : IDataService
     {
         //private static UserRepository userRepository = new UserRepository();
         private IUserRepository userRepository;
@@ -37,7 +36,7 @@ namespace FitSense.Services
         //    }
         //}
 
-        public UserDataService(IUserRepository userRepository, ICategoryRepository categoryRepository, IExerciseRepository exerciseRepository, ISetRepository setRepository)
+        public DataService(IUserRepository userRepository, ICategoryRepository categoryRepository, IExerciseRepository exerciseRepository, ISetRepository setRepository)
         {
             this.userRepository = userRepository;
             this.categoryRepository = categoryRepository;
