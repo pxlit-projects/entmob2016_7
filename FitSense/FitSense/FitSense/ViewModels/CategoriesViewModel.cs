@@ -43,8 +43,7 @@ namespace FitSense.ViewModels
                 await navigationService.PushAsync(PageUrls.EXERCISESVIEW).ContinueWith((antecedent) =>
                 {
                     MessengerInstance.Send((item is Category ? (Category)item : null), Messages.CategoryUpdated);
-                });
-                
+                });              
             });
         }
     }
