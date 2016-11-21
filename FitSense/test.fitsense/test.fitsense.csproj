@@ -133,9 +133,9 @@
     <Compile Include="mocks\Repository\UserRepositoryMock.cs" />
     <Compile Include="mocks\ViewModels\ViewModelLocatorMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SensorConnectViewModelTest.cs" />
-    <Compile Include="SetsCarouselViewModelTest.cs" />
-    <Compile Include="SetViewModelTest.cs" />
+    <Compile Include="Tests\ViewModels\SensorConnectViewModelTest.cs" />
+    <Compile Include="Tests\ViewModels\SetsCarouselViewModelTest.cs" />
+    <Compile Include="Tests\ViewModels\SetViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

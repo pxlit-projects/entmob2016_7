@@ -42,7 +42,6 @@ namespace FitSense.ViewModels
         {
             adapter.DeviceDiscovered += (object sender, DeviceDiscoveredEventArgs args) =>
             {
-                Debug.WriteLine("anything");
                 if (!Devices.Any(d => d.ID == args.Device.ID))
                 {
                     Devices.Add(args.Device);

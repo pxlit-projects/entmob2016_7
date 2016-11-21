@@ -13,7 +13,7 @@ namespace test.fitsense.mocks
         {
             get
             {
-                return 
+                return new AdapterMock();
             }
         }
 

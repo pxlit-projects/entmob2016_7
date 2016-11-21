@@ -31,12 +31,12 @@ namespace test.fitsense
         }
 
         [TestMethod]
-        public void AreCategoriesLoaded()
+        public async void AreCategoriesLoaded()
         {
             //var viewModel = GetViewModel();
             var viewModel = locatorMock.CategoriesViewModel;
             ObservableCollection<Category> categories;
-            var expectedCategories = ServiceLocator.Current.GetInstance<IUserDataService>().GetAllCategories();
+            var expectedCategories = await ServiceLocator.Current.GetInstance<IUserDataService>().GetAllCategoriesAsync();
 
             //act
             categories = viewModel.Categories;

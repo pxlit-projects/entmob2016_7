@@ -29,7 +29,7 @@ namespace test.fitsense.mocks
             ////}
 
             SimpleIoc.Default.Register<INavigationService, NavigationServiceMock>();
-            SimpleIoc.Default.Register<IUserDataService, UserDataServiceMock>();
+            SimpleIoc.Default.Register<IUserDataService, UserDataServiceMockOld>();
             SimpleIoc.Default.Register<IConnectivity, ConnectivityMock>();
             //SimpleIoc.Default.Register<SensorDevice>();
 
@@ -42,6 +42,7 @@ namespace test.fitsense.mocks
             SimpleIoc.Default.Register<ExerciseViewModel>();
             SimpleIoc.Default.Register<SetsCarouselViewModel>();
             SimpleIoc.Default.Register<ActiveSetViewModel>();
+            SimpleIoc.Default.Register<SetViewModel>();
         }
 
         public MainViewModel Main
@@ -97,6 +98,14 @@ namespace test.fitsense.mocks
             get
             {
                 return ServiceLocator.Current.GetInstance<SetsCarouselViewModel>();
+            }
+        }
+
+        public SetViewModel SetViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SetViewModel>();
             }
         }
 

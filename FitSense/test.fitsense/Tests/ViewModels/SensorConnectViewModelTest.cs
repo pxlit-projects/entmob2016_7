@@ -20,7 +20,10 @@ namespace test.fitsense
         }
 
         [TestMethod]
-        public void 
+        public void test()
+        {
+
+        }
 
 
 
