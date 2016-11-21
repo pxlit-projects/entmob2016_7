@@ -52,12 +52,5 @@ namespace test.fitsense
             var viewModel = GetViewModel();
             Assert.IsNotNull(viewModel.StartSet);
         }
-
-        [TestMethod]
-        public void CanExecuteStartSet()
-        {
-            var viewModel = GetViewModel();
-            Assert.ThrowsException<Exception>(() => viewModel.StartSet.Execute(null)) ;
-        }
     }
 }
