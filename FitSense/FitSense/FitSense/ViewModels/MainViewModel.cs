@@ -6,6 +6,8 @@ using Microsoft.Practices.ServiceLocation;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System;
+using FitSense.Models;
+using System.Diagnostics;
 
 namespace FitSense.ViewModels
 {
@@ -30,6 +32,8 @@ namespace FitSense.ViewModels
         public RelayCommand LoginCommand { get; private set; }
         public RelayCommand CarouselCommand { get; private set; }
         public RelayCommand GoToCategoriesCommand { get; private set; }
+
+        public RelayCommand TestCommand { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -59,6 +63,23 @@ namespace FitSense.ViewModels
             {
                 if (userDataService.LoggedInUser == null)
                     await navigation.PushModalAsync(PageUrls.LOGINVIEW);
+            });
+
+            TestCommand = new RelayCommand(() =>
+            {
+                SensorDevice sensor = ServiceLocator.Current.GetInstance<SensorDevice>();
+                if (sensor.MovementService != null)
+                {
+                    if (!sensor.MovementService.IsOn)
+                    {
+                        sensor.MovementService.SetEnabled(true);
+                    }
+                    sensor.MovementService.StartReading();
+                }
+                else
+                {
+                    Debug.WriteLine("Movementsensor not found.");
+                }
             });
             
         }

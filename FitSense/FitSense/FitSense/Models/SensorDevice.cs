@@ -76,13 +76,14 @@ namespace FitSense.Models
             {
                 var characteristic = service.Characteristics;
 
-                //Debug.WriteLine(service.ID.PartialFromUuid());
-                //foreach(var c in service.Characteristics)
-                //{
-                //    Debug.WriteLine(" --  " + c.ID.PartialFromUuid() + "   =   " + c.Name); 
-                //}
+                Debug.WriteLine(service.ID.PartialFromUuid());
+                foreach (var c in service.Characteristics)
+                {
+                    Debug.WriteLine(" --  " + c.ID.PartialFromUuid() + "   =   " + c.Name);
+                    
+                }
 
-                if(service.ID.PartialFromUuid() == "0xaa00")
+                if (service.ID.PartialFromUuid() == "0xaa00")
                 {
                     Debug.WriteLine("Found infrared service.");
                 }

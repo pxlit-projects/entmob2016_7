@@ -55,6 +55,7 @@
     <Compile Include="Helpers\BehaviorBase.cs" />
     <Compile Include="Helpers\ItemSelectedBehavior.cs" />
     <Compile Include="Helpers\OnAppearingBehavior.cs" />
+    <Compile Include="Helpers\ValueChangedEventArgs.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
