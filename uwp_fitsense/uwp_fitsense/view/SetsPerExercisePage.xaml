@@ -84,7 +84,7 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <TextBlock Text="Set:" Grid.Row="0" Grid.Column="0" />
-                                <TextBlock Text="{Binding ID}" Grid.Row="0" Grid.Column="1"/>
+                                <TextBlock Text="{Binding SetID}" Grid.Row="0" Grid.Column="1"/>
                                 <TextBlock Text="Reps: " Grid.Row="1" Grid.Column="0" />
                                 <TextBlock Text="{Binding Reps}" Grid.Row="1" Grid.Column="1" />
                                 <TextBlock Text="Points: " Grid.Row="2" Grid.Column="0" />
