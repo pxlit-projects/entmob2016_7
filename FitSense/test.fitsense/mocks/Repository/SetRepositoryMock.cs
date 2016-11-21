@@ -11,5 +11,12 @@ namespace test.fitsense.mocks.Repository
     class SetRepositoryMock : ISetRepository
     {
         public List<Set> Sets { get; set; }
+
+        public Task<List<Set>> GetSetsFromExerciseAsync(Exercise exercise, string baseUrl)
+        {
+            return new Task<List<Set>>(() =>
+            Sets.FindAll((s) =>
+            s.ExerciseID == exercise.ExerciseID));
+        }
     }
 }

@@ -117,6 +117,10 @@
     <SDKReference Include="TestPlatform, Version=14.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="mocks\Repository\CategoryRepositoryMock.cs" />
+    <Compile Include="mocks\Repository\ExerciseRepositoryMock.cs" />
+    <Compile Include="mocks\Repository\SetRepositoryMock.cs" />
+    <Compile Include="mocks\ServiceMocks\UserDataServiceMock.cs" />
     <Compile Include="Tests\ViewModels\ActiveSetViewModelTest.cs" />
     <Compile Include="Tests\ViewModels\CategoriesViewModelTest.cs" />
     <Compile Include="Tests\ViewModels\ExercisesViewModelTest.cs" />
@@ -129,7 +133,7 @@
     <Compile Include="mocks\ServiceMocks\NavigationServiceMock.cs" />
     <Compile Include="Tests\ViewModels\ExerciseViewModelTest.cs" />
     <Compile Include="mocks\ViewModels\SetViewModelMock.cs" />
-    <Compile Include="mocks\ServiceMocks\UserDataServiceMock.cs" />
+    <Compile Include="mocks\ServiceMocks\UserDataServiceMockOld.cs" />
     <Compile Include="mocks\Repository\UserRepositoryMock.cs" />
     <Compile Include="mocks\ViewModels\ViewModelLocatorMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

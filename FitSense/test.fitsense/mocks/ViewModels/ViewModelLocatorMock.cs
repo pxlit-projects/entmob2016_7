@@ -1,4 +1,6 @@
-﻿using FitSense.Dependencies;
+﻿using fitsense.DAL.dependencies;
+using FitSense.Dependencies;
+using FitSense.Services;
 using FitSense.ViewModels;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
@@ -7,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using test.fitsense.mocks.Repository;
 
 namespace test.fitsense.mocks
 {
@@ -43,6 +46,17 @@ namespace test.fitsense.mocks
             SimpleIoc.Default.Register<SetsCarouselViewModel>();
             SimpleIoc.Default.Register<ActiveSetViewModel>();
             SimpleIoc.Default.Register<SetViewModel>();
+        }
+
+        public void replaceUserDataMock()
+        {
+            SimpleIoc.Default.Unregister<IUserDataService>();
+
+            SimpleIoc.Default.Register<ICategoryRepository, CategoryRepositoryMock>();
+            SimpleIoc.Default.Register<IExerciseRepository, ExerciseRepositoryMock>();
+            SimpleIoc.Default.Register<ISetRepository, SetRepositoryMock>();
+
+            SimpleIoc.Default.Register<IUserDataService, UserDataService>();
         }
 
         public MainViewModel Main

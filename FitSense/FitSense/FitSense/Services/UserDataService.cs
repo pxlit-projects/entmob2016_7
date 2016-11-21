@@ -56,10 +56,10 @@ namespace FitSense.Services
             return userRepository.SearchUser(userName);
         }
 
-        User IUserDataService.SearchUser(string userName)
-        {
-            throw new NotImplementedException();
-        }
+        //User IUserDataService.SearchUser(string userName)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public async Task<List<Category>> GetAllCategoriesAsync()
         {
