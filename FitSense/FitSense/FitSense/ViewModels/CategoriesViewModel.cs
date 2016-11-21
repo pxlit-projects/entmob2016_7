@@ -20,7 +20,7 @@ namespace FitSense.ViewModels
         private IUserDataService userDataService;
         private INavigationService navigationService;
 
-        public ObservableCollection<Category> categories { get; set; }
+        private ObservableCollection<Category> categories;
         public ObservableCollection<Category> Categories
         {
             get

@@ -1,5 +1,6 @@
 ﻿using FitSense.Constants;
 using FitSense.Dependencies;
+using FitSense.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.ServiceLocation;
@@ -59,12 +60,21 @@ namespace FitSense.ViewModels
                 //Feedback = string.Empty;
                 if (CanLogin)
                 {
-                    ConnectionStatus st = DependencyService.Get<IConnectivity>().CheckNetworkStatus();
+                    //ConnectionStatus st = DependencyService.Get<IConnectivity>().CheckNetworkStatus();
+                    ConnectionStatus st = ServiceLocator.Current.GetInstance<IConnectivity>().CheckNetworkStatus();
                     userDataService.LoginAsync(Username, Password).ContinueWith((a) =>
                     {
                         if (userDataService.LoggedInUser != null)
-                            MessengerInstance.Send<LoginViewModel>(this, Constants.Messages.LoginSucces);
+                        {
+                            //MessengerInstance.Send<LoginViewModel>(this, Constants.Messages.LoginSucces);
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                var main = new MainView();
+                                Application.Current.MainPage = new NavigationPage(main);
+                                navigationService.Navigation = main.Navigation;
+                            });
                             
+                        }
                         else
                             Feedback = "Login attempt failed";
                     });

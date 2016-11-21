@@ -31,7 +31,7 @@ namespace FitSense.ViewModels
         private IUserDataService userDataService;
         //public RelayCommand LoginCommand;
         public RelayCommand ConnectCommand { get; private set; }
-        public RelayCommand LoginCommand { get; private set; }
+        //public RelayCommand LoginCommand { get; private set; }
         public RelayCommand CarouselCommand { get; private set; }
         public RelayCommand GoToCategoriesCommand { get; private set; }
 
@@ -47,6 +47,7 @@ namespace FitSense.ViewModels
 
             InitializeCommands();
             InitializeMessages();
+
         }
 
         private void InitializeCommands()
@@ -61,11 +62,11 @@ namespace FitSense.ViewModels
                 await navigation.PushAsync(PageUrls.CATEGORIESVIEW);
             });
 
-            LoginCommand = new RelayCommand(async () =>
-            {
-                if (userDataService.LoggedInUser == null)
-                    await navigation.PushModalAsync(PageUrls.LOGINVIEW);
-            });
+            //LoginCommand = new RelayCommand(async () =>
+            //{
+            //    if (userDataService.LoggedInUser == null)
+            //        await navigation.PushModalAsync(PageUrls.LOGINVIEW);
+            //});
 
             TestCommand = new RelayCommand(() =>
             {
@@ -110,13 +111,13 @@ namespace FitSense.ViewModels
 
         private void InitializeMessages()
         {
-            MessengerInstance.Register<LoginViewModel>(this, Constants.Messages.LoginSucces, (sender) =>
-            {
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await navigation.PopModalAsync();
-                });
-            });
+            //MessengerInstance.Register<LoginViewModel>(this, Constants.Messages.LoginSucces, (sender) =>
+            //{
+            //    Device.BeginInvokeOnMainThread(async () =>
+            //    {
+            //        await navigation.PopModalAsync();
+            //    });
+            //});
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FitSense.Dependencies;
+using FitSense.ViewModels;
 using FitSense.Views;
 using Microsoft.Practices.ServiceLocation;
 using System;
@@ -16,13 +17,16 @@ namespace FitSense
         {
             InitializeComponent();
 
-            var main = new MainView();
+            //var main = new MainView();
+            var login = new LoginView();
 
             var navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
 
-            navigationService.Navigation = main.Navigation;
+            //navigationService.Navigation = main.Navigation;
+            navigationService.Navigation = login.Navigation;
 
-            MainPage = new NavigationPage(main);
+            //MainPage = new NavigationPage(main);
+            MainPage = new NavigationPage(login);
         }
 
         protected override void OnStart()

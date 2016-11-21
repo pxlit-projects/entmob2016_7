@@ -18,6 +18,7 @@ using FitSense.Models;
 using FitSense.Services;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using Xamarin.Forms;
 
 namespace FitSense.ViewModels
 {
@@ -51,6 +52,9 @@ namespace FitSense.ViewModels
                 new CategoryRepository(),
                 new ExerciseRepository(),
                 new SetRepository()));
+
+            SimpleIoc.Default.Register<IConnectivity>(() => DependencyService.Get<IConnectivity>());
+            SimpleIoc.Default.Register<IBluetoothService>(() => DependencyService.Get<IBluetoothService>());
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();

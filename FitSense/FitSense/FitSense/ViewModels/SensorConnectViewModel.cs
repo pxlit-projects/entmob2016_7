@@ -30,7 +30,7 @@ namespace FitSense.ViewModels
         public SensorConnectViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
-            adapter = DependencyService.Get<IBluetoothService>().Adapter;
+            adapter = ServiceLocator.Current.GetInstance<IBluetoothService>().Adapter;
             this.Devices = new ObservableCollection<IDevice>();
             ScanButtonText = startScanText;
 

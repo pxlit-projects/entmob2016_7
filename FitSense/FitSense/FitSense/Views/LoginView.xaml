@@ -16,14 +16,13 @@
     
     <StackLayout Orientation="Vertical" Grid.Row="1" Spacing="10">
     
-      <Label Text="Username" />
-      <Entry Text="{Binding Username, Mode=TwoWay}" />
+        <Label Text="Username" />
+        <Entry Text="{Binding Username, Mode=TwoWay}" />
   
-      <Label Text="Password" />
-      <Entry Text="{Binding Password, Mode=TwoWay}" />
-  
-      
-      <Label Text="{Binding Feedback}" />
+        <Label Text="Password" />
+        <Entry Text="{Binding Password, Mode=TwoWay}" />
+
+        <Label Text="{Binding Feedback}" />
   
     </StackLayout>
     

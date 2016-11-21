@@ -22,18 +22,18 @@ namespace FitSense.Services
 
         public User LoggedInUser { get; set; }
 
-        User IUserDataService.LoggedInUser
-        {
-            get
-            {
-                return userRepository.SearchUser("Daniël");
-            }
+        //User IUserDataService.LoggedInUser
+        //{
+        //    get
+        //    {
+        //        return userRepository.SearchUser("Daniël");
+        //    }
 
-            set
-            {
+        //    set
+        //    {
                 
-            }
-        }
+        //    }
+        //}
 
         public UserDataService(ICategoryRepository categoryRepository, IExerciseRepository exerciseRepository, ISetRepository setRepository)
         {

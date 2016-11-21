@@ -19,14 +19,14 @@ namespace test.fitsense.mocks
         private ISetRepository setRepository = new MockSetRepository();
         public User LoggedInUser { get; set; }
 
-        User IUserDataService.LoggedInUser
-        {
-            get
-            {
-                return userRepository.SearchUser("Daniël");
-            }
-            set { }
-        }
+        //User IUserDataService.LoggedInUser
+        //{
+        //    get
+        //    {
+        //        return userRepository.SearchUser("Daniël");
+        //    }
+        //    set { }
+        //}
 
         public Task LoginAsync(string userName, string password)
         {
@@ -77,6 +77,11 @@ namespace test.fitsense.mocks
                 }
             }
             return setViews;
+        }
+
+        public Task<List<SetViewModel>> GetSetViewModelsFromExerciseAsync(Exercise exercise, INavigationService navigationService)
+        {
+            throw new NotImplementedException();
         }
     }
 }

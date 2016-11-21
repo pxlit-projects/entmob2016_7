@@ -11,24 +11,27 @@ namespace test.fitsense
     [TestClass]
     class ExerciseViewModelTest
     {
-        private IUserDataService userDataService;
+        //private IUserDataService userDataService;
+        private ViewModelLocatorMock locatorMock;
 
-        private ExerciseViewModel GetViewModel()
-        {
-            var viewmodel = new ExerciseViewModel(null, this.userDataService);
-            return viewmodel;
-        }
+        //private ExerciseViewModel GetViewModel()
+        //{
+        //    var viewmodel = new ExerciseViewModel(null, this.userDataService);
+        //    return viewmodel;
+        //}
 
         [TestInitialize]
         public void Init()
         {
-            userDataService = new UserDataServiceMock();
+            locatorMock = new ViewModelLocatorMock();
+            //userDataService = new UserDataServiceMock();
         }
 
         [TestMethod]
         public void IsGoToCarouselSet()
         {
-            var viewmodel = GetViewModel();
+            //var viewmodel = GetViewModel();
+            var viewmodel = locatorMock.ExerciseViewModel;
             Assert.IsNotNull(viewmodel.GoToSetCarouselCommand);
         }
     }

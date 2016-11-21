@@ -15,63 +15,32 @@ namespace test.fitsense
     [TestClass]
     public class LoginViewModelTest
     {
-        private IUserDataService userDataService;
-        private INavigationService navigationService;
+        private ViewModelLocatorMock locatorMock;
 
-        
         [TestInitialize]
         public void Init()
         {
-            
-            userDataService = new UserDataServiceMock();
-            navigationService = new NavigationServiceMock();
+            locatorMock = new ViewModelLocatorMock();
             //DependencyService.Register<IConnectivity>();
 
-            DependencyService.Register<IConnectivity, ConnectivityMock>();
+            //DependencyService.Register<IConnectivity, ConnectivityMock>();
         }
 
         [TestMethod]
         public void CanLoginTest()
         {
-            LoginViewModel vm = new LoginViewModel(navigationService, userDataService);
+            LoginViewModel vm = locatorMock.Login;
             Assert.IsFalse(vm.CanLogin);
+            Assert.AreEqual<string>("Please enter a username." + "Please enter a password.", vm.ValidationErrors);
 
             vm.Username = "someone";
             Assert.IsFalse(vm.CanLogin);
+            Assert.AreEqual<string>("Please enter a password.", vm.ValidationErrors);
 
             vm.Password = "password";
             Assert.IsTrue(vm.CanLogin);
+            Assert.AreEqual<string>(string.Empty, vm.ValidationErrors);
         }
-
-        [TestMethod]
-        public void LoginTest()
-        {
-            LoginViewModel vm = new LoginViewModel(navigationService, userDataService);
-            vm.Username = "someone";
-            vm.Password = "password";
-
-            
-
-            IMessenger messenger = Messenger.Default;
-            messenger.Register<LoginViewModel>(this, FitSense.Constants.Messages.LoginSucces, (sender) =>
-            {
-                Assert.IsTrue(true);
-            });
-
-            vm.LoginCommand.Execute(null);
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
     }
 }
