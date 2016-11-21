@@ -8,7 +8,7 @@ namespace test.fitsense.dal.mocks
 {
     public class MockSetRepository : ISetRepository
     {
-        public async Task<List<Set>> GetSetsFromExerciseAsync(Exercise exercise)
+        public async Task<List<Set>> GetSetsFromExerciseAsync(Exercise exercise, string baseUrl)
         {
             return await Task.Run(() =>TestData.sets.Where(set => set.ExerciseID == exercise.ExerciseID).ToList());
         }

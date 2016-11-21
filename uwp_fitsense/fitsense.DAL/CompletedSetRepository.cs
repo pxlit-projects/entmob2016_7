@@ -13,9 +13,9 @@ namespace fitsense.DAL
 {
     public class CompletedSetRepository : ICompletedSetRepository
     {
-        public async Task<List<CompletedSet>> GetCompletedSetsFromSetAsync(Set set)
+        public async Task<List<CompletedSet>> GetCompletedSetsFromSetAsync(Set set, string baseUrl)
         {
-            string apiCompletedSet = string.Format("http://localhost:8081/sensortagapi/completedset/sets/{0}", set.SetID);
+            string apiCompletedSet = string.Format(baseUrl + "completedset/sets/{0}", set.SetID);
             var uri = new Uri(String.Format("{0}?format=json", apiCompletedSet));
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
@@ -34,11 +34,11 @@ namespace fitsense.DAL
             //return DummyData.completedSets.Where(completedSet => completedSet.SetID == set.SetID).ToList();
         }
 
-       public async Task AddCompletedSet(CompletedSet completedSet)
+       public async Task AddCompletedSet(CompletedSet completedSet, string baseUrl)
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:8081/sensortagapi/category");
+                client.BaseAddress = new Uri(baseUrl + "category");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                     Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", "user", "123456"))));
 

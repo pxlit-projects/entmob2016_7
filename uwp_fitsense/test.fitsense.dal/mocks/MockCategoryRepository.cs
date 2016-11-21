@@ -8,12 +8,12 @@ namespace test.fitsense.dal.mocks
 {
     public class MockCategoryRepository : ICategoryRepository
     {
-        public async Task<List<Category>> GetCategoriesAsync()
+        public async Task<List<Category>> GetCategoriesAsync(string baseUrl)
         {
             return await Task.Run(() => TestData.categories);
         }
 
-        public async Task AddCategoryAsync(Category categorie)
+        public async Task AddCategoryAsync(Category categorie, string baseUrl)
         {
             throw new NotImplementedException();
         }

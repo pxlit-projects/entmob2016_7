@@ -13,23 +13,24 @@ namespace fitsense.DAL
 {
     public class ExerciseRepository : IExerciseRepository
     {
-        public async Task<List<Exercise>> GetExercisesFromCategoryAsync(Category category)
+        public async Task<List<Exercise>> GetExercisesFromCategoryAsync(Category category, string baseUrl)
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                        Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", "user", "123456"))));
             Uri uri = null;
+            string apiExercise = null;
 
             if (category != null)
             {
-                string apiExercise = string.Format("http://localhost:8081/sensortagapi/exercise/bycategory/{0}", category.CategoryID);
-                uri = new Uri(String.Format("{0}?format=json", apiExercise));
+                apiExercise = string.Format(baseUrl + "exercise/bycategory/{0}", category.CategoryID);  
             } 
             else
             {
-                string apiExercise = "http://localhost:8081/sensortagapi/exercise/all";
-                uri = new Uri(String.Format("{0}?format=json", apiExercise));
+               apiExercise = baseUrl + "exercise/all";
             }
+
+            uri = new Uri(String.Format("{0}?format=json", apiExercise));
             var response = await client.GetAsync(uri);
 
             if (response.IsSuccessStatusCode)

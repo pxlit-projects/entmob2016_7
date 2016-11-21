@@ -6,6 +6,6 @@ namespace fitsense.DAL.dependencies
 {
     public interface ISetRepository
     {
-        Task<List<Set>> GetSetsFromExerciseAsync(Exercise exercise);
+        Task<List<Set>> GetSetsFromExerciseAsync(Exercise exercise, string baseUrl);
     }
 }

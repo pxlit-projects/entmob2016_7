@@ -6,6 +6,6 @@ namespace fitsense.DAL.dependencies
 {
     public interface IExerciseRepository
     {
-        Task<List<Exercise>> GetExercisesFromCategoryAsync(Category category);
+        Task<List<Exercise>> GetExercisesFromCategoryAsync(Category category, string baseUrl);
     }
 }

@@ -1,4 +1,5 @@
-﻿using fitsense.DAL.dependencies;
+﻿using fitsense.DAL.Constants;
+using fitsense.DAL.dependencies;
 using fitsense.models;
 using System;
 using System.Collections.Generic;
@@ -17,19 +18,19 @@ namespace test_fitsense.mocks
 
         public async Task<List<Category>> GetAllCategoriesAsync()
         {
-            return await categoryRepository.GetCategoriesAsync();
+            return await categoryRepository.GetCategoriesAsync(ApiUrl.BASEURL);
         }
 
         public async Task<List<CompletedSet>> GetCompletedSetsFromSetAsync(Set set)
         {
-            return await completedSetRepository.GetCompletedSetsFromSetAsync(set);
+            return await completedSetRepository.GetCompletedSetsFromSetAsync(set, ApiUrl.BASEURL);
         }
 
         public async Task<List<Exercise>> GetExercisesFromCategoryAsync(Category category)
         {
             if (category == null)
                 return null;
-            List<Exercise> exercises = await exerciseRepository.GetExercisesFromCategoryAsync(category);
+            List<Exercise> exercises = await exerciseRepository.GetExercisesFromCategoryAsync(category, ApiUrl.BASEURL);
             foreach (Exercise e in exercises)
             {
                 e.Sets = await GetSetsFromExerciseAsync(e);
@@ -39,7 +40,7 @@ namespace test_fitsense.mocks
 
         public async Task<List<Set>> GetSetsFromExerciseAsync(Exercise exercise)
         {
-            List<Set> sets = await setRepository.GetSetsFromExerciseAsync(exercise);
+            List<Set> sets = await setRepository.GetSetsFromExerciseAsync(exercise, ApiUrl.BASEURL);
             foreach (Set s in sets)
             {
                 s.CompletedSets = await GetCompletedSetsFromSetAsync(s);

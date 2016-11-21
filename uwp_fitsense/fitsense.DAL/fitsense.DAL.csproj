@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CategoryRepository.cs" />
     <Compile Include="CompletedSetRepository.cs" />
+    <Compile Include="Constants\ApiUrl.cs" />
     <Compile Include="dependencies\ICategoryRepository.cs" />
     <Compile Include="dependencies\ICompletedSetRepository.cs" />
     <Compile Include="dependencies\IExerciseRepository.cs" />
