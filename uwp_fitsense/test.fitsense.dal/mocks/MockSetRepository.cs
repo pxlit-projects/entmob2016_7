@@ -10,7 +10,10 @@ namespace test.fitsense.dal.mocks
     {
         public async Task<List<Set>> GetSetsFromExerciseAsync(Exercise exercise, string baseUrl)
         {
-            return await Task.Run(() =>TestData.sets.Where(set => set.ExerciseID == exercise.ExerciseID).ToList());
+            if (exercise != null)
+                return await Task.Run(() => TestData.sets.Where(set => set.ExerciseID == exercise.ExerciseID).ToList());
+            else
+                return null;
         }
     }
 }

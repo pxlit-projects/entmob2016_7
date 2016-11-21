@@ -139,7 +139,7 @@ namespace uwp_fitsense.viewmodel
             await LoadDataAsync();
         }
 
-        public async Task LoadDataAsync()
+        private async Task LoadDataAsync()
         {
             var result = await dataService.GetExercisesFromCategoryAsync(SelectedCategory);
             Exercises = result.ToObservableCollection();

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using uwp_fitsense.dependencies;
@@ -17,6 +16,10 @@ namespace uwp_fitsense.viewmodel
     public class SetsPerExerciseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        public ICommand ToggleShowCompletedSetsCommand { get; set; }
+        private IFitDataService fitDataService;
+        private INavigationService navigationService;
+
         public List<ChartRecord> activeChart;
         public List<ChartRecord> ActiveChart
         {
@@ -30,10 +33,7 @@ namespace uwp_fitsense.viewmodel
                 RaisePropertyChanged("ActiveChart");
             }
         }
-        public ICommand ToggleShowCompletedSets { get; set; }
-        private IFitDataService fitDataService;
-        private INavigationService navigationService;
-
+        
         private Exercise currentExercise;
         public Exercise CurrentExercise
         {
@@ -111,6 +111,7 @@ namespace uwp_fitsense.viewmodel
 
             LoadMessengerListeners();
             LoadCommands();
+            PrepareLoadingAsync();
         }
 
         private void LoadMessengerListeners()
@@ -126,15 +127,18 @@ namespace uwp_fitsense.viewmodel
             await LoadDataAsync();
         }
 
-        public async Task LoadDataAsync()
+        private async Task LoadDataAsync()
         {
-            var result = await fitDataService.GetSetsFromExerciseAsync(CurrentExercise);
-            sets = result.ToObservableCollection();
+            if (currentExercise != null)
+            {
+                var result = await fitDataService.GetSetsFromExerciseAsync(CurrentExercise);
+                Sets = result.ToObservableCollection();
+            }
         }
 
         private void LoadCommands()
         {
-            ToggleShowCompletedSets = new AlwaysRunCommand((Object o) =>
+            ToggleShowCompletedSetsCommand = new AlwaysRunCommand((Object o) =>
             {
                 SelectedSet = fitDataService.ToggleSelectedSetVisibility(SelectedSet);
             });
