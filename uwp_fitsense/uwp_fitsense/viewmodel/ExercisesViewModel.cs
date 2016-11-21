@@ -32,7 +32,7 @@ namespace uwp_fitsense.viewmodel
             set
             {
                 selectedCategory = value;
-                LoadData();
+                PrepareLoadingDataAsync();
                 RaisePropertyChanged("SelectedCategory");
             }
         }
@@ -125,7 +125,7 @@ namespace uwp_fitsense.viewmodel
             this.navigationService = navigationService;
 
             LoadMessengerListeners();
-            LoadData();
+            PrepareLoadingDataAsync();
             LoadCommands();
         }
 
@@ -134,9 +134,15 @@ namespace uwp_fitsense.viewmodel
             Messenger.Default.Register<UpdateSelectedCategory>(this, OnUpdateSelectedCategoryReceived);
         }
 
-        public void LoadData()
+        private async void PrepareLoadingDataAsync()
         {
-            Exercises = dataService.GetExercisesFromCategory(SelectedCategory).ToObservableCollection();
+            await LoadDataAsync();
+        }
+
+        public async Task LoadDataAsync()
+        {
+            var result = await dataService.GetExercisesFromCategoryAsync(SelectedCategory);
+            Exercises = result.ToObservableCollection();
         }
 
         private void LoadCommands()

@@ -2,6 +2,7 @@
 using fitsense.models;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using test.fitsense.dal.mocks;
 using uwp_fitsense.dependencies;
 
@@ -14,34 +15,34 @@ namespace test_fitsense.mocks
         private ISetRepository setRepository = new MockSetRepository();
         private ICompletedSetRepository completedSetRepository = new MockCompletedSetRepository();
 
-        public List<Category> GetAllCategories()
+        public async Task<List<Category>> GetAllCategoriesAsync()
         {
-            return categoryRepository.GetCategories();
+            return await categoryRepository.GetCategoriesAsync();
         }
 
-        public List<CompletedSet> GetCompletedSetsFromSet(Set set)
+        public async Task<List<CompletedSet>> GetCompletedSetsFromSetAsync(Set set)
         {
-            return completedSetRepository.GetCompletedSetsFromSet(set);
+            return await completedSetRepository.GetCompletedSetsFromSetAsync(set);
         }
 
-        public List<Exercise> GetExercisesFromCategory(Category category)
+        public async Task<List<Exercise>> GetExercisesFromCategoryAsync(Category category)
         {
             if (category == null)
                 return null;
-            List<Exercise> exercises = exerciseRepository.GetExercisesFromCategory(category);
+            List<Exercise> exercises = await exerciseRepository.GetExercisesFromCategoryAsync(category);
             foreach (Exercise e in exercises)
             {
-                e.Sets = GetSetsFromExercise(e);
+                e.Sets = await GetSetsFromExerciseAsync(e);
             }
             return exercises;
         }
 
-        public List<Set> GetSetsFromExercise(Exercise exercise)
+        public async Task<List<Set>> GetSetsFromExerciseAsync(Exercise exercise)
         {
-            List<Set> sets = setRepository.GetSetsFromExercise(exercise);
+            List<Set> sets = await setRepository.GetSetsFromExerciseAsync(exercise);
             foreach (Set s in sets)
             {
-                s.CompletedSets = GetCompletedSetsFromSet(s);
+                s.CompletedSets = await GetCompletedSetsFromSetAsync(s);
             }
             return sets;
         }
@@ -52,7 +53,7 @@ namespace test_fitsense.mocks
             return set;
         }
 
-        public void AddCategory(Category category)
+        public async Task AddCategoryAsync(Category category)
         {
             throw new NotImplementedException();
         }

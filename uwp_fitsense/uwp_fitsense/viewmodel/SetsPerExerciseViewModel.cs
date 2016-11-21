@@ -42,7 +42,7 @@ namespace uwp_fitsense.viewmodel
             {
                 currentExercise = value;
                 if (currentExercise != null)
-                    LoadData();
+                    PrepareLoadingAsync();
                 RaisePropertyChanged("CurrentExercise");
             }
         }
@@ -121,9 +121,15 @@ namespace uwp_fitsense.viewmodel
             });
         }
 
-        public void LoadData()
+        private async void PrepareLoadingAsync()
         {
-            sets = fitDataService.GetSetsFromExercise(CurrentExercise).ToObservableCollection();
+            await LoadDataAsync();
+        }
+
+        public async Task LoadDataAsync()
+        {
+            var result = await fitDataService.GetSetsFromExerciseAsync(CurrentExercise);
+            sets = result.ToObservableCollection();
         }
 
         private void LoadCommands()

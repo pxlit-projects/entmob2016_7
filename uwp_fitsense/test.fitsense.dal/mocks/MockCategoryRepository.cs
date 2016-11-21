@@ -2,17 +2,18 @@
 using fitsense.models;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace test.fitsense.dal.mocks
 {
     public class MockCategoryRepository : ICategoryRepository
     {
-        public List<Category> GetCategories()
+        public async Task<List<Category>> GetCategoriesAsync()
         {
-            return TestData.categories;
+            return await Task.Run(() => TestData.categories);
         }
 
-        public void AddCategory(Category categorie)
+        public async Task AddCategoryAsync(Category categorie)
         {
             throw new NotImplementedException();
         }

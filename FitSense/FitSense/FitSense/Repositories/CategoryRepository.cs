@@ -1,4 +1,5 @@
-﻿using fitsense.models;
+﻿using fitsense.DAL.dependencies;
+using fitsense.models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,6 @@ namespace FitSense.Repositories
 {
     public class CategoryRepository
     {
-
         public async Task<List<Category>> GetCategoriesAsync()
         {
             string categories = Constants.ApiUrl.BASEURL +"category/all";

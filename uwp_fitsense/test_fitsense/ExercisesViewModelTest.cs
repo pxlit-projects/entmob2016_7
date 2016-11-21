@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using test_fitsense.mocks;
 using uwp_fitsense.dependencies;
 using uwp_fitsense.extensions;
@@ -16,16 +17,17 @@ namespace test_fitsense
         private IFitDataService fitDataService;
         private INavigationService navigationService;
 
-        private ExercisesViewModel GetViewModel()
+        private async Task<ExercisesViewModel> GetViewModelAsync()
         {
+            var result = await fitDataService.GetAllCategoriesAsync();
             var viewmodel = new ExercisesViewModel(this.fitDataService, this.navigationService)
             {
                 // simulate messaging service by setting the category
-                SelectedCategory = fitDataService.GetAllCategories().ToArray()[0]
+                SelectedCategory = result.ToArray()[0]
             };
             // because the data isn't loaded (due to the way it loads the constructor first)
             //we have to reload the data
-            viewmodel.LoadData();
+            await viewmodel.LoadDataAsync();
             return viewmodel;
         }
 
@@ -48,10 +50,10 @@ namespace test_fitsense
         [TestMethod]
         public void LoadAllExercises()
         {
-            var viewModel = GetViewModel();
+            var viewModel = GetViewModelAsync().Result;
             //Arrange
             ObservableCollection<Exercise> exercises;
-            var expectedExercises = fitDataService.GetExercisesFromCategory(viewModel.SelectedCategory);
+            var expectedExercises = fitDataService.GetExercisesFromCategoryAsync(viewModel.SelectedCategory).Result;
 
             //act
             exercises = viewModel.Exercises;

@@ -18,15 +18,15 @@ namespace test_fitsense
         private IFitDataService fitDataService;
         private INavigationService navigationService;
 
-        private SetsPerExerciseViewModel GetViewModel()
+        private async Task<SetsPerExerciseViewModel> GetViewModel()
         {
-            var category = fitDataService.GetAllCategories().ToList().FirstOrDefault();
-            var exercise = fitDataService.GetExercisesFromCategory(category).FirstOrDefault();
+            var category = fitDataService.GetAllCategoriesAsync().Result.ToList().FirstOrDefault();
+            var exercise = fitDataService.GetExercisesFromCategoryAsync(category).Result.FirstOrDefault();
             var viewmodel = new SetsPerExerciseViewModel(this.fitDataService, this.navigationService)
             {
                 CurrentExercise = exercise
             };
-            viewmodel.LoadData();
+            await viewmodel.LoadDataAsync();
             return viewmodel;
         }
 
@@ -40,17 +40,17 @@ namespace test_fitsense
         [TestMethod]
         public void IsExerciseLoaded()
         {
-            var viewModel = GetViewModel();
+            var viewModel = GetViewModel().Result;
             Assert.IsNotNull(viewModel.CurrentExercise);
         }
 
         [TestMethod]
         public void LoadAllSets()
         {
-            var viewModel = GetViewModel();
+            var viewModel = GetViewModel().Result;
             //Arrange
             ObservableCollection<Set> sets;
-            var expectedSets = fitDataService.GetSetsFromExercise(viewModel.CurrentExercise);
+            var expectedSets = fitDataService.GetSetsFromExerciseAsync(viewModel.CurrentExercise).Result;
 
             //act
             sets = viewModel.Sets;
@@ -63,7 +63,8 @@ namespace test_fitsense
         public void ChartDataNotNull()
         {
             // force a selected set change => triggers chart update
-            var viewmodel = GetViewModel();
+            var viewmodel = GetViewModel().Result;
+
             if (viewmodel.Sets.Count > 0)
                 viewmodel.SelectedSet = viewmodel.Sets[0];
             Assert.IsNotNull(viewmodel.ActiveChart);        
