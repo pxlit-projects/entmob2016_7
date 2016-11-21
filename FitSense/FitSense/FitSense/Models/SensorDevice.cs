@@ -17,6 +17,7 @@ namespace FitSense.Models
         private List<IService> deviceServices;
 
         public MovementService MovementService { get; set; }
+        public HumidityService HumidityService { get; set; }
 
 
         public IDevice ConnectedDevice
@@ -95,6 +96,7 @@ namespace FitSense.Models
                 else if (service.ID.PartialFromUuid() == "0xaa20")
                 {
                     Debug.WriteLine("Found humidity service.");
+                    HumidityService = new HumidityService(service);
                 }
                 else if (service.ID.PartialFromUuid() == "0xaa30")
                 {

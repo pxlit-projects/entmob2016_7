@@ -8,6 +8,8 @@ using Xamarin.Forms;
 using System;
 using FitSense.Models;
 using System.Diagnostics;
+using System.Numerics;
+using System.Collections.Generic;
 
 namespace FitSense.ViewModels
 {
@@ -74,7 +76,21 @@ namespace FitSense.ViewModels
                     {
                         sensor.MovementService.SetEnabled(true);
                     }
-                    sensor.MovementService.StartReading();
+                    if (!sensor.MovementService.IsUpdating)
+                    {
+                        sensor.MovementService.StartReadData(100);
+                        sensor.MovementService.OnValueChanged += MovementService_OnValueChanged;
+                    }
+                    else
+                    {
+                        sensor.MovementService.stopReadData();
+                        sensor.MovementService.OnValueChanged -= MovementService_OnValueChanged;
+                        foreach (var vect in vectList)
+                        {
+                            Debug.WriteLine(vect.X + "," + vect.Y + "," + vect.Z);
+                        }
+                    }
+                    
                 }
                 else
                 {
@@ -82,6 +98,14 @@ namespace FitSense.ViewModels
                 }
             });
             
+        }
+
+        private List<Vector3> vectList = new List<Vector3>();
+
+        private void MovementService_OnValueChanged(object sender, Helpers.ValueChangedEventArgs<System.Numerics.Vector3> args)
+        {
+            Debug.WriteLine("Data Retrieved.");
+            vectList.Add(args.NewValue);
         }
 
         private void InitializeMessages()

@@ -41,6 +41,7 @@
     <Compile Include="Constants\ConnectionStatus.cs" />
     <Compile Include="Constants\Messages.cs" />
     <Compile Include="Constants\PageUrls.cs" />
+    <Compile Include="Constants\SensorKeys.cs" />
     <Compile Include="Converters\DeviceNameConverter.cs" />
     <Compile Include="Converters\MaxTimeConverter.cs" />
     <Compile Include="Converters\PointsConverter.cs" />
@@ -60,6 +61,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\HumidityService.cs" />
+    <Compile Include="Models\KeyService.cs" />
     <Compile Include="Models\MovementService.cs" />
     <Compile Include="Models\SensorDevice.cs" />
     <Compile Include="Models\SensorService.cs" />

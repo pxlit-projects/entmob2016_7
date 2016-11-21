@@ -35,13 +35,13 @@ namespace FitSense.Models
                 tempArgs.NewValue = newTemp;
                 tempArgs.OldValue = oldTemp;
                 oldTemp = newTemp;
-                OnTempValueChanged(this, tempArgs);
+                OnTempValueChanged?.Invoke(this, tempArgs);
 
                 ValueChangedEventArgs<float> humArgs = new ValueChangedEventArgs<float>();
                 humArgs.NewValue = newHum;
                 humArgs.OldValue = oldHum;
                 oldHum = newHum;
-                OnHumValueChanged(this, humArgs);
+                OnHumValueChanged?.Invoke(this, humArgs);
             };
             dataCharacteristic.ValueUpdated += valueUpdatedHandler;
             base.StartReadData(interval);

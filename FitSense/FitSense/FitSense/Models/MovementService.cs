@@ -34,7 +34,7 @@ namespace FitSense.Models
                 ValueChangedEventArgs<Vector3> args = new ValueChangedEventArgs<Vector3>();
                 args.NewValue = newVect;
                 oldVector = newVect;
-                OnValueChanged(this, args);
+                OnValueChanged?.Invoke(this, args);
             };
             dataCharacteristic.ValueUpdated += valueUpdatedHandler;
             base.StartReadData(interval);
@@ -57,9 +57,9 @@ namespace FitSense.Models
                 return new Vector3();
             }
 
-            int valX = BitConverter.ToInt16(raw, 0);
-            int valY = BitConverter.ToInt16(raw, 2);
-            int valZ = BitConverter.ToInt16(raw, 4);
+            short valX = BitConverter.ToInt16(raw, 0);
+            short valY = BitConverter.ToInt16(raw, 2);
+            short valZ = BitConverter.ToInt16(raw, 4);
 
             //Debug.WriteLine(raw[0]);
             //Debug.WriteLine(raw[1]);
@@ -78,10 +78,10 @@ namespace FitSense.Models
             return new Vector3(fValX, fValY, fValZ);
         }
 
-        private float sensorMpu9250GyroConvert(int data)
+        private float sensorMpu9250GyroConvert(short data)
         {
             //-- calculate rotation, unit deg/s, range -250, +250
-            return (data * 1.0f) / (65536 / 500.0f);
+            return (data) / (65536 / 500.0f);
         }
 
         public new void SetEnabled(bool value)
@@ -92,7 +92,7 @@ namespace FitSense.Models
                 {
                     //Enable sensor
                     switchCharacteristic.Write(new byte[] { 0x07, 0x00 });
-                    periodCharacteristic.Write(new byte[] { 0x0A });
+                    periodCharacteristic.Write(new byte[] { 0x04 });
                     IsOn = true;
                 }
             }
