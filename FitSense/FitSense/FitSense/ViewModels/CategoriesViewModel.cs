@@ -19,7 +19,21 @@ namespace FitSense.ViewModels
         private IUserDataService userDataService;
         private INavigationService navigationService;
 
-        public ObservableCollection<Category> Categories { get; private set; }
+        public ObservableCollection<Category> categories { get; set; }
+        public ObservableCollection<Category> Categories
+        {
+            get
+            {
+                return categories;
+            }
+            private set
+            {
+                ObservableCollection<Category> old = categories;
+                categories = value;
+                RaisePropertyChanged("Categories", old, value, true);
+            }
+        }
+
         public RelayCommand<object> CategorySelectedCommand { get; private set; }
 
         public CategoriesViewModel(INavigationService navigationService, IUserDataService userDataService)
@@ -43,7 +57,7 @@ namespace FitSense.ViewModels
                 await navigationService.PushAsync(PageUrls.EXERCISESVIEW).ContinueWith((antecedent) =>
                 {
                     MessengerInstance.Send((item is Category ? (Category)item : null), Messages.CategoryUpdated);
-                });              
+                });
             });
         }
     }
