@@ -11,12 +11,16 @@ namespace test.fitsense
     [TestClass]
     class SensorConnectViewModelTest
     {
+        private ViewModelLocatorMock locatorMock;
 
         [TestInitialize]
         public void init()
         {
             locatorMock = new ViewModelLocatorMock();
         }
+
+        [TestMethod]
+        public void 
 
 
 
