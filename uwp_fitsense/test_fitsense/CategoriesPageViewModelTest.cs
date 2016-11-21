@@ -72,7 +72,7 @@ namespace test_fitsense
             //send over a message
             Messenger.Default.Send<ChangePage>(new ChangePage() { Page = expectedType });
 
-            Assert.Equals(expectedType, viewmodel.CurrentPage);
+            Assert.AreEqual(expectedType, viewmodel.CurrentPage);
         }
 
         [TestMethod]
