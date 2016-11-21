@@ -1,37 +1,19 @@
-/*
-  In App.xaml:
-  <Application.Resources>
-      <vm:ViewModelLocator xmlns:vm="clr-namespace:FitSense"
-                           x:Key="Locator" />
-  </Application.Resources>
-  
-  In the View:
-  DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
-
-  You can also use Blend to do all this with the tool's support.
-  See http://www.galasoft.ch/mvvm
-*/
-
-using fitsense.DAL;
-using FitSense.Dependencies;
-using FitSense.Models;
-using FitSense.Services;
+﻿using FitSense.Dependencies;
+using FitSense.ViewModels;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using Xamarin.Forms;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FitSense.ViewModels
+namespace test.fitsense.mocks
 {
-    /// <summary>
-    /// This class contains static references to all the view models in the
-    /// application and provides an entry point for the bindings.
-    /// </summary>
-    public class ViewModelLocator
+    class ViewModelLocatorMock
     {
-        /// <summary>
-        /// Initializes a new instance of the ViewModelLocator class.
-        /// </summary>
-        public ViewModelLocator()
+
+        public ViewModelLocatorMock()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
@@ -46,27 +28,20 @@ namespace FitSense.ViewModels
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
-            SimpleIoc.Default.Register<INavigationService, NavigationService>();
-            // DANIEL: ik denk dat ge zo constructor injection moet doen
-            SimpleIoc.Default.Register<IUserDataService>(() => new UserDataService(
-                new CategoryRepository(),
-                new ExerciseRepository(),
-                new SetRepository()));
-
-            SimpleIoc.Default.Register<IConnectivity>(() => DependencyService.Get<IConnectivity>());
-            SimpleIoc.Default.Register<IBluetoothService>(() => DependencyService.Get<IBluetoothService>());
+            SimpleIoc.Default.Register<INavigationService, NavigationServiceMock>();
+            SimpleIoc.Default.Register<IUserDataService, UserDataServiceMock>();
+            SimpleIoc.Default.Register<IConnectivity, ConnectivityMock>();
+            //SimpleIoc.Default.Register<SensorDevice>();
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<SensorConnectViewModel>();
-            SimpleIoc.Default.Register<SensorDevice>();
             SimpleIoc.Default.Register<CategoriesViewModel>();
 
             SimpleIoc.Default.Register<ExercisesViewModel>();
             SimpleIoc.Default.Register<ExerciseViewModel>();
             SimpleIoc.Default.Register<SetsCarouselViewModel>();
             SimpleIoc.Default.Register<ActiveSetViewModel>();
-            //SimpleIoc.Default.Register<IDummyRepository, DummyRepository>();
         }
 
         public MainViewModel Main
@@ -109,6 +84,14 @@ namespace FitSense.ViewModels
             }
         }
 
+        public ExerciseViewModel ExerciseViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ExerciseViewModel>();
+            }
+        }
+
         public SetsCarouselViewModel SetsCarouselViewModel
         {
             get
@@ -123,11 +106,6 @@ namespace FitSense.ViewModels
             {
                 return ServiceLocator.Current.GetInstance<ActiveSetViewModel>();
             }
-        }
-
-        public static void Cleanup()
-        {
-            // TODO Clear the ViewModels
         }
     }
 }

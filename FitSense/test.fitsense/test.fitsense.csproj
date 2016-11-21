@@ -117,19 +117,23 @@
     <SDKReference Include="TestPlatform, Version=14.0" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActiveSetViewModelTest.cs" />
-    <Compile Include="CategoriesViewModelTest.cs" />
-    <Compile Include="ExercisesViewModelTest.cs" />
-    <Compile Include="LoginViewModelTest.cs" />
-    <Compile Include="MainViewModelTest.cs" />
-    <Compile Include="mocks\ConnectivityMock.cs" />
-    <Compile Include="mocks\NavigationServiceMock.cs" />
-    <Compile Include="ExerciseViewModelTest.cs" />
-    <Compile Include="mocks\SetViewModelMock.cs" />
-    <Compile Include="mocks\UserDataServiceMock.cs" />
-    <Compile Include="mocks\UserRepositoryMock.cs" />
-    <Compile Include="mocks\ViewModelLocatorMock.cs" />
+    <Compile Include="Tests\ViewModels\ActiveSetViewModelTest.cs" />
+    <Compile Include="Tests\ViewModels\CategoriesViewModelTest.cs" />
+    <Compile Include="Tests\ViewModels\ExercisesViewModelTest.cs" />
+    <Compile Include="Tests\ViewModels\LoginViewModelTest.cs" />
+    <Compile Include="Tests\ViewModels\MainViewModelTest.cs" />
+    <Compile Include="mocks\LibraryMocks\AdapterMock.cs" />
+    <Compile Include="mocks\NativeClassMocks\BluetoothServiceMock.cs" />
+    <Compile Include="mocks\NativeClassMocks\ConnectivityMock.cs" />
+    <Compile Include="mocks\LibraryMocks\DeviceMock.cs" />
+    <Compile Include="mocks\ServiceMocks\NavigationServiceMock.cs" />
+    <Compile Include="Tests\ViewModels\ExerciseViewModelTest.cs" />
+    <Compile Include="mocks\ViewModels\SetViewModelMock.cs" />
+    <Compile Include="mocks\ServiceMocks\UserDataServiceMock.cs" />
+    <Compile Include="mocks\Repository\UserRepositoryMock.cs" />
+    <Compile Include="mocks\ViewModels\ViewModelLocatorMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SensorConnectViewModelTest.cs" />
     <Compile Include="SetsCarouselViewModelTest.cs" />
     <Compile Include="SetViewModelTest.cs" />
   </ItemGroup>
@@ -177,6 +181,10 @@
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Robotics.Mobile.Core, Version=1.0.5500.30933, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\FitSenseApp\Components\Monkey.Robotics-0.5.2\lib\android\Robotics.Mobile.Core.dll</HintPath>
+    </Reference>
     <Reference Include="test.fitsense.dal">
       <HintPath>..\References\test.fitsense.dal\test.fitsense.dal.dll</HintPath>
     </Reference>
@@ -207,6 +215,7 @@
       <Name>FitSense</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
