@@ -3,15 +3,12 @@ using FitSense.Dependencies;
 using FitSense.ViewModels;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using test.fitsense.mocks;
 
 namespace test.fitsense
 {
+    [TestClass]
     class SetsCarouselViewModelTest
     {
         private IUserDataService userDataService;
@@ -40,10 +37,10 @@ namespace test.fitsense
         }
 
         [TestMethod]
-        public void IsDataLoaded()
+        public void IsDataNotNull()
         {
-            var viewmodel = GetViewModel();
-            Assert.IsNotNull(viewmodel.SetViews);
+            var viewModel = GetViewModel();
+            Assert.IsNotNull(viewModel.SetViews);
         }
     }
 }
