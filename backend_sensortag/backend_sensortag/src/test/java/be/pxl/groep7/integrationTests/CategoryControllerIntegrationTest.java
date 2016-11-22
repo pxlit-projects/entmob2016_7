@@ -90,7 +90,7 @@ public class CategoryControllerIntegrationTest {
 	}
 
 	@Test
-	public void getCategoriesAsList() throws IOException, Exception {
+	public void getCategoriesAsListTest() throws IOException, Exception {
 		mockMvc.perform(get(CategoryRestController.BASEURL+"/all")
 				.with(user("user").password("123456")))
 		.andExpect(status().isOk())
@@ -99,7 +99,7 @@ public class CategoryControllerIntegrationTest {
 	}
 
 	@Test
-	public void getCategoryById() throws IOException, Exception {
+	public void getCategoryByIdTest() throws IOException, Exception {
 		mockMvc.perform(get(CategoryRestController.BASEURL+"/getById/" + category1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -109,7 +109,7 @@ public class CategoryControllerIntegrationTest {
 	}
 	
 	@Test
-	public void postCategoryAndTestIfCategoryCouldBeFoundInDB() throws IOException, Exception {
+	public void postCategoryAndTestIfCategoryCouldBeFoundInDBTest() throws IOException, Exception {
 		Category category4 = new Category();
 		category4.setName("Category 4");
 		
@@ -125,7 +125,7 @@ public class CategoryControllerIntegrationTest {
 	}
 	
 	@Test
-	public void postCategoryLikeDotNETAndTestIfCategoryCouldInserted() throws IOException, Exception {
+	public void postCategoryLikeDotNETAndTestIfCategoryCouldBeInsertedTest() throws IOException, Exception {
 		String json = "{\"CategoryID\": 0, \"Name\": \"Naam\"}";
 		System.out.println(json);
 		
@@ -137,7 +137,7 @@ public class CategoryControllerIntegrationTest {
 	}
 	
 	@Test
-	public void putCategoryAndTestIfEdited() throws IOException, Exception {
+	public void putCategoryAndTestIfEditedTest() throws IOException, Exception {
 		category2.setName("Nieuwe category");
 		
 		mockMvc.perform(put(CategoryRestController.BASEURL + "/" + category2.getId())	
@@ -151,7 +151,7 @@ public class CategoryControllerIntegrationTest {
 	}
 	
 	@Test
-	public void putCategoryWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
+	public void putCategoryWithoutGivingValidIdGeneratesNotFoundResponseTest() throws IOException, Exception {
 		category3.setName("Nieuwe category");
 		
 		mockMvc.perform(put(CategoryRestController.BASEURL + "/" + 0)	
@@ -163,7 +163,7 @@ public class CategoryControllerIntegrationTest {
 	}
 	
 	@Test
-	public void deleteCategoryAndTestIfItIsNotFoundInDB() throws IOException, Exception {
+	public void deleteCategoryAndTestIfItIsNotFoundInDBTest() throws IOException, Exception {
 		mockMvc.perform(delete(CategoryRestController.BASEURL+"/" + category1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -173,7 +173,7 @@ public class CategoryControllerIntegrationTest {
 	}
 	
 	@Test
-	public void deleteCategoryThatDoesNotExistsAndTestIfNotFoundIsReturned() throws Exception {
+	public void deleteCategoryThatDoesNotExistsAndTestIfNotFoundIsReturnedTest() throws Exception {
 		mockMvc.perform(delete(CategoryRestController.BASEURL+"/" + category3.getId()+1)	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -183,7 +183,7 @@ public class CategoryControllerIntegrationTest {
 	}
 	
 	@Test
-	public void testIfGetByIdIsAuthorized() throws IOException, Exception {
+	public void testIfGetByIdIsAuthorizedTest() throws IOException, Exception {
 		mockMvc.perform(get(CategoryRestController.BASEURL+"/getById/" + category1.getId())	
 				.header("host", "localhost:8080"))													
 				.andExpect(status().is(401));

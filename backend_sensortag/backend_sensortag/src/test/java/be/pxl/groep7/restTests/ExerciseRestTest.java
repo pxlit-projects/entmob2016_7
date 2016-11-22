@@ -134,7 +134,7 @@ private MockMvc mockMvc;
 	}
 	
 	@Test
-	public void postExistingExerciseFails() throws IOException, Exception {
+	public void postExistingExerciseFailsTest() throws IOException, Exception {
 		Exercise exercise1 = new Exercise(1, "Oefening 1", "Dit is een oefening", 1);
 		
 		Mockito.when(serviceMock.createOrUpdateExercise(exercise1)).thenReturn(exercise1);
@@ -148,7 +148,7 @@ private MockMvc mockMvc;
 	}
 	
 	@Test
-	public void putExistingExercise() throws IOException, Exception {
+	public void putExistingExerciseTest() throws IOException, Exception {
 		Exercise exercise1 = new Exercise(1, "Oefening 1", "Dit is een oefening", 1);
 		
 		Mockito.when(serviceMock.doesExerciseExist(1)).thenReturn(true);
@@ -165,7 +165,7 @@ private MockMvc mockMvc;
 	}
 	
 	@Test
-	public void putNonExistingExerciseFails() throws IOException, Exception {
+	public void putNonExistingExerciseFailsTest() throws IOException, Exception {
 		Exercise exercise1 = new Exercise(1, "Oefening 1", "Dit is een oefening", 1);
 		
 		Mockito.when(serviceMock.createOrUpdateExercise(exercise1)).thenReturn(exercise1);
@@ -180,7 +180,7 @@ private MockMvc mockMvc;
 	}
 	
 	@Test
-	public void deleteExistingExercise() throws Exception {
+	public void deleteExistingExerciseTest() throws Exception {
 		Exercise exercise1 = new Exercise(1, "Oefening 1", "Dit is een oefening", 1);
 		
 		Mockito.when(serviceMock.createOrUpdateExercise(exercise1)).thenReturn(exercise1);
@@ -193,7 +193,7 @@ private MockMvc mockMvc;
 	}
 	
 	@Test
-	public void deleteNonExistingExerciseFails() throws Exception {
+	public void deleteNonExistingExerciseFailsTest() throws Exception {
 		Exercise exercise1 = new Exercise(1, "Oefening 1", "Dit is een oefening", 1);
 		
 		Mockito.when(serviceMock.createOrUpdateExercise(exercise1)).thenReturn(exercise1);

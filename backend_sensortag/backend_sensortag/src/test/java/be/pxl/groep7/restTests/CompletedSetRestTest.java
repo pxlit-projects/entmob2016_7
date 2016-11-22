@@ -135,7 +135,7 @@ public class CompletedSetRestTest {
 	}
 	
 	@Test
-	public void postExistingCompletedSetFails() throws IOException, Exception {
+	public void postExistingCompletedSetFailsTest() throws IOException, Exception {
 		CompletedSet completedSet1 = new CompletedSet(1, 1, 10, 210, 1);
 		
 		Mockito.when(serviceMock.createOrUpdateCompletedSet(completedSet1)).thenReturn(completedSet1);
@@ -149,7 +149,7 @@ public class CompletedSetRestTest {
 	}
 	
 	@Test
-	public void putExistingCompletedSet() throws IOException, Exception {
+	public void putExistingCompletedSetTest() throws IOException, Exception {
 		CompletedSet completedSet1 = new CompletedSet(1, 1, 10, 210, 1);
 		
 		Mockito.when(serviceMock.doesCompletedSetExist(1)).thenReturn(true);
@@ -166,7 +166,7 @@ public class CompletedSetRestTest {
 	}
 	
 	@Test
-	public void putNonExistingCompletedSetFails() throws IOException, Exception {
+	public void putNonExistingCompletedSetFailsTest() throws IOException, Exception {
 		CompletedSet completedSet1 = new CompletedSet(1, 1, 10, 210, 1);
 		
 		Mockito.when(serviceMock.createOrUpdateCompletedSet(completedSet1)).thenReturn(completedSet1);
@@ -181,7 +181,7 @@ public class CompletedSetRestTest {
 	}
 	
 	@Test
-	public void deleteExistingCompletedSet() throws Exception {
+	public void deleteExistingCompletedSetTest() throws Exception {
 		CompletedSet completedSet1 = new CompletedSet(1, 1, 10, 210, 1);
 		
 		Mockito.when(serviceMock.createOrUpdateCompletedSet(completedSet1)).thenReturn(completedSet1);
@@ -194,7 +194,7 @@ public class CompletedSetRestTest {
 	}
 	
 	@Test
-	public void deleteNonExistingCompletedSetFails() throws Exception {
+	public void deleteNonExistingCompletedSetFailsTest() throws Exception {
 		CompletedSet completedSet1 = new CompletedSet(1, 1, 10, 210, 1);
 		
 		Mockito.when(serviceMock.createOrUpdateCompletedSet(completedSet1)).thenReturn(completedSet1);

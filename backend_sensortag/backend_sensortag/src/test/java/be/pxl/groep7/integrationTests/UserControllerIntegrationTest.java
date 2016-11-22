@@ -97,7 +97,7 @@ public class UserControllerIntegrationTest {
 	}
 
 	@Test
-	public void getUserById() throws IOException, Exception {
+	public void getUserByIdTest() throws IOException, Exception {
 		mockMvc.perform(get(UserRestController.BASEURL+"/getById/" + user1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -107,7 +107,7 @@ public class UserControllerIntegrationTest {
 	}
 	
 	@Test
-	public void postUserAndTestIfSetCouldBeFoundInDB() throws IOException, Exception {
+	public void postUserAndTestIfSetCouldBeFoundInDBTest() throws IOException, Exception {
 		User user4 = new User();
 		user4.setHeight(45);
 		user4.setName("Purple Minion");
@@ -127,7 +127,7 @@ public class UserControllerIntegrationTest {
 	}
 	
 	@Test
-	public void putUserAndTestIfEdited() throws IOException, Exception {
+	public void putUserAndTestIfEditedTest() throws IOException, Exception {
 		user2.setHeight(144);
 		
 		mockMvc.perform(put(UserRestController.BASEURL + "/" + user2.getId())	
@@ -141,7 +141,7 @@ public class UserControllerIntegrationTest {
 	}
 	
 	@Test
-	public void putSetWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
+	public void putSetWithoutGivingValidIdGeneratesNotFoundResponseTest() throws IOException, Exception {
 		user3.setHeight(135);
 		
 		mockMvc.perform(put(UserRestController.BASEURL + "/" + 0)	
@@ -153,7 +153,7 @@ public class UserControllerIntegrationTest {
 	}
 	
 	@Test
-	public void deleteUserAndTestIfItIsNotFoundInDB() throws IOException, Exception {
+	public void deleteUserAndTestIfItIsNotFoundInDBTest() throws IOException, Exception {
 		mockMvc.perform(delete(UserRestController.BASEURL+"/" + user1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -163,7 +163,7 @@ public class UserControllerIntegrationTest {
 	}
 	
 	@Test
-	public void deleteUserThatDoesNotExistsAndTestIfNotFoundIsReturned() throws Exception {
+	public void deleteUserThatDoesNotExistsAndTestIfNotFoundIsReturnedTest() throws Exception {
 		mockMvc.perform(delete(UserRestController.BASEURL+"/" + user3.getId()+1)	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -173,7 +173,7 @@ public class UserControllerIntegrationTest {
 	}
 	
 	@Test
-	public void testIfGetByIdIsAuthorized() throws IOException, Exception {
+	public void testIfGetByIdIsAuthorizedTest() throws IOException, Exception {
 		mockMvc.perform(get(UserRestController.BASEURL+"/getById/" + user1.getId())	
 				.header("host", "localhost:8080"))													
 				.andExpect(status().is(401));

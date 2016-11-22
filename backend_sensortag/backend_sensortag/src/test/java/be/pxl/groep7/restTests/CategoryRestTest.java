@@ -137,7 +137,7 @@ public class CategoryRestTest {
 	}
 	
 	@Test
-	public void postExistingCategoryFails() throws IOException, Exception {
+	public void postExistingCategoryFailsTest() throws IOException, Exception {
 		Category category1 = new Category(1, "Category 1");
 		
 		Mockito.when(serviceMock.createOrUpdateCategory(category1)).thenReturn(category1);
@@ -151,7 +151,7 @@ public class CategoryRestTest {
 	}
 	
 	@Test
-	public void putExistingCategory() throws IOException, Exception {
+	public void putExistingCategoryTest() throws IOException, Exception {
 		Category category1 = new Category(1, "Category 1");
 		
 		Mockito.when(serviceMock.createOrUpdateCategory(category1)).thenReturn(category1);
@@ -168,7 +168,7 @@ public class CategoryRestTest {
 	}
 	
 	@Test
-	public void putNonExistingCategoryFails() throws IOException, Exception {
+	public void putNonExistingCategoryFailsTest() throws IOException, Exception {
 		Category category1 = new Category(1, "Category 1");
 		
 		Mockito.when(serviceMock.createOrUpdateCategory(category1)).thenReturn(category1);
@@ -183,7 +183,7 @@ public class CategoryRestTest {
 	}
 	
 	@Test
-	public void deleteExistingCategory() throws Exception {
+	public void deleteExistingCategoryTest() throws Exception {
 		Category category1 = new Category(1, "Category 1");
 		
 		Mockito.when(serviceMock.createOrUpdateCategory(category1)).thenReturn(category1);
@@ -196,7 +196,7 @@ public class CategoryRestTest {
 	}
 	
 	@Test
-	public void deleteNonExistingCategoryFails() throws Exception {
+	public void deleteNonExistingCategoryFailsTest() throws Exception {
 		Category category1 = new Category(1, "Category 1");
 		
 		Mockito.when(serviceMock.createOrUpdateCategory(category1)).thenReturn(category1);
