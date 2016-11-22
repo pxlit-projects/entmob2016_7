@@ -42,6 +42,7 @@ namespace test.fitsense.mocks
             SimpleIoc.Default.Register<IExerciseRepository, ExerciseRepositoryMock>();
             SimpleIoc.Default.Register<ISetRepository, SetRepositoryMock>();
             SimpleIoc.Default.Register<IUserRepository, UserRepositoryMock>();
+            SimpleIoc.Default.Register<ICompletedSetRepository, CompletedSetRepositoryMock>();
 
             SimpleIoc.Default.Register<IDataService, DataService>();
 

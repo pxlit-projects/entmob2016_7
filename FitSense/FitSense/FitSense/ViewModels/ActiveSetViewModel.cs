@@ -10,7 +10,7 @@ namespace FitSense.ViewModels
 {
     public class ActiveSetViewModel : ViewModelBase
     {
-        private IDataService userDataService;
+        private IDataService dataService;
         private INavigationService navigationService;
 
         public RelayCommand CancelSet { get; private set; }
@@ -64,9 +64,11 @@ namespace FitSense.ViewModels
             }
         }
 
-        public ActiveSetViewModel(INavigationService navigationService, IDataService userDataService)
+        public Set ActiveSet { get; private set; }
+
+        public ActiveSetViewModel(INavigationService navigationService, IDataService dataService)
         {
-            this.userDataService = userDataService;
+            this.dataService = dataService;
             this.navigationService = navigationService;
 
             InitializeMessages();
@@ -117,6 +119,7 @@ namespace FitSense.ViewModels
         {
             MessengerInstance.Register<Set>(this, Messages.SetUpdated, (sender) =>
             {
+                this.ActiveSet = sender;
                 TimeLeft = sender.MaxTime;
                 RepsLeft = sender.Reps;
             });
@@ -126,7 +129,17 @@ namespace FitSense.ViewModels
         {
             await navigationService.PopToRootAsync().ContinueWith((antecedent) =>
             {
-                //MessengerInstance.Send(Set, Messages.SetUpdated);
+                if(TimeLeft > 0)
+                {
+                    CompletedSet completedSet = new CompletedSet()
+                    {
+                        Duration = ActiveSet.MaxTime - TimeLeft,
+                        SetID = ActiveSet.SetID,
+                        Time = DateTime.Now.Ticks,
+                        UserID = dataService.LoggedInUser.UserID
+                    };
+                    dataService.SendCompletedSet(completedSet);
+                }
             });
         }
     }

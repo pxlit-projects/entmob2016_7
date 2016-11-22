@@ -20,6 +20,7 @@ namespace FitSense.Services
         private ICategoryRepository categoryRepository;
         private IExerciseRepository exerciseRepository;
         private ISetRepository setRepository;
+        private ICompletedSetRepository completedSetRepository;
 
         public User LoggedInUser { get; set; }
 
@@ -36,12 +37,17 @@ namespace FitSense.Services
         //    }
         //}
 
-        public DataService(IUserRepository userRepository, ICategoryRepository categoryRepository, IExerciseRepository exerciseRepository, ISetRepository setRepository)
+        public DataService(IUserRepository userRepository, 
+            ICategoryRepository categoryRepository, 
+            IExerciseRepository exerciseRepository, 
+            ISetRepository setRepository,
+            ICompletedSetRepository completedSetRepository)
         {
             this.userRepository = userRepository;
             this.categoryRepository = categoryRepository;
             this.exerciseRepository = exerciseRepository;
             this.setRepository = setRepository;
+            this.completedSetRepository = completedSetRepository;
         }
 
         public Task LoginAsync(string userName, string password)
@@ -91,6 +97,11 @@ namespace FitSense.Services
                 }
             }
             return setViews;
+        }
+
+        public async Task SendCompletedSet(CompletedSet set)
+        {
+            await completedSetRepository.AddCompletedSet(set, ApiUrl.BASEURL);
         }
     }
 }

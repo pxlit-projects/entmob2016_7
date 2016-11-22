@@ -43,6 +43,7 @@ namespace FitSense.ViewModels
             SimpleIoc.Default.Register<ICategoryRepository, CategoryRepository>();
             SimpleIoc.Default.Register<IExerciseRepository, ExerciseRepository>();
             SimpleIoc.Default.Register<ISetRepository, SetRepository>();
+            SimpleIoc.Default.Register<ICompletedSetRepository, CompletedSetRepository>();
             SimpleIoc.Default.Register<IDataService, DataService>();
             //SimpleIoc.Default.Register<IUserDataService>(() => new UserDataService(
             //    new CategoryRepository(),

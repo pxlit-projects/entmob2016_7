@@ -120,6 +120,7 @@
     <Compile Include="mocks\LibraryMocks\CharacteristicMock.cs" />
     <Compile Include="mocks\LibraryMocks\ServiceMock.cs" />
     <Compile Include="mocks\Repository\CategoryRepositoryMock.cs" />
+    <Compile Include="mocks\Repository\CompletedSetRepositoryMock.cs" />
     <Compile Include="mocks\Repository\ExerciseRepositoryMock.cs" />
     <Compile Include="mocks\Repository\SetRepositoryMock.cs" />
     <Compile Include="mocks\ServiceMocks\DataServiceMock.cs" />
