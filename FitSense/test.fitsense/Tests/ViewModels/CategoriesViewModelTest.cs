@@ -1,4 +1,5 @@
-﻿using fitsense.models;
+﻿using fitsense.DAL.dependencies;
+using fitsense.models;
 using FitSense.Constants;
 using FitSense.Dependencies;
 using FitSense.ViewModels;
@@ -10,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
 using test.fitsense.mocks;
+using test.fitsense.mocks.Repository;
 using test.fitsense.mocks.ServiceMocks;
 
 namespace test.fitsense
@@ -29,8 +31,10 @@ namespace test.fitsense
         public void AreCategoriesLoadedTest()
         {
             var categories = new List<Category>() { new Category() { Name = "Arms" } };
-            var dataService = ServiceLocator.Current.GetInstance<IDataService>() as DataServiceMock;
-            dataService.Categories = categories;
+            var categoriesRepository = ServiceLocator.Current.GetInstance<ICategoryRepository>() as CategoryRepositoryMock;
+            categoriesRepository.Categories = categories;
+            //var dataService = ServiceLocator.Current.GetInstance<IDataService>() as DataServiceMock;
+            //dataService.Categories = categories;
 
 
             var viewModel = locatorMock.CategoriesViewModel;

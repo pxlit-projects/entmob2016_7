@@ -19,6 +19,7 @@ namespace FitSense.Models
 
         public MovementService MovementService { get; set; }
         public HumidityService HumidityService { get; set; }
+        public KeyService KeyService { get; set; }
 
 
         public IDevice ConnectedDevice

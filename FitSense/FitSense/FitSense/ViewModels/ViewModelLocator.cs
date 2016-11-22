@@ -34,6 +34,7 @@ namespace FitSense.ViewModels
         /// </summary>
         public ViewModelLocator()
         {
+            
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<INavigationService, NavigationService>();

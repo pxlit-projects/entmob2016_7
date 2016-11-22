@@ -1,4 +1,5 @@
-﻿using fitsense.models;
+﻿using fitsense.DAL.dependencies;
+using fitsense.models;
 using FitSense.Constants;
 using FitSense.Dependencies;
 using FitSense.ViewModels;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using test.fitsense.mocks;
+using test.fitsense.mocks.Repository;
 using test.fitsense.mocks.ServiceMocks;
 
 namespace test.fitsense
@@ -20,15 +22,7 @@ namespace test.fitsense
     {
         private ViewModelLocatorMock locatorMock;
 
-        private async void sendMessage()
-        {
-            Messenger.Reset();
-            var categories = await ServiceLocator.Current.GetInstance<IDataService>().GetAllCategoriesAsync();
-            IMessenger messenger = Messenger.Default;
-            messenger.Send(categories.FirstOrDefault(), Messages.CategoryUpdated);
-        }
-
-        [TestInitialize]
+       [TestInitialize]
         public void Init()
         {
             locatorMock = new ViewModelLocatorMock();
@@ -38,17 +32,21 @@ namespace test.fitsense
         public void AreExercisesSetTest()
         {
             Category category = new Category() { Name = "Arms" };
-            var dataservice = ServiceLocator.Current.GetInstance<IDataService>() as DataServiceMock;
-            dataservice.Exercises = new List<Exercise>()
-            {
-                new Exercise()
-                {
-                    Name = "something", Category = category
-                }
-            };
-            dataservice.Categories = new List<Category>() { category };
+
+            //var dataservice = ServiceLocator.Current.GetInstance<IDataService>() as DataServiceMock;
+            var exercise = new Exercise(){ Name = "something", Category = category };
+            
+            //dataservice.Categories = new List<Category>() { category };
+            var categoryRepository = ServiceLocator.Current.GetInstance<ICategoryRepository>() as CategoryRepositoryMock;
+            var exerciseRepository = ServiceLocator.Current.GetInstance<IExerciseRepository>() as ExerciseRepositoryMock;
+            categoryRepository.Categories = new List<Category>() { category };
+            exerciseRepository.Exercises = new List<Exercise>() { exercise };
+
             var viewmodel = locatorMock.ExercisesViewModel;
-            sendMessage();
+
+            IMessenger messenger = Messenger.Default;
+            messenger.Send(category, Messages.CategoryUpdated);
+
             Assert.IsNotNull(viewmodel.ExercisesViews);
         }
 
@@ -56,7 +54,12 @@ namespace test.fitsense
         public void IsCategorySetTest()
         {
             Messenger.Reset();
-            Category category = new Category { Name = "Arms" };
+            Category category = new Category { Name = "Arms", CategoryID = 1 };
+            Exercise exercise = new Exercise { CategoryID = 1, Name = "lift" };
+            var categoryRepository = ServiceLocator.Current.GetInstance<ICategoryRepository>() as CategoryRepositoryMock;
+            var exerciseRepository = ServiceLocator.Current.GetInstance<IExerciseRepository>() as ExerciseRepositoryMock;
+            categoryRepository.Categories = new List<Category>() { category };
+            exerciseRepository.Exercises = new List<Exercise>() { exercise };
 
             var viewmodel = locatorMock.ExercisesViewModel;
             //viewmodel.Initialization.Wait();
