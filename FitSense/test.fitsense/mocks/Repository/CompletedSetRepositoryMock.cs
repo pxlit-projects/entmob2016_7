@@ -14,7 +14,8 @@ namespace test.fitsense.mocks.Repository
 
         public async Task AddCompletedSet(CompletedSet completedSet, string baseUrl)
         {
-            await Task.Run(() => CompletedSets.Add(completedSet));
+            CompletedSets.Add(completedSet);
+            await Task.Delay(1);
         }
 
         public Task<List<CompletedSet>> GetCompletedSetsFromSetAsync(Set set, string baseUrl)

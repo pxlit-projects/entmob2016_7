@@ -74,7 +74,7 @@ namespace test.fitsense.mocks
         public Task PopToRootAsync()
         {
             Poped = true;
-            return Task.Delay(1);
+            return Task.Delay(0);
         }
 
         public Task PopToRootAsync(bool animated)

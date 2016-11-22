@@ -18,7 +18,7 @@ namespace FitSense.ViewModels
         public RelayCommand RepButtonCommand { get; private set; }
 
         public Set ActiveSet { get; private set; }
-        private bool IsFinished { get; set; }
+        public bool IsFinished { get; set; }
 
         private string startButtonText;
         public string StartButtonText
@@ -193,7 +193,7 @@ namespace FitSense.ViewModels
             long value = 0;
             value = (value + now.Day) * 100;
             value = (value + now.Month) * 100;
-            value = (value + now.Year % 100) * 100;
+            value = (value + (now.Year % 100)) * 100;
             value = (value + now.Hour) * 100;
             value = (value + now.Minute) * 100;
             value = (value + now.Second) * 100;

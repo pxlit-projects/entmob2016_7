@@ -1,4 +1,5 @@
-﻿using fitsense.models;
+﻿using fitsense.DAL.dependencies;
+using fitsense.models;
 using FitSense.Constants;
 using FitSense.Dependencies;
 using FitSense.ViewModels;
@@ -6,7 +7,9 @@ using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
+using System.Collections.Generic;
 using test.fitsense.mocks;
+using test.fitsense.mocks.Repository;
 
 namespace test.fitsense
 {
@@ -63,5 +66,31 @@ namespace test.fitsense
 
             Assert.IsTrue(navigation.Poped);
         }
+
+        [TestMethod]
+        public void RepButtonCommandTest()
+        {
+            var viewmodel = locatorMock.ActiveSetViewModel;
+            var set = new Set()
+            {
+                MaxTime = 100,
+                SetID = 1,
+                Points = 10,
+                Reps = 10,
+                ExerciseID = 1
+            };
+
+            Messenger.Default.Send<Set>(set, Messages.SetUpdated);
+
+            Assert.IsNotNull(viewmodel.RepButtonCommand);
+            Assert.AreEqual(set.Reps, viewmodel.RepsLeft);
+            
+            viewmodel.RepButtonCommand.Execute(null);
+
+            Assert.AreEqual(set.Reps - 1, viewmodel.RepsLeft);
+            
+        }
+
+        
     }
 }
