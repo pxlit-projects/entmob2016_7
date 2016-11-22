@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace FitSense.Models
 {
-    class SensorService
+    public class SensorService
     {
 
         protected IService service;

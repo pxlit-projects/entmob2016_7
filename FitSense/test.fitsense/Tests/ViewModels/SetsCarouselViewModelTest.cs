@@ -10,20 +10,9 @@ using test.fitsense.mocks;
 namespace test.fitsense
 {
     [TestClass]
-    class SetsCarouselViewModelTest
+    public class SetsCarouselViewModelTest
     {
-        //private IUserDataService userDataService;
         private ViewModelLocatorMock locatorMock;
-
-        //private SetsCarouselViewModel GetViewModel()
-        //{
-        //    var viewmodel = new SetsCarouselViewModel(null, this.userDataService);
-        //    IMessenger messenger = Messenger.Default;
-        //    var category = userDataService.GetAllCategoriesAsync().FirstOrDefault();
-        //    var exercise = userDataService.GetExercisesFromCategoryAsync(category);
-        //    messenger.Send(exercise, Messages.ExerciseUpdated);
-        //    return viewmodel;
-        //}
 
         private async void sendMessage()
         {

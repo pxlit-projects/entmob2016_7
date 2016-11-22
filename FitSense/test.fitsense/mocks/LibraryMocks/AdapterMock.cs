@@ -9,7 +9,7 @@ namespace test.fitsense.mocks
 {
     class AdapterMock : IAdapter
     {
-        private List<IDevice> connectedDevices;
+        private List<IDevice> connectedDevices = new List<IDevice>();
         public IList<IDevice> ConnectedDevices
         {
             get
@@ -18,7 +18,7 @@ namespace test.fitsense.mocks
             }
         }
 
-        private List<IDevice> discoveredDevices;
+        private List<IDevice> discoveredDevices = new List<IDevice>();
         public IList<IDevice> DiscoveredDevices
         {
             get
@@ -65,11 +65,16 @@ namespace test.fitsense.mocks
             IsScanning = false;
         }
 
-        public void discoverDevice(IDevice device)
+        public void DiscoverDevice(IDevice device)
         {
             var args = new DeviceDiscoveredEventArgs();
             args.Device = device;
             DeviceDiscovered?.Invoke(this, args);
+        }
+
+        public void ThrowScanTimeElapsedEvent()
+        {
+            ScanTimeoutElapsed(this, new EventArgs());
         }
     }
 }

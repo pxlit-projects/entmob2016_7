@@ -3,6 +3,7 @@ using FitSense.Constants;
 using FitSense.Dependencies;
 using FitSense.ViewModels;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
 using test.fitsense.mocks;
@@ -41,7 +42,7 @@ namespace test.fitsense
         }
 
         [TestMethod]
-        public void DataLoaded()
+        public void DataLoadedTest()
         {
             //var viewmodel = GetViewModel();
             var viewmodel = locatorMock.ActiveSetViewModel;
@@ -51,7 +52,7 @@ namespace test.fitsense
         }
 
         [TestMethod]
-        public void IsCancelSetLoaded()
+        public void IsCancelSetLoadedTest()
         {
             //var viewmodel = GetViewModel();
             var viewmodel = locatorMock.ActiveSetViewModel;
@@ -60,12 +61,25 @@ namespace test.fitsense
         }
 
         [TestMethod]
-        public void IsStartSetLoaded()
+        public void IsStartSetLoadedTest()
         {
             //var viewmodel = GetViewModel();
             var viewmodel = locatorMock.ActiveSetViewModel;
             sendMessage();
             Assert.IsNotNull(viewmodel.StartSet);
+        }
+
+        [TestMethod]
+        public void CanCancelSetTest()
+        {
+            var viewmodel = locatorMock.ActiveSetViewModel;
+            var navigation = ServiceLocator.Current.GetInstance<INavigationService>() as NavigationServiceMock;
+
+            Assert.IsNotNull(viewmodel.CancelSet);
+
+            viewmodel.CancelSet.Execute(null);
+
+            Assert.IsTrue(navigation.Poped);
         }
     }
 }

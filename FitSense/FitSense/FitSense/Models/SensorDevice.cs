@@ -1,4 +1,5 @@
 ﻿using FitSense.Dependencies;
+using Microsoft.Practices.ServiceLocation;
 using Robotics.Mobile.Core.Bluetooth.LE;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using Xamarin.Forms;
 
 namespace FitSense.Models
 {
-    class SensorDevice
+    public class SensorDevice
     {
         private IDevice connectedDevice;
         private IAdapter adapter;
@@ -34,8 +35,8 @@ namespace FitSense.Models
 
         public SensorDevice()
         {
-            this.adapter = DependencyService.Get<IBluetoothService>().Adapter;
-
+            //this.adapter = DependencyService.Get<IBluetoothService>().Adapter;
+            this.adapter = ServiceLocator.Current.GetInstance<IBluetoothService>().Adapter;
             InitializeEvents();
         }
 

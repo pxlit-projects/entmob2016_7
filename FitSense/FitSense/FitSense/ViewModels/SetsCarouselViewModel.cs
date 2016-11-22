@@ -1,7 +1,6 @@
 ﻿using fitsense.models;
 using FitSense.Dependencies;
 using FitSense.Extensions;
-using FitSense.Repositories;
 using GalaSoft.MvvmLight;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

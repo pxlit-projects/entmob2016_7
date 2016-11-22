@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FitSense.Models
 {
-    class TemperatureService
+    public class TemperatureService
     {
         private IService service;
 

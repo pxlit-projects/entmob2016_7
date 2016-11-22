@@ -12,7 +12,7 @@ using test.fitsense.mocks;
 namespace test.fitsense
 {
     [TestClass]
-    class MainViewModelTest
+    public class MainViewModelTest
     {
         private ViewModelLocatorMock locatorMock;
 
@@ -22,6 +22,7 @@ namespace test.fitsense
             locatorMock = new ViewModelLocatorMock();
         }
 
+        [TestMethod]
         public void ConnectCommandTest()
         {
             var viewmodel = locatorMock.Main;
@@ -31,6 +32,7 @@ namespace test.fitsense
             Assert.AreEqual(PageUrls.SENSORCONNECTVIEW, navMock.NavigatedTo);
         }
 
+        [TestMethod]
         public void CategoriesCommandTest()
         {
             var viewmodel = locatorMock.Main;

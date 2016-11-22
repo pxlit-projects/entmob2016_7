@@ -36,17 +36,6 @@ namespace FitSense.ViewModels
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
-
             SimpleIoc.Default.Register<INavigationService, NavigationService>();
 
             SimpleIoc.Default.Register<IUserRepository, UserRepository>();
@@ -62,10 +51,11 @@ namespace FitSense.ViewModels
             SimpleIoc.Default.Register<IConnectivity>(() => DependencyService.Get<IConnectivity>());
             SimpleIoc.Default.Register<IBluetoothService>(() => DependencyService.Get<IBluetoothService>());
 
+            SimpleIoc.Default.Register<SensorDevice>();
+
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<SensorConnectViewModel>();
-            SimpleIoc.Default.Register<SensorDevice>();
             SimpleIoc.Default.Register<CategoriesViewModel>();
 
             SimpleIoc.Default.Register<ExercisesViewModel>();

@@ -11,57 +11,42 @@ namespace test.fitsense.mocks
     {
         public Guid ID
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get; set;
         }
 
         public string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get; set;
         }
 
         public object NativeDevice
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get; set;
         }
 
         public int Rssi
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get; set;
         }
 
         public IList<IService> Services
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get; set;
         }
 
         public DeviceState State
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get; set;
         }
 
         public event EventHandler ServicesDiscovered;
 
         public void DiscoverServices()
         {
-            throw new NotImplementedException();
+            if(Services != null && Services.Count > 0)
+            {
+                ServicesDiscovered?.Invoke(this, new EventArgs());
+            }
         }
     }
 }

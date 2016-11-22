@@ -1,5 +1,6 @@
 ﻿using fitsense.DAL.dependencies;
 using FitSense.Dependencies;
+using FitSense.Models;
 using FitSense.Services;
 using FitSense.ViewModels;
 using GalaSoft.MvvmLight.Ioc;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using test.fitsense.mocks.Repository;
+using test.fitsense.mocks.ServiceMocks;
 
 namespace test.fitsense.mocks
 {
@@ -32,9 +34,14 @@ namespace test.fitsense.mocks
             ////}
 
             SimpleIoc.Default.Register<INavigationService, NavigationServiceMock>();
-            SimpleIoc.Default.Register<IDataService, UserDataServiceMockOld>();
+            //SimpleIoc.Default.Register<IDataService, UserDataServiceMockOld>();
+            SimpleIoc.Default.Register<IDataService, DataServiceMock>();
             SimpleIoc.Default.Register<IConnectivity, ConnectivityMock>();
             //SimpleIoc.Default.Register<SensorDevice>();
+
+            SimpleIoc.Default.Register<IBluetoothService, BluetoothServiceMock>();
+
+            SimpleIoc.Default.Register<SensorDevice>();
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();

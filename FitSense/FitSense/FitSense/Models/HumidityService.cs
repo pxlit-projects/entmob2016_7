@@ -8,7 +8,7 @@ using FitSense.Helpers;
 
 namespace FitSense.Models
 {
-    class HumidityService : SensorService
+    public class HumidityService : SensorService
     {
         public delegate void ValueChanged(object sender, ValueChangedEventArgs<float> args);
         public event ValueChanged OnTempValueChanged;

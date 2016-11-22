@@ -11,7 +11,7 @@ namespace test.fitsense.mocks
     class NavigationServiceMock : INavigationService
     {
         public string NavigatedTo { get; private set; }
-        public bool poped { get; private set; }
+        public bool Poped { get; private set; }
 
         public IReadOnlyList<global::Xamarin.Forms.Page> ModalStack
         {
@@ -49,74 +49,74 @@ namespace test.fitsense.mocks
 
         public Task<global::Xamarin.Forms.Page> PopAsync()
         {
-            poped = true;
-            return null;
+            Poped = true;
+            return new Task<Xamarin.Forms.Page>(() => new Xamarin.Forms.Page());
         }
 
         public Task<global::Xamarin.Forms.Page> PopAsync(bool animated)
         {
-            poped = true;
-            return null;
+            Poped = true;
+            return new Task<Xamarin.Forms.Page>(() => new Xamarin.Forms.Page()); 
         }
 
         public Task<global::Xamarin.Forms.Page> PopModalAsync()
         {
-            poped = true;
-            return null;
+            Poped = true;
+            return new Task<Xamarin.Forms.Page>(() => new Xamarin.Forms.Page()); 
         }
 
         public Task<global::Xamarin.Forms.Page> PopModalAsync(bool animated)
         {
-            poped = true;
-            return null;
+            Poped = true;
+            return new Task<Xamarin.Forms.Page>(() => new Xamarin.Forms.Page());
         }
 
         public Task PopToRootAsync()
         {
-            poped = true;
-            return null;
+            Poped = true;
+            return Task.Delay(1);
         }
 
         public Task PopToRootAsync(bool animated)
         {
-            poped = true;
-            return null;
+            Poped = true;
+            return Task.Delay(1);
         }
 
         public Task PushAsync(string pageName)
         {
             NavigatedTo = pageName;
-            return null;
+            return Task.Delay(1);
         }
 
         public Task PushAsync(string pageName, object objectToPass)
         {
             NavigatedTo = pageName;
-            return null;
+            return Task.Delay(1);
         }
 
         public Task PushAsync(string pageName, bool animated)
         {
             NavigatedTo = pageName;
-            return null;
+            return Task.Delay(1);
         }
 
         public Task PushModalAsync(string pageName)
         {
             NavigatedTo = pageName;
-            return null;
+            return Task.Delay(1);
         }
 
         public Task PushModalAsync(string pageName, bool animated)
         {
             NavigatedTo = pageName;
-            return null;
+            return Task.Delay(1);
         }
 
         public Task PushModalAsync(string pageName, object objectToPass)
         {
             NavigatedTo = pageName;
-            return null;
+            return Task.Delay(1);
         }
 
         public void RemovePage(string pageName)

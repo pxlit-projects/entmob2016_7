@@ -2,7 +2,6 @@
 using FitSense.Constants;
 using FitSense.Dependencies;
 using FitSense.Extensions;
-using FitSense.Repositories;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -43,14 +42,14 @@ namespace FitSense.ViewModels
             this.navigationService = navigationService;
 
             InitializeCommands();
-            PreparingLoadAsync();
+            PreparingLoad();
         }
 
-        private async void PreparingLoadAsync()
+        private async void PreparingLoad()
         {
             await LoadDataAsync();
         }
-       
+
         private async Task LoadDataAsync()
         {
             var result = await userDataService.GetAllCategoriesAsync();

@@ -2,6 +2,7 @@
 using FitSense.Dependencies;
 using FitSense.ViewModels;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System.Linq;
 using test.fitsense.mocks;
@@ -28,11 +29,17 @@ namespace test.fitsense
         }
 
         [TestMethod]
-        public void IsGoToCarouselSet()
+        public void IsGoToCarouselSetTest()
         {
             //var viewmodel = GetViewModel();
             var viewmodel = locatorMock.ExerciseViewModel;
+            var navigation = ServiceLocator.Current.GetInstance<INavigationService>() as NavigationServiceMock;
+
             Assert.IsNotNull(viewmodel.GoToSetCarouselCommand);
+
+            viewmodel.GoToSetCarouselCommand.Execute(null);
+
+            Assert.AreEqual(PageUrls.SETSCAROUSEL, navigation.NavigatedTo);
         }
     }
 }

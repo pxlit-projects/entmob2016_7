@@ -9,7 +9,7 @@ using FitSense.Constants;
 
 namespace FitSense.Models
 {
-    class KeyService : SensorService
+    public class KeyService : SensorService
     {
         public delegate void ValueChanged(object sender, ValueChangedEventArgs<SensorKeys> args);
         public event ValueChanged OnKeyPushed;

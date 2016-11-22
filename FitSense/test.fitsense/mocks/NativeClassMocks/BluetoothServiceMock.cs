@@ -1,4 +1,5 @@
 ﻿using FitSense.Dependencies;
+using Robotics.Mobile.Core.Bluetooth.LE;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,15 @@ namespace test.fitsense.mocks
 {
     class BluetoothServiceMock : IBluetoothService
     {
+        private IAdapter adapter;
+
         public global::Robotics.Mobile.Core.Bluetooth.LE.IAdapter Adapter
         {
             get
             {
-                return new AdapterMock();
+                if (adapter == null)
+                    adapter = new AdapterMock();
+                return adapter;
             }
         }
 

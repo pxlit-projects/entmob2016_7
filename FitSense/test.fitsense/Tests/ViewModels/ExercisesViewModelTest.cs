@@ -11,29 +11,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using test.fitsense.mocks;
+using test.fitsense.mocks.ServiceMocks;
 
 namespace test.fitsense
 {
     [TestClass]
     public class ExercisesViewModelTest
     {
-        //private IUserDataService userDataService;
         private ViewModelLocatorMock locatorMock;
-
-        //private ExercisesViewModel GetViewModel()
-        //{
-        //    var viewmodel = new ExercisesViewModel(null, this.userDataService);
-        //    IMessenger messenger = Messenger.Default;
-        //    var category = userDataService.GetAllCategories().FirstOrDefault();
-        //    messenger.Send(category, Messages.CategoryUpdated);
-        //    return viewmodel;
-        //}
-
-        private void sendMessage()
+        
+        private async void sendMessage()
         {
+            Messenger.Reset();
+            var categories = await ServiceLocator.Current.GetInstance<IDataService>().GetAllCategoriesAsync();
             IMessenger messenger = Messenger.Default;
-            var category = ServiceLocator.Current.GetInstance<IDataService>().GetAllCategories().FirstOrDefault();
-            messenger.Send(category, Messages.CategoryUpdated);
+            messenger.Send(categories.FirstOrDefault(), Messages.CategoryUpdated);
         }
 
         [TestInitialize]
@@ -44,21 +36,38 @@ namespace test.fitsense
         }
 
         [TestMethod]
-        public void AreExercisesSet()
+        public void AreExercisesSetTest()
         {
             //var viewmodel = GetViewModel();
+            Category category = new Category() { Name = "Arms" };
+            var dataservice = ServiceLocator.Current.GetInstance<IDataService>() as DataServiceMock;
+            dataservice.Exercises = new List<Exercise>()
+            {
+                new Exercise()
+                {
+                    Name = "something", Category = category
+                }
+            };
+            dataservice.Categories = new List<Category>() { category };
             var viewmodel = locatorMock.ExercisesViewModel;
             sendMessage();
             Assert.IsNotNull(viewmodel.ExercisesViews);
         }
 
         [TestMethod]
-        public void IsCategorySet()
+        public void IsCategorySetTest()
         {
-            //var viewmodel = GetViewModel();
+            Messenger.Reset();
+            Category category = new Category { Name = "Arms" };
+
             var viewmodel = locatorMock.ExercisesViewModel;
-            sendMessage();
+
+            IMessenger messenger = Messenger.Default;
+            messenger.Send(category, Messages.CategoryUpdated);
+
             Assert.IsNotNull(viewmodel.Category);
+            Assert.AreEqual(category.Name, viewmodel.Category.Name);
+
         }
     }
 }

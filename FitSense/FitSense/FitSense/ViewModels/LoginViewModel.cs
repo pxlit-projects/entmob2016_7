@@ -27,8 +27,7 @@ namespace FitSense.ViewModels
         public string ValidationErrors { get; private set; }
 
         public RelayCommand LoginCommand { get; set; }
-        public RelayCommand HelpCommand { get; set; }
-
+        
         public bool CanLogin
         {
             get

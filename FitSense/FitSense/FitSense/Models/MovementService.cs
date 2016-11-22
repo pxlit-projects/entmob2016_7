@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace FitSense.Models
 {
-    class MovementService : SensorService
+    public class MovementService : SensorService
     {
         public delegate void ValueChanged(object sender, ValueChangedEventArgs<Vector3> args);
         public event ValueChanged OnValueChanged;

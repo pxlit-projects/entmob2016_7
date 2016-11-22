@@ -18,6 +18,17 @@ namespace test.fitsense.mocks.ServiceMocks
         public List<Set> Sets { get; set; }
         public List<SetViewModel> SetViewModels { get; set; }
 
+        public DataServiceMock()
+        {
+            Categories = new List<Category>()
+            {
+                new Category()
+                {
+                    Name = "Arms"
+                }
+            };
+        }
+
         public Task<List<Category>> GetAllCategoriesAsync()
         {
             return new Task<List<Category>>(() => Categories);

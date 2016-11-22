@@ -1,7 +1,6 @@
 ﻿using fitsense.models;
 using FitSense.Dependencies;
 using FitSense.Extensions;
-using FitSense.Repositories;
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
@@ -66,10 +65,10 @@ namespace FitSense.ViewModels
 
         private void InitializeMessages()
         {
-            MessengerInstance.Register<Category>(this, Constants.Messages.CategoryUpdated, (sender) =>
+            MessengerInstance.Register<Category>(this, Constants.Messages.CategoryUpdated, async (sender) =>
             {
                 Category = sender;
-                LoadDataAsync();
+                await LoadDataAsync();
             });
         }
     }
