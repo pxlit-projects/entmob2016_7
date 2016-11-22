@@ -101,7 +101,7 @@ public class SetControllerIntegrationTest {
 	}
 	
 	@Test
-	public void getAllSetsByExerciseId() throws IOException, Exception {
+	public void getAllSetsByExerciseIdTest() throws IOException, Exception {
 		mockMvc.perform(get(SetRestController.BASEURL+"/setbyexercise/" + 1)
 				.with(user("user").password("123456")))
 		.andExpect(status().isOk())
@@ -110,14 +110,14 @@ public class SetControllerIntegrationTest {
 	}
 	
 	@Test
-	public void getAllSetsByExerciseIdReturnsNotFoundWhenNonExistingExerciseId() throws IOException, Exception {
+	public void getAllSetsByExerciseIdReturnsNotFoundWhenNonExistingExerciseIdTest() throws IOException, Exception {
 		mockMvc.perform(get(SetRestController.BASEURL+"/setbyexercise/" + 0)
 				.with(user("user").password("123456")))
 		.andExpect(status().isNotFound());
 	}
 
 	@Test
-	public void getSetById() throws IOException, Exception {
+	public void getSetByIdTest() throws IOException, Exception {
 		mockMvc.perform(get(SetRestController.BASEURL+"/getById/" + set1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -127,7 +127,7 @@ public class SetControllerIntegrationTest {
 	}
 	
 	@Test
-	public void postSetAndTestIfSetCouldBeFoundInDB() throws IOException, Exception {
+	public void postSetAndTestIfSetCouldBeFoundInDBTest() throws IOException, Exception {
 		Set set4 = new Set();
 		set4.setExerciseId(2);
 		set4.setMaxTime(255);
@@ -147,7 +147,7 @@ public class SetControllerIntegrationTest {
 	}
 	
 	@Test
-	public void putSetAndTestIfEdited() throws IOException, Exception {
+	public void putSetAndTestIfEditedTest() throws IOException, Exception {
 		set2.setMaxTime(44);
 		
 		mockMvc.perform(put(SetRestController.BASEURL + "/" + set2.getId())	
@@ -161,7 +161,7 @@ public class SetControllerIntegrationTest {
 	}
 	
 	@Test
-	public void putSetWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
+	public void putSetWithoutGivingValidIdGeneratesNotFoundResponseTest() throws IOException, Exception {
 		set3.setPoints(35);
 		
 		mockMvc.perform(put(SetRestController.BASEURL + "/" + 0)	
@@ -173,7 +173,7 @@ public class SetControllerIntegrationTest {
 	}
 	
 	@Test
-	public void deleteSetAndTestIfItIsNotFoundInDB() throws IOException, Exception {
+	public void deleteSetAndTestIfItIsNotFoundInDBTest() throws IOException, Exception {
 		mockMvc.perform(delete(SetRestController.BASEURL+"/" + set1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -183,7 +183,7 @@ public class SetControllerIntegrationTest {
 	}
 	
 	@Test
-	public void deleteSetThatDoesNotExistsAndTestIfNotFoundIsReturned() throws Exception {
+	public void deleteSetThatDoesNotExistsAndTestIfNotFoundIsReturnedTest() throws Exception {
 		mockMvc.perform(delete(SetRestController.BASEURL+"/" + set3.getId()+1)	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -193,7 +193,7 @@ public class SetControllerIntegrationTest {
 	}
 	
 	@Test
-	public void testIfGetByIdIsAuthorized() throws IOException, Exception {
+	public void testIfGetByIdIsAuthorizedTest() throws IOException, Exception {
 		mockMvc.perform(get(SetRestController.BASEURL+"/getById/" + set1.getId())	
 				.header("host", "localhost:8080"))													
 				.andExpect(status().is(401));

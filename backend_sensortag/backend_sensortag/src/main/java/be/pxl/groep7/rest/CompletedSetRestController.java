@@ -35,7 +35,7 @@ public class CompletedSetRestController {
 		HttpStatus status = HttpStatus.OK;
 		List<CompletedSet> setList = service.getAllCompletedSetsBySetId(setId);
 		
-		if(setList == null){
+		if(setList.size() == 0){
 			status = HttpStatus.NOT_FOUND;
 		}
 		return new ResponseEntity<>(setList, status);

@@ -113,7 +113,7 @@ public class ExercisePointRestTest {
 	}
 	
 	@Test
-	public void postExistingExercisePointFails() throws IOException, Exception {
+	public void postExistingExercisePointFailsTest() throws IOException, Exception {
 		ExercisePoint exercisePoint1 = new ExercisePoint(1, 1.0, 2.3, 1.5);
 		
 		Mockito.when(serviceMock.createOrUpdateExercisePoint(exercisePoint1)).thenReturn(exercisePoint1);
@@ -127,7 +127,7 @@ public class ExercisePointRestTest {
 	}
 	
 	@Test
-	public void putExistingExercisePoint() throws IOException, Exception {
+	public void putExistingExercisePointTest() throws IOException, Exception {
 		ExercisePoint exercisePoint1 = new ExercisePoint(1, 1.0, 2.3, 1.5);
 		
 		Mockito.when(serviceMock.createOrUpdateExercisePoint(exercisePoint1)).thenReturn(exercisePoint1);
@@ -144,7 +144,7 @@ public class ExercisePointRestTest {
 	}
 	
 	@Test
-	public void putNonExistingExercisePointFails() throws IOException, Exception {
+	public void putNonExistingExercisePointFailsTest() throws IOException, Exception {
 		ExercisePoint exercisePoint1 = new ExercisePoint(1, 1.0, 2.3, 1.5);
 		
 		Mockito.when(serviceMock.createOrUpdateExercisePoint(exercisePoint1)).thenReturn(exercisePoint1);
@@ -159,7 +159,7 @@ public class ExercisePointRestTest {
 	}
 	
 	@Test
-	public void deleteExistingExercisePoint() throws Exception {
+	public void deleteExistingExercisePointTest() throws Exception {
 		ExercisePoint exercisePoint1 = new ExercisePoint(1, 1.0, 2.3, 1.5);
 		
 		Mockito.when(serviceMock.createOrUpdateExercisePoint(exercisePoint1)).thenReturn(exercisePoint1);
@@ -172,7 +172,7 @@ public class ExercisePointRestTest {
 	}
 	
 	@Test
-	public void deleteNonExistingExercisePointFails() throws Exception {
+	public void deleteNonExistingExercisePointFailsTest() throws Exception {
 		ExercisePoint exercisePoint1 = new ExercisePoint(1, 1.0, 2.3, 1.5);
 		
 		Mockito.when(serviceMock.createOrUpdateExercisePoint(exercisePoint1)).thenReturn(exercisePoint1);

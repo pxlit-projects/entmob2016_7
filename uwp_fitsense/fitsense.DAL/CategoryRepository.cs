@@ -22,7 +22,7 @@ namespace fitsense.DAL
 
 
                 var myContent = JsonConvert.SerializeObject(categorie);
-                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+                var buffer = Encoding.UTF8.GetBytes(myContent);
                 var byteContent = new ByteArrayContent(buffer);
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 var categorieJson = JsonConvert.SerializeObject(categorie);

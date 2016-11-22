@@ -94,7 +94,7 @@ public class ExercisePointControllerIntegrationTest {
 	}
 
 	@Test
-	public void getExercisePointById() throws IOException, Exception {
+	public void getExercisePointByIdTest() throws IOException, Exception {
 		mockMvc.perform(get(ExercisePointRestController.BASEURL+"/getById/" + exercisePoint1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -104,7 +104,7 @@ public class ExercisePointControllerIntegrationTest {
 	}
 	
 	@Test
-	public void postExercisePointAndTestIfExercisePointCouldBeFoundInDB() throws IOException, Exception {
+	public void postExercisePointAndTestIfExercisePointCouldBeFoundInDBTest() throws IOException, Exception {
 		ExercisePoint exercisePoint4 = new ExercisePoint();
 		exercisePoint4.setX(0.54);
 		exercisePoint4.setY(3.18);
@@ -122,7 +122,7 @@ public class ExercisePointControllerIntegrationTest {
 	}
 	
 	@Test
-	public void putExercisePointAndTestIfEdited() throws IOException, Exception {
+	public void putExercisePointAndTestIfEditedTest() throws IOException, Exception {
 		exercisePoint2.setX(2.37);
 		
 		mockMvc.perform(put(ExercisePointRestController.BASEURL + "/" + exercisePoint2.getId())	
@@ -136,7 +136,7 @@ public class ExercisePointControllerIntegrationTest {
 	}
 	
 	@Test
-	public void putExercisePointWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
+	public void putExercisePointWithoutGivingValidIdGeneratesNotFoundResponseTest() throws IOException, Exception {
 		exercisePoint3.setZ(4.0);
 		
 		mockMvc.perform(put(ExercisePointRestController.BASEURL + "/" + 0)	
@@ -148,7 +148,7 @@ public class ExercisePointControllerIntegrationTest {
 	}
 	
 	@Test
-	public void deleteExercisePointAndTestIfItIsNotFoundInDB() throws IOException, Exception {
+	public void deleteExercisePointAndTestIfItIsNotFoundInDBTest() throws IOException, Exception {
 		mockMvc.perform(delete(ExercisePointRestController.BASEURL+"/" + exercisePoint1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -158,7 +158,7 @@ public class ExercisePointControllerIntegrationTest {
 	}
 	
 	@Test
-	public void deleteExercisePointThatDoesNotExistsAndTestIfNotFoundIsReturned() throws Exception {
+	public void deleteExercisePointThatDoesNotExistsAndTestIfNotFoundIsReturnedTest() throws Exception {
 		mockMvc.perform(delete(ExercisePointRestController.BASEURL+"/" + exercisePoint3.getId()+1)	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -168,7 +168,7 @@ public class ExercisePointControllerIntegrationTest {
 	}
 	
 	@Test
-	public void testIfGetByIdIsAuthorized() throws IOException, Exception {
+	public void testIfGetByIdIsAuthorizedTest() throws IOException, Exception {
 		mockMvc.perform(get(ExercisePointRestController.BASEURL+"/getById/" + exercisePoint1.getId())	
 				.header("host", "localhost:8080"))													
 				.andExpect(status().is(401));

@@ -76,36 +76,36 @@ public class CompletedSetControllerIntegrationTest {
 				.build();
 
 		completedSet1 = new CompletedSet();
-		completedSet1.setDuration(10);				//duration in what? miliseconds, seconds, minutes, hours? -> minutes?
+		completedSet1.setDuration(10);				
 		completedSet1.setSetId(1);
-		completedSet1.setTime(1500L); 				//difference with duration?
+		completedSet1.setTime(151016162200L); 				
 		completedSet1.setUser_id(1);
 		completedSet1 = completedSetRepository.save(completedSet1);
 
 		completedSet2 = new CompletedSet();
-		completedSet2.setDuration(10);				//duration in what? miliseconds, seconds, minutes, hours? -> minutes?
+		completedSet2.setDuration(10);				
 		completedSet2.setSetId(2);
-		completedSet2.setTime(1500L); 				//difference with duration?
+		completedSet2.setTime(151016162200L); 				
 		completedSet2.setUser_id(1);
 		completedSet2 = completedSetRepository.save(completedSet2);
 		
 		completedSet3 = new CompletedSet();
-		completedSet3.setDuration(10);				//duration in what? miliseconds, seconds, minutes, hours? -> minutes?
+		completedSet3.setDuration(10);				
 		completedSet3.setSetId(1);
-		completedSet3.setTime(1500L); 				//difference with duration?
+		completedSet3.setTime(151016162200L); 				
 		completedSet3.setUser_id(2);
 		completedSet3 = completedSetRepository.save(completedSet3);
 		
 		completedSet4 = new CompletedSet();
-		completedSet4.setDuration(10);				//duration in what? miliseconds, seconds, minutes, hours? -> minutes?
+		completedSet4.setDuration(10);				
 		completedSet4.setSetId(2);
-		completedSet4.setTime(1500L); 				//difference with duration?
+		completedSet4.setTime(151016162200L); 				
 		completedSet4.setUser_id(2);
 		completedSet4 = completedSetRepository.save(completedSet4);
 	}
 
 	@Test
-	public void getAllCompletedSetsByExerciseId() throws IOException, Exception {
+	public void getAllCompletedSetsByExerciseIdTest() throws IOException, Exception {
 		mockMvc.perform(get(CompletedSetRestController.BASEURL+"/sets/" + 1)
 				.with(user("user").password("123456")))
 		.andExpect(status().isOk())
@@ -114,7 +114,7 @@ public class CompletedSetControllerIntegrationTest {
 	}
 
 	@Test
-	public void getCompletedSetById() throws IOException, Exception {
+	public void getCompletedSetByIdTest() throws IOException, Exception {
 		mockMvc.perform(get(CompletedSetRestController.BASEURL+"/getById/" + completedSet1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -124,7 +124,7 @@ public class CompletedSetControllerIntegrationTest {
 	}
 	
 	@Test
-	public void postCompletedSetAndTestIfCompletedSetCouldBeFoundInDB() throws IOException, Exception {
+	public void postCompletedSetAndTestIfCompletedSetCouldBeFoundInDBTest() throws IOException, Exception {
 		CompletedSet completedSet5 = new CompletedSet();
 		completedSet5.setDuration(20);
 		completedSet5.setSetId(2);
@@ -144,7 +144,7 @@ public class CompletedSetControllerIntegrationTest {
 	}
 	
 	@Test
-	public void putCompletedSetAndTestIfEdited() throws IOException, Exception {
+	public void putCompletedSetAndTestIfEditedTest() throws IOException, Exception {
 		completedSet2.setDuration(78);
 		
 		mockMvc.perform(put(CompletedSetRestController.BASEURL + "/" + completedSet2.getId())	
@@ -158,7 +158,7 @@ public class CompletedSetControllerIntegrationTest {
 	}
 	
 	@Test
-	public void putCompletedSetWithoutGivingValidIdGeneratesNotFoundResponse() throws IOException, Exception {
+	public void putCompletedSetWithoutGivingValidIdGeneratesNotFoundResponseTest() throws IOException, Exception {
 		completedSet3.setDuration(55);
 		
 		mockMvc.perform(put(CompletedSetRestController.BASEURL + "/" + 0)	
@@ -170,7 +170,7 @@ public class CompletedSetControllerIntegrationTest {
 	}
 	
 	@Test
-	public void deleteCompletedSetAndTestIfItIsNotFoundInDB() throws IOException, Exception {
+	public void deleteCompletedSetAndTestIfItIsNotFoundInDBTest() throws IOException, Exception {
 		mockMvc.perform(delete(CompletedSetRestController.BASEURL+"/" + completedSet1.getId())	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -180,7 +180,7 @@ public class CompletedSetControllerIntegrationTest {
 	}
 	
 	@Test
-	public void deleteCompletedSetThatDoesNotExistsAndTestIfNotFoundIsReturned() throws Exception {
+	public void deleteCompletedSetThatDoesNotExistsAndTestIfNotFoundIsReturnedTest() throws Exception {
 		mockMvc.perform(delete(CompletedSetRestController.BASEURL+"/" + completedSet3.getId()+1)	
 				.header("host", "localhost:8080")													
 				.with(SecurityMockMvcRequestPostProcessors.httpBasic("user", "123456")))
@@ -190,7 +190,7 @@ public class CompletedSetControllerIntegrationTest {
 	}
 	
 	@Test
-	public void testIfGetByIdIsAuthorized() throws IOException, Exception {
+	public void testIfGetByIdIsAuthorizedTest() throws IOException, Exception {
 		mockMvc.perform(get(CompletedSetRestController.BASEURL+"/getById/" + completedSet1.getId())	
 				.header("host", "localhost:8080"))													
 				.andExpect(status().is(401));
