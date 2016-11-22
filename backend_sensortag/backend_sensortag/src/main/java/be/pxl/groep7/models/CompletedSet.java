@@ -23,15 +23,19 @@ public class CompletedSet {
 	int id;
 
 	@Column(name="set_id")
+	@JsonProperty(value="SetID")
 	int setId;
 	
 	@Column(name="time")
+	@JsonProperty(value="Time")
 	long time;
 	
 	@Column(name="duration")
+	@JsonProperty(value="Duration")
 	int duration;
 	
 	@Column(name="user_id")
+	@JsonProperty(value="UserID")
 	int userId;
 	
 	public CompletedSet(int id, int setId, long time, int duration, int userId) {
