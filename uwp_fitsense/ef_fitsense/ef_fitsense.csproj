@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201611211428000_ExerciseReview.Designer.cs">
       <DependentUpon>201611211428000_ExerciseReview.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611221306330_admin.cs" />
+    <Compile Include="Migrations\201611221306330_admin.Designer.cs">
+      <DependentUpon>201611221306330_admin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611211428000_ExerciseReview.resx">
       <DependentUpon>201611211428000_ExerciseReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611221306330_admin.resx">
+      <DependentUpon>201611221306330_admin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
