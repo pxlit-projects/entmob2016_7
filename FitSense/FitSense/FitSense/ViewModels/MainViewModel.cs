@@ -47,7 +47,6 @@ namespace FitSense.ViewModels
 
             InitializeCommands();
             InitializeMessages();
-
         }
 
         private void InitializeCommands()
@@ -79,7 +78,7 @@ namespace FitSense.ViewModels
                     }
                     if (!sensor.MovementService.IsUpdating)
                     {
-                        sensor.MovementService.StartReadData(100);
+                        sensor.MovementService.StartReadData(1000);
                         sensor.MovementService.OnValueChanged += MovementService_OnValueChanged;
                     }
                     else
@@ -97,8 +96,20 @@ namespace FitSense.ViewModels
                 {
                     Debug.WriteLine("Movementsensor not found.");
                 }
+
+                if(sensor.KeyService != null)
+                {
+                    sensor.KeyService.StartReadData(100);
+                    sensor.KeyService.OnKeyPushed += KeyService_OnKeyPushed;
+                }
             });
             
+        }
+
+        private void KeyService_OnKeyPushed(object sender, Helpers.ValueChangedEventArgs<SensorKeys> args)
+        {
+            Debug.WriteLine("Key Retrieved.");
+            Debug.WriteLine("Key : " + args.NewValue.ToString());
         }
 
         private List<Vector3> vectList = new List<Vector3>();

@@ -104,6 +104,11 @@ namespace FitSense.Models
                 {
                     Debug.WriteLine("Found magneto service.");
                 }
+                else if(service.ID.PartialFromUuid() == "0xFFE0")
+                {
+                    Debug.WriteLine("Found Key service");
+                    KeyService = new KeyService(service);
+                }
 
 
             }

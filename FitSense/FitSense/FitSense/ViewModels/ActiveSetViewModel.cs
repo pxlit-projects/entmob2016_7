@@ -115,7 +115,7 @@ namespace FitSense.ViewModels
 
         private void InitializeMessages()
         {
-            MessengerInstance.Register<Set>(this, Constants.Messages.SetUpdated, (sender) =>
+            MessengerInstance.Register<Set>(this, Messages.SetUpdated, (sender) =>
             {
                 TimeLeft = sender.MaxTime;
                 RepsLeft = sender.Reps;
