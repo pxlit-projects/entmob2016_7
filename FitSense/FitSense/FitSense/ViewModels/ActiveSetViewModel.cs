@@ -179,13 +179,25 @@ namespace FitSense.ViewModels
                     {
                         Duration = ActiveSet.MaxTime - TimeLeft,
                         SetID = ActiveSet.SetID,
-                        Time = DateTime.Now.Ticks,
+                        Time = FormatTime(DateTime.Now),
                         UserID = dataService.LoggedInUser.UserID
                     };
                     dataService.SendCompletedSet(completedSet);
                     
                 }
             });
+        }
+
+        private long FormatTime(DateTime now)
+        {
+            long value = 0;
+            value = (value + now.Day) * 100;
+            value = (value + now.Month) * 100;
+            value = (value + now.Year % 100) * 100;
+            value = (value + now.Hour) * 100;
+            value = (value + now.Minute) * 100;
+            value = (value + now.Second) * 100;
+            return value;
         }
     }
 }
