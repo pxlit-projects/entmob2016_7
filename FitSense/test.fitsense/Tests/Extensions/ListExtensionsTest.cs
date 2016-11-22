@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace test.fitsense.Tests.Extensions
 {
     [TestClass]
-    class ListExtensionsTest
+    public class ListExtensionsTest
     {
 
         public void ToObservableCollectionTest()

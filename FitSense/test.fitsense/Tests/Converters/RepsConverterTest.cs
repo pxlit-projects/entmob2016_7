@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace test.fitsense.Tests.Converters
 {
     [TestClass]
-    class RepsConverterTest
+    public class RepsConverterTest
     {
 
         [TestMethod]
