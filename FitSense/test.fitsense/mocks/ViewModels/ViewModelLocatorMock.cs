@@ -35,7 +35,17 @@ namespace test.fitsense.mocks
 
             SimpleIoc.Default.Register<INavigationService, NavigationServiceMock>();
             //SimpleIoc.Default.Register<IDataService, UserDataServiceMockOld>();
-            SimpleIoc.Default.Register<IDataService, DataServiceMock>();
+
+            //SimpleIoc.Default.Register<IDataService, DataServiceMock>();
+
+            SimpleIoc.Default.Register<ICategoryRepository, CategoryRepositoryMock>();
+            SimpleIoc.Default.Register<IExerciseRepository, ExerciseRepositoryMock>();
+            SimpleIoc.Default.Register<ISetRepository, SetRepositoryMock>();
+            SimpleIoc.Default.Register<IUserRepository, UserRepositoryMock>();
+
+            SimpleIoc.Default.Register<IDataService, DataService>();
+
+
             SimpleIoc.Default.Register<IConnectivity, ConnectivityMock>();
             //SimpleIoc.Default.Register<SensorDevice>();
 
@@ -57,13 +67,14 @@ namespace test.fitsense.mocks
 
         public void replaceDataServiceMock()
         {
-            SimpleIoc.Default.Unregister<IDataService>();
+            //SimpleIoc.Default.Unregister<IDataService>();
 
-            SimpleIoc.Default.Register<ICategoryRepository, CategoryRepositoryMock>();
-            SimpleIoc.Default.Register<IExerciseRepository, ExerciseRepositoryMock>();
-            SimpleIoc.Default.Register<ISetRepository, SetRepositoryMock>();
+            //SimpleIoc.Default.Register<ICategoryRepository, CategoryRepositoryMock>();
+            //SimpleIoc.Default.Register<IExerciseRepository, ExerciseRepositoryMock>();
+            //SimpleIoc.Default.Register<ISetRepository, SetRepositoryMock>();
+            //SimpleIoc.Default.Register<IUserRepository, UserRepositoryMock>();
 
-            SimpleIoc.Default.Register<IDataService, DataService>();
+            //SimpleIoc.Default.Register<IDataService, DataService>();
         }
 
         public MainViewModel Main

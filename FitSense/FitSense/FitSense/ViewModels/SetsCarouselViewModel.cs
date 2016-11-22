@@ -36,7 +36,13 @@ namespace FitSense.ViewModels
             this.userDataService = userDataService;
             this.navigationService = navigationService;
 
-            Initialization = InitializeMessages();
+            Initialization = InitializeAsync();
+        }
+
+        private async Task InitializeAsync()
+        {
+            InitializeMessages();
+            await LoadDataAsync();
         }
 
         private async Task LoadDataAsync()
@@ -45,14 +51,13 @@ namespace FitSense.ViewModels
             SetViews = result.ToObservableCollection();
         }
 
-        private async Task  InitializeMessages()
+        private void InitializeMessages()
         {
-            await Task.Run(() =>
-               MessengerInstance.Register<Exercise>(this, Constants.Messages.ExerciseUpdated, async (sender) => 
+            MessengerInstance.Register<Exercise>(this, Constants.Messages.ExerciseUpdated, async (sender) =>
             {
                 Exercise = sender;
                 await LoadDataAsync();
-            }));
+            });
         }
     }
 }
