@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace FitSense.Converters
 {
-    class RepsConverter : IValueConverter
+    public class RepsConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

@@ -8,13 +8,13 @@ using Xamarin.Forms;
 
 namespace FitSense.Converters
 {
-    class MaxTimeConverter : IValueConverter
+    public class MaxTimeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             int seconds = (int)value;
             int minutes = 0;
-            if (seconds > 60)
+            if (seconds >= 60)
             {
                 minutes = seconds / 60;
                 seconds -= 60 * (seconds / 60);
@@ -31,7 +31,7 @@ namespace FitSense.Converters
             }
             if(seconds > 0)
             {
-                maxTime += " " + seconds + " Seconds";
+                maxTime += seconds + " Seconds";
             }
             return maxTime;
         }

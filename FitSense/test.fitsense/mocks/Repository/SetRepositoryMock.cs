@@ -12,11 +12,12 @@ namespace test.fitsense.mocks.Repository
     {
         public List<Set> Sets { get; set; }
 
-        public Task<List<Set>> GetSetsFromExerciseAsync(Exercise exercise, string baseUrl)
+        public async Task<List<Set>> GetSetsFromExerciseAsync(Exercise exercise, string baseUrl)
         {
-            return new Task<List<Set>>(() =>
-            Sets.FindAll((s) =>
-            s.ExerciseID == exercise.ExerciseID));
+            if (exercise != null)
+                return await Task.Run(() => Sets.Where(set => set.ExerciseID == exercise.ExerciseID).ToList());
+            else
+                return null;
         }
     }
 }

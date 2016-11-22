@@ -117,10 +117,19 @@
     <SDKReference Include="TestPlatform, Version=14.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="mocks\LibraryMocks\CharacteristicMock.cs" />
+    <Compile Include="mocks\LibraryMocks\ServiceMock.cs" />
     <Compile Include="mocks\Repository\CategoryRepositoryMock.cs" />
     <Compile Include="mocks\Repository\ExerciseRepositoryMock.cs" />
     <Compile Include="mocks\Repository\SetRepositoryMock.cs" />
     <Compile Include="mocks\ServiceMocks\DataServiceMock.cs" />
+    <Compile Include="Tests\Converters\DeviceNameConverterTest.cs" />
+    <Compile Include="Tests\Converters\MaxTimeConverterTest.cs" />
+    <Compile Include="Tests\Converters\PointsConverterTest.cs" />
+    <Compile Include="Tests\Converters\RepsConverterTest.cs" />
+    <Compile Include="Tests\Extensions\ListExtensionsTest.cs" />
+    <Compile Include="Tests\Services\DataServiceTest.cs" />
+    <Compile Include="Tests\Services\SensorServiceTest.cs" />
     <Compile Include="Tests\ViewModels\ActiveSetViewModelTest.cs" />
     <Compile Include="Tests\ViewModels\CategoriesViewModelTest.cs" />
     <Compile Include="Tests\ViewModels\ExercisesViewModelTest.cs" />

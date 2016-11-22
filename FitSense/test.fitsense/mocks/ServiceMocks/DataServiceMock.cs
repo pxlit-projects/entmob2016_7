@@ -29,10 +29,11 @@ namespace test.fitsense.mocks.ServiceMocks
             };
         }
 
-        public Task<List<Category>> GetAllCategoriesAsync()
+        public async Task<List<Category>> GetAllCategoriesAsync()
         {
-            return new Task<List<Category>>(() => Categories);
+            return await Task.Run(() => Categories);
         }
+
         public Task<List<Exercise>> GetExercisesFromCategoryAsync(Category category)
         {
             return new Task<List<Exercise>>(() => Exercises);

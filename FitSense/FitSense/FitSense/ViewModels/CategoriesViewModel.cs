@@ -16,7 +16,7 @@ namespace FitSense.ViewModels
 {
     public class CategoriesViewModel : ViewModelBase
     {
-        private IDataService userDataService;
+        private IDataService DataService;
         private INavigationService navigationService;
 
         private ObservableCollection<Category> categories;
@@ -36,9 +36,9 @@ namespace FitSense.ViewModels
 
         public RelayCommand<object> CategorySelectedCommand { get; private set; }
 
-        public CategoriesViewModel(INavigationService navigationService, IDataService userDataService)
+        public CategoriesViewModel(INavigationService navigationService, IDataService DataService)
         {
-            this.userDataService = userDataService;
+            this.DataService = DataService;
             this.navigationService = navigationService;
 
             Initialization = InitializeAsync();
@@ -54,7 +54,7 @@ namespace FitSense.ViewModels
 
         private async Task LoadDataAsync()
         {
-            var result = await userDataService.GetAllCategoriesAsync();
+            var result = await DataService.GetAllCategoriesAsync();
             Categories = result.ToObservableCollection();
         }
 

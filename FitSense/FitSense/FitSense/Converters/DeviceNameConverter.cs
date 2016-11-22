@@ -9,12 +9,15 @@ using Xamarin.Forms;
 
 namespace FitSense.Converters
 {
-    class DeviceNameConverter : IValueConverter
+    public class DeviceNameConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string name = (string)value;
-            return String.IsNullOrWhiteSpace(name) ? "<un-named device>" : name;
+            if (value is string) { 
+                string name = (string)value;
+                return String.IsNullOrWhiteSpace(name) ? "<un-named device>" : name;
+            }
+            return "<un-named device>";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

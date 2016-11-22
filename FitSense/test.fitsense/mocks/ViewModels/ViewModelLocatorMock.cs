@@ -55,7 +55,7 @@ namespace test.fitsense.mocks
             SimpleIoc.Default.Register<SetViewModel>();
         }
 
-        public void replaceUserDataMock()
+        public void replaceDataServiceMock()
         {
             SimpleIoc.Default.Unregister<IDataService>();
 

@@ -19,7 +19,7 @@ namespace test.fitsense
     public class ExercisesViewModelTest
     {
         private ViewModelLocatorMock locatorMock;
-        
+
         private async void sendMessage()
         {
             Messenger.Reset();
@@ -32,13 +32,11 @@ namespace test.fitsense
         public void Init()
         {
             locatorMock = new ViewModelLocatorMock();
-            //userDataService = new UserDataServiceMock();
         }
 
         [TestMethod]
         public void AreExercisesSetTest()
         {
-            //var viewmodel = GetViewModel();
             Category category = new Category() { Name = "Arms" };
             var dataservice = ServiceLocator.Current.GetInstance<IDataService>() as DataServiceMock;
             dataservice.Exercises = new List<Exercise>()
