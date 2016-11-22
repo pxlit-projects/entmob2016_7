@@ -62,9 +62,20 @@ namespace test_fitsense
         {
             var viewmodel = GetViewModel();
 
-            if (viewmodel.Sets.Count > 0)
-                viewmodel.SelectedSet = viewmodel.Sets[0];
-            Assert.IsNotNull(viewmodel.ActiveChart);        
+            viewmodel.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
+            {
+                if(e.PropertyName.Equals("Sets"))
+                {
+                    if (viewmodel.Sets.Count > 0)
+                    {
+                        viewmodel.SelectedSet = viewmodel.Sets[0];
+                        Assert.IsNotNull(viewmodel.ActiveChart);
+                    }            
+                }
+            };
+
+            
+                   
         }
 
         [TestMethod]
@@ -78,14 +89,14 @@ namespace test_fitsense
                 receivedEvents.Add(e.PropertyName);
             };
             viewmodel.CurrentExercise = new Exercise();
-            viewmodel.Sets = new ObservableCollection<Set>();
+            //viewmodel.Sets = new ObservableCollection<Set>();// -> set when exercise is changed         
             viewmodel.SelectedSet = new Set();
-            viewmodel.ActiveChart = new List<ChartRecord>();
-            Assert.AreEqual(4, receivedEvents.Count);
-            Assert.AreEqual("CurrentExercise", receivedEvents[0]);
-            Assert.AreEqual("Sets", receivedEvents[1]);
-            Assert.AreEqual("SelectedSet", receivedEvents[2]);
-            Assert.AreEqual("ActiveChart", receivedEvents[3]);
+            viewmodel.ActiveChart = new List<ChartRecord>(); //-> set when selected set is changed
+
+            Assert.IsTrue(receivedEvents.Contains("CurrentExercise"));
+            Assert.IsTrue(receivedEvents.Contains("Sets"));
+            Assert.IsTrue(receivedEvents.Contains("SelectedSet"));
+            Assert.IsTrue(receivedEvents.Contains("ActiveChart"));
         }
     }
 }
