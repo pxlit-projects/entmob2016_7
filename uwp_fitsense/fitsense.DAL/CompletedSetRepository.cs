@@ -38,7 +38,7 @@ namespace fitsense.DAL
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(baseUrl + "category");
+                client.BaseAddress = new Uri(baseUrl + "completedset");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                     Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", "user", "123456"))));
 
