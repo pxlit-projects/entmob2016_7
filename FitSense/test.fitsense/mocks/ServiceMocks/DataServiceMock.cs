@@ -58,5 +58,10 @@ namespace test.fitsense.mocks.ServiceMocks
         {
             return new User { Name = userName };
         }
+
+        public Task SendCompletedSet(CompletedSet set)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
