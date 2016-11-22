@@ -97,6 +97,7 @@ namespace uwp_fitsense.viewmodel
                 {
                     Name = "Categorie 2"
                 });
+                Categories.Add(new Category() { Name = "Categorie 2" });
             });
         }
 
