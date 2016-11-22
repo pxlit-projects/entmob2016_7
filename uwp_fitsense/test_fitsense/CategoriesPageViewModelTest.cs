@@ -40,7 +40,13 @@ namespace test_fitsense
             categories = viewModel.Categories;
 
             //assert
-            CollectionAssert.AreEqual(expectedCategories, categories);
+            viewModel.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
+            {
+                if (e.PropertyName.Equals("Category"))
+                {
+                    CollectionAssert.AreEqual(expectedCategories, categories);
+                }
+            };
         }
 
         [TestMethod]
@@ -84,10 +90,9 @@ namespace test_fitsense
             viewmodel.Categories = new ObservableCollection<Category>();
             viewmodel.CurrentPage = null;
             viewmodel.SelectedCategory = new Category();
-            Assert.AreEqual(3, receivedEvents.Count);
-            Assert.AreEqual("Categories", receivedEvents[0]);
-            Assert.AreEqual("CurrentPage", receivedEvents[1]);
-            Assert.AreEqual("SelectedCategory", receivedEvents[2]);
+            Assert.IsTrue(receivedEvents.Contains("Categories"));
+            Assert.IsTrue(receivedEvents.Contains("CurrentPage"));
+            Assert.IsTrue(receivedEvents.Contains("SelectedCategory"));
         }
     }
 }

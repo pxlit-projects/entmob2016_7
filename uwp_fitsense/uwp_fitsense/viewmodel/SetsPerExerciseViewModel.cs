@@ -73,15 +73,26 @@ namespace uwp_fitsense.viewmodel
         private void UpdateChartData()
         {
             List<ChartRecord> records = new List<ChartRecord>();
-            foreach (CompletedSet c in selectedSet.CompletedSets.OrderBy(c => c.Time))
+            if (selectedSet.CompletedSets != null)
             {
-                String date = "" + (c.Time / 1000000);
-                date = String.Format("{0}/{1}/{2}", date.Substring(0, 2), date.Substring(2, 2), date.Substring(4, 2));
-                if (records.Count > 0)
+                foreach (CompletedSet c in selectedSet.CompletedSets.OrderBy(c => c.Time))
                 {
-                    if (records.Last().Date == date)
+                    String date = "" + (c.Time / 1000000);
+                    date = String.Format("{0}/{1}/{2}", date.Substring(0, 2), date.Substring(2, 2), date.Substring(4, 2));
+                    if (records.Count > 0)
                     {
-                        records.Last().Point += selectedSet.Points;
+                        if (records.Last().Date == date)
+                        {
+                            records.Last().Point += selectedSet.Points;
+                        }
+                        else
+                        {
+                            records.Add(new ChartRecord()
+                            {
+                                Date = date,
+                                Point = selectedSet.Points
+                            });
+                        }
                     }
                     else
                     {
@@ -92,16 +103,8 @@ namespace uwp_fitsense.viewmodel
                         });
                     }
                 }
-                else
-                {
-                    records.Add(new ChartRecord()
-                    {
-                        Date = date,
-                        Point = selectedSet.Points
-                    });
-                }
+                ActiveChart = records;
             }
-            ActiveChart = records;
         }
 
         public SetsPerExerciseViewModel(IFitDataService dataService, INavigationService dialogService)
@@ -111,7 +114,6 @@ namespace uwp_fitsense.viewmodel
 
             LoadMessengerListeners();
             LoadCommands();
-            PrepareLoadingAsync();
         }
 
         private void LoadMessengerListeners()
@@ -129,10 +131,9 @@ namespace uwp_fitsense.viewmodel
 
         private async Task LoadDataAsync()
         {
-            if (currentExercise != null)
+            if (CurrentExercise != null)
             {
-                var result = await fitDataService.GetSetsFromExerciseAsync(CurrentExercise);
-                Sets = result.ToObservableCollection();
+                Sets = (await fitDataService.GetSetsFromExerciseAsync(CurrentExercise)).ToObservableCollection();
             }
         }
 
