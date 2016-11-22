@@ -83,7 +83,7 @@ namespace FitSense.ViewModels
                     }
                     else
                     {
-                        sensor.MovementService.stopReadData();
+                        sensor.MovementService.StopReadData();
                         sensor.MovementService.OnValueChanged -= MovementService_OnValueChanged;
                         foreach (var vect in vectList)
                         {
