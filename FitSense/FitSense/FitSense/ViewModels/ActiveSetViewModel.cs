@@ -196,7 +196,7 @@ namespace FitSense.ViewModels
             value = (value + (now.Year % 100)) * 100;
             value = (value + now.Hour) * 100;
             value = (value + now.Minute) * 100;
-            value = (value + now.Second) * 100;
+            value = (value + now.Second);
             return value;
         }
     }
