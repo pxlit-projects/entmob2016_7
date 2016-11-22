@@ -38,7 +38,7 @@ public class CategoryRestController {
 		HttpStatus status = HttpStatus.OK;
 		List<Category> categoryList = service.getAllCategories();
 		
-		if (categoryList == null) {
+		if (categoryList.size() == 0) {
 			status = HttpStatus.NOT_FOUND;
 		}
 		

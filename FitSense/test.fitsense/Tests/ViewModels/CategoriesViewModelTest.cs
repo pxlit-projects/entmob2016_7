@@ -36,6 +36,7 @@ namespace test.fitsense
 
 
             var viewModel = locatorMock.CategoriesViewModel;
+            viewModel.Initialization.Wait();
             
             Assert.AreEqual(categories[0].Name, viewModel.Categories[0].Name);
         }

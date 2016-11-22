@@ -61,6 +61,7 @@ namespace test.fitsense
             Category category = new Category { Name = "Arms" };
 
             var viewmodel = locatorMock.ExercisesViewModel;
+            //viewmodel.Initialization.Wait();
 
             IMessenger messenger = Messenger.Default;
             messenger.Send(category, Messages.CategoryUpdated);

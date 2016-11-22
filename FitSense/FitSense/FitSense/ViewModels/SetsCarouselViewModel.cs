@@ -29,12 +29,14 @@ namespace FitSense.ViewModels
         }
         public Exercise Exercise { get; private set; }
 
+        public Task Initialization { get; private set; }
+
         public SetsCarouselViewModel(INavigationService navigationService, IDataService userDataService)
         {
             this.userDataService = userDataService;
             this.navigationService = navigationService;
 
-            InitializeMessages();
+            Initialization = InitializeMessages();
         }
 
         private async Task LoadDataAsync()
@@ -43,13 +45,14 @@ namespace FitSense.ViewModels
             SetViews = result.ToObservableCollection();
         }
 
-        private void  InitializeMessages()
+        private async Task  InitializeMessages()
         {
-            MessengerInstance.Register<Exercise>(this, Constants.Messages.ExerciseUpdated, async (sender) => 
+            await Task.Run(() =>
+               MessengerInstance.Register<Exercise>(this, Constants.Messages.ExerciseUpdated, async (sender) => 
             {
                 Exercise = sender;
                 await LoadDataAsync();
-            });
+            }));
         }
     }
 }

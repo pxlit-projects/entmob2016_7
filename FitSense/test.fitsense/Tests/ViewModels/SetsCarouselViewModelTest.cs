@@ -36,6 +36,7 @@ namespace test.fitsense
         {
             //var viewmodel = GetViewModel();
             var viewmodel = locatorMock.SetsCarouselViewModel;
+            viewmodel.Initialization.Wait();
             sendMessage();
             Assert.IsNotNull(viewmodel.Exercise);
         }
@@ -45,6 +46,8 @@ namespace test.fitsense
         {
             //var viewmodel = GetViewModel();
             var viewmodel = locatorMock.SetsCarouselViewModel;
+            viewmodel.Initialization.Wait();
+
             sendMessage();
             Assert.IsNotNull(viewmodel.SetViews);
         }

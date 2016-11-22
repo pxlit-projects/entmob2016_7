@@ -10,7 +10,7 @@ using test.fitsense.mocks;
 namespace test.fitsense
 {
     [TestClass]
-    class ExerciseViewModelTest
+    public class ExerciseViewModelTest
     {
         //private IUserDataService userDataService;
         private ViewModelLocatorMock locatorMock;

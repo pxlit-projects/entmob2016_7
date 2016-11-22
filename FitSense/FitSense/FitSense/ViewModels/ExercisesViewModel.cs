@@ -39,12 +39,14 @@ namespace FitSense.ViewModels
             this.userDataService = userDataService;
             this.navigationService = navigationService;
 
-            InitializeMessages();
-            PrepareLoadingDataAsync();
+            Initialization = InitializeAsync();
         }
 
-        private async void PrepareLoadingDataAsync()
+        public Task Initialization { get; private set; }
+
+        private async Task InitializeAsync()
         {
+            InitializeMessages();
             await LoadDataAsync();
         }
 
