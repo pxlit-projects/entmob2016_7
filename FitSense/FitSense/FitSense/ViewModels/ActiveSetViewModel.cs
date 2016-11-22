@@ -15,6 +15,10 @@ namespace FitSense.ViewModels
 
         public RelayCommand CancelSet { get; private set; }
         public RelayCommand StartSet { get; private set; }
+        public RelayCommand RepButtonCommand { get; private set; }
+
+        public Set ActiveSet { get; private set; }
+        private bool IsFinished { get; set; }
 
         private string startButtonText;
         public string StartButtonText
@@ -35,6 +39,28 @@ namespace FitSense.ViewModels
             {
                 startButtonEnabled = value;
                 RaisePropertyChanged("StartButtonEnabled");
+            }
+        }
+
+        private string repButtonText;
+        public string RepButtonText
+        {
+            get { return repButtonText; }
+            set
+            {
+                repButtonText = value;
+                RaisePropertyChanged("RepButtonText");
+            }
+        }
+
+        private bool repButtonEnabled;
+        public bool RepButtonEnabled
+        {
+            get { return repButtonEnabled; }
+            set
+            {
+                repButtonEnabled = value;
+                RaisePropertyChanged("RepButtonEnabled");
             }
         }
 
@@ -64,8 +90,6 @@ namespace FitSense.ViewModels
             }
         }
 
-        public Set ActiveSet { get; private set; }
-
         public ActiveSetViewModel(INavigationService navigationService, IDataService dataService)
         {
             this.dataService = dataService;
@@ -74,6 +98,9 @@ namespace FitSense.ViewModels
             InitializeMessages();
             InitializeCommands();
             StartButtonText = "Start";
+            RepButtonText = "Do 1";
+            repButtonEnabled = false;
+            IsFinished = false;
         }
 
         private void InitializeCommands()
@@ -83,22 +110,39 @@ namespace FitSense.ViewModels
                 FinishedSet();
             });
 
+            RepButtonCommand = new RelayCommand(() =>
+            {
+                if(RepsLeft > 0)
+                    RepsLeft--;
+            });
+
             StartSet = new RelayCommand(async () =>
             {
-                if(TimeLeft > 0)
+                //if(TimeLeft > 0)
+                if (!IsFinished)
                 {
                     StartButtonEnabled = false;
-                    while (TimeLeft > 0)
+                    RepButtonEnabled = true;
+                    while (TimeLeft > 0 && RepButtonEnabled)
                     {
                         // wait 1000 miliseconds in a different thread
                         await CountDown(1000).ContinueWith((antecedent) =>
                         {
                             // we are on the main thread again, time to update te ui!
                             TimeLeft--;
+                            if(RepsLeft == 0)
+                            {
+                                RepButtonEnabled = false;
+                                StartButtonText = "Finished! Well done";
+                                StartButtonEnabled = true;
+                                IsFinished = true;
+                            }
                             if (TimeLeft <= 0)
                             {
-                                StartButtonText = "Finished! Continue";
+                                //StartButtonText = "Finished! Continue";
+                                StartButtonText = "Game Over";
                                 StartButtonEnabled = true;
+                                IsFinished = true;
                             }
                         });//add stuff to go to ui thread);
                     }
@@ -129,7 +173,7 @@ namespace FitSense.ViewModels
         {
             await navigationService.PopToRootAsync().ContinueWith((antecedent) =>
             {
-                if(TimeLeft > 0)
+                if(IsFinished)
                 {
                     CompletedSet completedSet = new CompletedSet()
                     {

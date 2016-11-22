@@ -12,10 +12,11 @@
     </ResourceDictionary>
   </NavigationPage.Resources>
     <StackLayout Spacing="10" x:Name="layout">
-      <Button IsEnabled="{Binding StartButtonEnabled}" Text="{Binding StartButtonText}" Command="{Binding StartSet}" VerticalOptions="FillAndExpand" HorizontalOptions="Center"/>
-      <Label Text="{Binding TimeLeft, Converter={StaticResource maxTimeConverter}}" VerticalOptions="Start" HorizontalOptions="Center" />
-      <Label Text="Reps Left" VerticalOptions="FillAndExpand" HorizontalOptions="Center" />
-      <Label Text="{Binding RepsLeft}" VerticalOptions="FillAndExpand" HorizontalOptions="Center" />
-      <Button Text="Cancel" Command="{Binding CancelSet}" VerticalOptions="FillAndExpand" HorizontalOptions="Center"/>
+        <Button IsEnabled="{Binding StartButtonEnabled}" Text="{Binding StartButtonText}" Command="{Binding StartSet}" VerticalOptions="FillAndExpand" HorizontalOptions="Center"/>
+        <Label Text="{Binding TimeLeft, Converter={StaticResource maxTimeConverter}}" VerticalOptions="Start" HorizontalOptions="Center" />
+        <Label Text="Reps Left" VerticalOptions="FillAndExpand" HorizontalOptions="Center" />
+        <Label Text="{Binding RepsLeft}" VerticalOptions="FillAndExpand" HorizontalOptions="Center" />
+        <Button Text="{Binding RepButtonText}" IsEnabled="{Binding RepButtonEnabled}" Command="{Binding RepButtonCommand}"  VerticalOptions="FillAndExpand" HorizontalOptions="Center"/>
+        <Button Text="Cancel" Command="{Binding CancelSet}" VerticalOptions="FillAndExpand" HorizontalOptions="Center" Margin="0,20,0,0"/>
     </StackLayout>
 </ContentPage>
