@@ -21,7 +21,7 @@ namespace test.fitsense.Tests.Services
         private CategoryRepositoryMock categoryRepository;
         private ExerciseRepositoryMock exerciseRepository;
         private SetRepositoryMock setRepository;
-
+        private CompletedSetRepositoryMock completedSetRepository;
 
         [TestInitialize]
         public void Init()
@@ -30,7 +30,7 @@ namespace test.fitsense.Tests.Services
             categoryRepository = new CategoryRepositoryMock();
             exerciseRepository = new ExerciseRepositoryMock();
             setRepository = new SetRepositoryMock();
-            
+            completedSetRepository = new CompletedSetRepositoryMock();
         }
 
         [TestMethod]
@@ -39,7 +39,8 @@ namespace test.fitsense.Tests.Services
             IDataService dataService = new DataService(userRepository,
                                                         categoryRepository,
                                                         exerciseRepository,
-                                                        setRepository);
+                                                        setRepository,
+                                                        completedSetRepository);
             Task task = dataService.LoginAsync("Daniel", "Password");
             task.Wait();
 
@@ -53,7 +54,8 @@ namespace test.fitsense.Tests.Services
             IDataService dataService = new DataService(userRepository,
                                                         categoryRepository,
                                                         exerciseRepository,
-                                                        setRepository);
+                                                        setRepository,
+                                                        completedSetRepository);
             var user = dataService.SearchUser("Daniel");
             Assert.AreEqual("Daniel", user.Name);
         }
@@ -72,7 +74,8 @@ namespace test.fitsense.Tests.Services
             IDataService dataService = new DataService(userRepository,
                                                         categoryRepository,
                                                         exerciseRepository,
-                                                        setRepository);
+                                                        setRepository,
+                                                        completedSetRepository);
 
             Task<List<Category>> task = dataService.GetAllCategoriesAsync();
             var result = task.Result;
@@ -109,7 +112,8 @@ namespace test.fitsense.Tests.Services
             IDataService dataService = new DataService(userRepository,
                                                         categoryRepository,
                                                         exerciseRepository,
-                                                        setRepository);
+                                                        setRepository,
+                                                        completedSetRepository);
             Task<List<Exercise>> task = dataService.GetExercisesFromCategoryAsync(categories[0]);
             var result = task.Result;
 
@@ -155,7 +159,8 @@ namespace test.fitsense.Tests.Services
             IDataService dataService = new DataService(userRepository,
                                                         categoryRepository,
                                                         exerciseRepository,
-                                                        setRepository);
+                                                        setRepository,
+                                                        completedSetRepository);
 
             Task<List<Set>> task = dataService.GetSetsFromExerciseAsync(exercises[0]);
             var result = task.Result;
@@ -202,7 +207,8 @@ namespace test.fitsense.Tests.Services
             IDataService dataService = new DataService(userRepository,
                                                         categoryRepository,
                                                         exerciseRepository,
-                                                        setRepository);
+                                                        setRepository,
+                                                        completedSetRepository);
 
             Task<List<SetViewModel>> task = dataService.GetSetViewModelsFromExerciseAsync(exercises[0],
                 new NavigationServiceMock());
