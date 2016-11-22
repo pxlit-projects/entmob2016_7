@@ -125,9 +125,11 @@ namespace uwp_fitsense.viewmodel
             this.navigationService = navigationService;
 
             LoadMessengerListeners();
-            PrepareLoadingDataAsync();
+            Initializing = LoadDataAsync();
             LoadCommands();
         }
+
+        public Task Initializing { get; private set; }
 
         private void LoadMessengerListeners()
         {

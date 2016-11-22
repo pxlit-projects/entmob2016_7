@@ -61,7 +61,7 @@ namespace test_fitsense
         public void ChartDataNotNull()
         {
             var viewmodel = GetViewModel();
-
+            viewmodel.Initializing.Wait();
             viewmodel.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
             {
                 if(e.PropertyName.Equals("Sets"))
@@ -72,10 +72,7 @@ namespace test_fitsense
                         Assert.IsNotNull(viewmodel.ActiveChart);
                     }            
                 }
-            };
-
-            
-                   
+            };       
         }
 
         [TestMethod]
@@ -92,7 +89,7 @@ namespace test_fitsense
             //viewmodel.Sets = new ObservableCollection<Set>();// -> set when exercise is changed         
             viewmodel.SelectedSet = new Set();
             viewmodel.ActiveChart = new List<ChartRecord>(); //-> set when selected set is changed
-
+            viewmodel.Initializing.Wait();
             Assert.IsTrue(receivedEvents.Contains("CurrentExercise"));
             Assert.IsTrue(receivedEvents.Contains("Sets"));
             Assert.IsTrue(receivedEvents.Contains("SelectedSet"));
