@@ -14,7 +14,7 @@ namespace FitSense.ViewModels
 {
     public class ExercisesViewModel : ViewModelBase
     {
-        private IUserDataService userDataService;
+        private IDataService userDataService;
         private INavigationService navigationService;
 
         private ObservableCollection<ExerciseViewModel> exercisesViews;
@@ -35,7 +35,7 @@ namespace FitSense.ViewModels
         public int Index { get; private set; }
         public Category Category { get; private set; }
 
-        public ExercisesViewModel(INavigationService navigationService, IUserDataService userDataService)
+        public ExercisesViewModel(INavigationService navigationService, IDataService userDataService)
         {
             this.userDataService = userDataService;
             this.navigationService = navigationService;

@@ -32,7 +32,7 @@ namespace test.fitsense
         private void sendMessage()
         {
             IMessenger messenger = Messenger.Default;
-            var category = ServiceLocator.Current.GetInstance<IUserDataService>().GetAllCategories().FirstOrDefault();
+            var category = ServiceLocator.Current.GetInstance<IDataService>().GetAllCategories().FirstOrDefault();
             messenger.Send(category, Messages.CategoryUpdated);
         }
 

@@ -36,7 +36,7 @@ namespace test.fitsense
             //var viewModel = GetViewModel();
             var viewModel = locatorMock.CategoriesViewModel;
             ObservableCollection<Category> categories;
-            var expectedCategories = await ServiceLocator.Current.GetInstance<IUserDataService>().GetAllCategoriesAsync();
+            var expectedCategories = await ServiceLocator.Current.GetInstance<IDataService>().GetAllCategoriesAsync();
 
             //act
             categories = viewModel.Categories;

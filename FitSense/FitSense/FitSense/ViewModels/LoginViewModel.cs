@@ -18,7 +18,7 @@ namespace FitSense.ViewModels
     public class LoginViewModel : ViewModelBase
     {
 
-        private IUserDataService userDataService;
+        private IDataService userDataService;
         private INavigationService navigationService;
 
         public string Username { get; set; }
@@ -45,7 +45,7 @@ namespace FitSense.ViewModels
             }
         }
 
-        public LoginViewModel(INavigationService navigationService, IUserDataService userDataService)
+        public LoginViewModel(INavigationService navigationService, IDataService userDataService)
         {
             this.userDataService = userDataService;
             this.navigationService = navigationService;

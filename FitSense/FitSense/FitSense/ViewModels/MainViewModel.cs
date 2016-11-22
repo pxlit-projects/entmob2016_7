@@ -28,7 +28,7 @@ namespace FitSense.ViewModels
     public class MainViewModel : ViewModelBase
     {
         private INavigationService navigation;
-        private IUserDataService userDataService;
+        private IDataService userDataService;
         //public RelayCommand LoginCommand;
         public RelayCommand ConnectCommand { get; private set; }
         //public RelayCommand LoginCommand { get; private set; }
@@ -40,7 +40,7 @@ namespace FitSense.ViewModels
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(INavigationService navigationService, IUserDataService userDataService)
+        public MainViewModel(INavigationService navigationService, IDataService userDataService)
         {
             this.navigation = navigationService;
             this.userDataService = userDataService;

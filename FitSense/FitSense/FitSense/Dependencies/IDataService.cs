@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FitSense.Dependencies
 {
-    public interface IUserDataService
+    public interface IDataService
     {
         User LoggedInUser { get; set; }
 

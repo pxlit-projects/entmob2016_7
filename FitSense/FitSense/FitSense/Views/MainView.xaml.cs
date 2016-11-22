@@ -15,12 +15,12 @@ namespace FitSense.Views
     public partial class MainView : ContentPage
     {
         //public MainViewModel viewModel { get; private set; }
-        private IUserDataService userDataService;
+        private IDataService userDataService;
         public MainView()
         {
             InitializeComponent();
             //viewModel = ServiceLocator.Current.GetInstance<MainViewModel>();
-            userDataService = ServiceLocator.Current.GetInstance<IUserDataService>();
+            userDataService = ServiceLocator.Current.GetInstance<IDataService>();
             //BindingContext = viewModel;
             
         }

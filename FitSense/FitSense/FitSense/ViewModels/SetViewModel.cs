@@ -13,7 +13,7 @@ namespace FitSense.ViewModels
 {
     public class SetViewModel : ViewModelBase
     {
-        private IUserDataService userDataService;
+        private IDataService userDataService;
         private INavigationService navigationService;
 
         public Exercise Exercise { get; set; }
@@ -21,7 +21,7 @@ namespace FitSense.ViewModels
 
         public RelayCommand StartSet { get; private set; }
 
-        public SetViewModel(INavigationService navigationService, IUserDataService userDataService)
+        public SetViewModel(INavigationService navigationService, IDataService userDataService)
         {
             this.userDataService = userDataService;
             this.navigationService = navigationService;

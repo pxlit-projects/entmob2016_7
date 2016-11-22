@@ -17,7 +17,7 @@ namespace FitSense.ViewModels
 {
     public class CategoriesViewModel : ViewModelBase
     {
-        private IUserDataService userDataService;
+        private IDataService userDataService;
         private INavigationService navigationService;
 
         private ObservableCollection<Category> categories;
@@ -37,7 +37,7 @@ namespace FitSense.ViewModels
 
         public RelayCommand<object> CategorySelectedCommand { get; private set; }
 
-        public CategoriesViewModel(INavigationService navigationService, IUserDataService userDataService)
+        public CategoriesViewModel(INavigationService navigationService, IDataService userDataService)
         {
             this.userDataService = userDataService;
             this.navigationService = navigationService;
