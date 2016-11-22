@@ -60,6 +60,9 @@ namespace test_fitsense
             viewmodel.Exercises = new ObservableCollection<Exercise>();
             viewmodel.SelectedExercise = new Exercise();
             viewmodel.ActiveChart = new List<ChartRecord>();
+
+            viewmodel.Initializing.Wait();
+
             Assert.IsTrue(receivedEvents.Contains("SelectedCategory"));
             Assert.IsTrue(receivedEvents.Contains("Exercises"));
             Assert.IsTrue(receivedEvents.Contains("SelectedExercise"));

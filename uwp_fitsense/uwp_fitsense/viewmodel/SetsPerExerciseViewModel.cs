@@ -42,10 +42,12 @@ namespace uwp_fitsense.viewmodel
             {
                 currentExercise = value;
                 if (currentExercise != null)
-                    PrepareLoadingAsync();
+                    Initializing = LoadDataAsync();
                 RaisePropertyChanged("CurrentExercise");
             }
         }
+
+        public Task Initializing { get; private set; }
 
         private ObservableCollection<Set> sets;
         public ObservableCollection<Set> Sets
