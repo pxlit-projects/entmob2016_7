@@ -23,13 +23,11 @@ namespace test.fitsense
         public void Init()
         {
             locatorMock = new ViewModelLocatorMock();
-            //userDataService = new UserDataServiceMock();
         }
 
         [TestMethod]
         public void AreCategoriesLoadedTest()
         {
-            //var viewModel = GetViewModel();
             var categories = new List<Category>() { new Category() { Name = "Arms" } };
             var dataService = ServiceLocator.Current.GetInstance<IDataService>() as DataServiceMock;
             dataService.Categories = categories;

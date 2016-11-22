@@ -12,14 +12,14 @@ namespace test.fitsense.mocks.Repository
     {
         public List<Category> Categories { get; set; }
 
-        public Task AddCategoryAsync(Category categorie, string baseUrl)
+        public async Task<List<Category>> GetCategoriesAsync(string baseUrl)
         {
-            return new Task(() => Categories.Add(categorie));
+            return await Task.Run(() => Categories);
         }
 
-        public Task<List<Category>> GetCategoriesAsync(string baseUrl)
+        public async Task AddCategoryAsync(Category categorie, string baseUrl)
         {
-            return new Task<List<Category>>(() => Categories);
+            await Task.Run(() => Categories.Add(categorie));
         }
     }
 }
