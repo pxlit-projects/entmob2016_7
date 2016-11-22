@@ -74,7 +74,6 @@ namespace FitSense.Models
             }
         }
 
-        public new void SetEnabled(bool value)
-        { }
+        public new void SetEnabled(bool value) { }
     }
 }

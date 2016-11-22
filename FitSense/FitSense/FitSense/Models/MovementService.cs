@@ -20,6 +20,7 @@ namespace FitSense.Models
         private EventHandler<CharacteristicReadEventArgs> valueUpdatedHandler;
 
         private Vector3 oldVector;
+        private int accRange;
 
         public MovementService(IService movementService) : base(movementService)
         {
@@ -57,9 +58,9 @@ namespace FitSense.Models
                 return new Vector3();
             }
 
-            short valX = BitConverter.ToInt16(raw, 0);
-            short valY = BitConverter.ToInt16(raw, 2);
-            short valZ = BitConverter.ToInt16(raw, 4);
+            short valX = BitConverter.ToInt16(raw, 6);
+            short valY = BitConverter.ToInt16(raw, 8);
+            short valZ = BitConverter.ToInt16(raw, 10);
 
             //Debug.WriteLine(raw[0]);
             //Debug.WriteLine(raw[1]);
@@ -69,19 +70,18 @@ namespace FitSense.Models
             //Debug.WriteLine(raw[5]);
             //Debug.WriteLine("X: " + valX + "  Y: " + valY + "  Z: " + valZ);
 
-            float fValX = sensorMpu9250GyroConvert(valX);
-            float fValY = sensorMpu9250GyroConvert(valY);
-            float fValZ = sensorMpu9250GyroConvert(valZ);
+            float fValX = GyroConvert(valX);
+            float fValY = GyroConvert(valY);
+            float fValZ = GyroConvert(valZ);
 
             Debug.WriteLine("X: " + fValX + "  Y: " + fValY + "  Z: " + fValZ);
 
             return new Vector3(fValX, fValY, fValZ);
         }
 
-        private float sensorMpu9250GyroConvert(short data)
+        private float GyroConvert(short data)
         {
-            //-- calculate rotation, unit deg/s, range -250, +250
-            return (data) / (65536 / 500.0f);
+           return  (data) / (32768 / 2f); 
         }
 
         public new void SetEnabled(bool value)
@@ -91,7 +91,7 @@ namespace FitSense.Models
                 if (!IsOn)
                 {
                     //Enable sensor
-                    switchCharacteristic.Write(new byte[] { 0x07, 0x00 });
+                    switchCharacteristic.Write(new byte[] { 0x7F, 0x00 });
                     periodCharacteristic.Write(new byte[] { 0x04 });
                     IsOn = true;
                 }
