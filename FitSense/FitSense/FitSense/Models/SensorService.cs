@@ -51,7 +51,7 @@ namespace FitSense.Models
             });
         }
 
-        public void stopReadData()
+        public void StopReadData()
         {
             IsUpdating = false;
         }
@@ -76,10 +76,6 @@ namespace FitSense.Models
                     IsOn = false;
                 }
             }
-
-            
-            
         }
-        
     }
 }

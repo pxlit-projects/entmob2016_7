@@ -47,9 +47,9 @@ namespace FitSense.Models
             base.StartReadData(interval);
         }
 
-        private new void stopReadData()
+        private new void StopReadData()
         {
-            base.stopReadData();
+            base.StopReadData();
             dataCharacteristic.ValueUpdated -= valueUpdatedHandler;
         }
 

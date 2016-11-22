@@ -183,6 +183,7 @@ namespace FitSense.ViewModels
                         UserID = dataService.LoggedInUser.UserID
                     };
                     dataService.SendCompletedSet(completedSet);
+                    
                 }
             });
         }
