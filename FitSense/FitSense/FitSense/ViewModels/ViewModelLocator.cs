@@ -39,17 +39,25 @@ namespace FitSense.ViewModels
 
             SimpleIoc.Default.Register<INavigationService, NavigationService>();
 
-            SimpleIoc.Default.Register<IUserRepository, UserRepository>();
-            SimpleIoc.Default.Register<ICategoryRepository, CategoryRepository>();
-            SimpleIoc.Default.Register<IExerciseRepository, ExerciseRepository>();
-            SimpleIoc.Default.Register<ISetRepository, SetRepository>();
-            SimpleIoc.Default.Register<ICompletedSetRepository, CompletedSetRepository>();
-            SimpleIoc.Default.Register<IDataService, DataService>();
-            //SimpleIoc.Default.Register<IUserDataService>(() => new UserDataService(
-            //    new CategoryRepository(),
-            //    new ExerciseRepository(),
-            //    new SetRepository()));
+            if (DependencyService.Get<IDeviceService>().IsEmulator())
+            {
+                SimpleIoc.Default.Register<IUserRepository, UserRepository>();
+                SimpleIoc.Default.Register<ICategoryRepository, CategoryRepository>();
+                SimpleIoc.Default.Register<IExerciseRepository, ExerciseRepository>();
+                SimpleIoc.Default.Register<ISetRepository, SetRepository>();
+                SimpleIoc.Default.Register<ICompletedSetRepository, CompletedSetRepository>();
+            }
+            else
+            {
+                SimpleIoc.Default.Register<IUserRepository, UserRepository>();
+                SimpleIoc.Default.Register<ICategoryRepository, CategoryMockRepository>();
+                SimpleIoc.Default.Register<IExerciseRepository, ExerciseMockRepository>();
+                SimpleIoc.Default.Register<ISetRepository, SetMockRepository>();
+                SimpleIoc.Default.Register<ICompletedSetRepository, CompletedSetMockRepository>();
+            }
 
+            SimpleIoc.Default.Register<IDataService, DataService>();
+            
             SimpleIoc.Default.Register<IConnectivity>(() => DependencyService.Get<IConnectivity>());
             SimpleIoc.Default.Register<IBluetoothService>(() => DependencyService.Get<IBluetoothService>());
 

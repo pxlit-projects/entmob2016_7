@@ -49,6 +49,7 @@
     <Compile Include="Converters\RepsConverter.cs" />
     <Compile Include="Dependencies\IBluetoothService.cs" />
     <Compile Include="Dependencies\IConnectivity.cs" />
+    <Compile Include="Dependencies\IDeviceService.cs" />
     <Compile Include="Dependencies\IDummyRepository.cs" />
     <Compile Include="Dependencies\INavigationService.cs" />
     <Compile Include="Dependencies\ISQLite.cs" />
@@ -67,6 +68,10 @@
     <Compile Include="Models\SensorDevice.cs" />
     <Compile Include="Models\SensorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CategoryMockRepository.cs" />
+    <Compile Include="Repositories\CompletedSetMockRepository.cs" />
+    <Compile Include="Repositories\ExerciseMockRepository.cs" />
+    <Compile Include="Repositories\SetMockRepository.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="ViewModels\ActiveSetViewModel.cs" />
@@ -229,7 +234,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Messages\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\SetsCarousel.xaml">
