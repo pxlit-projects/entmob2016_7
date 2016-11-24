@@ -9,7 +9,7 @@ using fitsense.models;
 using fitsense.DAL;
 using fitsense.DAL.dependencies;
 using FitSense.ViewModels;
-using fitsense.DAL.Constants;
+using FitSense.Constants;
 
 namespace FitSense.Services
 {
