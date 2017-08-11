@@ -7,7 +7,8 @@ public class TestDbCon {
 		
 		public static void main(String[] args) {
             //String Url = "jdbc:mysql://192.168.182.134:3306;DatabaseName=sensortag;user=root;Password=Pxl1234.";
-			String Url = "jdbc:mysql://192.168.182.134:3306/sensortag";
+			//String Url = "jdbc:mysql://192.168.182.134:3306/sensortag";
+			String Url = "jdbc:mysql://localhost:3306/testdb";
 			String username = "root";
 			String pass = "Pxl1234.";
             try {
