@@ -94,7 +94,7 @@ namespace FitSense.ViewModels
         private void AddEmulator()
         {
             SensorDevice simulator = new SensorDevice();
-            simulator.ConnectedDevice = new Device();
+            //simulator.ConnectedDevice = new Device();
 
             ServiceLocator.Current.GetInstance<SensorDevice>().ConnectedDevice = (IDevice) simulator;
             //Devices.Add(emulator);

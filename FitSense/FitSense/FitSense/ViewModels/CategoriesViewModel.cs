@@ -49,6 +49,7 @@ namespace FitSense.ViewModels
         private async Task InitializeAsync()
         {
             InitializeCommands();
+            SeedCategories();
             await LoadDataAsync();
         }
 
@@ -56,6 +57,10 @@ namespace FitSense.ViewModels
         {
             var result = await DataService.GetAllCategoriesAsync();
             Categories = result.ToObservableCollection();
+
+            //added
+            //add fake categories
+            //SeedCategories();
         }
 
         private void InitializeCommands()
@@ -67,6 +72,16 @@ namespace FitSense.ViewModels
                     MessengerInstance.Send((item is Category ? (Category)item : null), Messages.CategoryUpdated);
                 });
             });
+        }
+
+        //added
+        private void SeedCategories()
+        {
+            Exercise lift = new Exercise();
+            Category fitness = new Category();
+            fitness.CategoryID = 1;
+            fitness.Exercises.Add(lift);
+            Categories.Add(fitness);
         }
     }
 }
