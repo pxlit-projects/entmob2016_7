@@ -36,5 +36,6 @@
             </ListView.ItemTemplate>
         </ListView>
         <Button Text="{Binding ScanButtonText}" Command="{Binding ScanCommand}" Grid.Row="1"/>
+        <Button Text="Add emulator" Command="{Binding EmulatorCommand}" Grid.Row="2" />
     </Grid>
 </ContentPage>

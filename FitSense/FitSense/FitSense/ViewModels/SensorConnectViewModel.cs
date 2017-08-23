@@ -25,6 +25,9 @@ namespace FitSense.ViewModels
         
         public RelayCommand<object> ItemSelectedCommand { get; private set; }
         public RelayCommand ScanCommand { get; private set; }
+
+        //added
+        public RelayCommand SimulatorCommand { get; private set; }
         
 
         public SensorConnectViewModel(INavigationService navigationService)
@@ -46,7 +49,7 @@ namespace FitSense.ViewModels
                 {
                     Devices.Add(args.Device);
                 }
-            };
+            };            
 
             adapter.ScanTimeoutElapsed += (object sender, EventArgs args) =>
             {
@@ -66,6 +69,9 @@ namespace FitSense.ViewModels
             });
 
             ScanCommand = new RelayCommand(() => StartScanning());
+
+            //added
+            SimulatorCommand = new RelayCommand(() => AddEmulator());
         }
 
         private void StartScanning()
@@ -82,6 +88,17 @@ namespace FitSense.ViewModels
                 adapter.StopScanningForDevices();
                 ScanButtonText = startScanText;
             }
+        }
+
+        //added
+        private void AddEmulator()
+        {
+            SensorDevice simulator = new SensorDevice();
+            simulator.ConnectedDevice = new Device();
+
+            ServiceLocator.Current.GetInstance<SensorDevice>().ConnectedDevice = (IDevice) simulator;
+            //Devices.Add(emulator);
+            //Devices.Add(new SensorDevice());
         }
     }
 }

@@ -65,6 +65,7 @@
     <Compile Include="Models\KeyService.cs" />
     <Compile Include="Models\MovementService.cs" />
     <Compile Include="Models\SensorDevice.cs" />
+    <Compile Include="Models\SensorDeviceEmulator.cs" />
     <Compile Include="Models\SensorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\NavigationService.cs" />
