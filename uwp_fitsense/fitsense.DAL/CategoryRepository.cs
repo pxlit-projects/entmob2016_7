@@ -37,7 +37,7 @@ namespace fitsense.DAL
             string categories = baseUrl + "category/all";
             var uri = new Uri(String.Format("{0}?format=json", categories));
             var client = new HttpClient();
-            //edit: disabled authentication
+            //edit: disabled authentication because backend has no more authentication
             //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
             //      Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", "user", "123456"))));
             var response = await client.GetAsync(uri);

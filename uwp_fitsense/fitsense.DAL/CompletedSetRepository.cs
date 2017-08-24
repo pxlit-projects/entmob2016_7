@@ -18,8 +18,9 @@ namespace fitsense.DAL
             string apiCompletedSet = string.Format(baseUrl + "completedset/sets/{0}", set.SetID);
             var uri = new Uri(String.Format("{0}?format=json", apiCompletedSet));
             var client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
-                   Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", "user", "123456"))));
+            //disabled auth
+            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
+            //       Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", "user", "123456"))));
             var response = await client.GetAsync(uri);
 
             if (response.IsSuccessStatusCode)
